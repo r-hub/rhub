@@ -3,7 +3,8 @@ Title: Connect to 'R-hub', from 'R'
 Version: 1.0.0
 Author: Gábor Csárdi
 Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
-Description: Run 'R CMD check' on any of the 'R-hub' architectures, from the command line.
+Description: Run 'R CMD check' on any of the 'R-hub' architectures, from
+    the command line.
 License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/r-hub/rhub
@@ -11,3 +12,4 @@ BugReports: https://github.com/r-hub/rhub/issues
 RoxygenNote: 5.0.1
 Suggests: 
     testthat
+Encoding: UTF-8
