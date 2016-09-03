@@ -9,7 +9,19 @@ License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/r-hub/rhub
 BugReports: https://github.com/r-hub/rhub/issues
-RoxygenNote: 5.0.1
+RoxygenNote: 5.0.1.9000
+Imports: 
+    base64enc,
+    callr,
+    crayon,
+    curl,
+    desc,
+    httr,
+    jsonlite,
+    rappdirs,
+    rematch,
+    whoami,
+    withr
 Suggests: 
     testthat
 Encoding: UTF-8
