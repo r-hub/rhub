@@ -1,6 +1,6 @@
 
 #' @importFrom rematch re_match
-#' @importFrom base64enc base64encode
+#' @importFrom jsonlite base64_enc
 
 submit_package <- function(email, pkg_targz, platform) {
 
@@ -13,6 +13,7 @@ submit_package <- function(email, pkg_targz, platform) {
   )
 
   header_line("Uploading package ... ", newline = FALSE, endnewline = FALSE)
+  buf <- readBin(pkg_targz, raw(), file.info(pkg_targz)$size)
   response <- query(
     "SUBMIT PACKAGE",
     list(
@@ -21,7 +22,7 @@ submit_package <- function(email, pkg_targz, platform) {
       package = unbox(m[, "package"]),
       version = unbox(m[, "version"]),
       platform = unbox(platform),
-      file = unbox(base64encode(pkg_targz))
+      file = unbox(base64_enc(buf))
     )
   )
   header_line("done.", newline = FALSE)
