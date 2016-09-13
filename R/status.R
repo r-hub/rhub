@@ -1,4 +1,13 @@
 
+#' @export
+
+check_status <- function(id, interactive = interactive()) {
+  if (interactive) {
+    my_curl_stream(id$`log-url`, byline(make_status_parser(id)))
+  }
+  invisible(id)
+}
+
 #' @importFrom curl curl
 
 my_curl_stream <- function(url, callback, bufsize = 80) {
@@ -38,11 +47,50 @@ byline <- function(fun) {
   }
 }
 
-#' @export
+make_status_parser <- function(id) {
 
-check_status <- function(id, interactive = interactive()) {
-  if (interactive) {
-    my_curl_stream(id$`log-url`, byline(function(x) cat(x, "\n", sep = "")))
+  first <- TRUE
+  checking <- FALSE
+  formatter <- rcmdcheck:::check_callback()
+
+  function(x) {
+
+    if (first) {
+      header_line("Preparing")
+      first <<- FALSE
+    }
+
+    ## Get rid of potential \r characters
+    x <- gsub("\r", "", x)
+
+    ## Checking (already, and still)
+
+    if (checking) {
+      if (grepl("^\\+R-HUB-R-HUB-R-HUB", x)) {
+        checking <<- FALSE
+        header_line("Sending email")
+      } else {
+        return(formatter(x))
+      }
+    }
+
+    ## Not checking (yet, or any more)
+
+    if (grepl("^>>>>>=====+ Running R CMD check", x)) {
+      checking <<- TRUE
+      x <- sub("^>>>>>=+ ", "", x)
+      header_line(x)
+
+    } else if (grepl("^>>>>>=====", x)) {
+      x <- sub("^>>>>>=+ ", "", x)
+      header_line(x)
+
+    } else if (grepl("^\\+R-HUB-R-HUB-R-HUB", x)) {
+      x <- sub("^\\+R-HUB-R-HUB-R-HUB", "", x)
+      cat(".")
+
+    } else {
+      cat(".")
+    }
   }
-  id
 }
