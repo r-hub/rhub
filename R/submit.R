@@ -12,7 +12,8 @@ submit_package <- function(email, pkg_targz, platform) {
     basename(pkg_targz)
   )
 
-  query(
+  header_line("Uploading package ... ", newline = FALSE, endnewline = FALSE)
+  response <- query(
     "SUBMIT PACKAGE",
     list(
       email = unbox(email),
@@ -23,4 +24,8 @@ submit_package <- function(email, pkg_targz, platform) {
       file = unbox(base64encode(pkg_targz))
     )
   )
+  header_line("done.", newline = FALSE)
+  header_line("Preparing", newline = FALSE)
+
+  response
 }

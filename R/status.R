@@ -56,7 +56,7 @@ make_status_parser <- function(id) {
   function(x) {
 
     if (first) {
-      header_line("Preparing")
+      header_line("Build started", newline = FALSE)
       first <<- FALSE
     }
 
