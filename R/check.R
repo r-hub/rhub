@@ -18,7 +18,7 @@ check <- function(path = ".", platform = platforms()$name[1],
   pkg_targz <- build_package(path, tmpdir <- tempfile())
 
   ## Submit to r-hub
-  id <- submit_package(email, pkg_targz)
+  id <- submit_package(email, pkg_targz, platform = platform)
 
   ## Show the status
   check_status(id, interactive = show_status)
