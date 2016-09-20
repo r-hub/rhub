@@ -15,6 +15,7 @@ check <- function(path = ".", platform = platforms()$name[1],
   assert_validated_email(email)
 
   ## Build the tar.gz
+  header_line("Building package")
   pkg_targz <- build_package(path, tmpdir <- tempfile())
 
   ## Submit to r-hub
