@@ -51,17 +51,23 @@ make_status_parser <- function(id) {
 
   first <- TRUE
   checking <- FALSE
-  formatter <- rcmdcheck:::check_callback()
+  formatter <- rcmdcheck:::check_callback(top_line = FALSE)
+  spinner <- c("-", "\\", "|", "/")
+
+  spin <- function() {
+    cat("\r", spinner[1], sep = "")
+    spinner <<- c(spinner[-1], spinner[1])
+  }
 
   function(x) {
 
     if (first) {
-      header_line("Build started", newline = FALSE)
+      header_line("Build started")
       first <<- FALSE
     }
 
-    ## Get rid of potential \r characters
-    x <- gsub("\r", "", x)
+    ## Get rid of potential \r characters, this also removes empty lines
+    x <- gsub("[\r\n]+", "", x)
 
     ## Checking (already, and still)
 
@@ -87,10 +93,10 @@ make_status_parser <- function(id) {
 
     } else if (grepl("^\\+R-HUB-R-HUB-R-HUB", x)) {
       x <- sub("^\\+R-HUB-R-HUB-R-HUB", "", x)
-      cat(".")
+      spin()
 
     } else {
-      cat(".")
+      spin()
     }
   }
 }

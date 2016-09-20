@@ -12,6 +12,7 @@ BugReports: https://github.com/r-hub/rhub/issues
 RoxygenNote: 5.0.1.9000
 Imports: 
     callr,
+    clisymbols,
     crayon,
     curl,
     desc,

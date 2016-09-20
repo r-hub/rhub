@@ -1,11 +1,15 @@
 
-#' @importFrom crayon yellow bold
+#' @importFrom crayon make_style
+#' @importFrom clisymbols symbol
 
-header_line <- function(x, newline = TRUE, endnewline = TRUE) {
+header_line <- function(x) {
+
+  greyish <- make_style("darkgrey")
+
   cat(
-    if (newline) "\n",
-    bold(yellow(x)),
-    if (endnewline) "\n",
+    paste0("\r", greyish(symbol$line), "  "),
+    greyish(x),
+    "\n",
     sep = ""
   )
 }
