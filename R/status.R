@@ -19,6 +19,7 @@ my_curl_stream <- function(url, callback, bufsize = 80) {
   while (length(buf <- readBin(con, raw(), bufsize))) {
     callback(buf)
   }
+  cat("\r                                                 \r")
 }
 
 byline <- function(fun) {
