@@ -3,7 +3,7 @@
 #' @importFrom jsonlite base64_enc
 #' @importFrom crayon blue
 
-submit_package <- function(email, pkg_targz, platform) {
+submit_package <- function(email, pkg_targz, platform, check_args) {
 
   assert_string(email)
   assert_string(platform)
@@ -23,6 +23,7 @@ submit_package <- function(email, pkg_targz, platform) {
       package = unbox(m[, "package"]),
       version = unbox(m[, "version"]),
       platform = unbox(platform),
+      check_args = unbox(paste(check_args, collapse = " ")),
       file = unbox(base64_enc(buf))
     )
   )
