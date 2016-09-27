@@ -1,6 +1,4 @@
 
-#' @export
-
 check_status <- function(id, interactive = interactive()) {
   if (interactive) {
     my_curl_stream(id$`log-url`, byline(make_status_parser(id)))

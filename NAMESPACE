@@ -2,7 +2,6 @@
 
 S3method(print,rhub_platforms)
 export(check)
-export(check_status)
 export(platforms)
 export(validate_email)
 importFrom(callr,rcmd_safe)
