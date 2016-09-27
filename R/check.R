@@ -3,7 +3,7 @@
 #' @export
 
 check <- function(path = ".", platform = platforms()$name[1],
-                  email = NULL, valgrind = FALSE,
+                  email = NULL, valgrind = FALSE, check_args = character(),
                   show_status = interactive()) {
 
   ## Check that it is a package
@@ -23,10 +23,11 @@ check <- function(path = ".", platform = platforms()$name[1],
     pkg_targz <- path
   }
 
-  ## Create check_args
-  check_args <- as.character(c(
+  ## Add valgrind to check_args
+  check_args <- c(
+    check_args,
     if (valgrind) "--use-valgrind"
-  ))
+  )
 
   ## Submit to r-hub
   id <- submit_package(

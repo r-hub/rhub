@@ -5,7 +5,7 @@
 \title{Check an R package on r-hub}
 \usage{
 check(path = ".", platform = platforms()$name[1], email = NULL,
-  valgrind = FALSE, show_status = interactive())
+  valgrind = FALSE, check_args = character(), show_status = interactive())
 }
 \description{
 Check an R package on r-hub
