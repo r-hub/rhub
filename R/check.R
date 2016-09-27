@@ -1,7 +1,6 @@
 
 #' Check an R package on r-hub
 #' @export
-#' @importFrom desc desc_get_maintainer
 
 check <- function(path = ".", platform = platforms()$name[1],
                   email = NULL, valgrind = FALSE,
@@ -9,16 +8,20 @@ check <- function(path = ".", platform = platforms()$name[1],
 
   ## Check that it is a package
   path <- normalizePath(path)
-  assert_pkg_dir(path)
+  assert_pkg_dir_or_tarball(path)
   assert_flag(valgrind)
 
   ## Make sure that maintainer email was validated
-  if (is.null(email)) email <- parse_email(desc_get_maintainer(path))
+  if (is.null(email)) email <- get_maintainer_email(path)
   assert_validated_email(email)
 
-  ## Build the tar.gz
-  header_line("Building package")
-  pkg_targz <- build_package(path, tmpdir <- tempfile())
+  ## Build the tar.gz, if needed
+  if (file.info(path)$isdir) {
+    header_line("Building package")
+    pkg_targz <- build_package(path, tmpdir <- tempfile())
+  } else {
+    pkg_targz <- path
+  }
 
   ## Create check_args
   check_args <- as.character(c(

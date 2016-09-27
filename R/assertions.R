@@ -1,9 +1,18 @@
 
-assert_pkg_dir <- function(path) {
-  stopifnot(
-    file.exists(path),
-    file.info(path)$isdir,
+is_pkg_dir <- function(path) {
+  file.exists(path) &&
+    file.info(path)$isdir &&
     file.exists(file.path(path, "DESCRIPTION"))
+}
+
+is_pkg_tarball <- function(path) {
+  file.exists(path) &&
+    grepl("\\.tar\\.gz", path)
+}
+
+assert_pkg_dir_or_tarball <- function(path) {
+  stopifnot(
+    is_pkg_tarball(path) || is_pkg_dir(path)
   )
 }
 

@@ -19,3 +19,19 @@ parse_email <- function(x) {
 }
 
 `%||%` <- function(l, r) if (is.null(l)) r else l
+
+#' @importFrom desc desc_get_maintainer
+
+get_maintainer_email <- function(path) {
+  path <- normalizePath(path)
+  if (is_pkg_dir(path)) {
+    parse_email(desc_get_maintainer(path))
+  } else {
+    dir.create(tmp <- tempfile())
+    files <- untar(path, list = TRUE)
+    desc <- grep("^[^/]+/DESCRIPTION$", files, value = TRUE)
+    if (length(desc) < 1) stop("No 'DESCRIPTION' file in package")
+    untar(path, desc, exdir = tmp)
+    parse_email(desc_get_maintainer(file.path(tmp, desc)))
+  }
+}
