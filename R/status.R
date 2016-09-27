@@ -73,9 +73,9 @@ make_status_parser <- function(id) {
     ## Checking (already, and still)
 
     if (checking) {
-      if (grepl("^\\+R-HUB-R-HUB-R-HUB", x)) {
+      if (grepl("^Status: ", x)) {
         checking <<- FALSE
-        header_line("Sending email")
+        return(formatter(x))
       } else {
         return(formatter(x))
       }
