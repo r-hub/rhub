@@ -7,7 +7,37 @@
 check(path = ".", platform = platforms()$name[1], email = NULL,
   valgrind = FALSE, check_args = character(), show_status = interactive())
 }
+\arguments{
+\item{path}{Path to a directory containing an R package, or path to
+source R package tarball built with \code{R CMD check}.}
+
+\item{platform}{Platform to build/check the package on. See
+\code{\link[=platforms]{platforms()}} for the available platforms.}
+
+\item{email}{Email address to send notification to about the build.
+It must be a validated email address, see \code{\link[=validate_email]{validate_email()}}. If
+\code{NULL}, then the email address of the maintainer is used, as defined
+in the \code{DESCRIPTION} file of the package.}
+
+\item{valgrind}{Whether to run the check in valgrind. Only supported on
+Linux currently, and ignored on other platforms.}
+
+\item{check_args}{Extra arguments for the \code{R CMD check} command.}
+
+\item{show_status}{Whether to show the status of the build as it is
+happening.}
+}
+\value{
+Return the response from r-hub, invisibly. It contains the
+URL of the build's status page on r-hub.
+}
 \description{
 Check an R package on r-hub
+}
+\examples{
+\dontrun{
+check(".")
+check("mypackage_1.0.0.tar.gz", platform = "fedora-clang-devel")
+}
 }
 

@@ -1,7 +1,17 @@
 
+#' List all r-hub platforms
+#'
+#' The platforms are pretty-printed in a short format. Use
+#' `as.data.frame(platforms())` to get all available platform metadata.
+#'
 #' @export
 #' @importFrom jsonlite fromJSON
 #' @importFrom crayon green cyan
+#' @examples
+#' \dontrun{
+#' platforms()
+#' as.data.frame(platforms())
+#' }
 
 platforms <- function() {
   json <- query("GET PLATFORMS", as = "text")

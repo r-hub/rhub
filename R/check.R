@@ -1,6 +1,28 @@
 
 #' Check an R package on r-hub
+#'
+#' @param path Path to a directory containing an R package, or path to
+#'   source R package tarball built with `R CMD check`.
+#' @param platform Platform to build/check the package on. See
+#'   [platforms()] for the available platforms.
+#' @param email Email address to send notification to about the build.
+#'   It must be a validated email address, see [validate_email()]. If
+#'   `NULL`, then the email address of the maintainer is used, as defined
+#'   in the `DESCRIPTION` file of the package.
+#' @param valgrind Whether to run the check in valgrind. Only supported on
+#'   Linux currently, and ignored on other platforms.
+#' @param check_args Extra arguments for the `R CMD check` command.
+#' @param show_status Whether to show the status of the build as it is
+#'   happening.
+#' @return Return the response from r-hub, invisibly. It contains the
+#'   URL of the build's status page on r-hub.
+#'
 #' @export
+#' @examples
+#' \dontrun{
+#' check(".")
+#' check("mypackage_1.0.0.tar.gz", platform = "fedora-clang-devel")
+#' }
 
 check <- function(path = ".", platform = platforms()$name[1],
                   email = NULL, valgrind = FALSE, check_args = character(),

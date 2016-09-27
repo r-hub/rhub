@@ -1,4 +1,16 @@
 
+#' Validate an email address on r-hub
+#'
+#' To build and check R packages on r-hub, you need to validate your
+#' email address. This is because r-hub sends out emails about build
+#' results.
+#'
+#' @param email The email address to validate. If not specified,
+#'   `rhub` tries to find it, via [whoami::email_address()].
+#' @param token Token obtained from `rhub`, to validate the email address.
+#'   If not specified, then a new token is requested, and will be sent
+#'   to the email address, and it can be specified interactively.
+#'
 #' @export
 #' @importFrom whoami email_address
 #' @importFrom jsonlite unbox
