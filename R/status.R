@@ -42,6 +42,7 @@ byline <- function(fun) {
     ## Time to convert to string, split into lines, and serve it
     str <- rawToChar(r)
     lines <- strsplit(str, "\n")[[1]]
+    Encoding(lines) <- "UTF-8"
     for (l in lines) fun(l)
   }
 }
