@@ -17,6 +17,7 @@ assert_pkg_dir_or_tarball <- function(path) {
 }
 
 assert_string <- function(x) {
+  stopifnot(!is.null(x))
   stopifnot(
     is.character(x),
     length(x) == 1,
@@ -41,6 +42,7 @@ assert_validated_email <- function(email = email_address(),
 }
 
 assert_flag <- function(x) {
+  stopifnot(!is.null(x))
   stopifnot(
     is.logical(x),
     length(x) == 1,
