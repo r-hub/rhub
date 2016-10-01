@@ -49,6 +49,8 @@ byline <- function(fun) {
   }
 }
 
+#' @importFrom rcmdcheck rcmdcheck
+
 make_status_parser <- function(id) {
 
   first <- TRUE
