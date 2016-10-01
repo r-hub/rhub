@@ -21,8 +21,8 @@ submit_package <- function(email, pkg_targz, platform, check_args,
     list(
       email = unbox(email),
       token = unbox(email_get_token(email)),
-      package = unbox(m[, "package"]),
-      version = unbox(m[, "version"]),
+      package = unbox(unname(m[, "package"])),
+      version = unbox(unname(m[, "version"])),
       platform = unbox(platform),
       check_args = unbox(paste(check_args, collapse = " ")),
       file = unbox(base64_enc(buf))
