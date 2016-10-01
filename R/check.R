@@ -40,7 +40,7 @@ check <- function(path = ".", platform = platforms()$name[1],
 
   ## Build the tar.gz, if needed
   if (file.info(path)$isdir) {
-    header_line("Building package")
+    if (show_status) header_line("Building package")
     pkg_targz <- build_package(path, tmpdir <- tempfile())
   } else {
     pkg_targz <- path
@@ -57,7 +57,8 @@ check <- function(path = ".", platform = platforms()$name[1],
     email,
     pkg_targz,
     platform = platform,
-    check_args = check_args
+    check_args = check_args,
+    show_status = show_status
   )
 
   ## Show the status

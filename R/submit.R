@@ -3,7 +3,8 @@
 #' @importFrom jsonlite base64_enc
 #' @importFrom crayon blue
 
-submit_package <- function(email, pkg_targz, platform, check_args) {
+submit_package <- function(email, pkg_targz, platform, check_args,
+                           show_status) {
 
   assert_string(email)
   assert_string(platform)
@@ -13,7 +14,7 @@ submit_package <- function(email, pkg_targz, platform, check_args) {
     basename(pkg_targz)
   )
 
-  header_line("Uploading package")
+  if (show_status) header_line("Uploading package")
   buf <- readBin(pkg_targz, raw(), file.info(pkg_targz)$size)
   response <- query(
     "SUBMIT PACKAGE",
@@ -27,10 +28,13 @@ submit_package <- function(email, pkg_targz, platform, check_args) {
       file = unbox(base64_enc(buf))
     )
   )
-  header_line(paste0(
-    "Preparing build, see status at\n   ",
-    blue(response$`status-url`)
-  ))
+
+  if (show_status) {
+    header_line(paste0(
+      "Preparing build, see status at\n   ",
+      blue(response$`status-url`)
+    ))
+  }
 
   response
 }
