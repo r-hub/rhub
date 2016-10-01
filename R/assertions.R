@@ -31,7 +31,7 @@ assert_validated_email <- function(email = email_address(),
                                    ask = interactive()) {
   assert_string(email)
   code <- email_get_token(email)
-  if (is.na(code)) {
+  if (is.null(code)) {
     if (ask) {
       message(sQuote(email), " is not validated, validating now.")
       validate_email(email)

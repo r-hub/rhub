@@ -50,10 +50,10 @@ email_file <- function() {
 
 email_get_token <- function(email) {
   file <- email_file()
-  if (! file.exists(file)) stop(sQuote(email), " is not validated")
+  if (! file.exists(file)) return(NULL)
 
   tokens <- read.csv(file, stringsAsFactors = FALSE, header = FALSE)
-  if (! email %in% tokens[,1]) stop(sQuote(email), " is not validated")
+  if (! email %in% tokens[,1]) return(NULL)
 
   tokens[match(email, tokens[,1]), 2]
 }
