@@ -47,3 +47,10 @@ assert_flag <- function(x) {
     !is.na(x)
   )
 }
+
+assert_named <- function(x) {
+  stopifnot(
+    !is.null(names(x)),
+    all(names(x) != "")
+  )
+}
