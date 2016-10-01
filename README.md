@@ -102,9 +102,11 @@ Undefined Behavior Sanitizer (UBSAN). This is based on the `r-devel-san`
 image of the [Rocker project](https://github.com/rocker-org/r-devel-san).
 
 This image does not run `R CMD check` at all, but it runs
+
 1. package tests,
 2. all manual examples, and
 3. all vignette code
+
 with ASAN and UBSAN enabled.
 
 ## License
