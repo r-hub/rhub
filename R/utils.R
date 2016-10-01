@@ -40,3 +40,7 @@ get_maintainer_email <- function(path) {
 `%:::%` <- function(p, f) {
   get(f, envir = asNamespace(p))
 }
+
+is_interactive <- function() {
+  interactive()
+}

@@ -19,7 +19,7 @@ validate_email <- function(email = email_address(), token = NULL) {
 
   assert_string(email)
 
-  if (is.null(token) && !interactive()) {
+  if (is.null(token) && !is_interactive()) {
     stop("No token and not in interactive mode")
   }
 
