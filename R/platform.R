@@ -17,7 +17,7 @@ platforms <- function() {
   json <- query("GET PLATFORMS", as = "text")
   pls <- fromJSON(json, simplifyDataFrame = TRUE)
   pls <- pls[order(pls$name), , drop = FALSE]
-  class(pls) <- c("rhub_platforms", pls)
+  class(pls) <- c("rhub_platforms", class(pls))
   pls
 }
 
