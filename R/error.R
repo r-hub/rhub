@@ -29,7 +29,6 @@ report_error <- function(response) {
     invisible(response)
   } else {
     call <- sys.call(-1)
-    print(response)
     stop(create_condition(response, "error", call = call))
   }
 }
