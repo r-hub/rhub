@@ -21,6 +21,7 @@ Imports:
     jsonlite,
     rappdirs,
     rematch,
+    utils,
     whoami,
     withr
 Suggests: 

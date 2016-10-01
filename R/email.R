@@ -46,6 +46,8 @@ email_file <- function() {
   file.path(rhub_data_dir, "validated_emails.csv")
 }
 
+#' @importFrom utils read.csv
+
 email_get_token <- function(email) {
   file <- email_file()
   if (! file.exists(file)) stop(sQuote(email), " is not validated")
@@ -57,6 +59,8 @@ email_get_token <- function(email) {
 }
 
 ## If it exists already, then overwrites
+
+#' @importFrom utils read.csv write.table
 
 email_add_token <- function(email, token) {
 

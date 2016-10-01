@@ -21,6 +21,7 @@ parse_email <- function(x) {
 `%||%` <- function(l, r) if (is.null(l)) r else l
 
 #' @importFrom desc desc_get_maintainer
+#' @importFrom utils untar
 
 get_maintainer_email <- function(path) {
   path <- normalizePath(path)
@@ -34,4 +35,8 @@ get_maintainer_email <- function(path) {
     untar(path, desc, exdir = tmp)
     parse_email(desc_get_maintainer(file.path(tmp, desc)))
   }
+}
+
+`%:::%` <- function(p, f) {
+  get(f, envir = asNamespace(p))
 }

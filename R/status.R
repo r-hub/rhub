@@ -20,6 +20,8 @@ my_curl_stream <- function(url, callback, bufsize = 80) {
   cat("\r                                                 \r")
 }
 
+#' @importFrom utils tail
+
 byline <- function(fun) {
   buffer <- raw(0)
   function(r) {
@@ -51,7 +53,7 @@ make_status_parser <- function(id) {
 
   first <- TRUE
   checking <- FALSE
-  formatter <- rcmdcheck:::check_callback(top_line = FALSE)
+  formatter <- ("rcmdcheck" %:::% "check_callback")(top_line = FALSE)
   spinner <- c("-", "\\", "|", "/")
 
   spin <- function() {
