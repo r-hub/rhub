@@ -35,6 +35,7 @@ check <- function(path = ".", platform = platforms()$name[1],
 
   ## Make sure that maintainer email was validated
   if (is.null(email)) email <- get_maintainer_email(path)
+  if (is.na(email)) stop("Cannot get email address from package")
   assert_validated_email(email)
 
   ## Build the tar.gz, if needed
