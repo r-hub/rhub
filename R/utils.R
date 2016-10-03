@@ -25,7 +25,7 @@ parse_email <- function(x) {
 
 get_maintainer_email <- function(path) {
   path <- normalizePath(path)
-  if (is_pkg_dir(path)) {
+  if (is_dir(path)) {
     parse_email(desc_get_maintainer(path))
   } else {
     dir.create(tmp <- tempfile())
@@ -43,4 +43,8 @@ get_maintainer_email <- function(path) {
 
 is_interactive <- function() {
   interactive()
+}
+
+is_dir <- function(x) {
+  file.info(x)$isdir
 }
