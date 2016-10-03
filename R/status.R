@@ -70,8 +70,8 @@ make_status_parser <- function(id) {
       first <<- FALSE
     }
 
-    ## Get rid of potential \r characters, this also removes empty lines
-    x <- gsub("[\r\n]+", "", x)
+    ## Get rid of potential \r characters
+    x <- gsub("[\r]+", "", x)
 
     ## Checking (already, and still)
 
