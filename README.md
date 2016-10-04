@@ -95,6 +95,21 @@ the screen.
 
 ![](/inst/check-output.gif)
 
+### Shortcuts for quick checks
+
+These are quick shortcuts that select the right platform:
+
+* `check_on_linux()` and `check_on_windows()` select the operating system.
+* `check_on_debian()`, `check_on_ubuntu()`, `check_on_fedora()` select an
+  appropriate Linux platform.
+* `check_with_roldrel()`, `check_with_rrelease()`, `check_with_rpatched()`
+  and `check_with_rdevel()` select an R version.
+* `check_with_valgrind` runs the build and check on Linux, in `valgrind`
+  to find memory leaks and pointer errors.
+* `check_with_sanitizers()` runs all package package tests, examples and
+  vignettes with Address Sanitizer and Undefined Behavior Sanitizer, see
+  below.
+
 ### Sanitizers for compiled code
 
 r-hub provides a special Docker image to run Address Sanitizer (ASAN) and
