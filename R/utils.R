@@ -29,10 +29,10 @@ get_maintainer_email <- function(path) {
     parse_email(desc_get_maintainer(path))
   } else {
     dir.create(tmp <- tempfile())
-    files <- untar(path, list = TRUE)
+    files <- untar(path, list = TRUE, tar = "internal")
     desc <- grep("^[^/]+/DESCRIPTION$", files, value = TRUE)
     if (length(desc) < 1) stop("No 'DESCRIPTION' file in package")
-    untar(path, desc, exdir = tmp)
+    untar(path, desc, exdir = tmp, tar = "internal")
     parse_email(desc_get_maintainer(file.path(tmp, desc)))
   }
 }

@@ -43,7 +43,7 @@ test_that("get_maintainer_email", {
   expect_equal(get_maintainer_email(targz), "first.second@foo.bar")
 
   file.remove(file.path(pkg, "DESCRIPTION"))
-  tar(targz <- tempfile(fileext = ".tar.gz"), pkg)
+  tar(targz <- tempfile(fileext = ".tar.gz"), pkg, tar = "internal")
   expect_error(
     get_maintainer_email(targz),
     "No 'DESCRIPTION' file in package"
