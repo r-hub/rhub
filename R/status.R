@@ -55,7 +55,7 @@ make_status_parser <- function(id) {
 
   first <- TRUE
   checking <- FALSE
-  formatter <- ("rcmdcheck" %:::% "check_callback")(top_line = FALSE)
+  formatter <- ("rcmdcheck" %:::% "check_callback")()
   spinner <- c("-", "\\", "|", "/")
 
   spin <- function() {
