@@ -53,28 +53,32 @@ UI of r-hub.
 
 ```r
 platforms()
-debian-gcc-devel:
-  Debian Linux, R-devel, GCC
-debian-gcc-patched:
-  Debian Linux, R-patched, GCC
-debian-gcc-release:
-  Debian Linux, R-release, GCC
-fedora-clang-devel:
-  Fedora Linux, R-devel, clang, gfortran
-fedora-gcc-devel:
-  Fedora Linux, R-devel, GCC
-linux-x86_64-centos6-epel:
-  CentOS 6, stock R from EPEL
-linux-x86_64-centos6-epel-rdt:
-  CentOS 6 with Redhat Developer Toolset, R from EPEL
-linux-x86_64-rocker-gcc-san:
-  Debian Linux, R-devel, GCC ASAN/UBSAN
-ubuntu-gcc-devel:
-  Ubuntu Linux 16.04 LTS, R-devel, GCC
-ubuntu-gcc-release:
-  Ubuntu Linux 16.04 LTS, R-release, GCC
-windows-x86_64-oldrel:
-  Windows Server 2008 R2 SP1, R-oldrel, 64 bit
+
+```
+
+```r
+#> debian-gcc-devel:
+#>   Debian Linux, R-devel, GCC
+#> debian-gcc-patched:
+#>   Debian Linux, R-patched, GCC
+#> debian-gcc-release:
+#>   Debian Linux, R-release, GCC
+#> fedora-clang-devel:
+#>   Fedora Linux, R-devel, clang, gfortran
+#> fedora-gcc-devel:
+#>   Fedora Linux, R-devel, GCC
+#> linux-x86_64-centos6-epel:
+#>   CentOS 6, stock R from EPEL
+#> linux-x86_64-centos6-epel-rdt:
+#>   CentOS 6 with Redhat Developer Toolset, R from EPEL
+#> linux-x86_64-rocker-gcc-san:
+#>   Debian Linux, R-devel, GCC ASAN/UBSAN
+#> ubuntu-gcc-devel:
+#>   Ubuntu Linux 16.04 LTS, R-devel, GCC
+#> ubuntu-gcc-release:
+#>   Ubuntu Linux 16.04 LTS, R-release, GCC
+#> windows-x86_64-oldrel:
+#>   Windows Server 2008 R2 SP1, R-oldrel, 64 bit
 ```
 
 You can use the platform ids (e.g. `debian-gcc-devel`) to select between
