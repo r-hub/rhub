@@ -41,4 +41,26 @@ test_that("get_maintainer_email", {
 
   expect_equal(get_maintainer_email(pkg), "first.second@foo.bar")
   expect_equal(get_maintainer_email(targz), "first.second@foo.bar")
+
+  file.remove(file.path(pkg, "DESCRIPTION"))
+  tar(targz <- tempfile(fileext = ".tar.gz"), pkg)
+  expect_error(
+    get_maintainer_email(targz),
+    "No 'DESCRIPTION' file in package"
+  )
+})
+
+test_that("%||%", {
+  expect_identical( NULL %||% NULL, NULL)
+  expect_identical( NULL %||% "OK", "OK")
+  expect_identical( "OK" %||% NULL, "OK")
+  expect_silent( "OK" %||% print("foobar"))
+})
+
+test_that("is_interactive", {
+  expect_identical(is_interactive(), interactive())
+})
+
+test_that("%:::%", {
+  expect_equal(parse_email, "rhub" %:::% "parse_email")
 })

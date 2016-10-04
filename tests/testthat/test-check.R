@@ -13,6 +13,19 @@ test_that("check", {
   expect_equal(sub[[1]], "email")
   expect_equal(sub[[3]], "platform")
   expect_equal(sub[[4]], character())
+
+  ## From tarball
+  pkg_targz <- build_package(pkg, tempfile())
+  sub <- NULL
+  with_mock(
+    `rhub::assert_validated_email` = function(...) TRUE,
+    `rhub::submit_package` = function(...) sub <<- list(...),
+    check(pkg_targz, email = "e", platform = "p", show_status = FALSE)
+  )
+
+  expect_equal(sub[[1]], "e")
+  expect_equal(sub[[3]], "p")
+  expect_equal(sub[[4]], character())
 })
 
 test_that("check shortcuts", {

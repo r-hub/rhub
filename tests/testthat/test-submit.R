@@ -33,4 +33,15 @@ test_that("submit_package", {
     "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$",
     perl = TRUE
   )
+
+  ## If we want output, then there is output
+  expect_output(
+    with_mock(
+      `rhub::query` = function(...) args <<- list("status-url" = "url"),
+      `rhub::email_get_token` = function(...) "token",
+      submit_package("e", pkg_targz, "p", c("a1", "a"), show_status = TRUE)
+    ),
+    "Preparing build"
+  )
+
 })
