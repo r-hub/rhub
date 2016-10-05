@@ -20,7 +20,7 @@ Imports:
     httr,
     jsonlite,
     rappdirs,
-    rcmdcheck,
+    rcmdcheck (>= 1.2.1),
     rematch,
     utils,
     whoami,
