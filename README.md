@@ -7,6 +7,7 @@
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-hub/rhub?svg=true)](https://ci.appveyor.com/project/gaborcsardi/rhub)
 [![](http://www.r-pkg.org/badges/version/rhub)](http://www.r-pkg.org/pkg/rhub)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/rhub)](http://www.r-pkg.org/pkg/rhub)
+[![Coverage Status](https://img.shields.io/codecov/c/github/r-hub/rhub/master.svg)](https://codecov.io/github/r-hub/rhub?branch=master)
 
 Run `R CMD check` on any of the r-hub architectures, from the
 command line.

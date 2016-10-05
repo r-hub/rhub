@@ -26,5 +26,6 @@ Imports:
     whoami,
     withr
 Suggests: 
+    covr,
     testthat
 Encoding: UTF-8
