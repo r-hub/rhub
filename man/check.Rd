@@ -4,15 +4,18 @@
 \alias{check}
 \title{Check an R package on r-hub}
 \usage{
-check(path = ".", platform = platforms()$name[1], email = NULL,
-  valgrind = FALSE, check_args = character(), show_status = interactive())
+check(path = ".", platform = NULL, email = NULL, valgrind = FALSE,
+  check_args = character(), show_status = interactive())
 }
 \arguments{
 \item{path}{Path to a directory containing an R package, or path to
 source R package tarball built with \code{R CMD check}.}
 
 \item{platform}{Platform to build/check the package on. See
-\code{\link[=platforms]{platforms()}} for the available platforms.}
+\code{\link[=platforms]{platforms()}} for the available platforms. If this is \code{NULL},
+and the R session is interactive, then a menu is shown. If it is
+\code{NULL}, and the session is not interactive, then the default
+r-hub platforms is used.}
 
 \item{email}{Email address to send notification to about the build.
 It must be a validated email address, see \code{\link[=validate_email]{validate_email()}}. If
