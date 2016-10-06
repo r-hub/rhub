@@ -34,6 +34,14 @@ on_failure(is_string) <- function(call, env) {
   paste0(deparse(call$x), " is not a string")
 }
 
+is_string_or_null <- function(x) {
+  is_string(x) || is.null(x)
+}
+
+on_failure(is_string_or_null) <- function(call, env) {
+  paste0(separse(call$x), " is not a string and not NULL")
+}
+
 is_email <- function(x) {
   assert_that(is_string(x))
   grepl(".@.", x)

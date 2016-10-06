@@ -28,3 +28,39 @@ print.rhub_platforms <- function(x, ...) {
   cat(res, sep = "\n")
   invisible(x)
 }
+
+match_platform <- function(platform) {
+  all_platforms <- platforms()
+  if (is.null(platform)) {
+    if (is_interactive()) {
+      select_platform_interactively(all_platforms)
+    } else {
+      all_platforms$name[1]
+    }
+
+  } else {
+    if (! platform %in% all_platforms$name) {
+      stop("Unknown r-hub platform, see rhub::platforms() for a list")
+    }
+    platform
+  }
+}
+
+select_platform_interactively <- function(platforms) {
+
+  choices <- paste0(
+    platforms$description,
+    crayon::green(" (", platforms$name, ")", sep = "")
+  )
+
+  cat("\n")
+  title <- crayon::yellow(paste0(
+    symbol$line, symbol$line,
+    " Choose build platform"
+  ))
+  ch <- menu(choices, title = title)
+  cat("\n")
+  if (ch == 0) stop("r-hub check aborted", call. = FALSE)
+
+  platforms$name[ch]
+}

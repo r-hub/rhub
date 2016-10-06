@@ -4,7 +4,10 @@
 #' @param path Path to a directory containing an R package, or path to
 #'   source R package tarball built with `R CMD check`.
 #' @param platform Platform to build/check the package on. See
-#'   [platforms()] for the available platforms.
+#'   [platforms()] for the available platforms. If this is \code{NULL},
+#'   and the R session is interactive, then a menu is shown. If it is
+#'   \code{NULL}, and the session is not interactive, then the default
+#'   r-hub platforms is used.
 #' @param email Email address to send notification to about the build.
 #'   It must be a validated email address, see [validate_email()]. If
 #'   `NULL`, then the email address of the maintainer is used, as defined
@@ -24,7 +27,7 @@
 #' check("mypackage_1.0.0.tar.gz", platform = "fedora-clang-devel")
 #' }
 
-check <- function(path = ".", platform = platforms()$name[1],
+check <- function(path = ".", platform = NULL,
                   email = NULL, valgrind = FALSE, check_args = character(),
                   show_status = interactive()) {
 
@@ -37,6 +40,8 @@ check <- function(path = ".", platform = platforms()$name[1],
   if (is.null(email)) email <- get_maintainer_email(path)
   if (is.na(email)) stop("Cannot get email address from package")
   assert_validated_email_for_check(email)
+
+  platform <- match_platform(platform)
 
   ## Build the tar.gz, if needed
   if (file.info(path)$isdir) {

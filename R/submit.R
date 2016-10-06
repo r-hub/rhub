@@ -7,7 +7,7 @@ submit_package <- function(email, pkg_targz, platform, check_args,
                            show_status) {
 
   assert_that(is_email(email))
-  assert_that(is_string(platform))
+  assert_that(is_string_or_null(platform))
 
   m <- re_match(
     pattern = "^(?<package>.+)_(?<version>.+)\\.tar\\.gz",
