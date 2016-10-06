@@ -4,19 +4,32 @@
 \alias{validate_email}
 \title{Validate an email address on r-hub}
 \usage{
-validate_email(email = email_address(), token = NULL)
+validate_email(email = NULL, token = NULL)
 }
 \arguments{
-\item{email}{The email address to validate. If not specified,
-\code{rhub} tries to find it, via \code{\link[whoami:email_address]{whoami::email_address()}}.}
+\item{email}{The email address to validate.}
 
-\item{token}{Token obtained from \code{rhub}, to validate the email address.
-If not specified, then a new token is requested, and will be sent
-to the email address, and it can be specified interactively.}
+\item{token}{Token obtained from \code{rhub}, to validate the email address.}
 }
 \description{
 To build and check R packages on r-hub, you need to validate your
 email address. This is because r-hub sends out emails about build
 results.
+}
+\details{
+The \code{rhub} package stores validated email addresses in a user
+configuration file, at a platform-dependent location.
+On your current platform the file is at
+\Sexpr{rhub:::email_file()}.
+
+To validate a new email address, call this function from an interactive
+R session, without any arguments.
+
+To add an email address that was validated before (probably on another
+machine), to the configuration file, call this function with the \code{email}
+and \code{token} arguments.
+}
+\seealso{
+Other email validation: \code{\link{list_validated_emails}}
 }
 

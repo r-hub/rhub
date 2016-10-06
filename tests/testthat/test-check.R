@@ -5,7 +5,7 @@ test_that("check", {
   pkg <- create_minimal_package()
   sub <- NULL
   with_mock(
-    `rhub::assert_validated_email` = function(...) TRUE,
+    `rhub::assert_validated_email_for_check` = function(...) TRUE,
     `rhub::submit_package` = function(...) sub <<- list(...),
     check(pkg, email = "email", platform = "platform", show_status = FALSE)
   )
@@ -18,7 +18,7 @@ test_that("check", {
   pkg_targz <- build_package(pkg, tempfile())
   sub <- NULL
   with_mock(
-    `rhub::assert_validated_email` = function(...) TRUE,
+    `rhub::assert_validated_email_for_check` = function(...) TRUE,
     `rhub::submit_package` = function(...) sub <<- list(...),
     check(pkg_targz, email = "e", platform = "p", show_status = FALSE)
   )

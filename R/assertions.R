@@ -30,22 +30,6 @@ assert_email <- function(x) {
   stopifnot(grepl(".@.", x))
 }
 
-#' @importFrom whoami email_address
-
-assert_validated_email <- function(email = email_address(),
-                                   ask = interactive()) {
-  assert_string(email)
-  code <- email_get_token(email)
-  if (is.null(code)) {
-    if (ask) {
-      message(sQuote(email), " is not validated, validating now.")
-      validate_email(email)
-    } else {
-      stop(sQuote(email), " is not validated")
-    }
-  }
-}
-
 assert_flag <- function(x) {
   stopifnot(!is.null(x))
   stopifnot(

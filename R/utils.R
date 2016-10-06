@@ -26,6 +26,9 @@ parse_email <- function(x) {
 get_maintainer_email <- function(path) {
   path <- normalizePath(path)
   if (is_dir(path)) {
+    if (!file.exists(file.path(path, "DESCRIPTION"))) {
+      stop("No 'DESCRIPTION' file found")
+    }
     parse_email(desc_get_maintainer(path))
   } else {
     dir.create(tmp <- tempfile())
@@ -47,4 +50,8 @@ is_interactive <- function() {
 
 is_dir <- function(x) {
   file.info(x)$isdir
+}
+
+data_frame <- function(...) {
+  data.frame(stringsAsFactors = FALSE, ...)
 }

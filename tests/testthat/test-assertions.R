@@ -41,24 +41,16 @@ test_that("assert_string", {
   for (n in neg) expect_error(assert_string(n))
 })
 
-test_that("assert_validated_email", {
+test_that("assert_validated_email_for_check", {
 
   with_mock(
     `rhub::email_get_token` = function(x) "your-token",
-    expect_silent(assert_validated_email("foobar"))
+    expect_silent(assert_validated_email_for_check("foobar"))
   )
 
-  expect_error(assert_validated_email(
-    basename(tempfile()),
-    ask = FALSE
-  ))
-
   with_mock(
-    `rhub::validate_email` = function(x) "foobar",
-    expect_equal(
-      assert_validated_email(basename(tempfile()), ask = TRUE),
-      "foobar"
-    )
+    `rhub::is_interactive` = function(x) FALSE,
+    expect_error(assert_validated_email_for_check(basename(tempfile())))
   )
 })
 

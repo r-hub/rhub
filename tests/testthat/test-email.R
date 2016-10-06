@@ -11,19 +11,19 @@ test_that("validate_email", {
   args <- NULL
   with_mock(
     `rhub::email_add_token` = function(...) args <<- list(...),
-    validate_email("email@domain", "token")
+    validate_email("email@domain", "token1")
   )
-  expect_equal(args, list("email@domain", "token"))
+  expect_equal(args, list("email@domain", "token1"))
 
   args <- NULL
   with_mock(
-    `base::readline` = function(...) "token",
+    `base::readline` = function(...) "token1",
     `rhub::is_interactive` = function() TRUE,
     `rhub::query` = function(...) NULL,
     `rhub::email_add_token` = function(...) args <<- list(...),
     validate_email("email@domain")
   )
-  expect_equal(args, list("email@domain", "token"))
+  expect_equal(args, list("email@domain", "token1"))
 })
 
 test_that("email_file", {

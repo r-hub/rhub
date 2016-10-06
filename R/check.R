@@ -36,7 +36,7 @@ check <- function(path = ".", platform = platforms()$name[1],
   ## Make sure that maintainer email was validated
   if (is.null(email)) email <- get_maintainer_email(path)
   if (is.na(email)) stop("Cannot get email address from package")
-  assert_validated_email(email)
+  assert_validated_email_for_check(email)
 
   ## Build the tar.gz, if needed
   if (file.info(path)$isdir) {
@@ -63,4 +63,32 @@ check <- function(path = ".", platform = platforms()$name[1],
 
   ## Show the status
   check_status(id, interactive = show_status)
+}
+
+assert_validated_email_for_check <- function(email) {
+
+  assert_string(email)
+  code <- email_get_token(email)
+  if (is.null(code)) {
+    if (is_interactive()) {
+      cat("\n")
+      message(paste(collapse = "\n", strwrap(indent = 2, exdent = 2, paste(
+        sQuote(crayon::green(email)), "is not validated. To validate",
+        "it now, please enter the email address below. Note that r-hub",
+        "will send a token to this address. If the address does not belong",
+        "to you, quit now by pressing ", crayon::yellow("ENTER"), "."
+      ))))
+      cat("\n")
+      email2 <- readline("  Email address: ")
+      cat("\n")
+      if (email2 == "") {
+        stop("Aborting.", call. = FALSE)
+      } else if (email != email2) {
+        stop("Emails don't match, aborting", call. = FALSE)
+      }
+      validate_email(email)
+    } else {
+      stop(sQuote(email), " is not validated")
+    }
+  }
 }
