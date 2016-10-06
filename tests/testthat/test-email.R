@@ -37,8 +37,8 @@ test_that("email_get_token, email_add_token", {
     `rhub::email_file` = function() tmp,
     {
       expect_null(email_get_token("bugs.bunny@acme.com"))
-      email_add_token("bugs.bunny@acme.com", "token")
-      expect_equal(email_get_token("bugs.bunny@acme.com"), "token")
+      email_add_token("bugs.bunny@acme.com", "tokenxxx")
+      expect_equal(email_get_token("bugs.bunny@acme.com"), "tokenxxx")
       expect_null(email_get_token("duffy.duck@acme.com"))
 
       email_add_token("bugs.bunny@acme.com", "token2")
@@ -47,4 +47,14 @@ test_that("email_get_token, email_add_token", {
     }
   )
 
+})
+
+test_that("validate_email assertions", {
+
+  ## not an email address
+  expect_error(validate_email("foo", "bar"))
+
+  ## not a valid token
+  expect_error(validate_email("foo@dom", ""))
+  expect_error(validate_email("foo@dom", "bar"))
 })

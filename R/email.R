@@ -65,7 +65,7 @@ email_get_token <- function(email) {
 email_add_token <- function(email, token) {
 
   assert_email(email)
-  assert_string(token)
+  assert_token(token)
 
   file <- email_file()
 

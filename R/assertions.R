@@ -61,3 +61,8 @@ assert_named <- function(x) {
     all(names(x) != "")
   )
 }
+
+assert_token <- function(x) {
+  assert_string(x)
+  stopifnot(grepl("[a-zA-Z0-9]{6}", x, perl = TRUE))
+}
