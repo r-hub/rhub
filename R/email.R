@@ -33,8 +33,8 @@ validate_email <- function(email = NULL, token = NULL) {
     return(validate_email_interactive(email, token))
   }
 
-  assert_email(email)
-  assert_token(token)
+  assert_that(is_email(email))
+  assert_that(is_token(token))
 
   email_add_token(email, token)
   message("Token added for ", sQuote(email))
@@ -105,6 +105,7 @@ get_email_to_validate <- function(path) {
 validate_email_interactive <- function(email, token, path = ".") {
 
   if (is.null(email)) email <- get_email_to_validate(path)
+  assert_that(is_email(email))
 
   ## Token next. For this we need to make an API query.
   if (is.null(token)) {
@@ -114,6 +115,7 @@ validate_email_interactive <- function(email, token, path = ".") {
     ))
     token <- readline("Token: ")
   }
+  assert_that(is_token(token))
 
   ## We got everything now
   validate_email(email, token)
@@ -179,8 +181,8 @@ email_get_token <- function(email) {
 
 email_add_token <- function(email, token) {
 
-  assert_email(email)
-  assert_token(token)
+  assert_that(is_email(email))
+  assert_that(is_token(token))
 
   file <- email_file()
 

@@ -2,8 +2,8 @@
 update <- function(original, new) {
 
   if (length(new)) {
-    if (length(original)) assert_named(original)
-    assert_named(new)
+    if (length(original)) assert_that(is_named(original))
+    assert_that(is_named(new))
     original[names(new)] <- new
   }
 

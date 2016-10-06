@@ -6,31 +6,31 @@ test_that("is_pkg_dir", {
   dir.create(tmppkg)
 
   expect_false(is_pkg_dir(tmppkg))
-  expect_error(assert_pkg_dir_or_tarball(tmppkg))
+  expect_false(is_pkg_dir_or_tarball(tmppkg))
 
   cat("dummy\n", file = file.path(tmppkg, "DESCRIPTION"))
   expect_true(is_pkg_dir(tmppkg))
-  expect_silent(assert_pkg_dir_or_tarball(tmppkg))
+  expect_true(is_pkg_dir_or_tarball(tmppkg))
 })
 
 test_that("is_pkg_tarball", {
   tmp <- tempfile(fileext="dummy")
   cat("dummy\n", file = tmp)
-  expect_false(is_pkg_tarball(tmp))
-  expect_error(assert_pkg_dir_or_tarball(tmppkg))
-
   tmppkg <- tempfile(fileext = ".tar.gz")
+  expect_false(is_pkg_tarball(tmp))
+  expect_false(is_pkg_dir_or_tarball(tmppkg))
+
   cat("dummy\n", file = tmppkg)
   expect_true(is_pkg_tarball(tmppkg))
-  expect_silent(assert_pkg_dir_or_tarball(tmppkg))
+  expect_true(is_pkg_dir_or_tarball(tmppkg))
 })
 
-test_that("assert_string", {
+test_that("is_string", {
   pos <- list(
     "foo",
     ""
   )
-  for (p in pos) expect_silent(assert_string(p))
+  for (p in pos) expect_true(is_string(p))
 
   neg <- list(
     character(),
@@ -38,14 +38,14 @@ test_that("assert_string", {
     c("foo", "bar"),
     NULL
   )
-  for (n in neg) expect_error(assert_string(n))
+  for (n in neg) expect_false(is_string(n))
 })
 
 test_that("assert_validated_email_for_check", {
 
   with_mock(
     `rhub::email_get_token` = function(x) "your-token",
-    expect_silent(assert_validated_email_for_check("foobar"))
+    expect_silent(assert_validated_email_for_check("foobar@domain"))
   )
 
   with_mock(
@@ -54,12 +54,12 @@ test_that("assert_validated_email_for_check", {
   )
 })
 
-test_that("assert_flag", {
+test_that("is_flag", {
   pos <- list(
     TRUE,
     FALSE
   )
-  for (p in pos) expect_silent(assert_flag(p))
+  for (p in pos) expect_true(is_flag(p))
 
   neg <- list(
     logical(),
@@ -67,10 +67,10 @@ test_that("assert_flag", {
     "TRUE",
     NULL
   )
-  for (n in neg) expect_error(assert_flag(n))
+  for (n in neg) expect_false(is_flag(n))
 })
 
-test_that("assert_named", {
+test_that("is_named", {
 
   pos <- list(
     c(a = 1, b = 2, c = 3),
@@ -78,7 +78,7 @@ test_that("assert_named", {
     list(foo = 1),
     structure(list(), names = character())
   )
-  for (p in pos) expect_silent(assert_named(p))
+  for (p in pos) expect_true(is_named(p))
 
   neg <- list(
     1:5,
@@ -86,5 +86,5 @@ test_that("assert_named", {
     list(1, 2, 3),
     list(a = 1, 2, c = 3)
   )
-  for (n in neg) expect_error(assert_named(n))
+  for (n in neg) expect_false(is_named(n))
 })

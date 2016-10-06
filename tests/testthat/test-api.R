@@ -11,7 +11,7 @@ test_that("query", {
     query("GET PLATFORMS")
   )
   expect_equal(length(res), 2)
-  expect_silent(assert_string(res[[1]]))
+  expect_true(is_string(res[[1]]))
   expect_equal(class(res[[2]]), "request")
 
   called <- FALSE

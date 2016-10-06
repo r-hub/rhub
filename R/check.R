@@ -30,8 +30,8 @@ check <- function(path = ".", platform = platforms()$name[1],
 
   ## Check that it is a package
   path <- normalizePath(path)
-  assert_pkg_dir_or_tarball(path)
-  assert_flag(valgrind)
+  assert_that(is_pkg_dir_or_tarball(path))
+  assert_that(is_flag(valgrind))
 
   ## Make sure that maintainer email was validated
   if (is.null(email)) email <- get_maintainer_email(path)
@@ -67,7 +67,7 @@ check <- function(path = ".", platform = platforms()$name[1],
 
 assert_validated_email_for_check <- function(email) {
 
-  assert_string(email)
+  assert_that(is_email(email))
   code <- email_get_token(email)
   if (is.null(code)) {
     if (is_interactive()) {
