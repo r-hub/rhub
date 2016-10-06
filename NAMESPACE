@@ -2,6 +2,7 @@
 
 S3method(print,rhub_platforms)
 export(check)
+export(check_on_centos)
 export(check_on_debian)
 export(check_on_fedora)
 export(check_on_linux)

@@ -105,8 +105,8 @@ the screen.
 These are quick shortcuts that select the right platform:
 
 * `check_on_linux()` and `check_on_windows()` select the operating system.
-* `check_on_debian()`, `check_on_ubuntu()`, `check_on_fedora()` select an
-  appropriate Linux platform.
+* `check_on_debian()`, `check_on_ubuntu()`, `check_on_fedora()` and
+  `check_on_centos()` select an appropriate Linux platform.
 * `check_with_roldrel()`, `check_with_rrelease()`, `check_with_rpatched()`
   and `check_with_rdevel()` select an R version.
 * `check_with_valgrind` runs the build and check on Linux, in `valgrind`

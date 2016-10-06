@@ -54,6 +54,13 @@ check_on_fedora <- function(path = ".", ...) {
   check(path = path, platform = check_shortcut_platforms$fedora, ...)
 }
 
+#' @export
+#' @rdname check_shortcuts
+
+check_on_centos <- function(path = ".", ...) {
+  check(path = path, platform = check_shortcut_platforms$centos, ...)
+}
+
 ## R versions --------------------------------------------------------
 
 #' @export
@@ -116,5 +123,6 @@ check_shortcut_platforms <- list(
   "rdevel"     = "debian-gcc-devel",
   "debian"     = "debian-gcc-release",
   "ubuntu"     = "ubuntu-gcc-release",
-  "fedora"     = "fedora-gcc-devel"
+  "fedora"     = "fedora-gcc-devel",
+  "centos"     = "linux-x86_64-centos6-epel"
 )
