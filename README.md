@@ -36,16 +36,11 @@ To build packages, first you need to validate your email address. The
 package tries to detect your email address, and if it fails to do this
 correctly, you'll need to specify it.
 
-```r
-> validate_email()
-Please check your emails for the R-hub access token
-token: 2729c044648e4e358ef8fa1c31c3ada2
-Token added for ‘csardi.gabor@gmail.com’
-```
+![](inst/email-validation.png)
 
 `rhub` stores the token permanently on the machine, so you do not need
 to validate your email again. You can also copy your token to other
-machines.
+machines, see `list_validated_emails()`.
 
 Currently you cannot use the token obtained via this function, in the Web
 UI of r-hub.
