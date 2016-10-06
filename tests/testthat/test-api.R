@@ -16,7 +16,7 @@ test_that("query", {
 
   called <- FALSE
   with_mock(
-    `rhub:::get_endpoint` = function(endpoint)
+    `rhub:::get_endpoint` = function(endpoint, params)
       list(method = endpoint, path = "p"),
     `httr::POST` = function(...) called <<- "POST",
     `httr::DELETE` = function(...) called <<- "DELETE",

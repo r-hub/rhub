@@ -1,9 +1,33 @@
 
+#' Query the status of an r-hub check
+#'
+#' @param id The check id, an r-hub status URL, or the object retured
+#'   by [check()].
+#' @return A list with the status of the check. It has entries:
+#'   `status`, `submitted` and `duration`. Currently the duration is
+#'   only filled when the build has finished.
+#'
+#' @export
+
+status <- function(id) {
+  real_id <- if (is.list(id) && !is.null(id$id) && is_string(id$id)) {
+    id$id
+  } else if (is_string(id)) {
+    sub("^.*/([^/]+)$", "\\1", id, perl = TRUE)
+  } else {
+    stop("Invalid r-hub build id")
+  }
+
+  query("GET STATUS", params = list(id = real_id))
+}
+
 check_status <- function(id, interactive = interactive()) {
   if (interactive) {
     my_curl_stream(id$`log-url`, byline(make_status_parser(id)))
+    invisible(id)
+  } else {
+    id
   }
-  invisible(id)
 }
 
 #' @importFrom curl curl

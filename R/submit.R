@@ -18,7 +18,7 @@ submit_package <- function(email, pkg_targz, platform, check_args,
   buf <- readBin(pkg_targz, raw(), file.info(pkg_targz)$size)
   response <- query(
     "SUBMIT PACKAGE",
-    list(
+    data = list(
       email = unbox(email),
       token = unbox(email_get_token(email)),
       package = unbox(unname(m[, "package"])),

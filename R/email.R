@@ -109,7 +109,7 @@ validate_email_interactive <- function(email, token, path = ".") {
 
   ## Token next. For this we need to make an API query.
   if (is.null(token)) {
-    query("VALIDATE EMAIL", list(email = unbox(email)))
+    query("VALIDATE EMAIL", data = list(email = unbox(email)))
     message(crayon::yellow(
       "Please check your emails for the r-hub access token."
     ))

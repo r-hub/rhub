@@ -2,9 +2,10 @@
 baseurl <- "https://builder.r-hub.io/api"
 
 endpoints <- list(
-  c("GET PLATFORMS", "GET", "/platform/list"),
+  c("GET PLATFORMS",  "GET",  "/platform/list"),
   c("VALIDATE EMAIL", "POST", "/check/validate_email"),
-  c("SUBMIT PACKAGE", "POST", "/check/submit")
+  c("SUBMIT PACKAGE", "POST", "/check/submit"),
+  c("GET STATUS",     "GET",  "/status/:id")
 )
 
 default_headers <- c(
@@ -16,11 +17,11 @@ default_headers <- c(
 #' @importFrom httr GET POST DELETE add_headers
 #' @importFrom jsonlite toJSON
 
-query <- function(endpoint, data = NULL, headers = character(),
-                  as = NULL) {
+query <- function(endpoint, params = list(), data = NULL,
+                  headers = character(), as = NULL) {
 
   headers <- update(default_headers, as.character(headers))
-  ep <- get_endpoint(endpoint)
+  ep <- get_endpoint(endpoint, params)
 
   url <- paste0(baseurl, ep$path)
 
@@ -44,12 +45,23 @@ query <- function(endpoint, data = NULL, headers = character(),
   parse_response(response, as = as)
 }
 
-get_endpoint <- function(endpoint) {
+get_endpoint <- function(endpoint, params) {
 
   idx <- match(endpoint, vapply(endpoints, "[[", "", 1))
   if (is.na(idx)) stop("Unknown API endpoint: ", sQuote(endpoint))
 
-  list(method = endpoints[[idx]][2], path = endpoints[[idx]][3])
+  method <- endpoints[[idx]][2]
+  path <- endpoints[[idx]][3]
+
+  colons <- re_match_all(path, ":[a-zA-Z0-9_]+")$.match[[1]]
+
+  for (col in colons) {
+    col1 <- substring(col, 2)
+    value <- params[[col1]] %||% stop("Unknown API parameter: ", col)
+    path <- gsub(col, value, path, fixed = TRUE)
+  }
+
+  list(method = method, path = path)
 }
 
 #' @importFrom httr headers content
