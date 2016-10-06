@@ -25,6 +25,11 @@ assert_string <- function(x) {
   )
 }
 
+assert_email <- function(x) {
+  assert_string(x)
+  stopifnot(grepl(".@.", x))
+}
+
 #' @importFrom whoami email_address
 
 assert_validated_email <- function(email = email_address(),

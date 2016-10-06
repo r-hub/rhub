@@ -11,9 +11,9 @@ test_that("validate_email", {
   args <- NULL
   with_mock(
     `rhub::email_add_token` = function(...) args <<- list(...),
-    validate_email("email", "token")
+    validate_email("email@domain", "token")
   )
-  expect_equal(args, list("email", "token"))
+  expect_equal(args, list("email@domain", "token"))
 
   args <- NULL
   with_mock(
@@ -21,9 +21,9 @@ test_that("validate_email", {
     `rhub::is_interactive` = function() TRUE,
     `rhub::query` = function(...) NULL,
     `rhub::email_add_token` = function(...) args <<- list(...),
-    validate_email("email")
+    validate_email("email@domain")
   )
-  expect_equal(args, list("email", "token"))
+  expect_equal(args, list("email@domain", "token"))
 })
 
 test_that("email_file", {

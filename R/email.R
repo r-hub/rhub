@@ -17,7 +17,7 @@
 
 validate_email <- function(email = email_address(), token = NULL) {
 
-  assert_string(email)
+  assert_email(email)
 
   if (is.null(token) && !is_interactive()) {
     stop("No token and not in interactive mode")
@@ -64,7 +64,7 @@ email_get_token <- function(email) {
 
 email_add_token <- function(email, token) {
 
-  assert_string(email)
+  assert_email(email)
   assert_string(token)
 
   file <- email_file()
