@@ -1,6 +1,6 @@
 Package: rhub
 Title: Connect to 'R-hub', from 'R'
-Version: 1.0.0
+Version: 1.0.0.9000
 Author: Gábor Csárdi
 Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
 Description: Run 'R CMD check' on any of the 'R-hub' architectures, from
