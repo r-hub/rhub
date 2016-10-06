@@ -62,7 +62,7 @@ get_email_to_validate <- function(path) {
     if (!is.null(guess) && ! guess %in% valid$email) {
       data_frame(valid = FALSE, email = guess, token = NA)
     },
-    if (!is.null(maint) && ! guess %in% valid$email && maint != guess) {
+    if (!is.null(maint) && ! maint %in% valid$email && maint != guess) {
       data_frame(valid = FALSE, email = maint, token = NA)
     },
     data_frame(valid = NA, email = "New email address", token = NA)
