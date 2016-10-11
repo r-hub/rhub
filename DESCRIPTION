@@ -20,6 +20,8 @@ Imports:
     desc,
     httr,
     jsonlite,
+    parsedate,
+    prettyunits,
     rappdirs,
     rcmdcheck (>= 1.2.1),
     rematch,

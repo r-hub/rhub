@@ -23,7 +23,12 @@ status <- function(id = NULL) {
     stop("Invalid r-hub build id")
   }
 
-  query("GET STATUS", params = list(id = real_id))
+  res <- structure(
+    query("GET STATUS", params = list(id = real_id)),
+    class = "rhub_status"
+  )
+
+  res
 }
 
 check_status <- function(id, interactive = interactive()) {
