@@ -66,6 +66,9 @@ check <- function(path = ".", platform = NULL,
     show_status = show_status
   )
 
+  ## Cache the last submission
+  package_data$last_handle <- id$id
+
   ## Show the status
   check_status(id, interactive = show_status)
 }

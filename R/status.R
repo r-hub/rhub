@@ -9,7 +9,12 @@
 #'
 #' @export
 
-status <- function(id) {
+status <- function(id = NULL) {
+
+  id <- id %||% package_data$last_handle
+
+  if (is.null(id)) stop("Could not find a n rhub handle")
+
   real_id <- if (is.list(id) && !is.null(id$id) && is_string(id$id)) {
     id$id
   } else if (is_string(id)) {

@@ -4,7 +4,7 @@
 \alias{status}
 \title{Query the status of an r-hub check}
 \usage{
-status(id)
+status(id = NULL)
 }
 \arguments{
 \item{id}{The check id, an r-hub status URL, or the object retured
