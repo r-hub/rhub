@@ -50,6 +50,7 @@ my_curl_stream <- function(url, callback, bufsize = 80) {
   }
   while (length(buf <- readBin(con, raw(), bufsize))) {
     callback(buf)
+    Sys.sleep(1)
   }
   cat("\r                                                 \r")
 }
