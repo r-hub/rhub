@@ -15,6 +15,8 @@
 #' @param valgrind Whether to run the check in valgrind. Only supported on
 #'   Linux currently, and ignored on other platforms.
 #' @param check_args Extra arguments for the `R CMD check` command.
+#' @param env_vars Environment variables to set on the builder machine
+#'   before the check. A named character vector.
 #' @param show_status Whether to show the status of the build as it is
 #'   happening.
 #' @return Return the response from r-hub, invisibly. It contains the
@@ -29,12 +31,14 @@
 
 check <- function(path = ".", platform = NULL,
                   email = NULL, valgrind = FALSE, check_args = character(),
-                  show_status = interactive()) {
+                  env_vars = NULL, show_status = interactive()) {
 
   ## Check that it is a package
   path <- normalizePath(path)
   assert_that(is_pkg_dir_or_tarball(path))
   assert_that(is_flag(valgrind))
+  assert_that(is_named(env_vars))
+  assert_that(is.character(env_vars))
 
   ## Make sure that maintainer email was validated
   if (is.null(email)) email <- get_maintainer_email(path)
@@ -63,6 +67,7 @@ check <- function(path = ".", platform = NULL,
     pkg_targz,
     platform = platform,
     check_args = check_args,
+    env_vars = env_vars,
     show_status = show_status
   )
 

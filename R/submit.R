@@ -4,7 +4,7 @@
 #' @importFrom crayon blue
 
 submit_package <- function(email, pkg_targz, platform, check_args,
-                           show_status) {
+                           env_vars, show_status) {
 
   assert_that(is_email(email))
   assert_that(is_string_or_null(platform))
@@ -24,6 +24,7 @@ submit_package <- function(email, pkg_targz, platform, check_args,
       package = unbox(unname(m[, "package"])),
       version = unbox(unname(m[, "version"])),
       platform = unbox(platform),
+      env = as.list(env_vars),
       check_args = unbox(paste(check_args, collapse = " ")),
       file = unbox(base64_enc(buf))
     )
