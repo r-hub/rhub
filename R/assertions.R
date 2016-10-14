@@ -63,7 +63,7 @@ on_failure(is_flag) <- function(call, env) {
 }
 
 is_named <- function(x) {
-  !is.null(names(x)) &&
+  length(names(x)) == length(x) &&
     all(names(x) != "")
 }
 
