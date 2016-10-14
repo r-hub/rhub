@@ -9,15 +9,16 @@ test_that("submit_package", {
   with_mock(
     `rhub::query` = function(...) args <<- list(...),
     `rhub::email_get_token` = function(...) "token",
-    submit_package("e@d", pkg_targz, "platform", c("arg1", "arg2"), FALSE)
+    submit_package("e@d", pkg_targz, "platform", c("arg1", "arg2"),
+                   c("env" = "var"), FALSE)
   )
 
   expect_identical(args[[1]], "SUBMIT PACKAGE")
 
   expect_identical(
     names(args[[2]]),
-    c("email", "token", "package", "version", "platform", "check_args",
-      "file")
+    c("email", "token", "package", "version", "platform", "env",
+      "check_args", "file")
   )
 
   expect_identical(args[[2]]$email, jsonlite::unbox("e@d"))
