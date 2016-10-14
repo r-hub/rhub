@@ -5,7 +5,8 @@ endpoints <- list(
   c("GET PLATFORMS",  "GET",  "/platform/list"),
   c("VALIDATE EMAIL", "POST", "/check/validate_email"),
   c("SUBMIT PACKAGE", "POST", "/check/submit"),
-  c("GET STATUS",     "GET",  "/status/:id")
+  c("GET STATUS",     "GET",  "/status/:id"),
+  c("LIST BUILDS",    "POST", "/list")
 )
 
 default_headers <- c(

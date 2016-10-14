@@ -55,3 +55,7 @@ is_dir <- function(x) {
 data_frame <- function(...) {
   data.frame(stringsAsFactors = FALSE, ...)
 }
+
+drop_nulls <- function(x) {
+  x [ ! vapply(x, is.null, TRUE) ]
+}
