@@ -5,7 +5,8 @@
 \title{Check an R package on r-hub}
 \usage{
 check(path = ".", platform = NULL, email = NULL, valgrind = FALSE,
-  check_args = character(), env_vars = NULL, show_status = interactive())
+  check_args = character(), env_vars = character(),
+  show_status = interactive())
 }
 \arguments{
 \item{path}{Path to a directory containing an R package, or path to
