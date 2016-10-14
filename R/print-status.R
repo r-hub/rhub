@@ -31,7 +31,7 @@ print.rhub_status <- function(x, ...) {
   if (! x$build_time) return(invisible(x))
 
   ## R CMD check error
-  if (tolower(x$status) != "preperror") {
+  if (tolower(x$status) != "preperror" && tolower(x$status) != "aborted") {
     makeshift <- structure(
       list(
         package = x$package,
@@ -58,7 +58,7 @@ print.rhub_status <- function(x, ...) {
       perl = TRUE
     )
 
-    cat(red(paste0(symbol$pointer, " Build failed during preparation\n")))
+    cat(red(paste0(symbol$pointer, " Build failed during preparation or aborted\n")))
     cat(greyish("\n[...]\n"))
     cat(greyish(clog))
     cat("\n")
