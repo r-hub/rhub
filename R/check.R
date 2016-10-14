@@ -31,7 +31,7 @@
 
 check <- function(path = ".", platform = NULL,
                   email = NULL, valgrind = FALSE, check_args = character(),
-                  env_vars = NULL, show_status = interactive()) {
+                  env_vars = character(), show_status = interactive()) {
 
   ## Check that it is a package
   path <- normalizePath(path)
