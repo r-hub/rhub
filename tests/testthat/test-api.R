@@ -10,7 +10,7 @@ test_that("query", {
     `httr::content` = function(...) { },
     query("GET PLATFORMS")
   )
-  expect_equal(length(res), 2)
+  expect_equal(length(res), 3)
   expect_true(is_string(res[[1]]))
   expect_equal(class(res[[2]]), "request")
 
