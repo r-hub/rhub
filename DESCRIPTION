@@ -16,7 +16,6 @@ Imports:
     callr,
     clisymbols,
     crayon,
-    curl,
     desc,
     httr,
     jsonlite,
