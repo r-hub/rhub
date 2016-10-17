@@ -50,15 +50,27 @@ make_streamer <- function(id, parser_factory) {
     spinner <<- c(spinner[-1], spinner[1])
   }
 
+  errors <- 100
+
   repeat {
-    response <- query(
-      "LIVE LOG",
-      params = list(id = id),
-      query = list(start = start)
+    response <- tryCatch(
+      query(
+        "LIVE LOG",
+        params = list(id = id),
+        query = list(start = start)
+      ),
+      error = function(e) {
+        if (errors > 0) {
+          errors <- errors - 1
+          list(text = list(), more = TRUE, size = start)
+        } else {
+          stop("Internal R-hub error")
+          list(text = list(), more = FALSE)
+        }
+      }
     )
-    for (i in response$text) {
-      parser(i)
-    }
+
+    for (i in response$text) parser(i)
     if (!response$more) break;
     start <- response$size
     for (i in 1:5) { Sys.sleep(0.1); spin() }
