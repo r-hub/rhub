@@ -6,7 +6,8 @@ endpoints <- list(
   c("VALIDATE EMAIL", "POST", "/check/validate_email"),
   c("SUBMIT PACKAGE", "POST", "/check/submit"),
   c("GET STATUS",     "GET",  "/status/:id"),
-  c("LIST BUILDS",    "POST", "/list")
+  c("LIST BUILDS",    "POST", "/list"),
+  c("LIVE LOG",       "GET",  "/livelog/text/:id")
 )
 
 default_headers <- c(
@@ -19,7 +20,7 @@ default_headers <- c(
 #' @importFrom jsonlite toJSON
 
 query <- function(endpoint, params = list(), data = NULL,
-                  headers = character(), as = NULL) {
+                  query = list(), headers = character(), as = NULL) {
 
   headers <- update(default_headers, as.character(headers))
   ep <- get_endpoint(endpoint, params)
@@ -29,13 +30,13 @@ query <- function(endpoint, params = list(), data = NULL,
   json <- if (!is.null(data)) toJSON(data)
 
   response <- if (ep$method == "GET") {
-    GET(url, add_headers(.headers = headers))
+    GET(url, add_headers(.headers = headers), query = query)
 
   } else if (ep$method == "POST") {
-    POST(url, add_headers(.headers = headers), body = json)
+    POST(url, add_headers(.headers = headers), body = json, query = query)
 
   } else if (ep$method == "DELETE") {
-    DELETE(url, add_headers(.headers = headers))
+    DELETE(url, add_headers(.headers = headers), query = query)
 
   } else {
     stop("Unexpected HTTP verb, internal rhub error")

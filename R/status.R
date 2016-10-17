@@ -33,72 +33,52 @@ status <- function(id = NULL) {
 
 check_status <- function(id, interactive = interactive()) {
   if (interactive) {
-    my_curl_stream(id$`log-url`, byline(make_status_parser(id)))
-    invisible(id)
+    make_streamer(id$id, make_status_parser)
+    invisible(status(id))
   } else {
     id
   }
 }
 
-#' @importFrom curl curl
+make_streamer <- function(id, parser_factory) {
+  start <- 0
+  parser <- parser_factory()
 
-my_curl_stream <- function(url, callback, bufsize = 80) {
-  con <- curl(url)
-  if(!isOpen(con)) {
-    open(con, "rb")
-    on.exit(close(con))
-  }
-  while (length(buf <- readBin(con, raw(), bufsize))) {
-    callback(buf)
-    Sys.sleep(0.2)
-  }
-  cat("\r                                                 \r")
-}
-
-#' @importFrom utils tail
-
-byline <- function(fun) {
-  buffer <- raw(0)
-  function(r) {
-
-    ## Append new chunk to our buffer
-    r <- c(buffer, r)
-    buffer <- raw(0)
-
-    ## Search for the last newline, if any
-    nl <- tail(which(r == charToRaw('\n')), 1)
-    if (length(nl) == 0) {
-      buffer <<- r
-      return()
-
-    } else if (nl != length(r)) {
-      buffer <<- r[(nl + 1):length(r)]
-      r <- r[1:nl]
-    }
-
-    ## Time to convert to string, split into lines, and serve it
-    str <- rawToChar(r)
-    lines <- strsplit(str, "\n")[[1]]
-    Encoding(lines) <- "UTF-8"
-    for (l in lines) fun(l)
-  }
-}
-
-#' @importFrom rcmdcheck rcmdcheck
-
-make_status_parser <- function(id) {
-
-  first <- TRUE
-  checking <- FALSE
-  formatter <- ("rcmdcheck" %:::% "check_callback")(top_line = FALSE)
-  spinner <- c("-", "\\", "|", "/")
-
+  spinner <- c("-", "/", "|", "\\")
   spin <- function() {
     cat("\r", spinner[1], sep = "")
     spinner <<- c(spinner[-1], spinner[1])
   }
 
+  repeat {
+    response <- query(
+      "LIVE LOG",
+      params = list(id = id),
+      query = list(start = start)
+    )
+    for (i in response$text) {
+      parser(i)
+    }
+    if (!response$more) break;
+    start <- response$size
+    for (i in 1:5) { Sys.sleep(0.1); spin() }
+  }
+
+  cat("\r    \n")
+}
+
+#' @importFrom rcmdcheck rcmdcheck
+
+make_status_parser <- function() {
+
+  first <- TRUE
+  checking <- FALSE
+  formatter <- ("rcmdcheck" %:::% "check_callback")(top_line = FALSE)
+
   function(x) {
+
+    ## Make sure we are at the beginning of the line
+    cat("\r")
 
     if (first) {
       header_line("Build started")
@@ -132,10 +112,9 @@ make_status_parser <- function(id) {
 
     } else if (grepl("^\\+R-HUB-R-HUB-R-HUB", x)) {
       x <- sub("^\\+R-HUB-R-HUB-R-HUB", "", x)
-      spin()
 
     } else {
-      spin()
+      ## print nothing
     }
   }
 }
