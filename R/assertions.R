@@ -39,7 +39,7 @@ is_string_or_null <- function(x) {
 }
 
 on_failure(is_string_or_null) <- function(call, env) {
-  paste0(separse(call$x), " is not a string and not NULL")
+  paste0(deparse(call$x), " is not a string and not NULL")
 }
 
 is_email <- function(x) {
