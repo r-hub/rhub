@@ -5,7 +5,7 @@ endpoints <- list(
   c("GET PLATFORMS",  "GET",  "/platform/list"),
   c("VALIDATE EMAIL", "POST", "/check/validate_email"),
   c("SUBMIT PACKAGE", "POST", "/check/submit"),
-  c("GET STATUS",     "GET",  "/status/:id"),
+  c("GET STATUS",     "POST", "/status"),
   c("LIST BUILDS",    "POST", "/list"),
   c("LIVE LOG",       "GET",  "/livelog/text/:id")
 )

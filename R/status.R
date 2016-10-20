@@ -2,45 +2,45 @@
 #' Query the status of an r-hub check
 #'
 #' @param id The check id, an r-hub status URL, or the object retured
-#'   by [check()].
+#'   by [check()] or one of its variants.
 #' @return A list with the status of the check. It has entries:
 #'   `status`, `submitted` and `duration`. Currently the duration is
-#'   only filled when the build has finished.
+#'   only filled when the build has finished. If a list of checks are
+#'   queried, then a list of statuses are returned.
 #'
 #' @export
 
 status <- function(id = NULL) {
 
   id <- id %||% package_data$last_handle
+  if (is.null(id)) stop("Cannot find last rhub check")
 
-  if (is.null(id)) stop("Could not find an rhub handle")
+  res <- query("GET STATUS", data = list(id = handle_id(id)))
 
-  real_id <- if (is.list(id) && !is.null(id$id) && is_string(id$id)) {
-    id$id
-  } else if (is_string(id)) {
-    sub("^.*/([^/]+)$", "\\1", id, perl = TRUE)
-  } else {
-    stop("Invalid r-hub build id")
-  }
+  for (i in seq_along(res)) class(res[[i]]) <- "rhub_status"
 
-  res <- structure(
-    query("GET STATUS", params = list(id = real_id)),
-    class = "rhub_status"
-  )
+  class(res) <- "rhub_status_list"
 
   res
 }
 
 check_status <- function(id, interactive = interactive()) {
   if (interactive) {
-    make_streamer(id$id, make_status_parser)
+    make_streamer(handle_id(id), make_status_parser)
     invisible(status(id))
   } else {
-    id
+    cat("\nUse `status()` to check the status of these checks.\n")
+    invisible(id)
   }
 }
 
 make_streamer <- function(id, parser_factory) {
+
+  if (length(id) > 1) {
+    warning("Only first submission is streamed")
+    id <- id[1]
+  }
+
   start <- 0
   parser <- parser_factory()
 

@@ -39,7 +39,7 @@ match_platform <- function(platform) {
     }
 
   } else {
-    if (! platform %in% all_platforms$name) {
+    if (! all(platform %in% all_platforms$name)) {
       stop("Unknown r-hub platform, see rhub::platforms() for a list")
     }
     platform

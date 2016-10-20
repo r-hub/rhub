@@ -40,6 +40,17 @@ get_maintainer_email <- function(path) {
   }
 }
 
+needs_compilation <- function(path) {
+  path <- normalizePath(path)
+  if (is_dir(path)) {
+    file.exists(file.path(path, "src"))
+  } else {
+    dir.create(tmp <- tempfile())
+    files <- untar(path, list = TRUE, tar = "internal")
+    any(grepl("^[^/]+/src/?$", files))
+  }
+}
+
 `%:::%` <- function(p, f) {
   get(f, envir = asNamespace(p))
 }

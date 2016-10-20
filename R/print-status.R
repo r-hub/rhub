@@ -9,12 +9,14 @@ print.rhub_status <- function(x, ...) {
 
   greyish <- make_style("darkgrey")
 
-  submitted <- paste(
-    pretty_ms(as.numeric(Sys.time() - parse_iso_8601(x$submitted)) * 1000),
-    "ago"
-  )
+  submitted_time <- as.numeric(Sys.time() - parse_iso_8601(x$submitted))
+  submitted <- if (submitted_time > 0) {
+    paste(pretty_ms(submitted_time * 1000), "ago")
+  } else {
+    "just now"
+  }
 
-  build_time <- if (x$build_time) {
+  build_time <- if (!is.null(x$build_time) && x$build_time != 0) {
     paste0(greyish("  Build time: "), pretty_ms(x$build_time), "\n")
   }
 
@@ -23,12 +25,12 @@ print.rhub_status <- function(x, ...) {
     greyish("  Build ID:   "), x$id, "\n",
     greyish("  Platform:   "), x$platform$description, "\n",
     greyish("  Submitted:  "), submitted, "\n",
-    build_time,
+    build_time %||% "",
     "\n"
   )
 
   ## If not done, then this is all we do
-  if (! x$build_time) return(invisible(x))
+  if (is.null(build_time)) return(invisible(x))
 
   ## R CMD check error
   if (tolower(x$status) != "preperror" && tolower(x$status) != "aborted") {
@@ -64,13 +66,12 @@ print.rhub_status <- function(x, ...) {
     cat("\n")
   }
 
-  problem <- function(p, what) {
+  invisible(x)
+}
 
-  }
+#' @export
 
-  problem(x$result$errors, "error")
-  problem(x$result$warning, "warning")
-
-
+print.rhub_status_list <- function(x, ...) {
+  for (s in x) print(s)
   invisible(x)
 }

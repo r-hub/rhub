@@ -40,6 +40,11 @@ check <- function(path = ".", platform = NULL,
   assert_that(is_named(env_vars))
   assert_that(is.character(env_vars))
 
+  if (show_status && length(platform) > 1) {
+    warning("Cannot show status for multiple platforms")
+    show_status <- FALSE
+  }
+
   ## Make sure that maintainer email was validated
   if (is.null(email)) email <- get_maintainer_email(path)
   if (is.na(email)) stop("Cannot get email address from package")
@@ -49,7 +54,7 @@ check <- function(path = ".", platform = NULL,
 
   ## Build the tar.gz, if needed
   if (file.info(path)$isdir) {
-    if (show_status) header_line("Building package")
+    header_line("Building package")
     pkg_targz <- build_package(path, tmpdir <- tempfile())
   } else {
     pkg_targz <- path
@@ -62,20 +67,19 @@ check <- function(path = ".", platform = NULL,
   )
 
   ## Submit to r-hub
-  id <- submit_package(
+  handle <- submit_package(
     email,
     pkg_targz,
     platform = platform,
     check_args = check_args,
-    env_vars = env_vars,
-    show_status = show_status
+    env_vars = env_vars
   )
 
   ## Cache the last submission
-  package_data$last_handle <- id$id
+  package_data$last_handle <- handle
 
   ## Show the status
-  check_status(id, interactive = show_status)
+  check_status(handle, interactive = show_status)
 }
 
 assert_validated_email_for_check <- function(email) {

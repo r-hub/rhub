@@ -8,12 +8,13 @@ status(id = NULL)
 }
 \arguments{
 \item{id}{The check id, an r-hub status URL, or the object retured
-by \code{\link[=check]{check()}}.}
+by \code{\link[=check]{check()}} or one of its variants.}
 }
 \value{
 A list with the status of the check. It has entries:
 \code{status}, \code{submitted} and \code{duration}. Currently the duration is
-only filled when the build has finished.
+only filled when the build has finished. If a list of checks are
+queried, then a list of statuses are returned.
 }
 \description{
 Query the status of an r-hub check
