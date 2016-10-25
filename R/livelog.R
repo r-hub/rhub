@@ -56,6 +56,13 @@ make_streamer <- function(id, parser_factory) {
   }
 
   cat("\r    \n")
+
+  if (grepl(
+    "^(Finished: ABORTED|Finished: ERROR)$",
+    response$text[[length(response$text)]]
+  )) {
+    cat(response$text[[length(response$text)]], "\n", sep = "")
+  }
 }
 
 #' @importFrom rcmdcheck rcmdcheck
