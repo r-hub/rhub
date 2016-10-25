@@ -23,7 +23,7 @@ An \code{rhub_check} object.
 List all checks for an email address
 }
 \examples{
-{
+\dontrun{
 ch <- list_my_checks()
 ch
 ch$details()

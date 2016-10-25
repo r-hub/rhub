@@ -10,7 +10,8 @@
 #' @return An `rhub_check` object.
 #'
 #' @export
-#' @examples{
+#' @examples
+#' \dontrun{
 #' ch <- list_my_checks()
 #' ch
 #' ch$details()
