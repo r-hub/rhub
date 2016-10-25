@@ -35,8 +35,7 @@ before the check. A named character vector.}
 happening.}
 }
 \value{
-Return the response from r-hub, invisibly. It contains the
-URL of the build's status page on r-hub.
+An \link{rhub_check} object.
 }
 \description{
 Check an R package on r-hub

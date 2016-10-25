@@ -1,37 +1,16 @@
 
-#' Query the status of an r-hub check
-#'
-#' @param id The check id, an r-hub status URL, or the object retured
-#'   by [check()] or one of its variants.
-#' @return A list with the status of the check. It has entries:
-#'   `status`, `submitted` and `duration`. Currently the duration is
-#'   only filled when the build has finished. If a list of checks are
-#'   queried, then a list of statuses are returned.
-#'
-#' @export
-
-status <- function(id = NULL) {
-
-  id <- id %||% package_data$last_handle
-  if (is.null(id)) stop("Cannot find last rhub check")
-
-  res <- query("GET STATUS", data = list(id = handle_id(id)))
-
-  for (i in seq_along(res)) class(res[[i]]) <- "rhub_status"
-
-  class(res) <- "rhub_status_list"
-
-  res
-}
-
-check_status <- function(id, interactive = interactive()) {
-  if (interactive) {
-    make_streamer(handle_id(id), make_status_parser)
-    invisible(status(id))
-  } else {
-    cat("\nUse `status()` to check the status of these checks.\n")
-    invisible(id)
+check_livelog <- function(self, private, which) {
+  assert_that(is_count(which) || is_string(which))
+  if (is_count(which) && (which < 1 || which > length(private$ids_))) {
+    stop("Unknown check selected")
   }
+  if (is.character(which) && ! which %in% private$ids_) {
+    stop("Unknow check selected")
+  }
+
+  make_streamer(private$ids_[[which]], make_status_parser)
+  self$update()
+  invisible(self)
 }
 
 make_streamer <- function(id, parser_factory) {

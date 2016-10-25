@@ -21,6 +21,7 @@ Imports:
     jsonlite,
     parsedate,
     prettyunits,
+    R6,
     rappdirs,
     rcmdcheck (>= 1.2.1),
     rematch,

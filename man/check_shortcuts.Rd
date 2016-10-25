@@ -45,6 +45,9 @@ source R package tarball built with \code{R CMD check}.}
 
 \item{...}{Additional arguments are passed to \code{\link[=check]{check()}}.}
 }
+\value{
+An \link{rhub_check} object.
+}
 \description{
 These functions provide a quick easy to use interface to check a
 package on a platform with some particular aspect. Which platform

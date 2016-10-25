@@ -12,11 +12,17 @@
 #'   is used.
 #' @param env_vars Environment variables to set on the builder. By default
 #'   `_R_CHECK_FORCE_SUGGESTS_=true` is set, to require all packages used.
+#' @param ... Additional arguments are passed to [check()].
 #' @inheritParams check
-#' @return Return the response from r-hub, invisibly. It contains the
-#'   URL of the build's status page on r-hub.
+#' @return An [rhub_check] object.
 #'
 #' @export
+#' @examples
+#' \dontrun{
+#' ch <- check_for_cran("package", show_status = FALSE)
+#' ch$update()
+#' ch$livelog(3)
+#' }
 
 check_for_cran <- function(
   path = ".", email = NULL, check_args = "--as-cran",
@@ -33,6 +39,5 @@ check_for_cran <- function(
   )
 
   check(path = path, platform = platforms, email = email,
-        check_args = check_args, env_vars = env_vars, show_status = FALSE,
-        ...)
+        check_args = check_args, env_vars = env_vars, ...)
 }

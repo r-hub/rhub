@@ -8,6 +8,7 @@
 #' they use might change over time.
 #'
 #' @param ... Additional arguments are passed to [check()].
+#' @return An [rhub_check] object.
 #' @inheritParams check
 #'
 #' @export

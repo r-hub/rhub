@@ -4,7 +4,7 @@
 \alias{list_my_checks}
 \title{List all checks for an email address}
 \usage{
-list_my_checks(email = email_address(), package = NULL)
+list_my_checks(email = email_address(), package = NULL, howmany = 20)
 }
 \arguments{
 \item{email}{Email address. By default it is guessed with
@@ -13,11 +13,20 @@ list_my_checks(email = email_address(), package = NULL)
 
 \item{package}{\code{NULL}, or a character scalar. Can be used to restrict
 the search for a single package.}
+
+\item{howmany}{How many checks to show. The current API limit is 20.}
 }
 \value{
-List of check status objects.
+An \code{rhub_check} object.
 }
 \description{
 List all checks for an email address
+}
+\examples{
+{
+ch <- list_my_checks()
+ch
+ch$details()
+}
 }
 

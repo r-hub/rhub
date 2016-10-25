@@ -1,10 +1,4 @@
 
-make_status_list <- function(response) {
-  class(response) <- "rhub_check_list"
-  for (i in seq_along(response)) class(response[[i]]) <- "rhub_status"
-  response
-}
-
 #' List all checks for an email address
 #'
 #' @param email Email address. By default it is guessed with
@@ -12,14 +6,22 @@ make_status_list <- function(response) {
 #'   [validate_email()].
 #' @param package `NULL`, or a character scalar. Can be used to restrict
 #'   the search for a single package.
-#' @return List of check status objects.
+#' @param howmany How many checks to show. The current API limit is 20.
+#' @return An `rhub_check` object.
 #'
 #' @export
+#' @examples{
+#' ch <- list_my_checks()
+#' ch
+#' ch$details()
+#' }
 
-list_my_checks <- function(email = email_address(), package = NULL) {
+list_my_checks <- function(email = email_address(), package = NULL,
+                           howmany = 20) {
 
   assert_that(is_email(email))
   assert_that(is_string_or_null(package))
+  assert_that(is_count(howmany))
 
   response <- query(
     "LIST BUILDS",
@@ -30,7 +32,12 @@ list_my_checks <- function(email = email_address(), package = NULL) {
     ))
   )
 
-  make_status_list(response)
+  if (length(response) > howmany) response <- response[seq_len(howmany)]
+
+  rhub_check_list$new(
+    ids = vapply(response, "[[", "", "id"),
+    status = response
+  )
 }
 
 
@@ -39,16 +46,25 @@ list_my_checks <- function(email = email_address(), package = NULL) {
 #' @param package Directory of an R package, or a package tarball.
 #' @param email Email address that was used for the check(s).
 #'   If `NULL`, then the maintainer address is used.
-#' @return List of check status objects.
+#' @param howmany How many checks to show. The current maximum of the API
+#'   is 20.
+#' @return An `rhub_check` object.
 #'
 #' @export
 #' @importFrom desc desc_get
+#' @examples
+#' \dontrun{
+#' ch <- list_my_checks()
+#' ch
+#' ch$details(1)
+#' }
 
-list_package_checks <- function(package = ".", email = NULL) {
+list_package_checks <- function(package = ".", email = NULL, howmany = 20) {
 
   assert_that(is_pkg_dir_or_tarball(package))
   if (is.null(email)) email  <- get_maintainer_email(package)
   assert_that(is_email(email))
+  assert_that(is_count(howmany))
 
   package <- unname(desc_get("Package", file = package))
 
@@ -61,34 +77,10 @@ list_package_checks <- function(package = ".", email = NULL) {
     ))
   )
 
-  make_status_list(response)
-}
+  if (length(response) > howmany) response <- response[seq_len(howmany)]
 
-#' @export
-
-print.rhub_check_list <- function(x, ...) {
-  package <- vapply(x, "[[", "", "package")
-  version <- vapply(x, "[[", "", "version")
-  status <- vapply(x, "[[", "", "status")
-  submitted <- vapply(x, "[[", "", "submitted")
-  platform <- vapply(x, function(xx) xx$platform$name, "")
-
-  submitted <- if (length(package) == 0) {
-    character()
-  } else {
-    tdiff <- Sys.time() - parse_iso_8601(submitted)
-    units(tdiff) <- "secs"
-    paste(
-      pretty_ms(as.numeric(tdiff) * 1000, compact = TRUE),
-      "ago"
-    )
-  }
-
-  print(data_frame(
-    package = package,
-    version = version,
-    status = status,
-    submitted = submitted,
-    platform = platform
-  ))
+  rhub_check_list$new(
+    ids = vapply(response, "[[", "", "id"),
+    status = response
+  )
 }

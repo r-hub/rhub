@@ -1,10 +1,19 @@
 
-#' @export
+check_print <- function(self, private, ...) {
+  if (is.null(private$status_)) {
+    cat("Updating status...\n")
+    self$update()
+  }
+  for (x in private$status_) check_print2(x)
+  invisible(self)
+}
+
 #' @importFrom parsedate parse_iso_8601
 #' @importFrom prettyunits pretty_ms
 #' @importFrom crayon make_style red yellow
 
-print.rhub_status <- function(x, ...) {
+check_print2 <- function(x) {
+
   title_line(paste0(x$package, " ", x$version, ": ", toupper(x$status)))
 
   greyish <- make_style("darkgrey")
@@ -66,12 +75,5 @@ print.rhub_status <- function(x, ...) {
     cat("\n")
   }
 
-  invisible(x)
-}
-
-#' @export
-
-print.rhub_status_list <- function(x, ...) {
-  for (s in x) print(s)
   invisible(x)
 }

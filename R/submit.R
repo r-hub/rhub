@@ -42,7 +42,5 @@ submit_package <- function(email, pkg_targz, platform, check_args,
       ))
   ))
 
-  class(response) <- "rhub_handle"
-
   response
 }

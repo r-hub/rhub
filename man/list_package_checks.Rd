@@ -4,18 +4,28 @@
 \alias{list_package_checks}
 \title{List checks of a package}
 \usage{
-list_package_checks(package = ".", email = NULL)
+list_package_checks(package = ".", email = NULL, howmany = 20)
 }
 \arguments{
 \item{package}{Directory of an R package, or a package tarball.}
 
 \item{email}{Email address that was used for the check(s).
 If \code{NULL}, then the maintainer address is used.}
+
+\item{howmany}{How many checks to show. The current maximum of the API
+is 20.}
 }
 \value{
-List of check status objects.
+An \code{rhub_check} object.
 }
 \description{
 List checks of a package
+}
+\examples{
+\dontrun{
+ch <- list_my_checks()
+ch
+ch$details(1)
+}
 }
 

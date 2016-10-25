@@ -4,9 +4,13 @@ context("check")
 test_that("check", {
   pkg <- create_minimal_package()
   sub <- NULL
-  with_mock(
+  ch <- with_mock(
+    `base::cat` = function(...) { },
     `rhub::assert_validated_email_for_check` = function(...) TRUE,
-    `rhub:::submit_package` = function(...) sub <<- list(...),
+    `rhub:::submit_package` = function(...) {
+      sub <<- list(...)
+      list(list(id = "foobar"))
+    },
     `rhub:::match_platform` = function(x) x,
     check(pkg, email = "email", platform = "platform", show_status = FALSE)
   )
@@ -18,9 +22,12 @@ test_that("check", {
   ## From tarball
   pkg_targz <- build_package(pkg, tempfile())
   sub <- NULL
-  with_mock(
+  ch <- with_mock(
     `rhub::assert_validated_email_for_check` = function(...) TRUE,
-    `rhub::submit_package` = function(...) sub <<- list(...),
+    `rhub::submit_package` = function(...) {
+      sub <<- list(...)
+      list(list(id = "foobar"))
+    },
     `rhub:::match_platform` = function(x) x,
     check(pkg_targz, email = "e", platform = "p", show_status = FALSE)
   )

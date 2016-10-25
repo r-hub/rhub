@@ -19,8 +19,7 @@
 #'   before the check. A named character vector.
 #' @param show_status Whether to show the status of the build as it is
 #'   happening.
-#' @return Return the response from r-hub, invisibly. It contains the
-#'   URL of the build's status page on r-hub.
+#' @return An [rhub_check] object.
 #'
 #' @export
 #' @examples
@@ -39,11 +38,6 @@ check <- function(path = ".", platform = NULL,
   assert_that(is_flag(valgrind))
   assert_that(is_named(env_vars))
   assert_that(is.character(env_vars))
-
-  if (show_status && length(platform) > 1) {
-    warning("Cannot show status for multiple platforms")
-    show_status <- FALSE
-  }
 
   ## Make sure that maintainer email was validated
   if (is.null(email)) email <- get_maintainer_email(path)
@@ -67,7 +61,7 @@ check <- function(path = ".", platform = NULL,
   )
 
   ## Submit to r-hub
-  handle <- submit_package(
+  response <- submit_package(
     email,
     pkg_targz,
     platform = platform,
@@ -75,11 +69,14 @@ check <- function(path = ".", platform = NULL,
     env_vars = env_vars
   )
 
-  ## Cache the last submission
-  package_data$last_handle <- handle
+  chk <- rhub_check$new(ids = vapply(response, "[[", "", "id"))
 
-  ## Show the status
-  check_status(handle, interactive = show_status)
+  package_data$last_handle <- chk
+
+  ## Show the live status, if requested
+  if (show_status) chk$livelog()
+
+  invisible(chk)
 }
 
 assert_validated_email_for_check <- function(email) {

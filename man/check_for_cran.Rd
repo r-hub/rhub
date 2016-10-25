@@ -21,10 +21,11 @@ is used.}
 
 \item{env_vars}{Environment variables to set on the builder. By default
 \code{_R_CHECK_FORCE_SUGGESTS_=true} is set, to require all packages used.}
+
+\item{...}{Additional arguments are passed to \code{\link[=check]{check()}}.}
 }
 \value{
-Return the response from r-hub, invisibly. It contains the
-URL of the build's status page on r-hub.
+An \link{rhub_check} object.
 }
 \description{
 This function calls \code{\link[=check]{check()}} with arguments and platforms, that
@@ -34,6 +35,13 @@ are suggested for a CRAN submission. In particular:
 \item It checks the package on R-oldrel, R-release and R-devel.
 \item It uses the \code{--as-cran} argument to \code{R CMD check}.
 \item It requires all dependencies, including suggested ones.
+}
+}
+\examples{
+\dontrun{
+ch <- check_for_cran("package", show_status = FALSE)
+ch$update()
+ch$livelog(3)
 }
 }
 

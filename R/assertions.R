@@ -79,3 +79,19 @@ is_token <- function(x) {
 on_failure(is_token) <- function(call, env) {
   paste0(deparse(call$x), " does not look like an r-hub token")
 }
+
+is_check_ids <- function(x) {
+  is.character(x) && length(x) >= 1 && all(x != "")
+}
+
+on_failure(is_check_ids) <- function(call, env) {
+  paste0(deparse(call$x), " is not a vector of check ids")
+}
+
+is_count <- function(x) {
+  is.numeric(x) && length(x) == 1 && as.integer(x) == x
+}
+
+on_failure(is_count) <- function(call, env) {
+  paste0(deparse(call$x), " is not a count (length 1 integer)")
+}
