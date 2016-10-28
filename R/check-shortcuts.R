@@ -120,7 +120,7 @@ check_shortcut_platforms <- list(
   "sanitizers" = "linux-x86_64-rocker-gcc-san",
   "roldrel"    = "windows-x86_64-oldrel",
   "rrelease"   = "debian-gcc-release",
-  "rpatched"   = "debian-gcc-rpatched",
+  "rpatched"   = "debian-gcc-patched",
   "rdevel"     = "debian-gcc-devel",
   "debian"     = "debian-gcc-release",
   "ubuntu"     = "ubuntu-gcc-release",
