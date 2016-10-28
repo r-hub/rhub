@@ -73,8 +73,14 @@ platforms()
 #>   Ubuntu Linux 16.04 LTS, R-devel, GCC
 #> ubuntu-gcc-release:
 #>   Ubuntu Linux 16.04 LTS, R-release, GCC
+#> windows-x86_64-devel:
+#>   Windows Server 2008 R2 SP1, R-devel, 32/64 bit
 #> windows-x86_64-oldrel:
-#>   Windows Server 2008 R2 SP1, R-oldrel, 64 bit
+#>   Windows Server 2008 R2 SP1, R-oldrel, 32/64 bit
+#> windows-x86_64-patched:
+#>   Windows Server 2008 R2 SP1, R-patched, 32/64 bit
+#> windows-x86_64-release:
+#>   Windows Server 2008 R2 SP1, R-release, 32/64 bit
 ```
 
 You can use the platform ids (e.g. `debian-gcc-devel`) to select between
@@ -104,7 +110,7 @@ These are quick shortcuts that select the right platform:
   `check_on_centos()` select an appropriate Linux platform.
 * `check_with_roldrel()`, `check_with_rrelease()`, `check_with_rpatched()`
   and `check_with_rdevel()` select an R version.
-* `check_with_valgrind` runs the build and check on Linux, in `valgrind`
+* `check_with_valgrind()` runs the build and check on Linux, in `valgrind`
   to find memory leaks and pointer errors.
 * `check_with_sanitizers()` runs all package package tests, examples and
   vignettes with Address Sanitizer and Undefined Behavior Sanitizer, see
