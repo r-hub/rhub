@@ -10,7 +10,7 @@ check(path = ".", platform = NULL, email = NULL, valgrind = FALSE,
 }
 \arguments{
 \item{path}{Path to a directory containing an R package, or path to
-source R package tarball built with \code{R CMD check}.}
+source R package tarball built with \code{R CMD build}.}
 
 \item{platform}{Platform to build/check the package on. See
 \code{\link[=platforms]{platforms()}} for the available platforms. If this is \code{NULL},

@@ -41,7 +41,7 @@ check_with_sanitizers(path = ".", ...)
 }
 \arguments{
 \item{path}{Path to a directory containing an R package, or path to
-source R package tarball built with \code{R CMD check}.}
+source R package tarball built with \code{R CMD build}.}
 
 \item{...}{Additional arguments are passed to \code{\link[=check]{check()}}.}
 }
