@@ -32,7 +32,7 @@ check_for_cran <- function(
   assert_that(is_pkg_dir_or_tarball(path))
 
   platforms <- c(
-    "windows-x86_64-oldrel",
+    "windows-x86_64-devel",
     "ubuntu-gcc-release",
     "fedora-clang-devel",
     if (needs_compilation(path)) "linux-x86_64-rocker-gcc-san"
