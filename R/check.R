@@ -2,7 +2,8 @@
 #' Check an R package on r-hub
 #'
 #' @param path Path to a directory containing an R package, or path to
-#'   source R package tarball built with `R CMD build` or \link{build}.
+#'   source R package tarball built with `R CMD build` or
+#'   `devtools::build()`.
 #' @param platform Platform to build/check the package on. See
 #'   [platforms()] for the available platforms. If this is \code{NULL},
 #'   and the R session is interactive, then a menu is shown. If it is

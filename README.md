@@ -89,8 +89,8 @@ platforms.
 ### Run a package check
 
 `check()` runs an `R CMD check` on the package in the specified directory,
-or specified source R package tarball created by `R CMD build` or `build()`. It defaults to the working
-directory.
+or specified source R package tarball created by `R CMD build` or
+`devtools::build()`. It defaults to the working directory.
 
 ```r
 check()

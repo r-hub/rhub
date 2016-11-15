@@ -28,7 +28,7 @@ Imports:
     utils,
     whoami,
     withr
-Suggests:
+Suggests: 
     covr,
     testthat
 Encoding: UTF-8

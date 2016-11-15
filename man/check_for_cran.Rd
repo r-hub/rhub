@@ -9,7 +9,8 @@ check_for_cran(path = ".", email = NULL, check_args = "--as-cran",
 }
 \arguments{
 \item{path}{Path to a directory containing an R package, or path to
-source R package tarball built with \code{R CMD build} or \link{build}.}
+source R package tarball built with \code{R CMD build} or
+\code{devtools::build()}.}
 
 \item{email}{Email address to send notification to about the build.
 It must be a validated email address, see \code{\link[=validate_email]{validate_email()}}. If
