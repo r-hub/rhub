@@ -9,7 +9,8 @@ check_for_cran(path = ".", email = NULL, check_args = "--as-cran",
 }
 \arguments{
 \item{path}{Path to a directory containing an R package, or path to
-source R package tarball built with \code{R CMD check}.}
+source R package tarball built with \code{R CMD build} or
+\code{devtools::build()}.}
 
 \item{email}{Email address to send notification to about the build.
 It must be a validated email address, see \code{\link[=validate_email]{validate_email()}}. If
@@ -33,7 +34,7 @@ are suggested for a CRAN submission. In particular:
 \itemize{
 \item It checks the package on Windows, and Linux.
 \item It checks the package on R-oldrel, R-release and R-devel.
-\item It uses the \code{--as-cran} argument to \code{R CMD check}.
+\item It uses the \code{--as-cran} argument to \code{R CMD build}.
 \item It requires all dependencies, including suggested ones.
 }
 }

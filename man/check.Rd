@@ -10,13 +10,16 @@ check(path = ".", platform = NULL, email = NULL, valgrind = FALSE,
 }
 \arguments{
 \item{path}{Path to a directory containing an R package, or path to
-source R package tarball built with \code{R CMD check}.}
+source R package tarball built with \code{R CMD build} or
+\code{devtools::build()}.}
 
 \item{platform}{Platform to build/check the package on. See
 \code{\link[=platforms]{platforms()}} for the available platforms. If this is \code{NULL},
 and the R session is interactive, then a menu is shown. If it is
 \code{NULL}, and the session is not interactive, then the default
-r-hub platforms is used.}
+r-hub platforms is used. Can take a vector of platforms which saves
+time by building one R package tarball that is used for all the
+platforms specified.}
 
 \item{email}{Email address to send notification to about the build.
 It must be a validated email address, see \code{\link[=validate_email]{validate_email()}}. If

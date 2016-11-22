@@ -5,7 +5,7 @@
 #' are suggested for a CRAN submission. In particular:
 #' * It checks the package on Windows, and Linux.
 #' * It checks the package on R-oldrel, R-release and R-devel.
-#' * It uses the `--as-cran` argument to `R CMD check`.
+#' * It uses the `--as-cran` argument to `R CMD build`.
 #' * It requires all dependencies, including suggested ones.
 #'
 #' @param check_args Arguments for `R CMD check`. By default `--as-cran`

@@ -2,8 +2,8 @@
 % Please edit documentation in R/check-class.R, R/check-list-class.R
 \name{rhub_check}
 \alias{rhub_check}
-\alias{rhub_check_for_cran}
 \alias{rhub_check_list}
+\alias{rhub_check_for_cran}
 \title{An \code{rhub_check} object holds status and results of rhub checks}
 \description{
 An \code{rhub_check} object holds status and results of rhub checks
