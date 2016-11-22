@@ -5,7 +5,7 @@
 \title{Check an R-package on R-hub, for a CRAN submission}
 \usage{
 check_for_cran(path = ".", email = NULL, check_args = "--as-cran",
-  env_vars = c(`_R_CHECK_FORCE_SUGGESTS_` = "true"), ...)
+  env_vars = c(`_R_CHECK_FORCE_SUGGESTS_` = "true"), platforms = NULL, ...)
 }
 \arguments{
 \item{path}{Path to a directory containing an R package, or path to
@@ -23,6 +23,10 @@ is used.}
 \item{env_vars}{Environment variables to set on the builder. By default
 \code{_R_CHECK_FORCE_SUGGESTS_=true} is set, to require all packages used.}
 
+\item{platforms}{Character vector of platform ids to use
+(see \code{\link[=platforms]{platforms()}}), or \code{NULL}. If \code{NULL}, then a set of default
+platforms will be selected, see below.}
+
 \item{...}{Additional arguments are passed to \code{\link[=check]{check()}}.}
 }
 \value{
@@ -30,10 +34,13 @@ An \link{rhub_check} object.
 }
 \description{
 This function calls \code{\link[=check]{check()}} with arguments and platforms, that
-are suggested for a CRAN submission. In particular:
+are suggested for a CRAN submission.
+}
+\details{
+In particular, if \code{platforms} is \code{NULL} (the default), then
 \itemize{
 \item It checks the package on Windows, and Linux.
-\item It checks the package on R-oldrel, R-release and R-devel.
+\item It checks the package on R-release and R-devel.
 \item It uses the \code{--as-cran} argument to \code{R CMD build}.
 \item It requires all dependencies, including suggested ones.
 }
