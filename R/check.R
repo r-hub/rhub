@@ -90,7 +90,7 @@ assert_validated_email_for_check <- function(email) {
     if (is_interactive()) {
       cat("\n")
       message(paste(collapse = "\n", strwrap(indent = 2, exdent = 2, paste(
-        sQuote(crayon::green(email)), "is not validated, or does not match" 
+        sQuote(crayon::green(email)), "is not validated, or does not match", 
          "the package maintainer's email. To validate it now, please enter",
         "the email address below. Note that r-hub will send a token to",
         "this address. If the address does not belongto you, quit now by",
