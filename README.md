@@ -32,9 +32,9 @@ library(rhub)
 
 ### Validating your email address
 
-To build packages, first you need to validate your email address. The
-package tries to detect your email address, and if it fails to do this
-correctly, you'll need to specify it.
+To build packages, first you need to validate your email address with 
+`validate_email()`. The package tries to detect your email address, 
+and if it fails to do this correctly, you'll need to specify it.
 
 ![](inst/email-validation.png)
 
