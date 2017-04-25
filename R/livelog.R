@@ -71,7 +71,18 @@ make_status_parser <- function() {
 
   first <- TRUE
   checking <- FALSE
-  formatter <- ("rcmdcheck" %:::% "check_callback")(top_line = FALSE)
+
+  ## This is to make sure that `rhub` works with older and newer
+  ## rcmdcheck versions as well. Older versions expect a call for each
+  ## line. Newer versions just take a block of output.
+  formatter <- try(
+    ("rcmdcheck" %:::% "check_callback")(top_line = FALSE),
+    silent = TRUE
+  )
+  if (inherits(formatter, "try-error")) {
+    cb <- ("rcmdcheck" %:::% "block_callback")(top_line = FALSE)
+    formatter <- function(x) cb(paste0(x, "\n"))
+  }
 
   function(x) {
 
