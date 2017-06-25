@@ -14,6 +14,8 @@
 #'   is used.
 #' @param env_vars Environment variables to set on the builder. By default
 #'   `_R_CHECK_FORCE_SUGGESTS_=true` is set, to require all packages used.
+#'   `_R_CHECK_CRAN_INCOMING_USE_ASPELL_=true` is also set, to use the
+#'   spell checker.
 #' @param platforms Character vector of platform ids to use
 #'   (see [platforms()]), or `NULL`. If `NULL`, then a set of default
 #'   platforms will be selected, see below.
@@ -31,7 +33,8 @@
 
 check_for_cran <- function(
   path = ".", email = NULL, check_args = "--as-cran",
-  env_vars = c("_R_CHECK_FORCE_SUGGESTS_" = "true"), platforms = NULL,
+  env_vars = c("_R_CHECK_FORCE_SUGGESTS_" = "true",
+    "_R_CHECK_CRAN_INCOMING_USE_ASPELL_" = "true"), platforms = NULL,
   ...) {
 
   path <- normalizePath(path)
