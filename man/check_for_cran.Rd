@@ -5,7 +5,8 @@
 \title{Check an R-package on R-hub, for a CRAN submission}
 \usage{
 check_for_cran(path = ".", email = NULL, check_args = "--as-cran",
-  env_vars = c(`_R_CHECK_FORCE_SUGGESTS_` = "true"), platforms = NULL, ...)
+  env_vars = c(`_R_CHECK_FORCE_SUGGESTS_` = "true",
+  `_R_CHECK_CRAN_INCOMING_USE_ASPELL_` = "true"), platforms = NULL, ...)
 }
 \arguments{
 \item{path}{Path to a directory containing an R package, or path to
@@ -21,7 +22,9 @@ in the \code{DESCRIPTION} file of the package.}
 is used.}
 
 \item{env_vars}{Environment variables to set on the builder. By default
-\code{_R_CHECK_FORCE_SUGGESTS_=true} is set, to require all packages used.}
+\code{_R_CHECK_FORCE_SUGGESTS_=true} is set, to require all packages used.
+\code{_R_CHECK_CRAN_INCOMING_USE_ASPELL_=true} is also set, to use the
+spell checker.}
 
 \item{platforms}{Character vector of platform ids to use
 (see \code{\link[=platforms]{platforms()}}), or \code{NULL}. If \code{NULL}, then a set of default
