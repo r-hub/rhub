@@ -25,12 +25,12 @@ check_on_windows <- function(path = ".", ...) {
   check(path = path, platform = check_shortcut_platforms$windows, ...)
 }
 
-## #' @export
-## #' @rdname check_shortcuts
-## 
-## check_on_macos <- function(path = ".", ...) {
-##   check(path = path, platform = check_shortcut_platforms$macos, ...)
-## }
+#' @export
+#' @rdname check_shortcuts
+
+check_on_macos <- function(path = ".", ...) {
+  check(path = path, platform = check_shortcut_platforms$macos, ...)
+}
 
 ## Various Linux OSes --------------------------------------------------
 
@@ -115,7 +115,7 @@ check_with_sanitizers <- function(path = ".", ...) {
 check_shortcut_platforms <- list(
   "linux"      = "debian-gcc-release",
   "windows"    = "windows-x86_64-release",
-  "macos"      = NA_character_,
+  "macos"      = "macos-elcapitan-release",
   "valgrind"   = "debian-gcc-release",
   "sanitizers" = "linux-x86_64-rocker-gcc-san",
   "roldrel"    = "windows-x86_64-oldrel",

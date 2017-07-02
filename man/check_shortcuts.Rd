@@ -3,6 +3,7 @@
 \name{check_on_linux}
 \alias{check_on_linux}
 \alias{check_on_windows}
+\alias{check_on_macos}
 \alias{check_on_debian}
 \alias{check_on_ubuntu}
 \alias{check_on_fedora}
@@ -18,6 +19,8 @@
 check_on_linux(path = ".", ...)
 
 check_on_windows(path = ".", ...)
+
+check_on_macos(path = ".", ...)
 
 check_on_debian(path = ".", ...)
 
