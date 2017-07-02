@@ -28,4 +28,3 @@ ch
 ch$details(1)
 }
 }
-

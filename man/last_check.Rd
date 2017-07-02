@@ -20,4 +20,3 @@ last_check()
 last_check()$livelog()
 }
 }
-

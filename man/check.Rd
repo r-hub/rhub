@@ -49,4 +49,3 @@ check(".")
 check("mypackage_1.0.0.tar.gz", platform = "fedora-clang-devel")
 }
 }
-

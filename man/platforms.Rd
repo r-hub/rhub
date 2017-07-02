@@ -16,4 +16,3 @@ platforms()
 as.data.frame(platforms())
 }
 }
-

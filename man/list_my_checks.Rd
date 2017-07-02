@@ -29,4 +29,3 @@ ch
 ch$details()
 }
 }
-

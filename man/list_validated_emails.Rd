@@ -17,4 +17,3 @@ List validated email addresses
 \seealso{
 Other email validation: \code{\link{validate_email}}
 }
-

@@ -70,6 +70,7 @@ See \link{rhub_check} for the description of the inherited \code{chl$update()},
 
 \code{chl$details()} prints the details for all checks in the list.
 }
+
 \examples{
 \dontrun{
 check()
@@ -84,4 +85,3 @@ chl
 chl$details()
 }
 }
-
