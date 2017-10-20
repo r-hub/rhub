@@ -7,7 +7,7 @@ test_that("submit_package", {
 
   args <- NULL
   sp <- with_mock(
-    `base::cat` = function(...) { },
+    `rhub::header_line` = function(...) { },
     `rhub::query` = function(...) args <<- list(...),
     `rhub::email_get_token` = function(...) "token",
     submit_package("e@d", pkg_targz, "platform", c("arg1", "arg2"),
