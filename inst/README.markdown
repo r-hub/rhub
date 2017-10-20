@@ -99,7 +99,7 @@ check()
 In interactive R sessions, the output of the check is printed to
 the screen.
 
-![](/inst/check-output.gif)
+![](inst/check-output.gif)
 
 ### Shortcuts for quick checks
 
