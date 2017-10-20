@@ -4,10 +4,11 @@ Version: 1.0.2
 Author: Gábor Csárdi
 Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
 Description: Run 'R CMD check' on any of the 'R-hub' architectures, from
-    the command line.
+    the command line. The current architectures include 'Windows', 'macOS',
+    'Solaris' and various 'Linux' distributions.
 License: MIT + file LICENSE
 LazyData: true
-URL: https://github.com/r-hub/rhub
+URL: https://github.com/r-hub/rhub#readme
 BugReports: https://github.com/r-hub/rhub/issues
 RoxygenNote: 6.0.1.9000
 Roxygen: list(markdown = TRUE)
