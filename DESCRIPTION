@@ -1,5 +1,5 @@
 Package: rhub
-Title: Connect to 'R-hub', from 'R'
+Title: Connect to 'R-hub'
 Version: 1.0.2
 Author: Gábor Csárdi
 Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
