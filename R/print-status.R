@@ -18,7 +18,7 @@ check_print2 <- function(x) {
 
   greyish <- make_style("darkgrey")
 
-  submitted_time <- as.numeric(units = "secs", Sys.time() - parse_iso_8601(x$submitted))
+  submitted_time <- as.numeric(Sys.time() - parse_iso_8601(x$submitted), units = "secs")
   submitted <- if (submitted_time > 0) {
     paste(pretty_ms(submitted_time * 1000), "ago")
   } else {
