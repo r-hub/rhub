@@ -1,8 +1,8 @@
 
 #' An `rhub_check_list` object, a list of rhub check results
 #'
-#' This class is similar to [rhub_check] (it inherites from it),
-#' but it shows the results of the checks in a more consice format
+#' This class is similar to [rhub_check] (it inherits from it),
+#' but it shows the results of the checks in a more concise format
 #' by default. To show the details, call the `$details()` method.
 #'
 #' @section Usage:
