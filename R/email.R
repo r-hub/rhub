@@ -111,7 +111,7 @@ validate_email_interactive <- function(email, token, path = ".") {
   if (is.null(token)) {
     query("VALIDATE EMAIL", data = list(email = unbox(email)))
     message(crayon::yellow(
-      "Please check your emails for the r-hub access token."
+      "Please check your email inbox for the r-hub access token. Check your spam folder if you do not see it in 5 minutes."
     ))
     token <- readline("Token: ")
   }
