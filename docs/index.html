@@ -69,7 +69,117 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-    <p>inst/README.markdown</p>
+    <div id="rhub" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#rhub" class="anchor"></a>rhub</h1></div>
+<blockquote>
+<p>Connect to R-hub, from R</p>
+</blockquote>
+<p><a href="https://travis-ci.org/r-hub/rhub"><img src="https://travis-ci.org/r-hub/rhub.svg?branch=master" alt="Linux Build Status"></a> <a href="https://ci.appveyor.com/project/gaborcsardi/rhub"><img src="https://ci.appveyor.com/api/projects/status/github/r-hub/rhub?svg=true" alt="Windows Build status"></a> <a href="http://www.r-pkg.org/pkg/rhub"><img src="http://www.r-pkg.org/badges/version/rhub"></a> <a href="http://www.r-pkg.org/pkg/rhub"><img src="http://cranlogs.r-pkg.org/badges/rhub" alt="CRAN RStudio mirror downloads"></a> <a href="https://codecov.io/github/r-hub/rhub?branch=master"><img src="https://img.shields.io/codecov/c/github/r-hub/rhub/master.svg" alt="Coverage Status"></a></p>
+<p>Run <code>R CMD check</code> on any of the R-hub architectures, from the command line.</p>
+<div id="introduction" class="section level2">
+<h2 class="hasAnchor">
+<a href="#introduction" class="anchor"></a>Introduction</h2>
+<p>R-hub is a multi-platform build and check service for R packages. This packages uses the R-hub API to connect to R-hub and start package checks on various architectures.</p>
+</div>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p>CRAN version:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"rhub"</span>)</a></code></pre></div>
+<p>GitHub (dev) version:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"r-hub/rhub"</span>)</a></code></pre></div>
+</div>
+<div id="usage" class="section level2">
+<h2 class="hasAnchor">
+<a href="#usage" class="anchor"></a>Usage</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(rhub)</a></code></pre></div>
+<div id="validating-your-email-address" class="section level3">
+<h3 class="hasAnchor">
+<a href="#validating-your-email-address" class="anchor"></a>Validating your email address</h3>
+<p>To build packages, first you need to validate your email address with <code><a href="reference/validate_email.html">validate_email()</a></code>. The package tries to detect your email address using <a href="https://github.com/r-lib/whoami#whoami"><code>whoami</code></a> and the maintainer email listed in DESCRIPTION; and if it fails to do this correctly, you’ll need to specify it.</p>
+<p><img src="reference/figures/email-validation.png"></p>
+<p><code>rhub</code> stores the token permanently on the machine, so you do not need to validate your email again. You can also copy your token to other machines, see <code><a href="reference/list_validated_emails.html">list_validated_emails()</a></code>.</p>
+<p>Currently you cannot use the token obtained via this function, in the Web UI of R-hub.</p>
+</div>
+<div id="listing-r-hub-platforms" class="section level3">
+<h3 class="hasAnchor">
+<a href="#listing-r-hub-platforms" class="anchor"></a>Listing R-hub platforms</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/platforms.html">platforms</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">#&gt; debian-gcc-devel:</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt;   Debian Linux, R-devel, GCC</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; debian-gcc-patched:</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;   Debian Linux, R-patched, GCC</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; debian-gcc-release:</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;   Debian Linux, R-release, GCC</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; fedora-clang-devel:</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt;   Fedora Linux, R-devel, clang, gfortran</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; fedora-gcc-devel:</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt;   Fedora Linux, R-devel, GCC</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; linux-x86_64-centos6-epel:</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;   CentOS 6, stock R from EPEL</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; linux-x86_64-centos6-epel-rdt:</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt;   CentOS 6 with Redhat Developer Toolset, R from EPEL</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; linux-x86_64-rocker-gcc-san:</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt;   Debian Linux, R-devel, GCC ASAN/UBSAN</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt; ubuntu-gcc-devel:</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-devel, GCC</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; ubuntu-gcc-release:</span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-release, GCC</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; windows-x86_64-devel:</span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt;   Windows Server 2008 R2 SP1, R-devel, 32/64 bit</span></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt; windows-x86_64-oldrel:</span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt;   Windows Server 2008 R2 SP1, R-oldrel, 32/64 bit</span></a>
+<a class="sourceLine" id="cb5-25" data-line-number="25"><span class="co">#&gt; windows-x86_64-patched:</span></a>
+<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt;   Windows Server 2008 R2 SP1, R-patched, 32/64 bit</span></a>
+<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt; windows-x86_64-release:</span></a>
+<a class="sourceLine" id="cb5-28" data-line-number="28"><span class="co">#&gt;   Windows Server 2008 R2 SP1, R-release, 32/64 bit</span></a></code></pre></div>
+<p>You can use the platform ids (e.g. <code>debian-gcc-devel</code>) to select between platforms.</p>
+</div>
+<div id="run-a-package-check" class="section level3">
+<h3 class="hasAnchor">
+<a href="#run-a-package-check" class="anchor"></a>Run a package check</h3>
+<p><code><a href="reference/check.html">check()</a></code> runs an <code>R CMD check</code> on the package in the specified directory, or specified source R package tarball created by <code>R CMD build</code> or <code><a href="http://www.rdocumentation.org/packages/devtools/topics/build">devtools::build()</a></code>. It defaults to the working directory.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="reference/check.html">check</a></span>()</a></code></pre></div>
+<p>In interactive R sessions, the output of the check is printed to the screen.</p>
+<p><img src="reference/figures/check-output.gif"></p>
+</div>
+<div id="shortcuts-for-quick-checks" class="section level3">
+<h3 class="hasAnchor">
+<a href="#shortcuts-for-quick-checks" class="anchor"></a>Shortcuts for quick checks</h3>
+<p>These are quick shortcuts that select the right platform:</p>
+<ul>
+<li>
+<code><a href="reference/check_shortcuts.html">check_on_linux()</a></code> and <code><a href="reference/check_shortcuts.html">check_on_windows()</a></code> select the operating system.</li>
+<li>
+<code><a href="reference/check_shortcuts.html">check_on_debian()</a></code>, <code><a href="reference/check_shortcuts.html">check_on_ubuntu()</a></code>, <code><a href="reference/check_shortcuts.html">check_on_fedora()</a></code> and <code><a href="reference/check_shortcuts.html">check_on_centos()</a></code> select an appropriate Linux platform.</li>
+<li>
+<code><a href="reference/check_shortcuts.html">check_with_roldrel()</a></code>, <code><a href="reference/check_shortcuts.html">check_with_rrelease()</a></code>, <code><a href="reference/check_shortcuts.html">check_with_rpatched()</a></code> and <code><a href="reference/check_shortcuts.html">check_with_rdevel()</a></code> select an R version.</li>
+<li>
+<code><a href="reference/check_shortcuts.html">check_with_valgrind()</a></code> runs the build and check on Linux, in <code>valgrind</code> to find memory leaks and pointer errors.</li>
+<li>
+<code><a href="reference/check_shortcuts.html">check_with_sanitizers()</a></code> runs all package package tests, examples and vignettes with Address Sanitizer and Undefined Behavior Sanitizer, see below.</li>
+</ul>
+</div>
+<div id="sanitizers-for-compiled-code" class="section level3">
+<h3 class="hasAnchor">
+<a href="#sanitizers-for-compiled-code" class="anchor"></a>Sanitizers for compiled code</h3>
+<p>R-hub provides a special Docker image to run Address Sanitizer (ASAN) and Undefined Behavior Sanitizer (UBSAN). This is based on the <code>r-devel-san</code> image of the <a href="https://github.com/rocker-org/r-devel-san">Rocker project</a>.</p>
+<p>This image does not run <code>R CMD check</code> at all, but it runs</p>
+<ol>
+<li>package tests,</li>
+<li>all manual examples, and</li>
+<li>all vignette code</li>
+</ol>
+<p>with ASAN and UBSAN enabled.</p>
+</div>
+</div>
+<div id="license" class="section level2">
+<h2 class="hasAnchor">
+<a href="#license" class="anchor"></a>License</h2>
+<p>MIT © R Consortium</p>
+</div>
+</div>
   </div>
 
   <div class="col-md-3" id="sidebar">
