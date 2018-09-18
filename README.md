@@ -123,6 +123,10 @@ These are quick shortcuts that select the right platform:
 * `check_with_sanitizers()` runs all package package tests, examples and
   vignettes with Address Sanitizer and Undefined Behavior Sanitizer, see
   below.
+  
+### Shortcut for preparing a CRAN submission
+
+`rhub::check_for_cran`: Check an R-package on R-hub, for a CRAN submission.
 
 ### Sanitizers for compiled code
 
