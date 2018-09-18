@@ -1,7 +1,7 @@
 
 # rhub
 
-> Connect to r-hub, from R
+> Connect to R-hub, from R
 
 [![Linux Build Status](https://travis-ci.org/r-hub/rhub.svg?branch=master)](https://travis-ci.org/r-hub/rhub)
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-hub/rhub?svg=true)](https://ci.appveyor.com/project/gaborcsardi/rhub)
@@ -9,13 +9,13 @@
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/rhub)](http://www.r-pkg.org/pkg/rhub)
 [![Coverage Status](https://img.shields.io/codecov/c/github/r-hub/rhub/master.svg)](https://codecov.io/github/r-hub/rhub?branch=master)
 
-Run `R CMD check` on any of the r-hub architectures, from the
+Run `R CMD check` on any of the R-hub architectures, from the
 command line.
 
 ## Introduction
 
-r-hub is a multi-platform build and check service for R packages.
-This packages uses the r-hub API to connect to r-hub and start package
+R-hub is a multi-platform build and check service for R packages.
+This packages uses the R-hub API to connect to R-hub and start package
 checks on various architectures.
 
 ## Installation
@@ -43,9 +43,9 @@ to validate your email again. You can also copy your token to other
 machines, see `list_validated_emails()`.
 
 Currently you cannot use the token obtained via this function, in the Web
-UI of r-hub.
+UI of R-hub.
 
-### Listing r-hub platforms
+### Listing R-hub platforms
 
 ```r
 platforms()
@@ -118,7 +118,7 @@ These are quick shortcuts that select the right platform:
 
 ### Sanitizers for compiled code
 
-r-hub provides a special Docker image to run Address Sanitizer (ASAN) and
+R-hub provides a special Docker image to run Address Sanitizer (ASAN) and
 Undefined Behavior Sanitizer (UBSAN). This is based on the `r-devel-san`
 image of the [Rocker project](https://github.com/rocker-org/r-devel-san).
 
