@@ -11,6 +11,7 @@
 #' @return An [rhub_check] object.
 #' @inheritParams check
 #'
+#' @family shortcut
 #' @export
 #' @rdname check_shortcuts
 
@@ -18,6 +19,7 @@ check_on_linux <- function(path = ".", ...) {
   check(path = path, platform = check_shortcut_platforms$linux, ...)
 }
 
+#' @family shortcut
 #' @export
 #' @rdname check_shortcuts
 
@@ -25,6 +27,7 @@ check_on_windows <- function(path = ".", ...) {
   check(path = path, platform = check_shortcut_platforms$windows, ...)
 }
 
+#' @family shortcut
 #' @export
 #' @rdname check_shortcuts
 
@@ -34,6 +37,7 @@ check_on_macos <- function(path = ".", ...) {
 
 ## Various Linux OSes --------------------------------------------------
 
+#' @family shortcut
 #' @export
 #' @rdname check_shortcuts
 
@@ -41,6 +45,7 @@ check_on_debian <- function(path = ".", ...) {
   check(path = path, platform = check_shortcut_platforms$debian, ...)
 }
 
+#' @family shortcut
 #' @export
 #' @rdname check_shortcuts
 
@@ -48,6 +53,7 @@ check_on_ubuntu <- function(path = ".", ...) {
   check(path = path, platform = check_shortcut_platforms$ubuntu, ...)
 }
 
+#' @family shortcut
 #' @export
 #' @rdname check_shortcuts
 
@@ -55,6 +61,7 @@ check_on_fedora <- function(path = ".", ...) {
   check(path = path, platform = check_shortcut_platforms$fedora, ...)
 }
 
+#' @family shortcut
 #' @export
 #' @rdname check_shortcuts
 
@@ -64,6 +71,7 @@ check_on_centos <- function(path = ".", ...) {
 
 ## R versions --------------------------------------------------------
 
+#' @family shortcut
 #' @export
 #' @rdname check_shortcuts
 
@@ -71,6 +79,7 @@ check_with_roldrel <- function(path = ".", ...) {
   check(path = path, platform = check_shortcut_platforms$roldrel, ...)
 }
 
+#' @family shortcut
 #' @export
 #' @rdname check_shortcuts
 
@@ -78,6 +87,7 @@ check_with_rrelease <- function(path = ".", ...) {
   check(path = path, platform = check_shortcut_platforms$rrelease, ...)
 }
 
+#' @family shortcut
 #' @export
 #' @rdname check_shortcuts
 
@@ -85,6 +95,7 @@ check_with_rpatched <- function(path = ".", ...) {
   check(path = path, platform = check_shortcut_platforms$rpatched, ...)
 }
 
+#' @family shortcut
 #' @export
 #' @rdname check_shortcuts
 
@@ -94,6 +105,7 @@ check_with_rdevel <- function(path = ".", ...) {
 
 ## Extra checks --------------------------------------------------------
 
+#' @family shortcut
 #' @export
 #' @rdname check_shortcuts
 
@@ -102,6 +114,7 @@ check_with_valgrind <- function(path = ".", ...) {
         valgrind = TRUE, ...)
 }
 
+#' @family shortcut
 #' @export
 #' @rdname check_shortcuts
 

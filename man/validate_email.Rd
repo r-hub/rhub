@@ -32,3 +32,4 @@ and \code{token} arguments.
 \seealso{
 Other email validation: \code{\link{list_validated_emails}}
 }
+\concept{email validation}

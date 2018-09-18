@@ -6,10 +6,8 @@
 \alias{rhub_check_for_cran}
 \title{An \code{rhub_check} object holds status and results of rhub checks}
 \description{
-An \code{rhub_check} object holds status and results of rhub checks
-
-This class is similar to \link{rhub_check} (it inherites from it),
-but it shows the results of the checks in a more consice format
+This class is similar to \link{rhub_check} (it inherits from it),
+but it shows the results of the checks in a more concise format
 by default. To show the details, call the \code{$details()} method.
 }
 \section{Usage}{

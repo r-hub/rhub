@@ -57,3 +57,31 @@ These functions provide a quick easy to use interface to check a
 package on a platform with some particular aspect. Which platform
 they use might change over time.
 }
+\seealso{
+Other shortcut: \code{\link{check_for_cran}}
+
+Other shortcut: \code{\link{check_for_cran}}
+
+Other shortcut: \code{\link{check_for_cran}}
+
+Other shortcut: \code{\link{check_for_cran}}
+
+Other shortcut: \code{\link{check_for_cran}}
+
+Other shortcut: \code{\link{check_for_cran}}
+
+Other shortcut: \code{\link{check_for_cran}}
+
+Other shortcut: \code{\link{check_for_cran}}
+
+Other shortcut: \code{\link{check_for_cran}}
+
+Other shortcut: \code{\link{check_for_cran}}
+
+Other shortcut: \code{\link{check_for_cran}}
+
+Other shortcut: \code{\link{check_for_cran}}
+
+Other shortcut: \code{\link{check_for_cran}}
+}
+\concept{shortcut}
