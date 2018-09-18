@@ -1,5 +1,5 @@
 
-#' Check an R package on r-hub
+#' Check an R package on R-hub
 #'
 #' @param path Path to a directory containing an R package, or path to
 #'   source R package tarball built with `R CMD build` or
@@ -8,7 +8,7 @@
 #'   [platforms()] for the available platforms. If this is \code{NULL},
 #'   and the R session is interactive, then a menu is shown. If it is
 #'   \code{NULL}, and the session is not interactive, then the default
-#'   r-hub platforms is used. Can take a vector of platforms which saves
+#'   R-hub platforms is used. Can take a vector of platforms which saves
 #'   time by building one R package tarball that is used for all the
 #'   platforms specified.
 #' @param email Email address to send notification to about the build.
@@ -63,7 +63,7 @@ check <- function(path = ".", platform = NULL,
     if (valgrind) "--use-valgrind"
   )
 
-  ## Submit to r-hub
+  ## Submit to R-hub
   response <- submit_package(
     email,
     pkg_targz,
@@ -92,7 +92,7 @@ assert_validated_email_for_check <- function(email) {
       message(paste(collapse = "\n", strwrap(indent = 2, exdent = 2, paste(
         sQuote(crayon::green(email)), "is not validated, or does not match", 
          "the package maintainer's email. To validate it now, please enter",
-        "the email address below. Note that r-hub will send a token to",
+        "the email address below. Note that R-hub will send a token to",
         "this address. If the address does not belong to you, quit now by",
         "pressing ", crayon::yellow("ENTER"), "."
       ))))

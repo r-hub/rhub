@@ -1,7 +1,7 @@
 
 ## Various OSes --------------------------------------------------------
 
-#' Check an R package on an r-hub platform
+#' Check an R package on an R-hub platform
 #'
 #' These functions provide a quick easy to use interface to check a
 #' package on a platform with some particular aspect. Which platform

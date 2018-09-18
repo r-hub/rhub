@@ -14,7 +14,7 @@
 \alias{check_with_rdevel}
 \alias{check_with_valgrind}
 \alias{check_with_sanitizers}
-\title{Check an R package on an r-hub platform}
+\title{Check an R package on an R-hub platform}
 \usage{
 check_on_linux(path = ".", ...)
 

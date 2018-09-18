@@ -2,7 +2,7 @@
 % Please edit documentation in R/email.R
 \name{validate_email}
 \alias{validate_email}
-\title{Validate an email address on r-hub}
+\title{Validate an email address on R-hub}
 \usage{
 validate_email(email = NULL, token = NULL)
 }
@@ -12,8 +12,8 @@ validate_email(email = NULL, token = NULL)
 \item{token}{Token obtained from \code{rhub}, to validate the email address.}
 }
 \description{
-To build and check R packages on r-hub, you need to validate your
-email address. This is because r-hub sends out emails about build
+To build and check R packages on R-hub, you need to validate your
+email address. This is because R-hub sends out emails about build
 results.
 }
 \details{
