@@ -2,9 +2,8 @@ Package: rhub
 Title: Connect to 'R-hub'
 Version: 1.0.2
 Authors@R: c(
-person("Gábor", "Csárdi",, "csardi.gabor@gmail.com", role = c("aut", "cre")),
-person("R Consortium", role = c("fnd"))
-)
+    person("Gábor", "Csárdi",, "csardi.gabor@gmail.com", role = c("aut", "cre")),
+    person("R Consortium", role = c("fnd")))
 Description: Run 'R CMD check' on any of the 'R-hub' architectures, from
     the command line. The current architectures include 'Windows', 'macOS',
     'Solaris' and various 'Linux' distributions.
@@ -12,7 +11,7 @@ License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/r-hub/rhub#readme
 BugReports: https://github.com/r-hub/rhub/issues
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 6.1.0
 Roxygen: list(markdown = TRUE)
 Imports:
     assertthat,
