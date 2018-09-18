@@ -20,6 +20,14 @@ checks on various architectures.
 
 ## Installation
 
+CRAN version:
+
+```r
+install.packages("rhub")
+```
+
+GitHub (dev) version:
+
 ```r
 devtools::install_github("r-hub/rhub")
 ```
@@ -33,7 +41,7 @@ library(rhub)
 ### Validating your email address
 
 To build packages, first you need to validate your email address with 
-`validate_email()`. The package tries to detect your email address, 
+`validate_email()`. The package tries to detect your email address using [`whoami`](https://github.com/r-lib/whoami#whoami) and the maintainer email listed in DESCRIPTION; 
 and if it fails to do this correctly, you'll need to specify it.
 
 ![](inst/email-validation.png)
