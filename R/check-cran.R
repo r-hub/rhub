@@ -23,7 +23,6 @@
 #' @inheritParams check
 #' @return An [rhub_check] object.
 #'
-#' @family shortcuts
 #' @export
 #' @examples
 #' \dontrun{

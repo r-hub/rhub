@@ -55,7 +55,3 @@ ch$update()
 ch$livelog(3)
 }
 }
-\seealso{
-Other shortcuts: \code{\link{check_on_linux}}
-}
-\concept{shortcuts}
