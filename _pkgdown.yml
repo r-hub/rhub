@@ -13,7 +13,7 @@ reference:
   - validate_email
 - title: Check shortcuts
   contents:
-  - has_concept("shortcut")
+  - has_concept("shortcuts")
 - title: Check management
   contents:
   - last_check
