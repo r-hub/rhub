@@ -20,16 +20,10 @@ checks on various architectures.
 
 ## Installation
 
-CRAN version:
+Install the package from CRAN:
 
 ```r
 install.packages("rhub")
-```
-
-GitHub (dev) version:
-
-```r
-devtools::install_github("r-hub/rhub")
 ```
 
 ## Usage
@@ -40,8 +34,8 @@ library(rhub)
 
 ### Validating your email address
 
-To build packages, first you need to validate your email address with 
-`validate_email()`. The package tries to detect your email address using [`whoami`](https://github.com/r-lib/whoami#whoami) and the maintainer email listed in DESCRIPTION; 
+To build packages, first you need to validate your email address with
+`validate_email()`. The package tries to detect your email address using [`whoami`](https://github.com/r-lib/whoami#whoami) and the maintainer email listed in DESCRIPTION;
 and if it fails to do this correctly, you'll need to specify it.
 
 ![](man/figures/email-validation.png)
@@ -123,7 +117,7 @@ These are quick shortcuts that select the right platform:
 * `check_with_sanitizers()` runs all package package tests, examples and
   vignettes with Address Sanitizer and Undefined Behavior Sanitizer, see
   below.
-  
+
 ### Shortcut for preparing a CRAN submission
 
 `rhub::check_for_cran`: Check an R-package on R-hub, for a CRAN submission.
