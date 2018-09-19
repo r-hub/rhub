@@ -1,5 +1,5 @@
 
-#' List all r-hub platforms
+#' List all R-hub platforms
 #'
 #' The platforms are pretty-printed in a short format. Use
 #' `as.data.frame(platforms())` to get all available platform metadata.
@@ -40,7 +40,7 @@ match_platform <- function(platform) {
 
   } else {
     if (! all(platform %in% all_platforms$name)) {
-      stop("Unknown r-hub platform, see rhub::platforms() for a list")
+      stop("Unknown R-hub platform, see rhub::platforms() for a list")
     }
     platform
   }
@@ -60,7 +60,7 @@ select_platform_interactively <- function(platforms) {
   ))
   ch <- menu(choices, title = title)
   cat("\n")
-  if (ch == 0) stop("r-hub check aborted", call. = FALSE)
+  if (ch == 0) stop("R-hub check aborted", call. = FALSE)
 
   platforms$name[ch]
 }

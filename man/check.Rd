@@ -2,7 +2,7 @@
 % Please edit documentation in R/check.R
 \name{check}
 \alias{check}
-\title{Check an R package on r-hub}
+\title{Check an R package on R-hub}
 \usage{
 check(path = ".", platform = NULL, email = NULL, valgrind = FALSE,
   check_args = character(), env_vars = character(),
@@ -17,7 +17,7 @@ source R package tarball built with \code{R CMD build} or
 \code{\link[=platforms]{platforms()}} for the available platforms. If this is \code{NULL},
 and the R session is interactive, then a menu is shown. If it is
 \code{NULL}, and the session is not interactive, then the default
-r-hub platforms is used. Can take a vector of platforms which saves
+R-hub platforms is used. Can take a vector of platforms which saves
 time by building one R package tarball that is used for all the
 platforms specified.}
 
@@ -41,7 +41,7 @@ happening.}
 An \link{rhub_check} object.
 }
 \description{
-Check an R package on r-hub
+Check an R package on R-hub
 }
 \examples{
 \dontrun{

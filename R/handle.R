@@ -5,7 +5,7 @@ handle_id <- function(x) {
   } else if (inherits(x, "rhub_handle")) {
     unname(vapply(x, "[[", "", "id"))
   } else {
-    stop("Invalid r-hub build id")
+    stop("Invalid R-hub build id")
   }
 }
 

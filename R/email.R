@@ -1,8 +1,8 @@
 
-#' Validate an email address on r-hub
+#' Validate an email address on R-hub
 #'
-#' To build and check R packages on r-hub, you need to validate your
-#' email address. This is because r-hub sends out emails about build
+#' To build and check R packages on R-hub, you need to validate your
+#' email address. This is because R-hub sends out emails about build
 #' results.
 #'
 #' The `rhub` package stores validated email addresses in a user
@@ -111,7 +111,7 @@ validate_email_interactive <- function(email, token, path = ".") {
   if (is.null(token)) {
     query("VALIDATE EMAIL", data = list(email = unbox(email)))
     message(crayon::yellow(
-      "Please check your emails for the r-hub access token."
+      "Please check your emails for the R-hub access token."
     ))
     token <- readline("Token: ")
   }

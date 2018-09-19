@@ -2,7 +2,7 @@
 % Please edit documentation in R/platform.R
 \name{platforms}
 \alias{platforms}
-\title{List all r-hub platforms}
+\title{List all R-hub platforms}
 \usage{
 platforms()
 }
