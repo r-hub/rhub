@@ -85,15 +85,13 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>CRAN version:</p>
+<p>Install the package from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"rhub"</span>)</a></code></pre></div>
-<p>GitHub (dev) version:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"r-hub/rhub"</span>)</a></code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(rhub)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(rhub)</a></code></pre></div>
 <div id="validating-your-email-address" class="section level3">
 <h3 class="hasAnchor">
 <a href="#validating-your-email-address" class="anchor"></a>Validating your email address</h3>
@@ -105,42 +103,42 @@
 <div id="listing-r-hub-platforms" class="section level3">
 <h3 class="hasAnchor">
 <a href="#listing-r-hub-platforms" class="anchor"></a>Listing R-hub platforms</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/platforms.html">platforms</a></span>()</a></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">#&gt; debian-gcc-devel:</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt;   Debian Linux, R-devel, GCC</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; debian-gcc-patched:</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;   Debian Linux, R-patched, GCC</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; debian-gcc-release:</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;   Debian Linux, R-release, GCC</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; fedora-clang-devel:</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt;   Fedora Linux, R-devel, clang, gfortran</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; fedora-gcc-devel:</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt;   Fedora Linux, R-devel, GCC</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; linux-x86_64-centos6-epel:</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;   CentOS 6, stock R from EPEL</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; linux-x86_64-centos6-epel-rdt:</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt;   CentOS 6 with Redhat Developer Toolset, R from EPEL</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; linux-x86_64-rocker-gcc-san:</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt;   Debian Linux, R-devel, GCC ASAN/UBSAN</span></a>
-<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt; ubuntu-gcc-devel:</span></a>
-<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-devel, GCC</span></a>
-<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; ubuntu-gcc-release:</span></a>
-<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-release, GCC</span></a>
-<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; windows-x86_64-devel:</span></a>
-<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt;   Windows Server 2008 R2 SP1, R-devel, 32/64 bit</span></a>
-<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt; windows-x86_64-oldrel:</span></a>
-<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt;   Windows Server 2008 R2 SP1, R-oldrel, 32/64 bit</span></a>
-<a class="sourceLine" id="cb5-25" data-line-number="25"><span class="co">#&gt; windows-x86_64-patched:</span></a>
-<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt;   Windows Server 2008 R2 SP1, R-patched, 32/64 bit</span></a>
-<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt; windows-x86_64-release:</span></a>
-<a class="sourceLine" id="cb5-28" data-line-number="28"><span class="co">#&gt;   Windows Server 2008 R2 SP1, R-release, 32/64 bit</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="reference/platforms.html">platforms</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">#&gt; debian-gcc-devel:</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt;   Debian Linux, R-devel, GCC</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; debian-gcc-patched:</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt;   Debian Linux, R-patched, GCC</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; debian-gcc-release:</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt;   Debian Linux, R-release, GCC</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; fedora-clang-devel:</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt;   Fedora Linux, R-devel, clang, gfortran</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; fedora-gcc-devel:</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt;   Fedora Linux, R-devel, GCC</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; linux-x86_64-centos6-epel:</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt;   CentOS 6, stock R from EPEL</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; linux-x86_64-centos6-epel-rdt:</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt;   CentOS 6 with Redhat Developer Toolset, R from EPEL</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; linux-x86_64-rocker-gcc-san:</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt;   Debian Linux, R-devel, GCC ASAN/UBSAN</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt; ubuntu-gcc-devel:</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-devel, GCC</span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; ubuntu-gcc-release:</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-release, GCC</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; windows-x86_64-devel:</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt;   Windows Server 2008 R2 SP1, R-devel, 32/64 bit</span></a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="co">#&gt; windows-x86_64-oldrel:</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co">#&gt;   Windows Server 2008 R2 SP1, R-oldrel, 32/64 bit</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="co">#&gt; windows-x86_64-patched:</span></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co">#&gt;   Windows Server 2008 R2 SP1, R-patched, 32/64 bit</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co">#&gt; windows-x86_64-release:</span></a>
+<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="co">#&gt;   Windows Server 2008 R2 SP1, R-release, 32/64 bit</span></a></code></pre></div>
 <p>You can use the platform ids (e.g. <code>debian-gcc-devel</code>) to select between platforms.</p>
 </div>
 <div id="run-a-package-check" class="section level3">
 <h3 class="hasAnchor">
 <a href="#run-a-package-check" class="anchor"></a>Run a package check</h3>
 <p><code><a href="reference/check.html">check()</a></code> runs an <code>R CMD check</code> on the package in the specified directory, or specified source R package tarball created by <code>R CMD build</code> or <code><a href="http://www.rdocumentation.org/packages/devtools/topics/build">devtools::build()</a></code>. It defaults to the working directory.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="reference/check.html">check</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/check.html">check</a></span>()</a></code></pre></div>
 <p>In interactive R sessions, the output of the check is printed to the screen.</p>
 <p><img src="reference/figures/check-output.gif"></p>
 </div>
@@ -211,6 +209,7 @@
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Gábor Csárdi <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Maëlle Salmon <br><small class="roles"> Author </small>  </li>
 <li>
 <a href="https://www.r-consortium.org/"><img src="https://www.r-consortium.org/wp-content/uploads/sites/13/2016/09/RConsortium_Horizontal_Pantone.png" height="24"></a> <br><small class="roles"> Funder </small>  </li>
 </ul>
@@ -221,7 +220,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Gábor Csárdi, <a href="https://www.r-consortium.org/"><img src="https://www.r-consortium.org/wp-content/uploads/sites/13/2016/09/RConsortium_Horizontal_Pantone.png" height="24"></a>.</p>
+  <p>Developed by Gábor Csárdi, Maëlle Salmon, <a href="https://www.r-consortium.org/"><img src="https://www.r-consortium.org/wp-content/uploads/sites/13/2016/09/RConsortium_Horizontal_Pantone.png" height="24"></a>.</p>
 </div>
 
 <div class="pkgdown">
