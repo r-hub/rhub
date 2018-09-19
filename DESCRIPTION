@@ -3,6 +3,7 @@ Title: Connect to 'R-hub'
 Version: 1.0.2
 Authors@R: c(
     person("Gábor", "Csárdi",, "csardi.gabor@gmail.com", role = c("aut", "cre")),
+    person("Maëlle", "Salmon", role = "aut"),
     person("R Consortium", role = c("fnd")))
 Description: Run 'R CMD check' on any of the 'R-hub' architectures, from
     the command line. The current architectures include 'Windows', 'macOS',
