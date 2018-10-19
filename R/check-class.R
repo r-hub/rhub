@@ -107,7 +107,7 @@ check_web <- function(self, private, which) {
     stop("Unknown check selected")
   }
 
-  urls <- paste0(sub("/api$", "/status/", baseurl), ids)
+  urls <- paste0(sub("/api$", "/status/", baseurl()), ids)
   lapply(urls, browseURL)
   invisible(self)
 }

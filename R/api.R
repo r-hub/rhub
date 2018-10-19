@@ -1,5 +1,7 @@
 
-baseurl <- "https://builder.r-hub.io/api"
+baseurl <- function() {
+  paste0(Sys.getenv("RHUB_SERVER", "https://builder.r-hub.io"), "/api")
+}
 
 endpoints <- list(
   c("GET PLATFORMS",  "GET",  "/platform/list"),
@@ -25,7 +27,7 @@ query <- function(endpoint, params = list(), data = NULL,
   headers <- update(default_headers, as.character(headers))
   ep <- get_endpoint(endpoint, params)
 
-  url <- paste0(baseurl, ep$path)
+  url <- paste0(baseurl(), ep$path)
 
   json <- if (!is.null(data)) toJSON(data)
 
