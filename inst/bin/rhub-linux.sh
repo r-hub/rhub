@@ -59,7 +59,7 @@ main() {
     export RHUB_PLATFORM="$platform"
 
     # Install sysreqs and create a image from it
-    install_sysreqs "$package" "$image" "$CONTAINER" "platform"
+    install_sysreqs "$package" "$image" "$CONTAINER" "$platform"
     image="$REPLY"
 
     create_env_file "$package" "$envvars" "$checkargs"
@@ -176,28 +176,37 @@ get_desc() {
 
 install_sysreqs() {
     declare -r package="$1" image="$2" container="$3" platform="$4"
+    # Default is doing nothing
+    REPLY="$image"
+
+    # If there is no RHUB_PLATFORM, skip sysreqs
+    if [[ -z "$platform" ]]; then
+	echo "Unknown platform, skipping installation of system requirements"
+	return
+    fi
+
+    # If there is nothing to install we just use the stock image
     get_desc "$package"
     local desc=$REPLY
     local cmd="library(sysreqs); cat(sysreq_commands(\"$desc\"))"
     local sysreqs=$(Rscript -e "$cmd")
 
     # Install them, if there is anything to install
-    if [[ ! -z "${sysreqs}" ]]; then
-	echo
-	echo ">>>>>==================== Installing system requirements"
-	local sysreqsfile=$(mktemp)
-	CLEANUPFILES+=("$sysreqsfile")
-	echo "${sysreqs}" > "$sysreqsfile"
-	docker create --user root --name "${container}-1" \
-	       "$image" bash /root/sysreqs.sh
-	docker cp "$sysreqsfile" "${container}-1:/root/sysreqs.sh"
-	docker start -i -a "${container}-1"
-	REPLY=$(docker commit "${container}-1")
-	CLEANUPIMAGE="$image"
-    else
-	# If there is nothing to install we just use the stock image
-	REPLY="$image"
+    if [[ -z "${sysreqs}" ]]; then
+	echo "No system requirements"
     fi
+
+    echo
+    echo ">>>>>==================== Installing system requirements"
+    local sysreqsfile=$(mktemp)
+    CLEANUPFILES+=("$sysreqsfile")
+    echo "${sysreqs}" > "$sysreqsfile"
+    docker create --user root --name "${container}-1" \
+	   "$image" bash /root/sysreqs.sh
+    docker cp "$sysreqsfile" "${container}-1:/root/sysreqs.sh"
+    docker start -i -a "${container}-1"
+    REPLY=$(docker commit "${container}-1")
+    CLEANUPIMAGE="$image"
 }
 
 create_env_file() {
