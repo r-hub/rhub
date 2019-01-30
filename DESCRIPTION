@@ -12,7 +12,7 @@ License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/r-hub/rhub#readme
 BugReports: https://github.com/r-hub/rhub/issues
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Imports:
     assertthat,

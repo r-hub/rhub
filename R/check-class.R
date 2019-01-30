@@ -23,7 +23,9 @@
 #'
 #' An `rhub_check` object can be created by [check()], [list_my_checks()],
 #' or [list_package_checks()]. [last_check()] returns the last check(s)
-#' submitted from the current R session.
+#' submitted from the current R session. Do not confuse `rhub_check`/`rhub_check_for_cran` 
+#' (classes) with [check()] or [check_for_cran()] (functions).
+#'
 #'
 #' `ch$update()` updates the status of the check. Printing the check
 #' status to the screen does not perform an update, unless the status of
@@ -37,7 +39,7 @@
 #' `ch$livelog()` shows the live log of the check. The live log can be
 #' interrupted using the usual interruption keyboard shortcut, usually
 #' `CTRL+c` or `ESC`.
-#'
+#' 
 #' @name rhub_check
 #' @examples
 #' \dontrun{
