@@ -5,7 +5,7 @@
 #' ```
 #' ch$update()
 #' ch$print(...)
-#' ch$web(which = NULL)
+#' ch$browse(which = NULL)
 #' ch$livelog(which = 1)
 #' ```
 #'
@@ -15,7 +15,7 @@
 #'   See also [last_check()].
 #' * `...` Extra arguments are currently ignored.
 #' * `which` Which check to show, if the object contains multiple
-#'   checks. For `web` the default is all checks. For `livelog` the
+#'   checks. For `browse` the default is all checks. For `livelog` the
 #'   default is the first check. A check can be selected via its number
 #'   or id.
 #'
@@ -33,7 +33,7 @@
 #'
 #' `ch$print()` prints the status of the check(s) to the screen.
 #'
-#' `ch$web()` opens a tab or window in the default web browser, that points
+#' `ch$browse()` opens a tab or window in the default web browser, that points
 #' to the detailed logs of the check.
 #'
 #' `ch$livelog()` shows the live log of the check. The live log can be
@@ -46,7 +46,7 @@
 #' check()
 #' ch <- last_check()
 #' ch$update()
-#' ch$web()
+#' ch$browse()
 #' ch$livelog()
 #' }
 NULL
@@ -68,6 +68,9 @@ rhub_check <- R6Class(
     print = function(...)
       check_print(self, private, ...),
 
+    browse = function(which = NULL)
+      check_web(self, private, which),
+    
     web = function(which = NULL)
       check_web(self, private, which),
 
