@@ -67,6 +67,9 @@ rhub_check <- R6Class(
 
     print = function(...)
       check_print(self, private, ...),
+    
+    print_system = function(...)
+      check_print_system(self, private, ...),
 
     web = function(which = NULL)
       check_web(self, private, which),
