@@ -43,7 +43,10 @@ rhub_check_list <- R6Class(
       check_list_details(self, private, super),
 
     print = function(...)
-      check_list_print(self, private, ...)
+      check_list_print(self, private, ...),
+    
+    report = function(...)
+      check_list_report(self, private, ...)
   )
 )
 
@@ -88,6 +91,27 @@ check_list_print <- function(self, private, ...) {
   invisible(self)
 }
 
+check_list_report <- function(self, private, ...) {
+  
+  if (is.null(private$status_)) {
+    cat("Updating status...\n")
+    self$update()
+  }
+  
+  x <- private$status_
+  browser()
+  result <- do.call("rbind",
+                    lapply(x, rectangle_status))
+  
+  cat(paste0("- ", 
+       vapply(x, function(xx) xx$platform$name, ""),
+       "\n"))
+  
+  cat(paste0(sum(result$type == "NOTE"), "NOTE | "))
+  
+  invisible(self)
+}
+
 ## -----------------------------------------------------------------------
 
 #' @name rhub_check_for_cran
@@ -102,3 +126,31 @@ rhub_check_for_cran <- R6Class(
 
   public = list()
 )
+
+get_status_part <- function(part, x){
+  output <- unlist(x[part])
+  if(is.null(output)){
+    return("")
+  }else{
+    output
+  }
+}
+
+rectangle_status <- function(x){
+  
+  df <- rbind(tibble::tibble(type = "ERROR",
+                       message = get_status_part("errors", x$result)),
+        tibble::tibble(type = "WARNING",
+                       message = get_status_part("warnings", x$result)),
+        tibble::tibble(type = "NOTE",
+                       message = get_status_part("notes", x$result)))
+  
+  
+  df$package <- x$package
+  df$version <- x$version
+  df$submitted <- x$submitted
+  df$platform <- x$platform$name
+  
+  df[df$message != "",]
+  
+}
