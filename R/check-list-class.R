@@ -95,26 +95,33 @@ check_list_report <- function(self, private, ...) {
   }
   
   x <- private$status_
-  browser()
+  
   result <- do.call("rbind",
                     lapply(x, rectangle_status))
-  
+  systems <- paste0(vapply(x, function(xx) xx$platform$name, ""), 
+  " (",
+  vapply(x, function(xx) xx$platform$rversion, ""),
+  ")")
   cat(paste0("- ", 
-       vapply(x, function(xx) xx$platform$name, ""),
+       systems,
        "\n"))
   
   unique_results <- unique(result[, c("type", "message")])
+  unique_results <- unique_results[order(unique_results$message),]
   # TODO use rcmdcheck stuff
   makeshift <- structure(
     list(
       package = x$package,
       version = toString(vapply(x, function(xx) xx$platform$name, "")),
-      rversion = toString(vapply(x, function(xx) xx$platform$name, "")),
-      output = list(stdout = x$check_output, stderr = "", status = 0),
-      platform = x$platform$name,
-      notes = x$result$notes,
-      warnings = x$result$warnings,
-      errors = x$result$errors
+      rversion = toString(systems),
+      output = list(),
+      platform = toString(systems),
+      notes = unlist(lapply(unique(unique_results$message[unique_results$type == "NOTE"]),
+                     combine_message, result = result)),
+      warnings = unlist(lapply(unique(unique_results$message[unique_results$type == "WARNING"]),
+                               combine_message, result = result)),
+      errors = unlist(lapply(unique(unique_results$message[unique_results$type == "ERROR"]),
+                             combine_message, result = result))
     ),
     class = "rcmdcheck"
   )
@@ -163,8 +170,14 @@ rectangle_status <- function(x){
   df$package <- x$package
   df$version <- x$version
   df$submitted <- x$submitted
-  df$platform <- x$platform$name
+  df$platform <- paste0(x$platform$name, " (", x$platform$rversion,
+                        ")")
   
   df[df$message != "",]
   
+}
+
+combine_message <- function(message, result){
+  paste0("On ", toString(result$platform[result$message == message]), "\n",
+         message)
 }

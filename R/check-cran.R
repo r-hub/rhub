@@ -19,6 +19,8 @@
 #' @param platforms Character vector of platform ids to use
 #'   (see [platforms()]), or `NULL`. If `NULL`, then a set of default
 #'   platforms will be selected, see below.
+#' @param show_status Whether to show the status of the build as it is
+#'   happening.
 #' @param ... Additional arguments are passed to [check()].
 #' @inheritParams check
 #' @return An [rhub_check] object.
@@ -35,7 +37,7 @@ check_for_cran <- function(
   path = ".", email = NULL, check_args = "--as-cran",
   env_vars = c("_R_CHECK_FORCE_SUGGESTS_" = "true",
     "_R_CHECK_CRAN_INCOMING_USE_ASPELL_" = "true"), platforms = NULL,
-  ...) {
+  show_status = TRUE, ...) {
 
   path <- normalizePath(path)
   assert_that(is_pkg_dir_or_tarball(path))
