@@ -35,42 +35,10 @@ check <- function(path = ".", platform = NULL,
                   email = NULL, valgrind = FALSE, check_args = character(),
                   env_vars = character(), show_status = interactive()) {
 
-  ## Check that it is a package
-  path <- normalizePath(path)
-  assert_that(is_pkg_dir_or_tarball(path))
-  assert_that(is_flag(valgrind))
-  assert_that(is_named(env_vars))
-  assert_that(is.character(env_vars))
-
-  ## Make sure that maintainer email was validated
-  if (is.null(email)) email <- get_maintainer_email(path)
-  if (is.na(email)) stop("Cannot get email address from package")
-  assert_validated_email_for_check(email)
-
-  platform <- match_platform(platform)
-
-  ## Build the tar.gz, if needed
-  if (file.info(path)$isdir) {
-    header_line("Building package")
-    pkg_targz <- build_package(path, tmpdir <- tempfile())
-  } else {
-    pkg_targz <- path
-  }
-
-  ## Add valgrind to check_args
-  check_args <- c(
-    check_args,
-    if (valgrind) "--use-valgrind"
-  )
-
-  ## Submit to R-hub
-  response <- submit_package(
-    email,
-    pkg_targz,
-    platform = platform,
-    check_args = check_args,
-    env_vars = env_vars
-  )
+  response <- .check(path = path, platform = platform,
+                     email = email, valgrind = valgrind, 
+                     check_args = check_args,
+                     env_vars = env_vars)
 
   chk <- rhub_check_list$new(
     ids = vapply(response, "[[", "", "id"),
@@ -84,6 +52,52 @@ check <- function(path = ".", platform = NULL,
 
   invisible(chk)
 }
+
+
+.check <- function(path = ".", platform = NULL,
+                  email = NULL, valgrind = FALSE, check_args = character(),
+                  env_vars = character()) {
+  
+  ## Check that it is a package
+  path <- normalizePath(path)
+  assert_that(is_pkg_dir_or_tarball(path))
+  assert_that(is_flag(valgrind))
+  assert_that(is_named(env_vars))
+  assert_that(is.character(env_vars))
+  
+  ## Make sure that maintainer email was validated
+  if (is.null(email)) email <- get_maintainer_email(path)
+  if (is.na(email)) stop("Cannot get email address from package")
+  assert_validated_email_for_check(email)
+  
+  platform <- match_platform(platform)
+  
+  ## Build the tar.gz, if needed
+  if (file.info(path)$isdir) {
+    header_line("Building package")
+    pkg_targz <- build_package(path, tmpdir <- tempfile())
+  } else {
+    pkg_targz <- path
+  }
+  
+  ## Add valgrind to check_args
+  check_args <- c(
+    check_args,
+    if (valgrind) "--use-valgrind"
+  )
+  
+  ## Submit to R-hub
+  response <- submit_package(
+    email,
+    pkg_targz,
+    platform = platform,
+    check_args = check_args,
+    env_vars = env_vars
+  )
+  
+  return(response)
+}
+
 
 assert_validated_email_for_check <- function(email) {
 

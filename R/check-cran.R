@@ -42,12 +42,20 @@ check_for_cran <- function(
 
   platforms <- platforms %||% default_cran_check_platforms(path)
 
-  result <- check(path = path, platform = platforms, email = email,
-                  check_args = check_args, env_vars = env_vars, ...)
+  response <- .check(path = path, platform = platforms,
+                     email = email, 
+                     check_args = check_args,
+                     env_vars = env_vars, ...)
   
-  class(result) <- "rhub_check_for_cran"
+  chk <- rhub_check_for_cran$new(
+    ids = vapply(response, "[[", "", "id"),
+    status = response
+  )
   
-  return(result)
+  ## Show the live status, if requested
+  if (show_status) chk$livelog()
+  
+  invisible(chk)
 }
 
 default_cran_check_platforms <- function(path) {
