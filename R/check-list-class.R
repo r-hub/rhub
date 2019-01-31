@@ -43,7 +43,8 @@ rhub_check_list <- R6Class(
       check_list_details(self, private, super),
 
     print = function(...)
-      check_list_print(self, private, ...))
+      check_list_print(self, private, ...)
+    )
 )
 
 check_list_details <- function(self, private, super) {
