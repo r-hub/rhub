@@ -72,7 +72,10 @@ check <- function(path = ".", platform = NULL,
     env_vars = env_vars
   )
 
-  chk <- rhub_check$new(ids = vapply(response, "[[", "", "id"))
+  chk <- rhub_check_list$new(
+    ids = vapply(response, "[[", "", "id"),
+    status = response
+  )
 
   package_data$last_handle <- chk
 
