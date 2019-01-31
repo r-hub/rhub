@@ -42,8 +42,12 @@ check_for_cran <- function(
 
   platforms <- platforms %||% default_cran_check_platforms(path)
 
-  check(path = path, platform = platforms, email = email,
-        check_args = check_args, env_vars = env_vars, ...)
+  result <- check(path = path, platform = platforms, email = email,
+                  check_args = check_args, env_vars = env_vars, ...)
+  
+  class(result) <- "rhub_check_for_cran"
+  
+  return(result)
 }
 
 default_cran_check_platforms <- function(path) {
