@@ -43,11 +43,7 @@ rhub_check_list <- R6Class(
       check_list_details(self, private, super),
 
     print = function(...)
-      check_list_print(self, private, ...),
-    
-    report = function(...)
-      check_list_report(self, private, ...)
-  )
+      check_list_print(self, private, ...))
 )
 
 check_list_details <- function(self, private, super) {
@@ -107,7 +103,22 @@ check_list_report <- function(self, private, ...) {
        vapply(x, function(xx) xx$platform$name, ""),
        "\n"))
   
-  cat(paste0(sum(result$type == "NOTE"), "NOTE | "))
+  unique_results <- unique(result[, c("type", "message")])
+  # TODO use rcmdcheck stuff
+  makeshift <- structure(
+    list(
+      package = x$package,
+      version = toString(vapply(x, function(xx) xx$platform$name, "")),
+      rversion = toString(vapply(x, function(xx) xx$platform$name, "")),
+      output = list(stdout = x$check_output, stderr = "", status = 0),
+      platform = x$platform$name,
+      notes = x$result$notes,
+      warnings = x$result$warnings,
+      errors = x$result$errors
+    ),
+    class = "rcmdcheck"
+  )
+  print(makeshift, header = FALSE)
   
   invisible(self)
 }
@@ -124,7 +135,10 @@ rhub_check_for_cran <- R6Class(
   "rhub_check_for_cran",
   inherit = rhub_check_list,
 
-  public = list()
+  public = list(
+    report = function(...)
+        check_list_report(self, private, ...)
+  )
 )
 
 get_status_part <- function(part, x){
