@@ -68,11 +68,11 @@ rhub_check <- R6Class(
     print = function(...)
       check_print(self, private, ...),
 
-    browse = function(which = NULL)
-      check_web(self, private, which),
-    
     web = function(which = NULL)
       check_web(self, private, which),
+    
+    browse = function(which = NULL)
+      self$web(which),
 
     livelog = function(which = 1)
       check_livelog(self, private, which)
