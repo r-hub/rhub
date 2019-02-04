@@ -35,10 +35,10 @@ check <- function(path = ".", platform = NULL,
                   email = NULL, valgrind = FALSE, check_args = character(),
                   env_vars = character(), show_status = interactive()) {
 
-  response <- .check(path = path, platform = platform,
-                     email = email, valgrind = valgrind, 
-                     check_args = check_args,
-                     env_vars = env_vars)
+  response <- check_internal(path = path, platform = platform,
+                             email = email, valgrind = valgrind, 
+                             check_args = check_args,
+                             env_vars = env_vars)
 
   chk <- rhub_check_list$new(
     ids = vapply(response, "[[", "", "id"),
@@ -54,9 +54,10 @@ check <- function(path = ".", platform = NULL,
 }
 
 
-.check <- function(path = ".", platform = NULL,
-                  email = NULL, valgrind = FALSE, check_args = character(),
-                  env_vars = character()) {
+check_internal <- function(path = ".", platform = NULL,
+                           email = NULL, valgrind = FALSE, 
+                           check_args = character(),
+                           env_vars = character()) {
   
   ## Check that it is a package
   path <- normalizePath(path)
