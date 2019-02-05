@@ -36,7 +36,7 @@
 check_for_cran <- function(
   path = ".", email = NULL, check_args = "--as-cran",
   env_vars = c("_R_CHECK_FORCE_SUGGESTS_" = "true",
-    "_R_CHECK_CRAN_INCOMING_USE_ASPELL_" = "true"), 
+    "_R_CHECK_CRAN_INCOMING_USE_ASPELL_" = "true"),
   platforms = NULL,
   show_status = TRUE, ...) {
 
@@ -46,18 +46,18 @@ check_for_cran <- function(
   platforms <- platforms %||% default_cran_check_platforms(path)
 
   response <- check_internal(path = path, platform = platforms,
-                             email = email, 
+                             email = email,
                              check_args = check_args,
                              env_vars = env_vars, ...)
-  
+
   chk <- rhub_check_for_cran$new(
     ids = vapply(response, "[[", "", "id"),
     status = response
   )
-  
+
   ## Show the live status, if requested
   if (show_status) chk$livelog()
-  
+
   invisible(chk)
 }
 

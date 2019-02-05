@@ -89,24 +89,24 @@ check_list_print <- function(self, private, ...) {
 }
 
 check_list_report <- function(self, private, ...) {
-  
+
   if (is.null(private$status_)) {
     cat("Updating status...\n")
     self$update()
   }
-  
+
   x <- private$status_
-  
+
   result <- do.call("rbind",
                     lapply(x, rectangle_status))
-  systems <- paste0(vapply(x, function(xx) xx$platform$name, ""), 
+  systems <- paste0(vapply(x, function(xx) xx$platform$name, ""),
   " (",
   vapply(x, function(xx) xx$platform$rversion, ""),
   ")")
-  cat(paste0("- ", 
+  cat(paste0("- ",
        systems,
        "\n"))
-  
+
   unique_results <- unique(result[, c("type", "message")])
   unique_results <- unique_results[order(unique_results$message),]
   # TODO use rcmdcheck stuff
@@ -127,7 +127,7 @@ check_list_report <- function(self, private, ...) {
     class = "rcmdcheck"
   )
   print(makeshift, header = FALSE)
-  
+
   invisible(self)
 }
 
@@ -159,23 +159,23 @@ get_status_part <- function(part, x){
 }
 
 rectangle_status <- function(x){
-  
+
   df <- rbind(tibble::tibble(type = "ERROR",
                        message = get_status_part("errors", x$result)),
         tibble::tibble(type = "WARNING",
                        message = get_status_part("warnings", x$result)),
         tibble::tibble(type = "NOTE",
                        message = get_status_part("notes", x$result)))
-  
-  
+
+
   df$package <- x$package
   df$version <- x$version
   df$submitted <- x$submitted
   df$platform <- paste0(x$platform$name, " (", x$platform$rversion,
                         ")")
-  
+
   df[df$message != "",]
-  
+
 }
 
 combine_message <- function(message, result){
