@@ -160,12 +160,15 @@ get_status_part <- function(part, x){
 
 rectangle_status <- function(x){
 
-  df <- rbind(tibble::tibble(type = "ERROR",
-                       message = get_status_part("errors", x$result)),
-        tibble::tibble(type = "WARNING",
-                       message = get_status_part("warnings", x$result)),
-        tibble::tibble(type = "NOTE",
-                       message = get_status_part("notes", x$result)))
+  df <- rbind(data.frame(type = "ERROR",
+                       message = get_status_part("errors", x$result),
+                       stringsAsFactors = FALSE),
+        data.frame(type = "WARNING",
+                   message = get_status_part("warnings", x$result),
+                   stringsAsFactors = FALSE),
+        data.frame(type = "NOTE",
+                   message = get_status_part("notes", x$result),
+                   stringsAsFactors = FALSE))
 
 
   df$package <- x$package
