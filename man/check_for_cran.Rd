@@ -6,7 +6,8 @@
 \usage{
 check_for_cran(path = ".", email = NULL, check_args = "--as-cran",
   env_vars = c(`_R_CHECK_FORCE_SUGGESTS_` = "true",
-  `_R_CHECK_CRAN_INCOMING_USE_ASPELL_` = "true"), platforms = NULL, ...)
+  `_R_CHECK_CRAN_INCOMING_USE_ASPELL_` = "true"), platforms = NULL,
+  show_status = TRUE, ...)
 }
 \arguments{
 \item{path}{Path to a directory containing an R package, or path to
@@ -29,6 +30,9 @@ spell checker.}
 \item{platforms}{Character vector of platform ids to use
 (see \code{\link[=platforms]{platforms()}}), or \code{NULL}. If \code{NULL}, then a set of default
 platforms will be selected, see below.}
+
+\item{show_status}{Whether to show the status of the build as it is
+happening.}
 
 \item{...}{Additional arguments are passed to \code{\link[=check]{check()}}.}
 }
