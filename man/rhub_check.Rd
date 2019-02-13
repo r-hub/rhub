@@ -13,7 +13,7 @@ by default. To show the details, call the \code{$details()} method.
 \section{Usage}{
 \preformatted{ch$update()
 ch$print(...)
-ch$web(which = NULL)
+ch$browse(which = NULL)
 ch$livelog(which = 1)
 }
 
@@ -32,7 +32,7 @@ chl$livelog(which = 1)
 See also \code{\link[=last_check]{last_check()}}.
 \item \code{...} Extra arguments are currently ignored.
 \item \code{which} Which check to show, if the object contains multiple
-checks. For \code{web} the default is all checks. For \code{livelog} the
+checks. For \code{browse} the default is all checks. For \code{livelog} the
 default is the first check. A check can be selected via its number
 or id.
 }
@@ -52,7 +52,7 @@ the check(s) is unknown.
 
 \code{ch$print()} prints the status of the check(s) to the screen.
 
-\code{ch$web()} opens a tab or window in the default web browser, that points
+\code{ch$browse()} opens a tab or window in the default web browser, that points
 to the detailed logs of the check.
 
 \code{ch$livelog()} shows the live log of the check. The live log can be
@@ -75,7 +75,7 @@ See \link{rhub_check} for the description of the inherited \code{chl$update()},
 check()
 ch <- last_check()
 ch$update()
-ch$web()
+ch$browse()
 ch$livelog()
 }
 \dontrun{
