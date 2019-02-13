@@ -1,5 +1,5 @@
 
-# rhub
+# rhub <img src='man/figures/logo.png' align="right" height="138.5" />
 
 > Connect to R-hub, from R
 
