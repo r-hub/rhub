@@ -35,6 +35,8 @@
 <meta property="og:description" content="This class is similar to rhub_check (it inherits from it),
 but it shows the results of the checks in a more concise format
 by default. To show the details, call the $details() method." />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,7 +124,7 @@ by default. To show the details, call the <code>$details()</code> method.</p>
 
     <pre>ch$update()
 ch$print(...)
-ch$web(which = NULL)
+ch$browse(which = NULL)
 ch$livelog(which = 1)
 </pre>
     <pre>chl$update()
@@ -140,7 +142,7 @@ chl$livelog(which = 1)
 See also <code><a href='last_check.html'>last_check()</a></code>.</p></li>
 <li><p><code>...</code> Extra arguments are currently ignored.</p></li>
 <li><p><code>which</code> Which check to show, if the object contains multiple
-checks. For <code>web</code> the default is all checks. For <code>livelog</code> the
+checks. For <code>browse</code> the default is all checks. For <code>livelog</code> the
 default is the first check. A check can be selected via its number
 or id.</p></li>
 </ul>
@@ -156,7 +158,7 @@ submitted from the current R session. Do not confuse <code>rhub_check</code>/<co
 status to the screen does not perform an update, unless the status of
 the check(s) is unknown.</p>
 <p><code>ch$print()</code> prints the status of the check(s) to the screen.</p>
-<p><code>ch$web()</code> opens a tab or window in the default web browser, that points
+<p><code>ch$browse()</code> opens a tab or window in the default web browser, that points
 to the detailed logs of the check.</p>
 <p><code>ch$livelog()</code> shows the live log of the check. The live log can be
 interrupted using the usual interruption keyboard shortcut, usually
@@ -173,7 +175,7 @@ interrupted using the usual interruption keyboard shortcut, usually
 <span class='fu'><a href='check.html'>check</a></span>()
 <span class='no'>ch</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='last_check.html'>last_check</a></span>()
 <span class='no'>ch</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/update'>update</a></span>()
-<span class='no'>ch</span>$<span class='fu'>web</span>()
+<span class='no'>ch</span>$<span class='fu'>browse</span>()
 <span class='no'>ch</span>$<span class='fu'>livelog</span>()
 <span class='co'># }</span><span class='co'># NOT RUN {</span>
 <span class='no'>chl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='list_my_checks.html'>list_my_checks</a></span>()
