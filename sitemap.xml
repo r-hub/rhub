@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://r-hub.github.io/rhub//index.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub//reference/check.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub//reference/check_for_cran.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub//reference/check_shortcuts.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub//reference/last_check.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub//reference/list_my_checks.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub//reference/list_package_checks.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub//reference/list_validated_emails.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub//reference/platforms.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub//reference/rhub_check.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub//reference/validate_email.html</loc>
+  </url>
+</urlset>
