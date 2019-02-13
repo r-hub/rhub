@@ -10,7 +10,7 @@ Description: Run 'R CMD check' on any of the 'R-hub' architectures, from
     'Solaris' and various 'Linux' distributions.
 License: MIT + file LICENSE
 LazyData: true
-URL: https://github.com/r-hub/rhub#readme
+URL: https://github.com/r-hub/rhub, https://r-hub.github.io/rhub/
 BugReports: https://github.com/r-hub/rhub/issues
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
