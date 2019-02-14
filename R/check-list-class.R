@@ -58,7 +58,7 @@ check_list_print <- function(self, private, ...) {
     self$update()
   }
 
-  x <- private$status_
+  x <- unlist(private$status_, recursive = FALSE)
 
   package <- vapply(x, "[[", "", "package")
   version <- vapply(x, "[[", "", "version")

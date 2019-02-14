@@ -24,21 +24,20 @@ list_my_checks <- function(email = email_address(), package = NULL,
   assert_that(is_string_or_null(package))
   assert_that(is_count(howmany))
 
-  response <- query(
-    "LIST BUILDS",
-    data = drop_nulls(list(
-      email = unbox(email),
-      token = unbox(email_get_token(email)),
-      package = package
-    ))
-  )
+  response <- if (is.null(package)) {
+    query(
+      "LIST BUILDS EMAIL",
+      params = list(email = email, token = email_get_token(email)))
+  } else {
+    query(
+      "LIST BUILDS PACKAGE",
+      params = list(email = email, package = package,
+                    token = email_get_token(email)))
+  }
 
   if (length(response) > howmany) response <- response[seq_len(howmany)]
 
-  rhub_check_list$new(
-    ids = vapply(response, "[[", "", "id"),
-    status = response
-  )
+  rhub_check_list$new(ids = names(response), status = response)
 }
 
 
@@ -70,18 +69,12 @@ list_package_checks <- function(package = ".", email = NULL, howmany = 20) {
   package <- unname(desc_get("Package", file = package))
 
   response <- query(
-    "LIST BUILDS",
-    data = drop_nulls(list(
-      email = unbox(email),
-      token = unbox(email_get_token(email)),
-      package = package
-    ))
+    "LIST BUILDS PACKAGE",
+    params = list(email = email, package = package,
+                  token = email_get_token(email))
   )
 
   if (length(response) > howmany) response <- response[seq_len(howmany)]
 
-  rhub_check_list$new(
-    ids = vapply(response, "[[", "", "id"),
-    status = response
-  )
+  rhub_check_list$new(ids = names(response), status = response)
 }
