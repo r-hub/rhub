@@ -6,7 +6,7 @@
 #'   [validate_email()].
 #' @param package `NULL`, or a character scalar. Can be used to restrict
 #'   the search for a single package.
-#' @param howmany How many check groups (checks submitted silmutaneously) to show. The current API limit is 20.
+#' @param howmany How many check groups (checks submitted simultaneously) to show. The current API limit is 20.
 #' @return An `rhub_check` object.
 #'
 #' @export
