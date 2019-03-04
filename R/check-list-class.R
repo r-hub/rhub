@@ -64,6 +64,8 @@ check_list_print <- function(self, private, ...) {
   version <- vapply(x, "[[", "", "version")
   status <- vapply(x, "[[", "", "status")
   submitted <- vapply(x, "[[", "", "submitted")
+  id <- vapply(x, "[[", "", "id")
+  group <- vapply(x, get_group, "")
   platform <- vapply(x, function(xx) xx$platform$name, "")
 
   submitted <- if (length(package) == 0) {
@@ -82,8 +84,11 @@ check_list_print <- function(self, private, ...) {
     version = version,
     status = status,
     submitted = submitted,
-    platform = platform
-  ))
+    platform = platform,
+    group = group,
+    id = id
+  ),
+  row.names = FALSE)
 
   invisible(self)
 }
@@ -102,3 +107,11 @@ rhub_check_for_cran <- R6Class(
 
   public = list()
 )
+
+get_group <- function(l){
+  if (! "group" %in% names(l)){
+    ""
+  } else {
+    l[["group"]]
+  }
+}
