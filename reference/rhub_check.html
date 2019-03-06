@@ -173,8 +173,17 @@ interrupted using the usual interruption keyboard shortcut, usually
     <p>The <code><a href='list_my_checks.html'>list_my_checks()</a></code> and <code><a href='list_package_checks.html'>list_package_checks()</a></code> functions create
 <code>rhub_check_list</code> objects.</p>
 <p>See rhub_check for the description of the inherited <code>chl$update()</code>,
-<code>chl$print()</code>, <code>chl$livelog()</code> methods.</p>
+and <code>chl$livelog()</code> methods.</p>
 <p><code>chl$details()</code> prints the details for all checks in the list.</p>
+<p><code>chl$summary()</code> gives a <code>data.frame</code> with a line per check indicating <code>package</code>,
+<code>version</code>, <code>status</code>, <code>submitted</code>, <code>platform</code>, <code>group_id</code> if the check
+is part of a group of checks sent simultaneously to the builder (e.g. via
+<code><a href='check_for_cran.html'>check_for_cran()</a></code>, <code>check_id</code>.</p>
+<p><code>chl$print()</code> prints this <code>data.frame</code>.</p>
+<p><code>chl$get_group(group_id)</code> returns a <code>rhub_check</code> for checks of the
+list sharing the <code>group_id</code>.</p>
+<p><code>chl$get_check(check_id)</code> returns a <code>rhub_check</code> for the check of the
+list that has the <code>check_id</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
