@@ -45,8 +45,6 @@
 #' }
 NULL
 
-#' @export
-
 rhub_check_list <- R6Class(
   "rhub_check_list",
   inherit = rhub_check,
