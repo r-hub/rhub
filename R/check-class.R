@@ -32,6 +32,9 @@
 #' the check(s) is unknown.
 #'
 #' `ch$print()` prints the status of the check(s) to the screen.
+#' 
+#' `ch$cran_summary()` prints a table to be copy-pasted in cran-comments.md,
+#'  it is especially useful on the output of [`check_for_cran()`].
 #'
 #' `ch$browse()` opens a tab or window in the default web browser, that points
 #' to the detailed logs of the check.
@@ -74,7 +77,10 @@ rhub_check <- R6Class(
       self$web(which),
 
     livelog = function(which = 1)
-      check_livelog(self, private, which)
+      check_livelog(self, private, which),
+    
+    cran_summary = function(...)
+      check_cran_summary(self, private, ...)
   ),
 
   private = list(
@@ -114,4 +120,85 @@ check_web <- function(self, private, which) {
   urls <- paste0(sub("/api$", "/status/", baseurl()), ids)
   lapply(urls, browseURL)
   invisible(self)
+}
+
+check_cran_summary <- function(self, private, ...) {
+  
+  if (is.null(private$status_)) {
+    cat("Updating status...\n")
+    self$update()
+  }
+  
+  x <- private$status_
+  
+  result <- do.call("rbind",
+                    lapply(x, rectangle_status))
+  systems <- paste0(vapply(x, function(xx) xx$platform$name, ""),
+                    " (",
+                    vapply(x, function(xx) xx$platform$rversion, ""),
+                    ")")
+  cat(paste0("- ",
+             systems,
+             "\n"))
+  
+  unique_results <- unique(result[, c("type", "message")])
+  unique_results <- unique_results[order(unique_results$message),]
+  # TODO use rcmdcheck stuff
+  makeshift <- structure(
+    list(
+      package = x$package,
+      version = toString(vapply(x, function(xx) xx$platform$name, "")),
+      rversion = toString(systems),
+      output = list(),
+      platform = toString(systems),
+      notes = unlist(lapply(unique(unique_results$message[unique_results$type == "NOTE"]),
+                            combine_message, result = result)),
+      warnings = unlist(lapply(unique(unique_results$message[unique_results$type == "WARNING"]),
+                               combine_message, result = result)),
+      errors = unlist(lapply(unique(unique_results$message[unique_results$type == "ERROR"]),
+                             combine_message, result = result))
+    ),
+    class = "rcmdcheck"
+  )
+  print(makeshift, header = FALSE)
+  
+  invisible(self)
+}
+
+
+get_status_part <- function(part, x){
+  output <- unlist(x[part])
+  if(is.null(output)){
+    return("")
+  }else{
+    output
+  }
+}
+
+rectangle_status <- function(x){
+  
+  df <- rbind(data.frame(type = "ERROR",
+                         message = get_status_part("errors", x$result),
+                         stringsAsFactors = FALSE),
+              data.frame(type = "WARNING",
+                         message = get_status_part("warnings", x$result),
+                         stringsAsFactors = FALSE),
+              data.frame(type = "NOTE",
+                         message = get_status_part("notes", x$result),
+                         stringsAsFactors = FALSE))
+  
+  
+  df$package <- x$package
+  df$version <- x$version
+  df$submitted <- x$submitted
+  df$platform <- paste0(x$platform$name, " (", x$platform$rversion,
+                        ")")
+  
+  df[df$message != "",]
+  
+}
+
+combine_message <- function(message, result){
+  paste0("On ", toString(result$platform[result$message == message]), "\n",
+         message)
 }
