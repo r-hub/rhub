@@ -109,7 +109,16 @@ check_list_print <- function(self, private, ...) {
 }
 
 check_list_get_group <- function(group_id, self, private){
-  browser()
+  summary <- self$summary()
+  
+  if (! group_id %in% summary$group_id){
+    stop("This is not a valid group_id for this check list", call. = FALSE)
+  }
+  
+  ids <- summary$check_id[!is.na(summary$group_id) &
+                            summary$group_id == group_id]
+  
+  rhub_check$new(ids)
 }
 
 ## -----------------------------------------------------------------------
