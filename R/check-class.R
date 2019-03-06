@@ -137,7 +137,7 @@ check_cran_summary <- function(self, private, ...) {
                     " (",
                     vapply(x, function(xx) xx$platform$rversion, ""),
                     ")")
-  cat(paste0("- ",
+  cat(paste0("- R-hub ",
              systems,
              "\n"))
   
