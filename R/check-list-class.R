@@ -18,9 +18,22 @@
 #' `rhub_check_list` objects.
 #'
 #' See [rhub_check] for the description of the inherited `chl$update()`,
-#' `chl$print()`, `chl$livelog()` methods.
+#' and `chl$livelog()` methods.
 #'
 #' `chl$details()` prints the details for all checks in the list.
+#' 
+#' `chl$summary()` gives a `data.frame` with a line per check indicating `package`,
+#' `version`, `status`, `submitted`, `platform`, `group_id` if the check
+#'  is part of a group of checks sent simultaneously to the builder (e.g. via
+#'  [`check_for_cran()`], `check_id`.
+#'  
+#'  `chl$print()` prints this `data.frame`.
+#'  
+#'  `chl$get_group(group_id)` returns a [`rhub_check`] for checks of the 
+#'  list sharing the `group_id`.
+#'  
+#'  `chl$get_check(check_id)` returns a [`rhub_check`] for the check of the 
+#'  list that has the `check_id`.
 #'
 #' @name rhub_check_list
 #' @rdname rhub_check
@@ -47,6 +60,9 @@ rhub_check_list <- R6Class(
     
     summary = function(...)
       check_list_summary(self, private, ...),
+    
+    get_check = function(check_id, ...)
+      check_list_get_check(check_id, self, private, ...),
     
     get_group = function(group_id, ...)
       check_list_get_group(group_id, self, private, ...)
@@ -119,6 +135,16 @@ check_list_get_group <- function(group_id, self, private){
                             summary$group_id == group_id]
   
   rhub_check$new(ids)
+}
+
+check_list_get_check <- function(check_id, self, private){
+  summary <- self$summary()
+  
+  if (! check_id %in% summary$check_id){
+    stop("This is not a valid check_id for this check list", call. = FALSE)
+  }
+  
+  rhub_check$new(check_id)
 }
 
 ## -----------------------------------------------------------------------
