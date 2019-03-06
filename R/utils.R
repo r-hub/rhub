@@ -70,3 +70,11 @@ data_frame <- function(...) {
 drop_nulls <- function(x) {
   x [ ! vapply(x, is.null, TRUE) ]
 }
+
+get_group <- function(l){
+  if (! "group" %in% names(l)){
+    ""
+  } else {
+    l[["group"]]
+  }
+}

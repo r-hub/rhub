@@ -43,7 +43,13 @@ rhub_check_list <- R6Class(
       check_list_details(self, private, super),
 
     print = function(...)
-      check_list_print(self, private, ...)
+      check_list_print(self, private, ...),
+    
+    summary = function(...)
+      check_list_summary(self, private, ...),
+    
+    get_group = function(group_id, ...)
+      check_list_get_group(group_id, self, private, ...)
   )
 )
 
@@ -51,23 +57,24 @@ check_list_details <- function(self, private, super) {
   super$print()
 }
 
-check_list_print <- function(self, private, ...) {
-
+check_list_summary <- function(self, private, ...) {
+  
   if (is.null(private$status_)) {
     cat("Updating status...\n")
     self$update()
   }
-
+  
   x <- private$status_
-
+  
   package <- vapply(x, "[[", "", "package")
   version <- vapply(x, "[[", "", "version")
   status <- vapply(x, "[[", "", "status")
   submitted <- vapply(x, "[[", "", "submitted")
-  id <- vapply(x, "[[", "", "id")
-  group <- vapply(x, get_group, "")
+  check_id <- vapply(x, "[[", "", "id")
+  group_id <- vapply(x, get_group, "")
+  group_id[group_id == ""] <- NA
   platform <- vapply(x, function(xx) xx$platform$name, "")
-
+  
   submitted <- if (length(package) == 0) {
     character()
   } else {
@@ -78,19 +85,31 @@ check_list_print <- function(self, private, ...) {
       "ago"
     )
   }
-
-  print(data_frame(
+  
+  data_frame(
     package = package,
     version = version,
     status = status,
     submitted = submitted,
     platform = platform,
-    group = group,
-    id = id
-  ),
+    group_id = group_id,
+    check_id = check_id
+  )
+  
+}
+
+check_list_print <- function(self, private, ...) {
+
+  summary <- self$summary()
+  
+  print(summary,
   row.names = FALSE)
 
   invisible(self)
+}
+
+check_list_get_group <- function(group_id, self, private){
+  browser()
 }
 
 ## -----------------------------------------------------------------------
@@ -107,11 +126,3 @@ rhub_check_for_cran <- R6Class(
 
   public = list()
 )
-
-get_group <- function(l){
-  if (! "group" %in% names(l)){
-    ""
-  } else {
-    l[["group"]]
-  }
-}
