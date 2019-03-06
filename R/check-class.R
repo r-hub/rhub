@@ -52,7 +52,6 @@
 NULL
 
 #' @importFrom R6 R6Class
-#' @export
 
 rhub_check <- R6Class(
   "rhub_check",

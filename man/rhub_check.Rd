@@ -3,7 +3,6 @@
 \name{rhub_check}
 \alias{rhub_check}
 \alias{rhub_check_list}
-\alias{rhub_check_for_cran}
 \title{An \code{rhub_check} object holds status and results of rhub checks}
 \description{
 This class is similar to \link{rhub_check} (it inherits from it),
@@ -43,8 +42,8 @@ or id.
 
 An \code{rhub_check} object can be created by \code{\link[=check]{check()}}, \code{\link[=list_my_checks]{list_my_checks()}},
 or \code{\link[=list_package_checks]{list_package_checks()}}. \code{\link[=last_check]{last_check()}} returns the last check(s)
-submitted from the current R session. Do not confuse \code{rhub_check}/\code{rhub_check_for_cran}
-(classes) with \code{\link[=check]{check()}} or \code{\link[=check_for_cran]{check_for_cran()}} (functions).
+submitted from the current R session. Do not confuse \code{rhub_check}
+(class) with \code{\link[=check]{check()}}  (function).
 
 \code{ch$update()} updates the status of the check. Printing the check
 status to the screen does not perform an update, unless the status of
