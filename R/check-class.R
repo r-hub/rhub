@@ -23,8 +23,8 @@
 #'
 #' An `rhub_check` object can be created by [check()], [list_my_checks()],
 #' or [list_package_checks()]. [last_check()] returns the last check(s)
-#' submitted from the current R session. Do not confuse `rhub_check`/`rhub_check_for_cran` 
-#' (classes) with [check()] or [check_for_cran()] (functions).
+#' submitted from the current R session. Do not confuse `rhub_check` 
+#' (class) with [check()]  (function).
 #'
 #'
 #' `ch$update()` updates the status of the check. Printing the check
