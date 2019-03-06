@@ -4,12 +4,14 @@ baseurl <- function() {
 }
 
 endpoints <- list(
-  c("GET PLATFORMS",  "GET",  "/platform/list"),
-  c("VALIDATE EMAIL", "POST", "/check/validate_email"),
-  c("SUBMIT PACKAGE", "POST", "/check/submit"),
-  c("GET STATUS",     "POST", "/status"),
-  c("LIST BUILDS",    "POST", "/list"),
-  c("LIVE LOG",       "GET",  "/livelog/text/:id")
+  c("GET PLATFORMS",       "GET",  "/platform/list",        FALSE),
+  c("VALIDATE EMAIL",      "POST", "/check/validate_email", FALSE),
+  c("SUBMIT PACKAGE",      "POST", "/check/submit",         FALSE),
+  c("GET STATUS",          "POST", "/status",               FALSE),
+  c("LIST BUILDS",         "POST", "/list",                 FALSE),
+  c("LIST BUILDS EMAIL",   "GET",  "/list/:email",          TRUE),
+  c("LIST BUILDS PACKAGE", "GET",  "/list/:email/:package", TRUE),
+  c("LIVE LOG",            "GET",  "/livelog/text/:id",     FALSE)
 )
 
 default_headers <- c(
@@ -24,8 +26,10 @@ default_headers <- c(
 query <- function(endpoint, params = list(), data = NULL,
                   query = list(), headers = character(), as = NULL) {
 
-  headers <- update(default_headers, as.character(headers))
   ep <- get_endpoint(endpoint, params)
+  headers <- update(
+    update(default_headers, ep$headers),
+    as.character(headers))
 
   url <- paste0(baseurl(), ep$path)
 
@@ -65,7 +69,14 @@ get_endpoint <- function(endpoint, params) {
     path <- gsub(col, value, path, fixed = TRUE)
   }
 
-  list(method = method, path = path)
+  headers <- if (endpoints[[idx]][[4]]) {
+    if (is.null(params$token)) {
+      stop("Cannot find token, email address is not validated?")
+    }
+    c("Authorization" = paste("token", params$token))
+  }
+
+  list(method = method, path = path, headers = headers)
 }
 
 #' @importFrom httr headers content

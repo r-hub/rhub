@@ -65,9 +65,22 @@ The \code{\link[=list_my_checks]{list_my_checks()}} and \code{\link[=list_packag
 \code{rhub_check_list} objects.
 
 See \link{rhub_check} for the description of the inherited \code{chl$update()},
-\code{chl$print()}, \code{chl$livelog()} methods.
+and \code{chl$livelog()} methods.
 
 \code{chl$details()} prints the details for all checks in the list.
+
+\code{chl$summary()} gives a \code{data.frame} with a line per check indicating \code{package},
+\code{version}, \code{status}, \code{submitted}, \code{platform}, \code{group_id} if the check
+is part of a group of checks sent simultaneously to the builder (e.g. via
+\code{\link[=check_for_cran]{check_for_cran()}}, \code{check_id}.
+
+\code{chl$print()} prints this \code{data.frame}.
+
+\code{chl$get_group(group_id)} returns a \code{\link{rhub_check}} for checks of the
+list sharing the \code{group_id}.
+
+\code{chl$get_check(check_id)} returns a \code{\link{rhub_check}} for the check of the
+list that has the \code{check_id}.
 }
 
 \examples{

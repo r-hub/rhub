@@ -6,7 +6,7 @@
 #'   [validate_email()].
 #' @param package `NULL`, or a character scalar. Can be used to restrict
 #'   the search for a single package.
-#' @param howmany How many checks to show. The current API limit is 20.
+#' @param howmany How many check groups (checks submitted simultaneously) to show. The current API limit is 20.
 #' @return An `rhub_check` object.
 #'
 #' @export
@@ -24,21 +24,21 @@ list_my_checks <- function(email = email_address(), package = NULL,
   assert_that(is_string_or_null(package))
   assert_that(is_count(howmany))
 
-  response <- query(
-    "LIST BUILDS",
-    data = drop_nulls(list(
-      email = unbox(email),
-      token = unbox(email_get_token(email)),
-      package = package
-    ))
-  )
+  response <- if (is.null(package)) {
+    query(
+      "LIST BUILDS EMAIL",
+      params = list(email = email, token = email_get_token(email)))
+  } else {
+    query(
+      "LIST BUILDS PACKAGE",
+      params = list(email = email, package = package,
+                    token = email_get_token(email)))
+  }
 
   if (length(response) > howmany) response <- response[seq_len(howmany)]
 
-  rhub_check_list$new(
-    ids = vapply(response, "[[", "", "id"),
-    status = response
-  )
+  rhub_check_list$new(ids = names(response), 
+                      status = unlist(response, recursive = FALSE))
 }
 
 
@@ -70,18 +70,13 @@ list_package_checks <- function(package = ".", email = NULL, howmany = 20) {
   package <- unname(desc_get("Package", file = package))
 
   response <- query(
-    "LIST BUILDS",
-    data = drop_nulls(list(
-      email = unbox(email),
-      token = unbox(email_get_token(email)),
-      package = package
-    ))
+    "LIST BUILDS PACKAGE",
+    params = list(email = email, package = package,
+                  token = email_get_token(email))
   )
 
   if (length(response) > howmany) response <- response[seq_len(howmany)]
 
-  rhub_check_list$new(
-    ids = vapply(response, "[[", "", "id"),
-    status = response
-  )
+  rhub_check_list$new(ids = names(response), 
+                      status = unlist(response, recursive = FALSE))
 }

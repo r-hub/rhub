@@ -14,7 +14,7 @@ list_my_checks(email = email_address(), package = NULL, howmany = 20)
 \item{package}{\code{NULL}, or a character scalar. Can be used to restrict
 the search for a single package.}
 
-\item{howmany}{How many checks to show. The current API limit is 20.}
+\item{howmany}{How many check groups (checks submitted simultaneously) to show. The current API limit is 20.}
 }
 \value{
 An \code{rhub_check} object.
