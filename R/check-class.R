@@ -33,7 +33,7 @@
 #'
 #' `ch$print()` prints the status of the check(s) to the screen.
 #' 
-#' `ch$cran_summary()` prints a table to be copy-pasted in cran-comments.md,
+#' `ch$cran_summary()` prints text to be copy-pasted in cran-comments.md,
 #'  it is especially useful on the output of [`check_for_cran()`].
 #'
 #' `ch$browse()` opens a tab or window in the default web browser, that points

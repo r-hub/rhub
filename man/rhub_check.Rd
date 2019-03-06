@@ -51,6 +51,9 @@ the check(s) is unknown.
 
 \code{ch$print()} prints the status of the check(s) to the screen.
 
+\code{ch$cran_summary()} prints text to be copy-pasted in cran-comments.md,
+it is especially useful on the output of \code{\link[=check_for_cran]{check_for_cran()}}.
+
 \code{ch$browse()} opens a tab or window in the default web browser, that points
 to the detailed logs of the check.
 
