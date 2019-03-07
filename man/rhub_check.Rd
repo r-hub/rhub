@@ -44,7 +44,10 @@ the check(s) is unknown.
 \code{ch$print()} prints the status of the check(s) to the screen.
 
 \code{ch$browse()} opens a tab or window in the default web browser, that points
-to the detailed logs of the check.
+to the detailed logs of the check(s).
+
+\code{ch$urls()} return a table with URL to the html log, text log and artifacts
+of the check(s).
 
 \code{ch$livelog()} shows the live log of the check. The live log can be
 interrupted using the usual interruption keyboard shortcut, usually
