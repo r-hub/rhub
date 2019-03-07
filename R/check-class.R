@@ -140,6 +140,7 @@ check_cran_summary <- function(self, private, ...) {
   cat(paste0("- R-hub ",
              systems,
              "\n"))
+  cat("\n")
 
   unique_results <- unique(result[, c("type", "hash")])
   
