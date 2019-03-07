@@ -49,6 +49,9 @@ to the detailed logs of the check(s).
 \code{ch$urls()} return a table with URL to the html log, text log and artifacts
 of the check(s).
 
+For both \code{ch$browse()} and \code{ch$urls()}, not that the logs and artifacts
+are not kept forever, they are accessible for a few days after submission.
+
 \code{ch$livelog()} shows the live log of the check. The live log can be
 interrupted using the usual interruption keyboard shortcut, usually
 \code{CTRL+c} or \code{ESC}.
