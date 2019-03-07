@@ -15,4 +15,7 @@ matrix:
 
 after_success:
   - Rscript -e 'covr::codecov()'
-  
+ 
+env:
+  global:
+   - _R_CHECK_SYSTEM_CLOCK_=FALSE
