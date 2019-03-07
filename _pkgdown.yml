@@ -9,7 +9,6 @@ reference:
 - title: General check API
   contents:
   - check
-  - rhub_check
   - platforms
   - list_validated_emails
   - validate_email
@@ -34,4 +33,3 @@ reference:
   - last_check
   - list_my_checks
   - list_package_checks
-  - rhub_check_list
