@@ -124,14 +124,10 @@ check_urls <- function(self, private, which) {
   
   urls <- paste0(sub("/api$", "/status/", baseurl()), ids)
   
-  do.call("rbind",
-          lapply(ids, get_check_urls))
-}
-
-get_check_urls <- function(id){
-  data.frame(html = paste0(sub("/api$", "/status/", baseurl()), id),
-             text = paste0(sub("/api$", "/status/original/", baseurl()), id),
-             artifacts = paste0("https://artifacts.r-hub.io/", id),
+  data.frame(html = paste0(sub("/api$", "/status/", baseurl()), ids),
+             text = paste0(sub("/api$", "/status/original/", baseurl()), 
+                           ids),
+             artifacts = paste0("https://artifacts.r-hub.io/", ids),
              stringsAsFactors = FALSE)
 }
 
