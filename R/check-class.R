@@ -122,8 +122,6 @@ check_urls <- function(self, private, which) {
   ids <- select_ids(which = which, self = self, 
                     private = private)
   
-  urls <- paste0(sub("/api$", "/status/", baseurl()), ids)
-  
   data.frame(html = paste0(sub("/api$", "/status/", baseurl()), ids),
              text = paste0(sub("/api$", "/status/original/", baseurl()), 
                            ids),
