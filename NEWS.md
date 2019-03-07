@@ -2,12 +2,13 @@
 
 ## New features
 
-* The `rhub_check_list` class gained a `get_group()` and a `get_check()` 
-methods returning a `rhub_check` object from the list, by group_id or 
-check_id.
+* The output of `list_my_checks()` and `list_package_checks()` gained a 
+`get_group()` and a `get_check()` methods returning a `rhub_check` object 
+from the list, by group_id or check_id.
 
-* The `rhub_check` class gained a `browse()` method replacing the `web()` 
-method for opening the URLs corresponding to a `rhub_check` object.
+* The output of `check()`, `check_on` and `check_for_cran()` functions 
+gained a `browse()` method replacing the `web()` method for opening the 
+URLs corresponding to a `rhub_check` object.
 
 ## Bug fixes
 
