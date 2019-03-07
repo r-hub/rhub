@@ -120,7 +120,7 @@ These are quick shortcuts that select the right platform:
 
 ### Shortcut for preparing a CRAN submission
 
-`rhub::check_for_cran`: Check an R-package on R-hub, for a CRAN submission.
+`check_for_cran()`: Check an R-package on R-hub, for a CRAN submission.
 
 ### Sanitizers for compiled code
 
