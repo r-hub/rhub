@@ -157,7 +157,11 @@ status to the screen does not perform an update, unless the status of
 the check(s) is unknown.</p>
 <p><code>ch$print()</code> prints the status of the check(s) to the screen.</p>
 <p><code>ch$browse()</code> opens a tab or window in the default web browser, that points
-to the detailed logs of the check.</p>
+to the detailed logs of the check(s).</p>
+<p><code>ch$urls()</code> return a table with URL to the html log, text log and artifacts
+of the check(s).</p>
+<p>For both <code>ch$browse()</code> and <code>ch$urls()</code>, not that the logs and artifacts
+are not kept forever, they are accessible for a few days after submission.</p>
 <p><code>ch$livelog()</code> shows the live log of the check. The live log can be
 interrupted using the usual interruption keyboard shortcut, usually
 <code>CTRL+c</code> or <code>ESC</code>.</p>
