@@ -45,8 +45,6 @@
 #' }
 NULL
 
-#' @export
-
 rhub_check_list <- R6Class(
   "rhub_check_list",
   inherit = rhub_check,
@@ -146,18 +144,3 @@ check_list_get_check <- function(check_id, self, private){
   
   rhub_check$new(check_id)
 }
-
-## -----------------------------------------------------------------------
-
-#' @name rhub_check_for_cran
-#' @rdname rhub_check
-NULL
-
-#' @export
-
-rhub_check_for_cran <- R6Class(
-  "rhub_check_for_cran",
-  inherit = rhub_check_list,
-
-  public = list()
-)

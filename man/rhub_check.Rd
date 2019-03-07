@@ -2,7 +2,6 @@
 % Please edit documentation in R/check-class.R, R/check-list-class.R
 \name{rhub_check}
 \alias{rhub_check}
-\alias{rhub_check_for_cran}
 \title{An \code{rhub_check} object holds status and results of rhub checks}
 \description{
 An \code{rhub_check} object holds status and results of rhub checks
@@ -34,14 +33,17 @@ or id.
 
 An \code{rhub_check} object can be created by \code{\link[=check]{check()}}, \code{\link[=list_my_checks]{list_my_checks()}},
 or \code{\link[=list_package_checks]{list_package_checks()}}. \code{\link[=last_check]{last_check()}} returns the last check(s)
-submitted from the current R session. Do not confuse \code{rhub_check}/\code{rhub_check_for_cran}
-(classes) with \code{\link[=check]{check()}} or \code{\link[=check_for_cran]{check_for_cran()}} (functions).
+submitted from the current R session. Do not confuse \code{rhub_check}
+(class) with \code{\link[=check]{check()}}  (function).
 
 \code{ch$update()} updates the status of the check. Printing the check
 status to the screen does not perform an update, unless the status of
 the check(s) is unknown.
 
 \code{ch$print()} prints the status of the check(s) to the screen.
+
+\code{ch$cran_summary()} prints text to be copy-pasted in cran-comments.md,
+it is especially useful on the output of \code{\link[=check_for_cran]{check_for_cran()}}.
 
 \code{ch$browse()} opens a tab or window in the default web browser, that points
 to the detailed logs of the check(s).
