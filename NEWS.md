@@ -7,7 +7,10 @@
 from the list, by group_id or check_id.
 
 * The output of `check()`, `check_on_` and `check_for_cran()` functions 
-gained a `browse()` method replacing the `web()` method for opening the 
+gained 
+    * an `urls()` method returning a `data.frame` with URLs to the html and
+    text logs, as well as the artifacts, of the check(s);
+    * a `browse()` method replacing the `web()` method for opening the 
 URLs corresponding to a `rhub_check` object.
 
 ## Bug fixes
