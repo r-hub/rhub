@@ -136,13 +136,6 @@ This image does not run `R CMD check` at all, but it runs
 
 with ASAN and UBSAN enabled.
 
-
-### Note about `rhub` naming conventions
-
-Most `rhub` functions' names start with a verb (`check()`, `list_my_checks()`). 
-
-Do not confuse `rhub::check()` and `rhub::rhub_check` (not a function)! No function name start with `rhub_`, but there are three exported classes whose name start with `rhub_`: `rhub::rhub_check`, `rhub::rhub_check_for_cran` and `rhub::rhub_check_list`. 
-
 ## License
 
 MIT © R Consortium
