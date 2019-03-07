@@ -6,7 +6,7 @@
 `get_group()` and a `get_check()` methods returning a `rhub_check` object 
 from the list, by group_id or check_id.
 
-* The output of `check()`, `check_on` and `check_for_cran()` functions 
+* The output of `check()`, `check_on_` and `check_for_cran()` functions 
 gained a `browse()` method replacing the `web()` method for opening the 
 URLs corresponding to a `rhub_check` object.
 
