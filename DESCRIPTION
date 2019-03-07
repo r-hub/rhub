@@ -30,7 +30,8 @@ Imports:
     rematch,
     utils,
     whoami,
-    withr
+    withr,
+    digest
 Suggests: 
     covr,
     testthat

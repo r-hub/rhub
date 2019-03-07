@@ -140,10 +140,9 @@ check_cran_summary <- function(self, private, ...) {
   cat(paste0("- R-hub ",
              systems,
              "\n"))
+
+  unique_results <- unique(result[, c("type", "hash")])
   
-  unique_results <- unique(result[, c("type", "message")])
-  unique_results <- unique_results[order(unique_results$message),]
-  # TODO use rcmdcheck stuff
   makeshift <- structure(
     list(
       package = x$package,
@@ -151,11 +150,11 @@ check_cran_summary <- function(self, private, ...) {
       rversion = toString(systems),
       output = list(),
       platform = toString(systems),
-      notes = unlist(lapply(unique(unique_results$message[unique_results$type == "NOTE"]),
+      notes = unlist(lapply(unique(unique_results$hash[unique_results$type == "NOTE"]),
                             combine_message, result = result)),
-      warnings = unlist(lapply(unique(unique_results$message[unique_results$type == "WARNING"]),
+      warnings = unlist(lapply(unique(unique_results$hash[unique_results$type == "WARNING"]),
                                combine_message, result = result)),
-      errors = unlist(lapply(unique(unique_results$message[unique_results$type == "ERROR"]),
+      errors = unlist(lapply(unique(unique_results$hash[unique_results$type == "ERROR"]),
                              combine_message, result = result))
     ),
     class = "rcmdcheck"
@@ -176,7 +175,6 @@ get_status_part <- function(part, x){
 }
 
 rectangle_status <- function(x){
-  
   df <- rbind(data.frame(type = "ERROR",
                          message = get_status_part("errors", x$result),
                          stringsAsFactors = FALSE),
@@ -187,18 +185,32 @@ rectangle_status <- function(x){
                          message = get_status_part("notes", x$result),
                          stringsAsFactors = FALSE))
   
-  
+  df <- df[df$message != "",]
   df$package <- x$package
   df$version <- x$version
   df$submitted <- x$submitted
   df$platform <- paste0(x$platform$name, " (", x$platform$rversion,
                         ")")
+  df$hash <- hash_check(df$message)
   
-  df[df$message != "",]
-  
+  return(df)
 }
 
-combine_message <- function(message, result){
-  paste0("On ", toString(result$platform[result$message == message]), "\n",
-         message)
+combine_message <- function(hash, result){
+  paste0("On ", toString(result$platform[result$hash == hash]), "\n",
+         result$message[result$hash == hash][1])
+}
+
+# from rcmdcheck https://github.com/r-lib/rcmdcheck/blob/968fd9ba76ee9b7bf65d192568555ab57160165e/R/parse.R#L110
+#' @importFrom digest digest
+
+hash_check <- function(check) {
+  cleancheck <- gsub("[^a-zA-Z0-9]", "", first_line(check))
+  vapply(cleancheck, digest::digest, "")
+}
+
+# from rcmdcheck https://github.com/r-lib/rcmdcheck/blob/afadc6c53310cad2b64e0a58e399efd1ae18d7dd/R/utils.R#L91
+first_line <- function(x) {
+  l <- strsplit(x, "\n", fixed = TRUE)
+  vapply(l, "[[", "", 1)
 }
