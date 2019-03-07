@@ -36,7 +36,7 @@
 #'  list that has the `check_id`.
 #'
 #' @name rhub_check_list
-#' @rdname rhub_check
+#' @rdname rhub_check_list
 #' @examples
 #' \dontrun{
 #' chl <- list_my_checks()

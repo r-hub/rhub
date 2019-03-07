@@ -10,8 +10,8 @@
 #' ```
 #'
 #' @section Arguments:
-#' * `ch` An rhub check object. It can be created using [check()],
-#'   [list_my_checks()] or [list_package_checks()].
+#' * `ch` An rhub check object. It can be created using [`check()`],
+#'   and other check functions including [`check_for_cran`].
 #'   See also [last_check()].
 #' * `...` Extra arguments are currently ignored.
 #' * `which` Which check to show, if the object contains multiple
@@ -37,7 +37,13 @@
 #'  it is especially useful on the output of [`check_for_cran()`].
 #'
 #' `ch$browse()` opens a tab or window in the default web browser, that points
-#' to the detailed logs of the check.
+#' to the detailed logs of the check(s).
+#' 
+#' `ch$urls()` return a table with URL to the html log, text log and artifacts
+#' of the check(s).
+#' 
+#' For both `ch$browse()` and `ch$urls()`, not that the logs and artifacts 
+#' are not kept forever, they are accessible for a few days after submission.
 #'
 #' `ch$livelog()` shows the live log of the check. The live log can be
 #' interrupted using the usual interruption keyboard shortcut, usually
@@ -75,6 +81,9 @@ rhub_check <- R6Class(
     
     browse = function(which = NULL)
       self$web(which),
+    
+    urls = function(which = NULL)
+      check_urls(self, private, which),
 
     livelog = function(which = 1)
       check_livelog(self, private, which),
@@ -107,6 +116,28 @@ check_update <- function(self, private) {
 
 check_web <- function(self, private, which) {
 
+  ids <- select_ids(which = which, self = self, 
+                    private = private)
+
+  urls <- paste0(sub("/api$", "/status/", baseurl()), ids)
+  
+  lapply(urls, browseURL)
+  invisible(self)
+}
+
+check_urls <- function(self, private, which) {
+  
+  ids <- select_ids(which = which, self = self, 
+                    private = private)
+  
+  data.frame(html = paste0(sub("/api$", "/status/", baseurl()), ids),
+             text = paste0(sub("/api$", "/status/original/", baseurl()), 
+                           ids),
+             artifacts = paste0("https://artifacts.r-hub.io/", ids),
+             stringsAsFactors = FALSE)
+}
+
+select_ids <- function(which, self, private){
   ids <- if (is.null(which)) {
     private$ids_
   } else if (is.numeric(which)) {
@@ -114,12 +145,11 @@ check_web <- function(self, private, which) {
   } else if (is.character(which)) {
     intersect(private$ids_, which)
   } else {
-    stop("Unknown check selected")
+    stop("Unknown check selected",
+         call. = FALSE)
   }
-
-  urls <- paste0(sub("/api$", "/status/", baseurl()), ids)
-  lapply(urls, browseURL)
-  invisible(self)
+  
+  return(ids)
 }
 
 check_cran_summary <- function(self, private, ...) {
