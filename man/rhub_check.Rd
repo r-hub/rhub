@@ -2,13 +2,10 @@
 % Please edit documentation in R/check-class.R, R/check-list-class.R
 \name{rhub_check}
 \alias{rhub_check}
-\alias{rhub_check_list}
 \alias{rhub_check_for_cran}
 \title{An \code{rhub_check} object holds status and results of rhub checks}
 \description{
-This class is similar to \link{rhub_check} (it inherits from it),
-but it shows the results of the checks in a more concise format
-by default. To show the details, call the \code{$details()} method.
+An \code{rhub_check} object holds status and results of rhub checks
 }
 \section{Usage}{
 \preformatted{ch$update()
@@ -16,19 +13,13 @@ ch$print(...)
 ch$browse(which = NULL)
 ch$livelog(which = 1)
 }
-
-\preformatted{chl$update()
-chl$print(...)
-chl$details()
-chl$livelog(which = 1)
-}
 }
 
 \section{Arguments}{
 
 \itemize{
 \item \code{ch} An rhub check object. It can be created using \code{\link[=check]{check()}},
-\code{\link[=list_my_checks]{list_my_checks()}} or \code{\link[=list_package_checks]{list_package_checks()}}.
+and other check functions including \code{\link{check_for_cran}}.
 See also \code{\link[=last_check]{last_check()}}.
 \item \code{...} Extra arguments are currently ignored.
 \item \code{which} Which check to show, if the object contains multiple
@@ -58,29 +49,6 @@ to the detailed logs of the check.
 \code{ch$livelog()} shows the live log of the check. The live log can be
 interrupted using the usual interruption keyboard shortcut, usually
 \code{CTRL+c} or \code{ESC}.
-
-
-
-The \code{\link[=list_my_checks]{list_my_checks()}} and \code{\link[=list_package_checks]{list_package_checks()}} functions create
-\code{rhub_check_list} objects.
-
-See \link{rhub_check} for the description of the inherited \code{chl$update()},
-and \code{chl$livelog()} methods.
-
-\code{chl$details()} prints the details for all checks in the list.
-
-\code{chl$summary()} gives a \code{data.frame} with a line per check indicating \code{package},
-\code{version}, \code{status}, \code{submitted}, \code{platform}, \code{group_id} if the check
-is part of a group of checks sent simultaneously to the builder (e.g. via
-\code{\link[=check_for_cran]{check_for_cran()}}, \code{check_id}.
-
-\code{chl$print()} prints this \code{data.frame}.
-
-\code{chl$get_group(group_id)} returns a \code{\link{rhub_check}} for checks of the
-list sharing the \code{group_id}.
-
-\code{chl$get_check(check_id)} returns a \code{\link{rhub_check}} for the check of the
-list that has the \code{check_id}.
 }
 
 \examples{
@@ -90,10 +58,5 @@ ch <- last_check()
 ch$update()
 ch$browse()
 ch$livelog()
-}
-\dontrun{
-chl <- list_my_checks()
-chl
-chl$details()
 }
 }

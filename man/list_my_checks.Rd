@@ -17,7 +17,7 @@ the search for a single package.}
 \item{howmany}{How many check groups (checks submitted simultaneously) to show. The current API limit is 20.}
 }
 \value{
-An \code{rhub_check} object.
+An \code{\link{rhub_check_list}} object.
 }
 \description{
 List all checks for an email address

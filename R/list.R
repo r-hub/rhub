@@ -7,7 +7,7 @@
 #' @param package `NULL`, or a character scalar. Can be used to restrict
 #'   the search for a single package.
 #' @param howmany How many check groups (checks submitted simultaneously) to show. The current API limit is 20.
-#' @return An `rhub_check` object.
+#' @return An [`rhub_check_list`] object.
 #'
 #' @export
 #' @examples
@@ -49,7 +49,7 @@ list_my_checks <- function(email = email_address(), package = NULL,
 #'   If `NULL`, then the maintainer address is used.
 #' @param howmany How many checks to show. The current maximum of the API
 #'   is 20.
-#' @return An `rhub_check` object.
+#' @return An [`rhub_check_list`] object.
 #'
 #' @export
 #' @importFrom desc desc_get

@@ -10,8 +10,8 @@
 #' ```
 #'
 #' @section Arguments:
-#' * `ch` An rhub check object. It can be created using [check()],
-#'   [list_my_checks()] or [list_package_checks()].
+#' * `ch` An rhub check object. It can be created using [`check()`],
+#'   and other check functions including [`check_for_cran`].
 #'   See also [last_check()].
 #' * `...` Extra arguments are currently ignored.
 #' * `which` Which check to show, if the object contains multiple

@@ -16,7 +16,7 @@ If \code{NULL}, then the maintainer address is used.}
 is 20.}
 }
 \value{
-An \code{rhub_check} object.
+An \code{\link{rhub_check_list}} object.
 }
 \description{
 List checks of a package
