@@ -44,7 +44,7 @@ In particular, if \code{platforms} is \code{NULL} (the default), then
 \itemize{
 \item It checks the package on Windows, and Linux.
 \item It checks the package on R-release and R-devel.
-\item It uses the \code{--as-cran} argument to \code{R CMD build}.
+\item It uses the \code{--as-cran} argument to \code{R CMD check}.
 \item It requires all dependencies, including suggested ones.
 }
 }

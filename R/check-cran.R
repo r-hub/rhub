@@ -7,7 +7,7 @@
 #' In particular, if `platforms` is `NULL` (the default), then
 #' * It checks the package on Windows, and Linux.
 #' * It checks the package on R-release and R-devel.
-#' * It uses the `--as-cran` argument to `R CMD build`.
+#' * It uses the `--as-cran` argument to `R CMD check`.
 #' * It requires all dependencies, including suggested ones.
 #'
 #' @param check_args Arguments for `R CMD check`. By default `--as-cran`
