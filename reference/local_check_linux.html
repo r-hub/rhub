@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>An <code>rhub_check</code> object holds status and results of rhub checks — rhub_check • rhub</title>
+<title>Run a package check locally, in a Docker container — local_check_linux • rhub</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,9 +37,9 @@
 
 
 
-<meta property="og:title" content="An <code>rhub_check</code> object holds status and results of rhub checks — rhub_check" />
+<meta property="og:title" content="Run a package check locally, in a Docker container — local_check_linux" />
 
-<meta property="og:description" content="An rhub_check object holds status and results of rhub checks" />
+<meta property="og:description" content="Run a package check locally, in a Docker container" />
 
 <meta property="og:image" content="https://r-hub.github.io/rhub/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -111,85 +111,82 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>An <code>rhub_check</code> object holds status and results of rhub checks</h1>
-    <small class="dont-index">Source: <a href='https://github.com/r-hub/rhub/blob/master/R/check-class.R'><code>R/check-class.R</code></a>, <a href='https://github.com/r-hub/rhub/blob/master/R/check-list-class.R'><code>R/check-list-class.R</code></a></small>
-    <div class="hidden name"><code>rhub_check.Rd</code></div>
+    <h1>Run a package check locally, in a Docker container</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-hub/rhub/blob/master/R/local.R'><code>R/local.R</code></a></small>
+    <div class="hidden name"><code>local_check_linux.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>An <code>rhub_check</code> object holds status and results of rhub checks</p>
+    <p>Run a package check locally, in a Docker container</p>
     
     </div>
 
-        
-    <h2 class="hasAnchor" id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
-
-    <pre>ch$update()
-ch$print(...)
-ch$browse(which = NULL)
-ch$livelog(which = 1)
-</pre>
+    <pre class="usage"><span class='fu'>local_check_linux</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>image</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>valgrind</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>check_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(), <span class='kw'>env_vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(),
+  <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>artifacts</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempfile</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>path</th>
+      <td><p>Path to a directory containing an R package, or path to
+source R package tarball built with <code>R CMD build</code> or
+<code><a href='https://www.rdocumentation.org/packages/devtools/topics/build'>devtools::build()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>quiet</th>
+      <td><p>Whether to print the build output</p></td>
+    </tr>
+    <tr>
+      <th>image</th>
+      <td><p>Docker image to use. If <code>NULL</code>, a default image is selected.</p></td>
+    </tr>
+    <tr>
+      <th>valgrind</th>
+      <td><p>Whether to run the check with Valgrind.</p></td>
+    </tr>
+    <tr>
+      <th>check_args</th>
+      <td><p>Extra arguments for the <code>R CMD check</code> command.</p></td>
+    </tr>
+    <tr>
+      <th>env_vars</th>
+      <td><p>Environment variables to set on the builder machine
+before the check. A named character vector.</p></td>
+    </tr>
+    <tr>
+      <th>timeout</th>
+      <td><p>Timeout for a check, a <code>difftime</code> object or a scalar
+that will be interpreted as seconds.</p></td>
+    </tr>
+    <tr>
+      <th>artifacts</th>
+      <td><p>Where to copy the build artifacts after the build.</p></td>
+    </tr>
+    </table>
     
-    <ul>
-<li><p><code>ch</code> An rhub check object. It can be created using <code><a href='check.html'>check()</a></code>,
-and other check functions including <code><a href='check_for_cran.html'>check_for_cran</a></code>.
-See also <code><a href='last_check.html'>last_check()</a></code>.</p></li>
-<li><p><code>...</code> Extra arguments are currently ignored.</p></li>
-<li><p><code>which</code> Which check to show, if the object contains multiple
-checks. For <code>browse</code> the default is all checks. For <code>livelog</code> the
-default is the first check. A check can be selected via its number
-or id.</p></li>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An <code><a href='https://www.rdocumentation.org/packages/rcmdcheck/topics/rcmdcheck'>rcmdcheck::rcmdcheck</a></code> object, with extra fields:</p><ul>
+<li><p><code>all_output</code>: all output from the check, both standard output and
+error.</p></li>
+<li><p><code>container_name</code>: name of the Docker container that performed the
+build. It is a random name.</p></li>
+<li><p><code>artifacts</code>: directory of build arftifacts.</p></li>
 </ul>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     
-    <p>An <code>rhub_check</code> object can be created by <code><a href='check.html'>check()</a></code>, <code><a href='list_my_checks.html'>list_my_checks()</a></code>,
-or <code><a href='list_package_checks.html'>list_package_checks()</a></code>. <code><a href='last_check.html'>last_check()</a></code> returns the last check(s)
-submitted from the current R session. Do not confuse <code>rhub_check</code>/<code>rhub_check_for_cran</code>
-(classes) with <code><a href='check.html'>check()</a></code> or <code><a href='check_for_cran.html'>check_for_cran()</a></code> (functions).</p>
-<p><code>ch$update()</code> updates the status of the check. Printing the check
-status to the screen does not perform an update, unless the status of
-the check(s) is unknown.</p>
-<p><code>ch$print()</code> prints the status of the check(s) to the screen.</p>
-<p><code>ch$cran_summary()</code> prints text to be copy-pasted in cran-comments.md,
-it is especially useful on the output of <code><a href='check_for_cran.html'>check_for_cran()</a></code>.</p>
-<p><code>ch$browse()</code> opens a tab or window in the default web browser, that points
-to the detailed logs of the check(s).</p>
-<p><code>ch$urls()</code> return a table with URL to the html log, text log and artifacts
-of the check(s).</p>
-<p>For both <code>ch$browse()</code> and <code>ch$urls()</code>, not that the logs and artifacts
-are not kept forever, they are accessible for a few days after submission.</p>
-<p><code>ch$livelog()</code> shows the live log of the check. The live log can be
-interrupted using the usual interruption keyboard shortcut, usually
-<code>CTRL+c</code> or <code>ESC</code>.</p>
-    
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='check.html'>check</a></span>()
-<span class='no'>ch</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='last_check.html'>last_check</a></span>()
-<span class='no'>ch</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/update'>update</a></span>()
-<span class='no'>ch</span>$<span class='fu'>browse</span>()
-<span class='no'>ch</span>$<span class='fu'>livelog</span>()
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#usage">Usage</a></li>
-
       <li><a href="#arguments">Arguments</a></li>
-
-      <li><a href="#details">Details</a></li>
       
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      <li><a href="#value">Value</a></li>
+          </ul>
 
   </div>
 </div>
