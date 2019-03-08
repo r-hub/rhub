@@ -24,8 +24,8 @@ main() {
     install_deps "$package"
     cp *.tar.gz /tmp/artifacts/
 
-    run_check "$package"
-    cp -r *.Rcheck /tmp/artifacts/
+    run_check "$package" || true
+    cp -r *.Rcheck /tmp/artifacts/ 2>/dev/null >/dev/null || true
 }
 
 config_all() {
