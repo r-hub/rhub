@@ -33,3 +33,7 @@ reference:
   - last_check
   - list_my_checks
   - list_package_checks
+- title: Local Docker checks
+  contents:
+  - local_check_linux
+  - local_check_linux_images
