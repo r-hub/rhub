@@ -110,6 +110,7 @@ local_check_linux <- function(path = ".", quiet = FALSE, image = NULL,
   result
 }
 
+#' @importFrom utils head
 #' @export
 
 print.rhub_local_check <- function(x, ...) {
