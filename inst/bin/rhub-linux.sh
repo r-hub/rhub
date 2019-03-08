@@ -202,7 +202,7 @@ install_sysreqs() {
     CLEANUPFILES+=("$sysreqsfile")
     echo "${sysreqs}" > "$sysreqsfile"
     docker create --user root --name "${container}-1" \
-	   "$image" bash -l /root/sysreqs.sh
+	   "$image" bash /root/sysreqs.sh
     docker cp "$sysreqsfile" "${container}-1:/root/sysreqs.sh"
     docker start -i -a "${container}-1"
     REPLY=$(docker commit "${container}-1")
