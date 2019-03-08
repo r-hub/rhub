@@ -89,20 +89,44 @@ local_check_linux <- function(path = ".", quiet = FALSE, image = NULL,
   ## TODO: better error object
   if (result$timeout) stop("Check timed out")
 
-  check_start <- grep("^>>>>>=====+ Running R CMD check", output)[1]
-  if (is.na(check_start)) stop("Failed before check started")
-
-  check_output <- tail(output, -check_start)
-  check_result <- rcmdcheck::parse_check(text = check_output)
-  check_result$all_output <- output
-
-  check_result$artifacts <- artifacts
   if (!quiet) cat("Artifacts in", artifacts, "\n")
-
-  check_result$container_name <- container_name
   if (!quiet) cat(sep = "", "Container name: ", container_name, "-2", "\n\n")
 
-  check_result
+  ## Try to parse as R CMD check result
+  check_start <- grep("^>>>>>=====+ Running R CMD check", output)[1]
+  if (is.na(check_start)) stop("Failed before check started")
+  check_output <- tail(output, -check_start)
+  check_result <- tryCatch(
+    rcmdcheck::parse_check(text = check_output),
+    error = function(e) NULL)
+
+  result <- list(
+    check_result = check_result,
+    output = output,
+    image = image,
+    artifacts = artifacts,
+    container_name = container_name)
+  class(result) <- "rhub_local_check"
+  result
+}
+
+#' @export
+
+print.rhub_local_check <- function(x, ...) {
+  cat0("<R-hub local check results>\n")
+  if (!is.null(x$image)) cat0(symbol$bullet, " image: ", x$image, "\n")
+  if (!is.null(x$output)) {
+    cat0(symbol$bullet, " output:\n")
+    cat(paste0("  ", c(head(x$output, 5), "...")), sep = "\n")
+  }
+  cat0(symbol$bullet, " container_name: ", x$container_name, "\n")
+  if (!is.null(x$artifacts)) {
+    cat0(symbol$bullet, " artifacts: \n  ", x$artifacts, "\n")
+  }
+  if (!is.null(x$check_result)) {
+    cat0(symbol$bullet, " check_result:\n")
+    print(x$check_result)
+  }
 }
 
 #' List R-hub Docker images

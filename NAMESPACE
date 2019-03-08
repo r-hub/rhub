@@ -2,6 +2,7 @@
 
 S3method(print,rhub_docker_images)
 S3method(print,rhub_handle)
+S3method(print,rhub_local_check)
 S3method(print,rhub_platforms)
 export(check)
 export(check_for_cran)
