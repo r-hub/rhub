@@ -24,11 +24,13 @@ Imports:
     jsonlite,
     parsedate,
     prettyunits,
+    processx,
     R6,
     rappdirs,
     rcmdcheck (>= 1.2.1),
     rematch,
     utils,
+    uuid,
     whoami,
     withr
 Suggests: 

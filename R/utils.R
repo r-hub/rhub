@@ -78,3 +78,7 @@ get_group <- function(l){
     l[["group"]]
   }
 }
+
+cat0 <- function(..., sep = "") {
+  cat(..., sep = sep)
+}

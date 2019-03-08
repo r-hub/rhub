@@ -95,3 +95,16 @@ is_count <- function(x) {
 on_failure(is_count) <- function(call, env) {
   paste0(deparse(call$x), " is not a count (length 1 integer)")
 }
+
+as_timeout <- function(x) {
+  if (inherits(x, "difftime")) return(x)
+  as.difftime(as.double(x), units = "secs")
+}
+
+is_timeout <- function(x) {
+  inherits(x, "difftime")  && length(x) == 1  && !is.na(x)
+}
+
+on_failure(is_timeout) <- function(call, env) {
+  paste0(deparse(call$x), " must be a timeout, a 'difftime' constant")
+}
