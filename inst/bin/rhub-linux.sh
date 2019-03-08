@@ -202,7 +202,7 @@ install_sysreqs() {
     CLEANUPFILES+=("$sysreqsfile")
     echo "${sysreqs}" > "$sysreqsfile"
     docker create --user root --name "${container}-1" \
-	   "$image" bash /root/sysreqs.sh
+	   "$image" bash -l /root/sysreqs.sh
     docker cp "$sysreqsfile" "${container}-1:/root/sysreqs.sh"
     docker start -i -a "${container}-1"
     REPLY=$(docker commit "${container}-1")
@@ -240,7 +240,7 @@ run_check() {
     local basepackage=$(basename "$package")
 
     docker create -i --user docker --env-file "$envfile" \
-	   --name "${container}-2" "$image" /bin/bash /tmp/build.sh \
+	   --name "${container}-2" "$image" /bin/bash -l /tmp/build.sh \
 	   "/tmp/$basepackage"
     docker cp rhub-linux-docker.sh "${container}-2:/tmp/build.sh"
     docker cp "$package" "${container}-2:/tmp/$basepackage"
