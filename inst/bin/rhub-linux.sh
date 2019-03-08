@@ -12,7 +12,7 @@ main() {
     CLEANUPKEEP=false
     trap cleanup 0
 
-    echo "R-hub Linux builder script v0.10.0 (c) R Consortium, 2018"
+    echo "R-hub Linux builder script v0.10.0 (c) R Consortium, 2018-2019"
     echo
 
     # Parse arguments
