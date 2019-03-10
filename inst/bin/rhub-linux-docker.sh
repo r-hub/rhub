@@ -56,8 +56,8 @@ build_package() {
     get_desc "$package"
     local desc="$REPLY"
     if grep -q "^Packaged:" "$desc"; then
-	local name=$(grep "^Package:" "$desc" | sed 's/^Package:[ ]*//' | tr -d ' ')
-	local vers=$(grep "^Version:" "$desc" | sed 's/^Version:[ ]*//' | tr -d ' ')
+	local name=$(grep "^Package:" "$desc" | sed 's/^Package:[ ]*//' | tr -d ' \r')
+	local vers=$(grep "^Version:" "$desc" | sed 's/^Version:[ ]*//' | tr -d ' \r')
 	REPLY="${name}_${vers}.tar.gz"
 	if [[ "$package" != "$REPLY" ]]; then
 	    mv "$package" "$REPLY"
