@@ -224,7 +224,7 @@ create_env_file() {
 	 >> "$envfile"
 
     # User supplied env vars
-    echo "envvars"  >> "$envfile"
+    echo "$envvars"  >> "$envfile"
 
     # These canot be overriden
     echo checkArgs="${checkargs}" >> "$envfile"  # note the uppercase!
