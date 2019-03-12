@@ -8,10 +8,10 @@ authors:
 reference:
 - title: General check API
   contents:
+  - validate_email
+  - list_validated_emails
   - check
   - platforms
-  - list_validated_emails
-  - validate_email
 - title: Check shortcuts
   contents:
   - check_for_cran
@@ -22,6 +22,7 @@ reference:
   - check_on_macos
   - check_on_ubuntu
   - check_on_windows
+  - check_on_solaris
   - check_with_rdevel
   - check_with_roldrel
   - check_with_rpatched
