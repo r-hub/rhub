@@ -7,6 +7,7 @@
 \alias{check_on_debian}
 \alias{check_on_ubuntu}
 \alias{check_on_fedora}
+\alias{check_on_solaris}
 \alias{check_on_centos}
 \alias{check_with_roldrel}
 \alias{check_with_rrelease}
@@ -28,6 +29,9 @@ check_on_ubuntu(path = ".", ...)
 
 check_on_fedora(path = ".", ...)
 
+check_on_solaris(path = ".",
+  check_args = "'--no-manual --no-build-vignettes'", ...)
+
 check_on_centos(path = ".", ...)
 
 check_with_roldrel(path = ".", ...)
@@ -48,6 +52,8 @@ source R package tarball built with \code{R CMD build} or
 \code{devtools::build()}.}
 
 \item{...}{Additional arguments are passed to \code{\link[=check]{check()}}.}
+
+\item{check_args}{Extra arguments for the \code{R CMD check} command.}
 }
 \value{
 An \link{rhub_check} object.

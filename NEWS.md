@@ -6,6 +6,9 @@
   host's Docker. New `local_check_linux_images()` function to list R-hub
   Docker images.
 
+* New `check_on_solaris()` shortcut to check on Solaris X86, without
+  building the PDF manual or the vignettes.
+
 * The output of `list_my_checks()` and `list_package_checks()` gained a
   `get_group()` and a `get_check()` methods returning a `rhub_check` object
   from the list, by group_id or check_id.

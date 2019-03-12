@@ -58,6 +58,15 @@ check_on_fedora <- function(path = ".", ...) {
 #' @export
 #' @rdname check_shortcuts
 
+check_on_solaris <- function(path = ".", check_args =
+                             "'--no-manual --no-build-vignettes'", ...) {
+  check(path = path, platform = check_shortcut_platforms$solaris,
+        check_args = check_args, ...)
+}
+
+#' @export
+#' @rdname check_shortcuts
+
 check_on_centos <- function(path = ".", ...) {
   check(path = path, platform = check_shortcut_platforms$centos, ...)
 }
@@ -125,5 +134,6 @@ check_shortcut_platforms <- list(
   "debian"     = "debian-gcc-release",
   "ubuntu"     = "ubuntu-gcc-release",
   "fedora"     = "fedora-gcc-devel",
-  "centos"     = "linux-x86_64-centos6-epel"
+  "centos"     = "linux-x86_64-centos6-epel",
+  "solaris"    = "solaris-x86-patched"
 )
