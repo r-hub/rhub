@@ -122,8 +122,10 @@ validate_email_interactive <- function(email, token, path = ".") {
 }
 
 #' List validated email addresses
+#' 
+#' @description List email addresses validated on R-hub on the current machine.
 #'
-#' @return A data frame with two columns: `email` and `token`.
+#' @return A `data.frame` with two columns: `email` and `token`.
 #'   If in interactive mode, and there are no validated email addresses,
 #'   then a message is printed and the data frame is returned invisibly.
 #'
