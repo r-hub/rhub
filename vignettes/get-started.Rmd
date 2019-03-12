@@ -303,7 +303,7 @@ First, run `check_for_cran()` and assign the result to an object (or retrieve
 the results from a previous `check_for_cran()` submission by its `group_id` 
 as shown in the previous subsection). Then once the builds are done, 
 use the `cran_summary()` method to get a message that you can copy-paste in 
-your cran-comments.md file (created via e.g. `r usethis::use_cran_comments()`).
+your cran-comments.md file (created via e.g. `usethis::use_cran_comments()`).
 
 ```r
 cran_prep <- check_for_cran()
