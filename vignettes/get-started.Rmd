@@ -308,10 +308,12 @@ your cran-comments.md file (created via e.g. `usethis::use_cran_comments()`).
 ```r
 cran_prep <- check_for_cran()
 cran_prep$cran_summary()
+#> ## Test environments
 #> - R-hub fedora-clang-devel (r-devel)
 #>  - R-hub windows-x86_64-devel (r-devel)
 #>  - R-hub ubuntu-gcc-release (r-release)
 #> 
+#> ## R CMD check results
 #> ❯ On fedora-clang-devel (r-devel), windows-x86_64-devel (r-devel), ubuntu-gcc-release (r-release)
 #>   checking CRAN incoming feasibility ... NOTE
 #>   Maintainer: ‘Maëlle Salmon <maelle.salmon@yahoo.se>’
