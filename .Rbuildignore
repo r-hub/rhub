@@ -1,5 +1,3 @@
-^cran-comments\.md$
-^README\.Rmd$
 ^docs$
 ^_pkgdown\.yml$
 ^.*\.Rproj$
