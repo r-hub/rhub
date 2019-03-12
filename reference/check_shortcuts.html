@@ -138,6 +138,9 @@ they use might change over time.</p>
 
 <span class='fu'>check_on_fedora</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
 
+<span class='fu'>check_on_solaris</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>,
+  <span class='kw'>check_args</span> <span class='kw'>=</span> <span class='st'>"'--no-manual --no-build-vignettes'"</span>, <span class='no'>...</span>)
+
 <span class='fu'>check_on_centos</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
 
 <span class='fu'>check_with_roldrel</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
@@ -164,6 +167,10 @@ source R package tarball built with <code>R CMD build</code> or
     <tr>
       <th>...</th>
       <td><p>Additional arguments are passed to <code><a href='check.html'>check()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>check_args</th>
+      <td><p>Extra arguments for the <code>R CMD check</code> command.</p></td>
     </tr>
     </table>
     
