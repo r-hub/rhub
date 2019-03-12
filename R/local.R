@@ -105,7 +105,7 @@ local_check_linux <- function(path = ".", quiet = FALSE, image = NULL,
     output = output,
     image = image,
     artifacts = artifacts,
-    container_name = container_name)
+    container_name = paste0(container_name, "-2"))
   class(result) <- "rhub_local_check"
   result
 }
