@@ -42,7 +42,8 @@ remotes::install_github("r-hub/rhub")
 
 ## Usage
 
-Refer to the [`pkgdown` website](https://r-hub.github.io/rhub/).
+Refer to the [`pkgdown` website](https://r-hub.github.io/rhub/), in particular 
+the ["Get started" vignette](https://r-hub.github.io/rhub/articles/get-started.html)
 
 ## License
 

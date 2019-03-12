@@ -30,7 +30,7 @@ To build packages, first you need to validate your email address with
 listed in DESCRIPTION; and if it fails to do this correctly, you'll need to
 specify it.
 
-![](man/figures/email-validation.png)
+![](figures/email-validation.png)
 
 `rhub` stores the token permanently on the machine, so you do not need
 to validate your email again. You can also copy your token to other
@@ -60,14 +60,31 @@ In interactive R sessions, the output of the check is printed to
 the screen unless you set the `show_status` argument to `FALSE`. In all cases,
  you will receive a notification email with results after the build.
 
-![](man/figures/check-output.gif)
+![](figures/check-output.gif)
+
+You can either just run the function, or assign its output to an object, that 
+you can use to print results to the screen, to browse the web page of the build, 
+and to retrieve URLs to the web page of the build but also to its artifacts 
+that are kept a few days.
+
+```r
+mycheck <- check()
+mycheck$browse()
+mycheck$print()
+mycheck$livelog()
+mycheck$urls()
+```
+
+To retrieve such objects from previous builds, see [the last section](#browse-previous-builds).
 
 ## Select a build architecture
 
-You can run checks on any platform. You can use the platform ids (e.g. `debian-gcc-devel`) to select between platforms. You should not run checks on all 
-platforms at once. E.g. if preparing for a CRAN submission, use the shortcut function
-`check_for_cran()` that will submit your package to a few recommended
-platforms. The following subsections give more info on how to select a platform.
+You can run checks on any platform. You can use the platform ids (e.g. `"debian-gcc-devel"` 
+or `c("debian-gcc-devel", "debian-gcc-patched")`) to select between platforms. 
+You should not run checks on all platforms at once. E.g. if preparing for a
+CRAN submission, use the shortcut function `check_for_cran()` that will submit
+your package to a few recommended platforms. The following subsections give
+more info on how to select platforms.
 
 ### Listing R-hub platforms
 
@@ -76,27 +93,32 @@ particular to reproduce a result from CRAN's own platform, have a look at the
 R-hub platform characteristics.
 
 ```{r platforms-info}
-knitr::kable(platforms())
+knitr::kable(platforms(), row.names = FALSE)
 ```
 
 ### Shortcuts for quick checks
 
-These are quick shortcuts that select the right platform:
+These are quick shortcuts that select the right platform(s):
 
 * `check_on_linux()` and `check_on_windows()` select the operating system.
 * `check_on_debian()`, `check_on_ubuntu()`, `check_on_fedora()` and
   `check_on_centos()` select an appropriate Linux platform.
+* `check_on_solaris()` also selects an operating system, Solaris, and by 
+default builds neither vignettes nor manual (`--no-manual --no-build-vignettes`).
 * `check_with_roldrel()`, `check_with_rrelease()`, `check_with_rpatched()`
   and `check_with_rdevel()` select an R version.
+* `check_for_cran()` runs builds on platforms that are closest to platforms used by CRAN on submission:
+    * Fedora Linux, R-devel, clang, gfortran,
+    * Ubuntu Linux 16.04 LTS, R-release, GCC,
+    * Windows Server 2008 R2 SP1, R-devel, 32⁄64 bit,
+    * and, if your package needs compilation, Debian Linux, R-devel, GCC ASAN/UBSAN.
+You can run `default_cran_check_platforms(<package-path>)` to find out which 
+platforms will be selected for your package.
 * `check_with_valgrind()` runs the build and check on Linux, in `valgrind`
   to find memory leaks and pointer errors.
 * `check_with_sanitizers()` runs all package package tests, examples and
   vignettes with Address Sanitizer and Undefined Behavior Sanitizer, see
   below.
-  
-### Shortcut for preparing a CRAN submission
-
-`check_for_cran()`: Check an R-package on R-hub, for a CRAN submission.
 
 ### Sanitizers for compiled code
 
@@ -110,7 +132,7 @@ This image does not run `R CMD check` at all, but it runs
 2. all manual examples, and
 3. all vignette code
 
-with ASAN and UBSAN enabled.
+with ASAN and UBSAN enabled. Use it via `check_with_sanitizers()`.
 
 ## Browse previous builds
 
@@ -163,7 +185,8 @@ You can then extract builds from this list using their `group_id` (ID for
 builds submitted simultaneously e.g. via `check_for_cran()`) or `check_id`.
  In both cases you'll get a `rhub_check` object.
 
-Here's an example where we extract the last group of builds. 
+Here's an example where we extract the last group of builds, print it to the 
+screen, and query its URLs. 
 
 ```r
 group_id <- previous_builds$summary()$group_id[1]
@@ -250,6 +273,21 @@ group_check
 #>   to your NAMESPACE file.
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 2 notes ✖
+
+group_check$urls()
+#>                                                                                    html
+#> 1 https://builder-test.r-hub.io/status/note_1.0.tar.gz-197fd0ee76c0492aaff7bac7f68d1fa5
+#> 2 https://builder-test.r-hub.io/status/note_1.0.tar.gz-2ed7302acdfd42608d171d83e390bc56
+#> 3 https://builder-test.r-hub.io/status/note_1.0.tar.gz-88293d95ccf2402fac9b9da3b48ef465
+#>                                                                                             text
+#> 1 https://builder-test.r-hub.io/status/original/note_1.0.tar.gz-197fd0ee76c0492aaff7bac7f68d1fa5
+#> 2 https://builder-test.r-hub.io/status/original/note_1.0.tar.gz-2ed7302acdfd42608d171d83e390bc56
+#> 3 https://builder-test.r-hub.io/status/original/note_1.0.tar.gz-88293d95ccf2402fac9b9da3b48ef465
+#>                                                                     artifacts
+#> 1 https://artifacts.r-hub.io/note_1.0.tar.gz-197fd0ee76c0492aaff7bac7f68d1fa5
+#> 2 https://artifacts.r-hub.io/note_1.0.tar.gz-2ed7302acdfd42608d171d83e390bc56
+#> 3 https://artifacts.r-hub.io/note_1.0.tar.gz-88293d95ccf2402fac9b9da3b48ef465
+
 ```
 
 We could similarly extract the last build.
@@ -270,7 +308,6 @@ your cran-comments.md file (created via e.g. `r usethis::use_cran_comments()`).
 ```r
 cran_prep <- check_for_cran()
 cran_prep$cran_summary()
-group_check$cran_summary()
 #> - R-hub fedora-clang-devel (r-devel)
 #>  - R-hub windows-x86_64-devel (r-devel)
 #>  - R-hub ubuntu-gcc-release (r-release)
@@ -308,3 +345,17 @@ For more general information about CRAN submissions, refer to
 * [this book chapter](https://r-pkgs.org/release.html#release-process);
 
 * [this collaborative list](https://github.com/ThinkR-open/prepare-for-cran).
+
+## Get more info and help
+
+The R-hub builder has a [documentation website](https://docs.r-hub.io/).
+
+If you need further help with the `rhub` package or the R-hub package builder 
+in general (e.g. if you think a system dependency is missing), please refer
+to:
+
+* [R-hub community on gitter](https://gitter.im/r-hub/community);
+
+* [`rhub` issue tracker, for any feedback](https://github.com/r-hub/rhub).
+
+* If you need to communicate sensitive information, contact admin@r-hub.io Otherwise please use the two public spaces mentioned above.
