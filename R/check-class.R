@@ -162,6 +162,7 @@ check_cran_summary <- function(self, private, ...) {
   
   x <- private$status_
   
+  cat("## Test environments\n")
   result <- do.call("rbind",
                     lapply(x, rectangle_status))
   systems <- paste0(vapply(x, function(xx) xx$platform$name, ""),
@@ -172,6 +173,7 @@ check_cran_summary <- function(self, private, ...) {
              systems,
              "\n"))
   cat("\n")
+  cat("## R CMD check results\n")
   
   unique_results <- unique(result[, c("type", "hash")])
   
