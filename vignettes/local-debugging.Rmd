@@ -28,6 +28,8 @@ your code would have a high turnaround so is not optimal for debugging.
 Thankfully, R-hub Linux Docker images are available for you to use, so you
 can run the R-hub Linux builders locally, and `rhub` features helper functions.
 
+**Warning: at the moment, the functions are not tested on Windows! Bug reports are welcome :-)**
+
 ## Install and get to know Docker
 
 To be able to use the feature, you will need to install Docker. Please refer 
@@ -35,7 +37,11 @@ to [Docker docs](https://docs.docker.com/install/). On Windows, installation
 might be trickier, check that your machine [meets the system requirements](https://docs.docker.com/docker-for-windows/install/#what-to-know-before-you-install). On Linux, make sure to [run the post-installation steps](https://docs.docker.com/install/linux/linux-postinstall/) to make the 
 `docker` command available to your user without the `sudo` prefix.
 
-If you are new to Docker, this tutorial [feature a nice introduction](https://ropenscilabs.github.io/r-docker-tutorial/01-what-and-why.html).
+If you are new to Docker, for the basic use shown in the next two sections you 
+don't need to learn anything, you won't have to leave R. 
+Nonetheless, if you're curious, this tutorial [features a nice introduction](https://ropenscilabs.github.io/r-docker-tutorial/01-what-and-why.html). 
+Also see [this blog post](https://colinfay.me/docker-r-reproducibility/) and 
+the list of resources it shows at the end.
 
 ## List R-hub Linux images
 
@@ -63,7 +69,7 @@ Of particular interest are
 In theory, you could also use images that are not listed in the list above, 
 e.g. your own Docker images.
 
-## Running local checks
+## Run local checks
 
 Below we'll start a check of a package on the "rhub/debian-gcc-release" image (
 Debian Linux, R-release, GCC). The first time you use an image on your machine, it'll be downloaded from Docker Hub, which might take a while. The image won't be deleted 
@@ -75,3 +81,49 @@ are regularly updated).
 pkg_path <- "/home/maelle/Documents/R-hub/test-packages/note"
 local_check_linux(pkg_path, image = "rhub/debian-gcc-release")
 ```
+
+You can either just run the check as shown above, which will print a log to 
+the screen, including `R CMD check` results in the end, or assign it to an 
+object.
+
+```r
+pkg_path <- "/home/maelle/Documents/R-hub/test-packages/note"
+chk <- local_check_linux(pkg_path, image = "rhub/debian-gcc-release")
+```
+
+The object returned is of the class `rcmdcheck::rcmdcheck` which is an S3 object 
+with fields errors, warnings and notes (character vectors), that you could 
+operate on if you wish.
+
+The `local_check_linux()` function creates a container (instance of the image) that 
+won't be deleted after use so you might want to clean up once in a while.
+
+## Do more with R-hub Linux images
+
+If running checks in images iteratively isn't enough for your debugging, you 
+might want to run the container created by `local_check_linux()`. Take note of 
+the container name and run (in a shell, not in R)
+
+```
+docker container start 7181196d-bc3c-4fc8-a0e8-dc511150335d-2
+docker exec -it 7181196d-bc3c-4fc8-a0e8-dc511150335d-2 bash
+```
+
+where `7181196d-bc3c-4fc8-a0e8-dc511150335d-2` is the container name. Thanks 
+to these commands, you will be in a shell in the Docker images, where you can 
+run R.
+
+```
+cd ~
+R
+```
+
+Or you could create a new container from the image.
+
+To know how to build the package, install the dependencies, etc. you should have a look at `rhub` Docker bash script. To find it, run the code below.
+
+```{r}
+system.file(package = "rhub", "bin", "rhub-linux-docker.sh")
+```
+
+More Docker guidance is outside the scope of this vignette.
