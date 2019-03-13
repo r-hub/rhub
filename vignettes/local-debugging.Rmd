@@ -32,7 +32,8 @@ can run the R-hub Linux builders locally, and `rhub` features helper functions.
 
 To be able to use the feature, you will need to install Docker. Please refer 
 to [Docker docs](https://docs.docker.com/install/). On Windows, installation 
-might be trickier, check that your machine [meets the system requirements](https://docs.docker.com/docker-for-windows/install/#what-to-know-before-you-install).
+might be trickier, check that your machine [meets the system requirements](https://docs.docker.com/docker-for-windows/install/#what-to-know-before-you-install). On Linux, make sure to [run the post-installation steps](https://docs.docker.com/install/linux/linux-postinstall/) to make the 
+`docker` command available to your user without the `sudo` prefix.
 
 If you are new to Docker, this tutorial [feature a nice introduction](https://ropenscilabs.github.io/r-docker-tutorial/01-what-and-why.html).
 
@@ -59,12 +60,18 @@ Of particular interest are
 
 * the `name` platform which is the ID you should use to select that platform.
 
+In theory, you could also use images that are not listed in the list above, 
+e.g. your own Docker images.
+
 ## Running local checks
 
-Below we'll start a check of a package on the "debian-gcc-release" image (
-Debian Linux, R-release, GCC).
+Below we'll start a check of a package on the "rhub/debian-gcc-release" image (
+Debian Linux, R-release, GCC). The first time you use an image on your machine, it'll be downloaded from Docker Hub, which might take a while. The image won't be deleted 
+after use, so next time will be faster until you clean up your machine's 
+Docker images, which one should do once in a while (note that R-hub images 
+are regularly updated).
 
 ```r
 pkg_path <- "/home/maelle/Documents/R-hub/test-packages/note"
-rhub::local_check_linux(pkg_path, image = "debian-gcc-release")
+local_check_linux(pkg_path, image = "rhub/debian-gcc-release")
 ```
