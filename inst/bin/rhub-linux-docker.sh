@@ -86,7 +86,7 @@ install_remotes() {
     # We cannot do this from R, because some R versions do not support
     # HTTPS. Then we install a proper 'remotes' package with it.
     curl -O https://raw.githubusercontent.com/r-lib/remotes/r-hub/install-github.R
-    xvfb-run --server-args="-screen 0 1024x768x24" "$RBINARY" -q -e \
+    xvfb-run -a "$RBINARY" -q -e \
 	     "source(\"install-github.R\")\$value(\"r-lib/remotes@r-hub\")"
 }
 
@@ -99,7 +99,7 @@ install_deps() {
     # This is a temporary solution, until remotes::install_deps works on a
     # package bundle
     local cmd="remotes::install_local(\"$package\", dependencies = TRUE, INSTALL_opts = \"--build\")"
-    xvfb-run --server-args="-screen 0 1024x768x24" "$RBINARY" -q -e "$cmd"
+    xvfb-run -a "$RBINARY" -q -e "$cmd"
 
     ## If installation fails, then we do not run the check at all
     local pkgname=$(echo $package | sed 's/_.*$//')
@@ -117,8 +117,7 @@ run_check() {
     RHUB_CHECK_COMMAND="${RHUB_CHECK_COMMAND:-$RBINARY CMD check $checkArgs}"
 
     echo About to run xvfb-run $RHUB_CHECK_COMMAND "$package"
-    xvfb-run --server-args="-screen 0 1024x768x24" \
-	     $RHUB_CHECK_COMMAND "$package"
+    xvfb-run -a $RHUB_CHECK_COMMAND "$package"
 
     echo
     echo "<<<<<==================== Running R CMD check done"
