@@ -25,14 +25,16 @@ platform, or you saw such a bug even before CRAN submission, by building your
  package on a R-hub Linux platform. How can you reproduce and fix the bug? 
  Submitting to the R-hub platform ([or the R-hub platform that's closest to the CRAN platform](https://docs.r-hub.io/#rhub-cran-platforms)) after each tweak of 
 your code would have a high turnaround so is not optimal for debugging. 
-Thankfully, R-hub Linux Docker images are available for you to use, and `rhub`
-features helper functions.
+Thankfully, R-hub Linux Docker images are available for you to use, so you
+can run the R-hub Linux builders locally, and `rhub` features helper functions.
 
-## Install Docker
+## Install and get to know Docker
 
 To be able to use the feature, you will need to install Docker. Please refer 
 to [Docker docs](https://docs.docker.com/install/). On Windows, installation 
 might be trickier, check that your machine [meets the system requirements](https://docs.docker.com/docker-for-windows/install/#what-to-know-before-you-install).
+
+If you are new to Docker, this tutorial [feature a nice introduction](https://ropenscilabs.github.io/r-docker-tutorial/01-what-and-why.html).
 
 ## List R-hub Linux images
 
