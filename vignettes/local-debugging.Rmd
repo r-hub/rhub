@@ -1,0 +1,68 @@
+---
+title: "Local Linux checks with Docker"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Local Linux checks with Docker}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(rhub)
+```
+
+## Introduction
+
+Scenario: there's a bug in the check results of your package on a CRAN Linux
+platform, or you saw such a bug even before CRAN submission, by building your
+ package on a R-hub Linux platform. How can you reproduce and fix the bug? 
+ Submitting to the R-hub platform ([or the R-hub platform that's closest to the CRAN platform](https://docs.r-hub.io/#rhub-cran-platforms)) after each tweak of 
+your code would have a high turnaround so is not optimal for debugging. 
+Thankfully, R-hub Linux Docker images are available for you to use, and `rhub`
+features helper functions.
+
+## Install Docker
+
+To be able to use the feature, you will need to install Docker. Please refer 
+to [Docker docs](https://docs.docker.com/install/). On Windows, installation 
+might be trickier, check that your machine [meets the system requirements](https://docs.docker.com/docker-for-windows/install/#what-to-know-before-you-install).
+
+## List R-hub Linux images
+
+Each of R-hub Linux platforms is associated to a Docker image, whose Dockerfile 
+is stored in the [r-hub/rhub-linux-builders repository](https://github.com/r-hub/rhub-linux-builders#rhub-linux-builders), and that is built and 
+available on Docker Hub. _Note, if you're used to using Docker images outside of R, you might want to 
+just refer to the information in [R-hub Linux Docker images GitHub repository](https://github.com/r-hub/rhub-linux-builders#rhub-linux-builders) (
+including links to the built image on Docker Hub)._
+
+To list the available images from R, you can use the `local_check_linux_images()` 
+function that returns a `data.frame` and has a pretty default printing.
+
+```{r list}
+imgs <- local_check_linux_images()
+imgs
+knitr::kable(imgs, row.names = FALSE)
+```
+
+Of particular interest are
+
+* the `cranname` columns if you're trying to find an equivalent to a CRAN platform;
+
+* the `name` platform which is the ID you should use to select that platform.
+
+## Running local checks
+
+Below we'll start a check of a package on the "debian-gcc-release" image (
+Debian Linux, R-release, GCC).
+
+```r
+pkg_path <- "/home/maelle/Documents/R-hub/test-packages/note"
+rhub::local_check_linux(pkg_path, image = "debian-gcc-release")
+```
