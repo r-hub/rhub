@@ -1,5 +1,8 @@
 
 #' Run a package check locally, in a Docker container
+#' 
+#' @description Run a package check locally, in a Docker container. UNTESTED 
+#' ON WINDOWS, bug reports welcome. :-)
 #'
 #' @param quiet Whether to print the build output
 #' @param image Docker image to use. If `NULL`, a default image is selected.
@@ -20,6 +23,8 @@
 #' @importFrom processx run
 #' @importFrom utils tail
 #' @importFrom uuid UUIDgenerate
+#' 
+#' @details You'll need to have bash and Docker installed.
 
 local_check_linux <- function(path = ".", quiet = FALSE, image = NULL,
       valgrind = FALSE, check_args = character(),

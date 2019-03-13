@@ -40,5 +40,9 @@ build. It is a random name.
 }
 }
 \description{
-Run a package check locally, in a Docker container
+Run a package check locally, in a Docker container. UNTESTED
+ON WINDOWS, bug reports welcome. :-)
+}
+\details{
+You'll need to have bash and Docker installed.
 }
