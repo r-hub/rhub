@@ -147,7 +147,8 @@ local_check_linux_images <- function() {
 #' @export
 
 print.rhub_docker_images <- function(x, ...) {
-  res <- paste(cyan(x$`docker-image`), green(x$description), sep = ":\n  ")
+  res <- paste(cyan(paste0("rhub/", x$`docker-image`)),
+               green(x$description), sep = ":\n  ")
   cat(res, sep = "\n")
   invisible(x)
 }
