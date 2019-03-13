@@ -126,7 +126,7 @@ check_requirements() {
     if ! docker --version >/dev/null 2>/dev/null; then
 	>&2 echo "Cannot find Docker :("
 	>&2 echo "Make sure that Docker installed and it is in the PATH."
-	>&2 echo "You can install Docer from https://www.docker.com/"
+	>&2 echo "You can install Docker from https://www.docker.com/"
 	return 1
     fi
     if ! R --slave -e 'x <- 1' >/dev/null 2>/dev/null; then
