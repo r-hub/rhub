@@ -26,11 +26,18 @@ library(rhub)
 ## Validate your email address
 
 To build packages, first you need to validate your email address with
-`validate_email()`. The package tries to detect your email address using [`whoami`](https://github.com/r-lib/whoami#whoami) and the maintainer email
-listed in DESCRIPTION; and if it fails to do this correctly, you'll need to
-specify it.
+`validate_email()`.
 
 ![](figures/email-validation.png)
+
+The package tries to detect your email address using [`whoami`](https://github.com/r-lib/whoami#whoami) 
+(note that `whoami` does so using your global git config)
+and the maintainer email listed in DESCRIPTION; and if it fails to do this
+correctly, you'll need to specify it. This means that if running `validate_email()` 
+gives an error, you should either run `validate_email("youremail@example.com")` (
+quickest fix), or edit your global git config (less quick, but useful for 
+package development in general; to set it up smoothly 
+[refer to this `usethis` helper](https://usethis.r-lib.org/articles/articles/usethis-setup.html#configure-user-name-and-user-emails)). 
 
 `rhub` stores the token permanently on the machine, so you do not need
 to validate your email again. You can also copy your token to other
