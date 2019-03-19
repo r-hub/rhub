@@ -42,6 +42,8 @@ remotes::install_github("r-hub/rhub")
 Refer to the [`pkgdown` website](https://r-hub.github.io/rhub/), in particular 
 the ["Get started" vignette](https://r-hub.github.io/rhub/articles/rhub.html)
 
+![recording of a check on a screen](https://r-hub.github.io/rhub/articles/figures/check-output.gif)
+
 ## License
 
 MIT © R Consortium

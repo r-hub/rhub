@@ -67,7 +67,7 @@ In interactive R sessions, the output of the check is printed to
 the screen unless you set the `show_status` argument to `FALSE`. In all cases,
  you will receive a notification email with results after the build.
 
-![](figures/check-output.gif)
+![recording of a check on a screen](figures/check-output.gif)
 
 You can either just run the function, or assign its output to an object, that 
 you can use to print results to the screen, to browse the web page of the build, 
