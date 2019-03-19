@@ -17,10 +17,10 @@ Run `R CMD check` on any of the R-hub builder architectures, from R.
 
 The [R-hub builder](https://builder.r-hub.io/) is a multi-platform build and
 check service for R packages. This packages uses the R-hub API to connect to
-the R-hub builder and start package checks on various architectures.
+the R-hub builder and start **package checks on various architectures**.
 
-It also supports accessing statuses of previous checks, and local use of the
-R-hub Linux platforms via Docker.
+It also supports accessing **statuses of previous checks**, and 
+**local use of the R-hub Linux platforms via Docker**.
 
 ## Installation
 
