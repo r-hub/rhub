@@ -45,4 +45,10 @@
   <url>
     <loc>https://r-hub.github.io/rhub//reference/validate_email.html</loc>
   </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub//articles/get-started.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub//articles/local-debugging.html</loc>
+  </url>
 </urlset>
