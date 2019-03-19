@@ -2,8 +2,8 @@ pandoc: '2.2'
 pkgdown: 1.3.0
 pkgdown_sha: ~
 articles:
-  get-started: get-started.html
   local-debugging: local-debugging.html
+  rhub: rhub.html
 urls:
   reference: https://r-hub.github.io/rhub//reference
   article: https://r-hub.github.io/rhub//articles
