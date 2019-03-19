@@ -37,7 +37,7 @@ list_my_checks <- function(email = email_address(), package = NULL,
 
   if (length(response) > howmany) response <- response[seq_len(howmany)]
 
-  rhub_check_list$new(ids = names(response), 
+  rhub_check_list$new(ids = names(response),
                       status = unlist(response, recursive = FALSE))
 }
 
@@ -77,6 +77,6 @@ list_package_checks <- function(package = ".", email = NULL, howmany = 20) {
 
   if (length(response) > howmany) response <- response[seq_len(howmany)]
 
-  rhub_check_list$new(ids = names(response), 
+  rhub_check_list$new(ids = names(response),
                       status = unlist(response, recursive = FALSE))
 }

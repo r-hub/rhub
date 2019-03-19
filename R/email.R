@@ -122,7 +122,7 @@ validate_email_interactive <- function(email, token, path = ".") {
 }
 
 #' List validated email addresses
-#' 
+#'
 #' @description List email addresses validated on R-hub on the current machine.
 #'
 #' @return A `data.frame` with two columns: `email` and `token`.

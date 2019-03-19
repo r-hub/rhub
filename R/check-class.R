@@ -23,7 +23,7 @@
 #'
 #' An `rhub_check` object can be created by [check()], [list_my_checks()],
 #' or [list_package_checks()]. [last_check()] returns the last check(s)
-#' submitted from the current R session. Do not confuse `rhub_check`/`rhub_check_for_cran` 
+#' submitted from the current R session. Do not confuse `rhub_check`/`rhub_check_for_cran`
 #' (classes) with [check()] or [check_for_cran()] (functions).
 #'
 #'
@@ -32,23 +32,23 @@
 #' the check(s) is unknown.
 #'
 #' `ch$print()` prints the status of the check(s) to the screen.
-#' 
+#'
 #' `ch$cran_summary()` prints text to be copy-pasted in cran-comments.md,
 #'  it is especially useful on the output of [`check_for_cran()`].
 #'
 #' `ch$browse()` opens a tab or window in the default web browser, that points
 #' to the detailed logs of the check(s).
-#' 
+#'
 #' `ch$urls()` return a table with URL to the html log, text log and artifacts
 #' of the check(s).
-#' 
-#' For both `ch$browse()` and `ch$urls()`, not that the logs and artifacts 
+#'
+#' For both `ch$browse()` and `ch$urls()`, not that the logs and artifacts
 #' are not kept forever, they are accessible for a few days after submission.
 #'
 #' `ch$livelog()` shows the live log of the check. The live log can be
 #' interrupted using the usual interruption keyboard shortcut, usually
 #' `CTRL+c` or `ESC`.
-#' 
+#'
 #' @name rhub_check
 #' @examples
 #' \dontrun{
@@ -79,16 +79,16 @@ rhub_check <- R6Class(
 
     web = function(which = NULL)
       check_web(self, private, which),
-    
+
     browse = function(which = NULL)
       self$web(which),
-    
+
     urls = function(which = NULL)
       check_urls(self, private, which),
 
     livelog = function(which = 1)
       check_livelog(self, private, which),
-    
+
     cran_summary = function(...)
       check_cran_summary(self, private, ...)
   ),
@@ -117,22 +117,22 @@ check_update <- function(self, private) {
 
 check_web <- function(self, private, which) {
 
-  ids <- select_ids(which = which, self = self, 
+  ids <- select_ids(which = which, self = self,
                     private = private)
 
   urls <- paste0(sub("/api$", "/status/", baseurl()), ids)
-  
+
   lapply(urls, browseURL)
   invisible(self)
 }
 
 check_urls <- function(self, private, which) {
-  
-  ids <- select_ids(which = which, self = self, 
+
+  ids <- select_ids(which = which, self = self,
                     private = private)
-  
+
   data.frame(html = paste0(sub("/api$", "/status/", baseurl()), ids),
-             text = paste0(sub("/api$", "/status/original/", baseurl()), 
+             text = paste0(sub("/api$", "/status/original/", baseurl()),
                            ids),
              artifacts = paste0("https://artifacts.r-hub.io/", ids),
              stringsAsFactors = FALSE)
@@ -149,19 +149,19 @@ select_ids <- function(which, self, private){
     stop("Unknown check selected",
          call. = FALSE)
   }
-  
+
   return(ids)
 }
 
 check_cran_summary <- function(self, private, ...) {
-  
+
   if (is.null(private$status_)) {
     cat("Updating status...\n")
     self$update()
   }
-  
+
   x <- private$status_
-  
+
   cat("## Test environments\n")
   result <- do.call("rbind",
                     lapply(x, rectangle_status))
@@ -174,9 +174,9 @@ check_cran_summary <- function(self, private, ...) {
              "\n"))
   cat("\n")
   cat("## R CMD check results\n")
-  
+
   unique_results <- unique(result[, c("type", "hash")])
-  
+
   makeshift <- structure(
     list(
       package = x$package,
@@ -194,7 +194,7 @@ check_cran_summary <- function(self, private, ...) {
     class = "rcmdcheck"
   )
   print(makeshift, header = FALSE)
-  
+
   invisible(self)
 }
 
@@ -218,7 +218,7 @@ rectangle_status <- function(x){
               data.frame(type = "NOTE",
                          message = get_status_part("notes", x$result),
                          stringsAsFactors = FALSE))
-  
+
   df <- df[df$message != "",]
   df$package <- x$package
   df$version <- x$version
@@ -226,7 +226,7 @@ rectangle_status <- function(x){
   df$platform <- paste0(x$platform$name, " (", x$platform$rversion,
                         ")")
   df$hash <- hash_check(df$message)
-  
+
   return(df)
 }
 
