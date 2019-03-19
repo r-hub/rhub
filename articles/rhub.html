@@ -119,7 +119,9 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/check.html">check</a></span>()</a></code></pre></div>
 <p>If the <code>platform</code> argument is NULL, and the R session is interactive, then a menu is shown. If it is NULL, and the session is not interactive, then the default R-hub platform <code>platforms()$name[1]</code>, i.e. debian-gcc-devel, is used.</p>
 <p>In interactive R sessions, the output of the check is printed to the screen unless you set the <code>show_status</code> argument to <code>FALSE</code>. In all cases, you will receive a notification email with results after the build.</p>
-<p><img src="figures/check-output.gif"></p>
+<div class="figure">
+<img src="figures/check-output.gif" alt="recording of a check on a screen"><p class="caption">recording of a check on a screen</p>
+</div>
 <p>You can either just run the function, or assign its output to an object, that you can use to print results to the screen, to browse the web page of the build, and to retrieve URLs to the web page of the build but also to its artifacts that are kept a few days.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">mycheck &lt;-<span class="st"> </span><span class="kw"><a href="../reference/check.html">check</a></span>()</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">mycheck<span class="op">$</span><span class="kw">browse</span>()</a>
@@ -507,7 +509,7 @@
 <h2 class="hasAnchor">
 <a href="#browse-previous-builds" class="anchor"></a>Browse previous builds</h2>
 <p>Once a build is finished (or failed), you will get a notification email but you can also get information from R. E.g. you could submit a check for a package located at <code>&lt;package-path&gt;</code>, then turn off your computer and on the following days retrieve results via</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">previous_builds &lt;-<span class="st"> </span>rhub<span class="op">::</span><span class="kw"><a href="https://r-hub.github.io/rhub//reference/list_package_checks.html">list_package_checks</a></span>(<span class="op">&lt;</span>package<span class="op">-</span>path<span class="op">&gt;</span>,</a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">previous_builds &lt;-<span class="st"> </span>rhub<span class="op">::</span><span class="kw"><a href="https://r-hub.github.io/rhub/reference/list_package_checks.html">list_package_checks</a></span>(<span class="op">&lt;</span>package<span class="op">-</span>path<span class="op">&gt;</span>,</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">                                  <span class="dt">email =</span> <span class="st">"maelle.salmon@yahoo.se"</span>,</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">                                  <span class="dt">howmany =</span> <span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">previous_builds</a>
