@@ -38,3 +38,10 @@ reference:
   contents:
   - local_check_linux
   - local_check_linux_images
+  
+articles:
+- title: All vignettes
+  desc: ~
+  contents:
+  - '`rhub`'
+  - '`local-debugging`'
