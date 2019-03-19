@@ -82,7 +82,7 @@ mycheck$livelog()
 mycheck$urls()
 ```
 
-To retrieve such objects from previous builds, see [the last section](#browse-previous-builds).
+To retrieve such objects from previous builds, see [the corresponding section](#browse-previous-builds).
 
 ## Select a build architecture
 
@@ -119,7 +119,7 @@ default builds neither vignettes nor manual (`--no-manual --no-build-vignettes`)
     * Ubuntu Linux 16.04 LTS, R-release, GCC,
     * Windows Server 2008 R2 SP1, R-devel, 32⁄64 bit,
     * and, if your package needs compilation, Debian Linux, R-devel, GCC ASAN/UBSAN.
-You can run `default_cran_check_platforms(<package-path>)` to find out which 
+You can run `default_cran_check_platforms:::default_cran_check_platforms(<package-path>)` to find out which 
 platforms will be selected for your package.
 * `check_with_valgrind()` runs the build and check on Linux, in `valgrind`
   to find memory leaks and pointer errors.
