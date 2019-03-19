@@ -1,4 +1,4 @@
-url: https://r-hub.github.io/rhub/
+url: https://r-hub.github.io/rhub
 
 authors:
   R Consortium:
@@ -39,9 +39,3 @@ reference:
   - local_check_linux
   - local_check_linux_images
   
-articles:
-- title: All vignettes
-  desc: ~
-  contents:
-  - '`rhub`'
-  - '`local-debugging`'
