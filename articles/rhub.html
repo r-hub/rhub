@@ -129,7 +129,7 @@
 <a class="sourceLine" id="cb3-3" data-line-number="3">mycheck<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>()</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">mycheck<span class="op">$</span><span class="kw">livelog</span>()</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">mycheck<span class="op">$</span><span class="kw">urls</span>()</a></code></pre></div>
-<p>To retrieve such objects from previous builds, see <a href="#browse-previous-builds">the last section</a>.</p>
+<p>To retrieve such objects from previous builds, see <a href="#browse-previous-builds">the corresponding section</a>.</p>
 </div>
 <div id="select-a-build-architecture" class="section level2">
 <h2 class="hasAnchor">
@@ -484,7 +484,7 @@
 <li>Fedora Linux, R-devel, clang, gfortran,</li>
 <li>Ubuntu Linux 16.04 LTS, R-release, GCC,</li>
 <li>Windows Server 2008 R2 SP1, R-devel, 32⁄64 bit,</li>
-<li>and, if your package needs compilation, Debian Linux, R-devel, GCC ASAN/UBSAN. You can run <code>default_cran_check_platforms(&lt;package-path&gt;)</code> to find out which platforms will be selected for your package.</li>
+<li>and, if your package needs compilation, Debian Linux, R-devel, GCC ASAN/UBSAN. You can run <code>default_cran_check_platforms:::default_cran_check_platforms(&lt;package-path&gt;)</code> to find out which platforms will be selected for your package.</li>
 </ul>
 </li>
 <li>
