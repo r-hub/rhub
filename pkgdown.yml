@@ -5,6 +5,6 @@ articles:
   local-debugging: local-debugging.html
   rhub: rhub.html
 urls:
-  reference: https://r-hub.github.io/rhub//reference
-  article: https://r-hub.github.io/rhub//articles
+  reference: https://r-hub.github.io/rhub/reference
+  article: https://r-hub.github.io/rhub/articles
 
