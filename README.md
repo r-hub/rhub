@@ -12,15 +12,14 @@
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/r-hub/community)
 <!-- badges: end -->
 
-Run `R CMD check` on any of the R-hub builder architectures, from R.
-
 ## Introduction
 
 The [R-hub builder](https://builder.r-hub.io/) is a multi-platform build and
-check service for R packages. This packages uses the R-hub API to connect to
-the R-hub builder and start **package checks on various architectures**.
+check service for R packages. The `rhub` packages uses the R-hub API to connect to
+the R-hub builder and start package checks on various architectures: 
+**Run `R CMD check` on any of the R-hub builder architectures, from R**.
 
-It also supports accessing **statuses of previous checks**, and 
+The `rhub` package also supports accessing **statuses of previous checks**, and 
 **local use of the R-hub Linux platforms via Docker**.
 
 ## Installation
@@ -41,7 +40,7 @@ remotes::install_github("r-hub/rhub")
 ## Usage
 
 Refer to the [`pkgdown` website](https://r-hub.github.io/rhub/), in particular 
-the ["Get started" vignette](https://r-hub.github.io/rhub/articles/rhub.html)
+the ["Get started" vignette](https://r-hub.github.io/rhub/articles/rhub.html).
 
 ![recording of a check on a screen](https://r-hub.github.io/rhub/articles/figures/check-output.gif)
 
