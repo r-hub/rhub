@@ -1,0 +1,370 @@
+---
+title: "Get started with `rhub`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{get-started}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In this article you'll learn how to use `rhub` to connect to the R-hub 
+builder API to start new builds and get the results and artifacts of recent 
+builds.
+
+```{r}
+library(rhub)
+```
+
+
+## Validate your email address
+
+To build packages, first you need to validate your email address with
+`validate_email()`.
+
+![](figures/email-validation.png)
+
+The package tries to detect your email address using [`whoami`](https://github.com/r-lib/whoami#whoami) 
+(note that `whoami` does so using your global git config)
+and the maintainer email listed in DESCRIPTION; and if it fails to do this
+correctly, you'll need to specify it. This means that if running `validate_email()` 
+gives an error, you should either run `validate_email("youremail@example.com")` (
+quickest fix), or edit your global git config (less quick, but useful for 
+package development in general; to set it up smoothly 
+[refer to this `usethis` helper](https://usethis.r-lib.org/articles/articles/usethis-setup.html#configure-user-name-and-user-emails)). 
+
+`rhub` stores the token permanently on the machine, so you do not need
+to validate your email again. You can also copy your token to other
+machines: run `list_validated_emails()` to get the token, and use the 
+`validate_email()` function on the new machine, using both the `email` and
+ `token` arguments.
+
+Currently you cannot use the token obtained via this function in the Web
+UI of the R-hub builder.
+
+## Run a package check
+
+`check()` runs an `R CMD check` on the package in the specified directory,
+or specified source R package tarball created by `R CMD build` or
+`devtools::build()`. It defaults to the working directory.
+
+```r
+check()
+```
+
+If the `platform` argument is NULL, and the R session is interactive, then 
+a menu is shown. If it is NULL, and the session is not interactive, then the
+default R-hub platform `platforms()$name[1]`, i.e. `r platforms()$name[1]`,
+is used.
+
+In interactive R sessions, the output of the check is printed to
+the screen unless you set the `show_status` argument to `FALSE`. In all cases,
+ you will receive a notification email with results after the build.
+
+![](figures/check-output.gif)
+
+You can either just run the function, or assign its output to an object, that 
+you can use to print results to the screen, to browse the web page of the build, 
+and to retrieve URLs to the web page of the build but also to its artifacts 
+that are kept a few days.
+
+```r
+mycheck <- check()
+mycheck$browse()
+mycheck$print()
+mycheck$livelog()
+mycheck$urls()
+```
+
+To retrieve such objects from previous builds, see [the last section](#browse-previous-builds).
+
+## Select a build architecture
+
+You can run checks on any platform. You can use the platform ids (e.g. `"debian-gcc-devel"` 
+or `c("debian-gcc-devel", "debian-gcc-patched")`) to select between platforms. 
+You should not run checks on all platforms at once. E.g. if preparing for a
+CRAN submission, use the shortcut function `check_for_cran()` that will submit
+your package to a few recommended platforms. The following subsections give
+more info on how to select platforms.
+
+### Listing R-hub platforms
+
+If looking for a platform with particular characteristics, in 
+particular to reproduce a result from CRAN's own platform, have a look at the
+R-hub platform characteristics.
+
+```{r platforms-info}
+knitr::kable(platforms(), row.names = FALSE)
+```
+
+### Shortcuts for quick checks
+
+These are quick shortcuts that select the right platform(s):
+
+* `check_on_linux()` and `check_on_windows()` select the operating system.
+* `check_on_debian()`, `check_on_ubuntu()`, `check_on_fedora()` and
+  `check_on_centos()` select an appropriate Linux platform.
+* `check_on_solaris()` also selects an operating system, Solaris, and by 
+default builds neither vignettes nor manual (`--no-manual --no-build-vignettes`).
+* `check_with_roldrel()`, `check_with_rrelease()`, `check_with_rpatched()`
+  and `check_with_rdevel()` select an R version.
+* `check_for_cran()` runs builds on platforms that are closest to platforms used by CRAN on submission:
+    * Fedora Linux, R-devel, clang, gfortran,
+    * Ubuntu Linux 16.04 LTS, R-release, GCC,
+    * Windows Server 2008 R2 SP1, R-devel, 32⁄64 bit,
+    * and, if your package needs compilation, Debian Linux, R-devel, GCC ASAN/UBSAN.
+You can run `default_cran_check_platforms(<package-path>)` to find out which 
+platforms will be selected for your package.
+* `check_with_valgrind()` runs the build and check on Linux, in `valgrind`
+  to find memory leaks and pointer errors.
+* `check_with_sanitizers()` runs all package package tests, examples and
+  vignettes with Address Sanitizer and Undefined Behavior Sanitizer, see
+  below.
+
+### Sanitizers for compiled code
+
+R-hub provides a special Docker image to run Address Sanitizer (ASAN) and
+Undefined Behavior Sanitizer (UBSAN). This is based on the `r-devel-san`
+image of the [Rocker project](https://github.com/rocker-org/r-devel-san).
+
+This image does not run `R CMD check` at all, but it runs
+
+1. package tests,
+2. all manual examples, and
+3. all vignette code
+
+with ASAN and UBSAN enabled. Use it via `check_with_sanitizers()`.
+
+## Browse previous builds
+
+Once a build is finished (or failed), you will get a notification email but 
+you can also get information from R. E.g. you could submit a check for a 
+package located at `<package-path>`, then turn off your computer and on the following days retrieve results
+via 
+
+```r
+previous_builds <- rhub::list_package_checks(<package-path>,
+                                  email = "maelle.salmon@yahoo.se",
+                                  howmany = 4)
+previous_builds
+#>  package version status submitted             platform
+#>     note     1.0   note   ~3m ago   fedora-clang-devel
+#>     note     1.0   note   ~3m ago windows-x86_64-devel
+#>     note     1.0   note   ~3m ago   ubuntu-gcc-release
+#>     note     1.0   note   ~7d ago windows-x86_64-devel
+#>     note     1.0   note   ~7d ago   ubuntu-gcc-release
+#>     note     1.0   note   ~7d ago   fedora-clang-devel
+#>     note     1.0     ok  ~12d ago     debian-gcc-devel
+#>     note     1.0   note  ~13d ago   fedora-clang-devel
+#>     note     1.0   note  ~13d ago windows-x86_64-devel
+#>     note     1.0   note  ~13d ago   ubuntu-gcc-release
+#>                                          group_id
+#>  note_1.0.tar.gz-a99e137a4e7640faa6ea3d7e0e8e994d
+#>  note_1.0.tar.gz-a99e137a4e7640faa6ea3d7e0e8e994d
+#>  note_1.0.tar.gz-a99e137a4e7640faa6ea3d7e0e8e994d
+#>  note_1.0.tar.gz-9ceef8e7031d4b9b97699004d86162ba
+#>  note_1.0.tar.gz-9ceef8e7031d4b9b97699004d86162ba
+#>  note_1.0.tar.gz-9ceef8e7031d4b9b97699004d86162ba
+#>  note_1.0.tar.gz-d3b8509d709e7ce30956ae764388887c
+#>  note_1.0.tar.gz-c4abbbe41c884a65a9e7dea0f166fe17
+#>  note_1.0.tar.gz-c4abbbe41c884a65a9e7dea0f166fe17
+#>  note_1.0.tar.gz-c4abbbe41c884a65a9e7dea0f166fe17
+#>                                          check_id
+#>  note_1.0.tar.gz-197fd0ee76c0492aaff7bac7f68d1fa5
+#>  note_1.0.tar.gz-2ed7302acdfd42608d171d83e390bc56
+#>  note_1.0.tar.gz-88293d95ccf2402fac9b9da3b48ef465
+#>  note_1.0.tar.gz-4f9113c77256452791043ac07787ada8
+#>  note_1.0.tar.gz-6761ed27a295401286be600994037c12
+#>  note_1.0.tar.gz-f8bc9d2e812e42ba88dae2002c300d0b
+#>  note_1.0.tar.gz-d3b8509d709e7ce30956ae764388887c
+#>  note_1.0.tar.gz-0a9b7c77e7ca49b083d439483b658b44
+#>  note_1.0.tar.gz-42cb5428d955424c83113fc40d303b58
+#>  note_1.0.tar.gz-7cf1c5f8132c4195a03b0cb75d2f908a
+```
+
+You can then extract builds from this list using their `group_id` (ID for 
+builds submitted simultaneously e.g. via `check_for_cran()`) or `check_id`.
+ In both cases you'll get a `rhub_check` object.
+
+Here's an example where we extract the last group of builds, print it to the 
+screen, and query its URLs. 
+
+```r
+group_id <- previous_builds$summary()$group_id[1]
+group_check <- previous_builds$get_group(group_id)
+group_check
+#> Updating status...
+#> 
+#> ── note 1.0: NOTE
+#> 
+#>   Build ID:   note_1.0.tar.gz-197fd0ee76c0492aaff7bac7f68d1fa5
+#>   Platform:   Fedora Linux, R-devel, clang, gfortran
+#>   Submitted:  6m 18.7s ago
+#>   Build time: 46s
+#> 
+#> ❯ checking CRAN incoming feasibility ... NOTE
+#>   Maintainer: ‘Maëlle Salmon <maelle.salmon@yahoo.se>’
+#>   
+#>   New submission
+#>   
+#>   The Description field contains
+#>     <http://http://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file>
+#>   Please enclose URLs in angle brackets (<...>).
+#>   
+#>   The Date field is over a month old.
+#> 
+#> ❯ checking R code for possible problems ... NOTE
+#>   .bello: no visible global function definition for ‘tail’
+#>   Undefined global functions or variables:
+#>     tail
+#>   Consider adding
+#>     importFrom("utils", "tail")
+#>   to your NAMESPACE file.
+#> 
+#> 0 errors ✔ | 0 warnings ✔ | 2 notes ✖
+#> 
+#> ── note 1.0: NOTE
+#> 
+#>   Build ID:   note_1.0.tar.gz-2ed7302acdfd42608d171d83e390bc56
+#>   Platform:   Windows Server 2008 R2 SP1, R-devel, 32/64 bit
+#>   Submitted:  6m 19s ago
+#>   Build time: 1m 41.4s
+#> 
+#> ❯ checking CRAN incoming feasibility ... NOTE
+#>   Maintainer: 'Ma�lle Salmon <maelle.salmon@yahoo.se>'
+#>   
+#>   New submission
+#>   The Description field contains
+#>     <http://http://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file>
+#>   
+#>   Please enclose URLs in angle brackets (<...>).
+#>   
+#>   The Date field is over a month old.
+#> 
+#> ❯ checking R code for possible problems ... NOTE
+#>   .bello: no visible global function definition for 'tail'
+#>   Undefined global functions or variables:
+#>     tail
+#>   Consider adding
+#>     importFrom("utils", "tail")
+#>   to your NAMESPACE file.
+#> 
+#> 0 errors ✔ | 0 warnings ✔ | 2 notes ✖
+#> 
+#> ── note 1.0: NOTE
+#> 
+#>   Build ID:   note_1.0.tar.gz-88293d95ccf2402fac9b9da3b48ef465
+#>   Platform:   Ubuntu Linux 16.04 LTS, R-release, GCC
+#>   Submitted:  6m 19s ago
+#>   Build time: 36.7s
+#> 
+#> ❯ checking CRAN incoming feasibility ... NOTE
+#>   Maintainer: ‘Maëlle Salmon <maelle.salmon@yahoo.se>’
+#>   
+#>   New submission
+#>   
+#>   The Date field is over a month old.
+#> 
+#> ❯ checking R code for possible problems ... NOTE
+#>   .bello: no visible global function definition for ‘tail’
+#>   Undefined global functions or variables:
+#>     tail
+#>   Consider adding
+#>     importFrom("utils", "tail")
+#>   to your NAMESPACE file.
+#> 
+#> 0 errors ✔ | 0 warnings ✔ | 2 notes ✖
+
+group_check$urls()
+#>                                                                                    html
+#> 1 https://builder-test.r-hub.io/status/note_1.0.tar.gz-197fd0ee76c0492aaff7bac7f68d1fa5
+#> 2 https://builder-test.r-hub.io/status/note_1.0.tar.gz-2ed7302acdfd42608d171d83e390bc56
+#> 3 https://builder-test.r-hub.io/status/note_1.0.tar.gz-88293d95ccf2402fac9b9da3b48ef465
+#>                                                                                             text
+#> 1 https://builder-test.r-hub.io/status/original/note_1.0.tar.gz-197fd0ee76c0492aaff7bac7f68d1fa5
+#> 2 https://builder-test.r-hub.io/status/original/note_1.0.tar.gz-2ed7302acdfd42608d171d83e390bc56
+#> 3 https://builder-test.r-hub.io/status/original/note_1.0.tar.gz-88293d95ccf2402fac9b9da3b48ef465
+#>                                                                     artifacts
+#> 1 https://artifacts.r-hub.io/note_1.0.tar.gz-197fd0ee76c0492aaff7bac7f68d1fa5
+#> 2 https://artifacts.r-hub.io/note_1.0.tar.gz-2ed7302acdfd42608d171d83e390bc56
+#> 3 https://artifacts.r-hub.io/note_1.0.tar.gz-88293d95ccf2402fac9b9da3b48ef465
+
+```
+
+We could similarly extract the last build.
+
+```r
+check_id <- previous_builds$summary()$check_id[1]
+previous_builds$get_check(check_id)
+```
+
+## Prepare a CRAN submission
+
+First, run `check_for_cran()` and assign the result to an object (or retrieve 
+the results from a previous `check_for_cran()` submission by its `group_id` 
+as shown in the previous subsection). Then once the builds are done, 
+use the `cran_summary()` method to get a message that you can copy-paste in 
+your cran-comments.md file (created via e.g. `usethis::use_cran_comments()`).
+
+```r
+cran_prep <- check_for_cran()
+cran_prep$cran_summary()
+#> ## Test environments
+#> - R-hub fedora-clang-devel (r-devel)
+#>  - R-hub windows-x86_64-devel (r-devel)
+#>  - R-hub ubuntu-gcc-release (r-release)
+#> 
+#> ## R CMD check results
+#> ❯ On fedora-clang-devel (r-devel), windows-x86_64-devel (r-devel), ubuntu-gcc-release (r-release)
+#>   checking CRAN incoming feasibility ... NOTE
+#>   Maintainer: ‘Maëlle Salmon <maelle.salmon@yahoo.se>’
+#>   
+#>   New submission
+#>   
+#>   The Description field contains
+#>     <http://http://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file>
+#>   Please enclose URLs in angle brackets (<...>).
+#>   
+#>   The Date field is over a month old.
+#> 
+#> ❯ On fedora-clang-devel (r-devel), windows-x86_64-devel (r-devel), ubuntu-gcc-release (r-release)
+#>   checking R code for possible problems ... NOTE
+#>   .bello: no visible global function definition for ‘tail’
+#>   Undefined global functions or variables:
+#>     tail
+#>   Consider adding
+#>     importFrom("utils", "tail")
+#>   to your NAMESPACE file.
+#> 
+#> 0 errors ✔ | 0 warnings ✔ | 2 notes ✖
+
+```
+
+For more general information about CRAN submissions, refer to 
+
+* [CRAN itself](https://cran.r-project.org/web/packages/submission_checklist.html)
+ whose checklist suggest using R-hub :-);
+
+* [this book chapter](https://r-pkgs.org/release.html#release-process);
+
+* [this collaborative list](https://github.com/ThinkR-open/prepare-for-cran).
+
+## Get more info and help
+
+The R-hub builder has a [documentation website](https://docs.r-hub.io/).
+
+If you need further help with the `rhub` package or the R-hub package builder 
+in general (e.g. if you think a system dependency is missing), please refer
+to:
+
+* [R-hub community on gitter](https://gitter.im/r-hub/community);
+
+* [`rhub` issue tracker, for any feedback](https://github.com/r-hub/rhub).
+
+* If you need to communicate sensitive information, contact admin@r-hub.io Otherwise please use the two public spaces mentioned above.

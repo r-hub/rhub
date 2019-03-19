@@ -7,12 +7,12 @@
 list_validated_emails()
 }
 \value{
-A data frame with two columns: \code{email} and \code{token}.
+A \code{data.frame} with two columns: \code{email} and \code{token}.
 If in interactive mode, and there are no validated email addresses,
 then a message is printed and the data frame is returned invisibly.
 }
 \description{
-List validated email addresses
+List email addresses validated on R-hub on the current machine.
 }
 \seealso{
 Other email validation: \code{\link{validate_email}}
