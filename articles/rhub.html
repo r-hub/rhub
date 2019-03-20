@@ -120,7 +120,8 @@
 <p><code><a href="../reference/check.html">check()</a></code> runs an <code>R CMD check</code> on the package in the specified directory, or specified source R package tarball created by <code>R CMD build</code> or <code><a href="https://www.rdocumentation.org/packages/devtools/topics/build">devtools::build()</a></code>. It defaults to the working directory.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/check.html">check</a></span>()</a></code></pre></div>
 <p>If the <code>platform</code> argument is NULL, and the R session is interactive, then a menu is shown. If it is NULL, and the session is not interactive, then the default R-hub platform <code>platforms()$name[1]</code>, i.e. debian-gcc-devel, is used.</p>
-<p>In interactive R sessions, the output of the check is printed to the screen unless you set the <code>show_status</code> argument to <code>FALSE</code>. In all cases, you will receive a notification email with results after the build.</p>
+<p>In interactive R sessions, the output of the check is printed to the screen unless you set the <code>show_status</code> argument to <code>FALSE</code>. Therefore, by default, your R session is busy showing the log until the build is finished, so set <code>show_status</code> to <code>FALSE</code> if you want to submit a check and then go on with your work in the same session.</p>
+<p>In all cases, you will receive a notification email with results after the build.</p>
 <div class="figure">
 <img src="figures/check-output.gif" alt="recording of a check on a screen"><p class="caption">recording of a check on a screen</p>
 </div>
