@@ -20,8 +20,8 @@
 #' @param check_args Extra arguments for the `R CMD check` command.
 #' @param env_vars Environment variables to set on the builder machine
 #'   before the check. A named character vector.
-#' @param show_status Whether to show the status of the build as it is
-#'   happening.
+#' @param show_status Whether to show the status of the build (live log) as
+#'  it is happening.
 #' @return An [rhub_check] object.
 #'
 #' @export

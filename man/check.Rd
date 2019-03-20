@@ -34,8 +34,8 @@ Linux currently, and ignored on other platforms.}
 \item{env_vars}{Environment variables to set on the builder machine
 before the check. A named character vector.}
 
-\item{show_status}{Whether to show the status of the build as it is
-happening.}
+\item{show_status}{Whether to show the status of the build (live log) as
+it is happening.}
 }
 \value{
 An \link{rhub_check} object.
