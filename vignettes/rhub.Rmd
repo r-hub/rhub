@@ -64,8 +64,12 @@ default R-hub platform `platforms()$name[1]`, i.e. `r platforms()$name[1]`,
 is used.
 
 In interactive R sessions, the output of the check is printed to
-the screen unless you set the `show_status` argument to `FALSE`. In all cases,
- you will receive a notification email with results after the build.
+the screen unless you set the `show_status` argument to `FALSE`. Therefore, 
+by default, your R session is busy showing the log until the build is finished, 
+so set `show_status` to `FALSE` if you want to submit a check and then go on 
+with your work in the same session.
+
+In all cases, you will receive a notification email with results after the build.
 
 ![recording of a check on a screen](figures/check-output.gif)
 
