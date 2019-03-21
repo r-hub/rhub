@@ -3,6 +3,8 @@ baseurl <- function() {
   paste0(Sys.getenv("RHUB_SERVER", "https://builder.r-hub.io"), "/api")
 }
 
+rhub_server <- baseurl
+
 endpoints <- list(
   c("GET PLATFORMS",       "GET",  "/platform/list",        FALSE),
   c("VALIDATE EMAIL",      "POST", "/check/validate_email", FALSE),
