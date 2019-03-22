@@ -72,11 +72,7 @@ check_list_details <- function(self, private, super) {
 }
 
 check_list_summary <- function(self, private, ...) {
-
-  if (is.null(private$status_)) {
-    cat("Updating status...\n")
-    self$update()
-  }
+  self$update()
 
   x <- private$status_
 
@@ -116,8 +112,7 @@ check_list_print <- function(self, private, ...) {
 
   summary <- self$summary()
 
-  print(summary,
-  row.names = FALSE)
+  print(summary, row.names = FALSE)
 
   invisible(self)
 }

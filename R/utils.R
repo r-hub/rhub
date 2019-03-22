@@ -82,3 +82,7 @@ get_group <- function(l){
 cat0 <- function(..., sep = "") {
   cat(..., sep = sep)
 }
+
+map_lgl <- function(.x, .f, ...) {
+  vapply(.x, .f, logical(1), ...)
+}

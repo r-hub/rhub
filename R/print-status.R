@@ -1,9 +1,6 @@
 
 check_print <- function(self, private, ...) {
-  if (is.null(private$status_)) {
-    cat("Updating status...\n")
-    self$update()
-  }
+  self$update()
   for (x in private$status_) check_print2(x)
   invisible(self)
 }

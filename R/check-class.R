@@ -108,7 +108,27 @@ check_init <- function(self, private, ids, status) {
 }
 
 check_update <- function(self, private) {
-  private$status_ <- query("GET STATUS", data = list(id = private$ids_))
+  ## Check which ones need update. We need to update if we don't know
+  ## anything about the id, or if it has not finished yet.
+  cached <- lapply(private$ids_, cache_get)
+  need_upd <- map_lgl(cached, function(x) {
+    is.null(x) || x$status %in% c("created", "in-progress")
+  })
+
+  if (any(need_upd)) {
+    ## Update
+    message("Updating status...")
+    upd <- query("GET STATUS", data = list(id = private$ids_[need_upd]))
+    cached[need_upd] <- upd
+
+    ## Update the cache
+    for (i in seq_along(upd)) cache_put(private$ids_[need_upd][i], upd[[i]])
+  }
+
+  ## Update the object, we always do this, in case the object is outdated,
+  ## but the cache is not
+  private$status_ <- cached
+
   invisible(self)
 }
 
@@ -154,10 +174,7 @@ select_ids <- function(which, self, private){
 
 check_cran_summary <- function(self, private, ...) {
 
-  if (is.null(private$status_)) {
-    cat("Updating status...\n")
-    self$update()
-  }
+  self$update()
 
   x <- private$status_
 
