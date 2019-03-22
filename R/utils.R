@@ -83,6 +83,18 @@ cat0 <- function(..., sep = "") {
   cat(..., sep = sep)
 }
 
+map <- function(.x, .f, ...) {
+  lapply(.x, .f, ...)
+}
+
 map_lgl <- function(.x, .f, ...) {
   vapply(.x, .f, logical(1), ...)
+}
+
+map_chr <- function(.x, .f, ...) {
+  vapply(.x, .f, character(1), ...)
+}
+
+map_int <- function(.x, .f, ...) {
+  vapply(.x, .f, integer(1), ...)
 }

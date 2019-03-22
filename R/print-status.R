@@ -1,5 +1,5 @@
 
-check_print <- function(self, private, ...) {
+check_print <- function(self, private) {
   self$update()
   for (x in private$status_) check_print2(x)
   invisible(self)

@@ -50,14 +50,7 @@
 #' `CTRL+c` or `ESC`.
 #'
 #' @name rhub_check
-#' @examples
-#' \dontrun{
-#' check()
-#' ch <- last_check()
-#' ch$update()
-#' ch$browse()
-#' ch$livelog()
-#' }
+#' @keywords internal
 NULL
 
 #' @importFrom R6 R6Class

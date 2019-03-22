@@ -37,8 +37,7 @@ list_my_checks <- function(email = email_address(), package = NULL,
 
   if (length(response) > howmany) response <- response[seq_len(howmany)]
 
-  rhub_check_list$new(ids = names(response),
-                      status = unlist(response, recursive = FALSE))
+  make_check_list(response)
 }
 
 
@@ -77,6 +76,29 @@ list_package_checks <- function(package = ".", email = NULL, howmany = 20) {
 
   if (length(response) > howmany) response <- response[seq_len(howmany)]
 
-  rhub_check_list$new(ids = names(response),
-                      status = unlist(response, recursive = FALSE))
+  make_check_list(response)
+}
+
+make_check_list <- function(response) {
+  data <- unlist(response, recursive = FALSE)
+
+  df <- tibble::tibble(
+    package = map_chr(data, "[[", "package"),
+    version = map_chr(data, "[[", "version"),
+    status = map_chr(data, "[[", "status"),
+    group = map_chr(data, "[[", "group"),
+    id = map_chr(data, "[[", "id"),
+    result = map(data, function(x) x$result),
+    email = map_chr(data, "[[", "email"),
+    submitted = map_chr(data, "[[", "submitted"),
+    started = map_chr(data, function(x) x$started %||% NA_character_),
+    build_time = map_int(data, function(x) {
+      suppressWarnings(as.integer(x$build_time)) %||% NA_integer_
+    }),
+    platform_name = map_chr(data, function(x) x$platform$name),
+    platform = map(data, "[[", "platform"),
+    builder = map_chr(data, function(x) x$builder_machine %||% NA_character_)
+  )
+
+  df
 }
