@@ -19,7 +19,7 @@ Roxygen: list(markdown = TRUE)
 Imports:
     assertthat,
     callr,
-    clisymbols,
+    cli,
     crayon,
     desc,
     digest,

@@ -1,6 +1,6 @@
 
 #' @importFrom crayon make_style
-#' @importFrom clisymbols symbol
+#' @importFrom cli symbol
 
 header_line <- function(x) {
 
@@ -15,7 +15,7 @@ header_line <- function(x) {
 }
 
 #' @importFrom crayon yellow
-#' @importFrom clisymbols symbol
+#' @importFrom cli symbol
 
 title_line <- function(x) {
 
