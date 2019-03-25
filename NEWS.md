@@ -1,4 +1,4 @@
-# rhub 1.0.2.999
+# rhub 1.1.0
 
 ## New features
 
