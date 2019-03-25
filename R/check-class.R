@@ -283,7 +283,7 @@ first_line <- function(x) {
 
 #' Retrieve the result of R-hub checks
 #'
-#' @param ids One of the folowing:
+#' @param ids One of the following:
 #'  - A single R-hub check id. It may also be the beginning of the hash
 #'    of the id (i.e. the part after the last dash), if that check was
 #'    listed in the current session.

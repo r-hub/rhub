@@ -7,7 +7,7 @@
 get_check(ids)
 }
 \arguments{
-\item{ids}{One of the folowing:
+\item{ids}{One of the following:
 \itemize{
 \item A single R-hub check id. It may also be the beginning of the hash
 of the id (i.e. the part after the last dash), if that check was
