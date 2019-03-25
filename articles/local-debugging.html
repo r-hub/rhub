@@ -367,7 +367,7 @@
 <pre><code>docker container start 7181196d-bc3c-4fc8-a0e8-dc511150335d-2
 docker exec -it 7181196d-bc3c-4fc8-a0e8-dc511150335d-2 bash</code></pre>
 <p>where <code>7181196d-bc3c-4fc8-a0e8-dc511150335d-2</code> is the container name, this is printed out by <code><a href="../reference/local_check_linux.html">local_check_linux()</a></code>. After running these commands, you will get a shell within the Docker container, where you can run R. Note that on some containers R is installed in <code>/opt/</code>.</p>
-<p>For more information, you may want to look at the shell script that rhub uses to set up the container for running the check. To find it, run the code below.</p>
+<p>For more information, you may want to look at the shell script that <code>rhub</code> uses to set up the container for running the check. To find it, run the code below.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="dt">package =</span> <span class="st">"rhub"</span>, <span class="st">"bin"</span>, <span class="st">"rhub-linux-docker.sh"</span>)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; [1] "/home/travis/R/Library/rhub/bin/rhub-linux-docker.sh"</span></a></code></pre></div>
 </div>
