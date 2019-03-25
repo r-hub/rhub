@@ -4,7 +4,7 @@
 #' @description Run a package check locally, in a Docker container. UNTESTED
 #' ON WINDOWS, bug reports welcome. :-)
 #'
-#' @param quiet Whether to print the build output
+#' @param quiet Whether to print the check output
 #' @param image Docker image to use. If `NULL`, a default image is selected.
 #' @param valgrind Whether to run the check with Valgrind.
 #' @param timeout Timeout for a check, a `difftime` object or a scalar

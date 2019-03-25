@@ -5,7 +5,7 @@ handle_id <- function(x) {
   } else if (inherits(x, "rhub_handle")) {
     unname(vapply(x, "[[", "", "id"))
   } else {
-    stop("Invalid R-hub build id")
+    stop("Invalid R-hub check id")
   }
 }
 
@@ -14,11 +14,11 @@ handle_id <- function(x) {
 print.rhub_handle <- function(x, ...) {
   id <- handle_id(x)
   if (length(id) == 1) {
-    cat("R-hub build: ", id, "\n", sep = "")
+    cat("R-hub check: ", id, "\n", sep = "")
 
   } else {
     cat(
-      "R-hub builds:\n",
+      "R-hub checks:\n",
       paste("  ", id, collapse = "\n")
     )
   }

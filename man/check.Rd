@@ -21,7 +21,7 @@ R-hub platforms is used. Can take a vector of platforms which saves
 time by building one R package tarball that is used for all the
 platforms specified.}
 
-\item{email}{Email address to send notification to about the build.
+\item{email}{Email address to send notification to about the check.
 It must be a validated email address, see \code{\link[=validate_email]{validate_email()}}. If
 \code{NULL}, then the email address of the maintainer is used, as defined
 in the \code{DESCRIPTION} file of the package.}
@@ -34,8 +34,8 @@ Linux currently, and ignored on other platforms.}
 \item{env_vars}{Environment variables to set on the builder machine
 before the check. A named character vector.}
 
-\item{show_status}{Whether to show the status of the build (live log) as
-it is happening.}
+\item{show_status}{Whether to show the status of the build and check
+(live log) as it is happening.}
 }
 \value{
 An \link{rhub_check} object.

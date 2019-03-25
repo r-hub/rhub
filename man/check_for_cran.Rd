@@ -13,7 +13,7 @@ check_for_cran(path = ".", email = NULL, check_args = "--as-cran",
 source R package tarball built with \code{R CMD build} or
 \code{devtools::build()}.}
 
-\item{email}{Email address to send notification to about the build.
+\item{email}{Email address to send notification to about the check.
 It must be a validated email address, see \code{\link[=validate_email]{validate_email()}}. If
 \code{NULL}, then the email address of the maintainer is used, as defined
 in the \code{DESCRIPTION} file of the package.}

@@ -13,7 +13,7 @@ local_check_linux(path = ".", quiet = FALSE, image = NULL,
 source R package tarball built with \code{R CMD build} or
 \code{devtools::build()}.}
 
-\item{quiet}{Whether to print the build output}
+\item{quiet}{Whether to print the check output}
 
 \item{image}{Docker image to use. If \code{NULL}, a default image is selected.}
 
