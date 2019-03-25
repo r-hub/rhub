@@ -163,12 +163,39 @@ is 20.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <code><a href='rhub_check_list.html'>rhub_check_list</a></code> object.</p>
+    <p>A <a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble</a> with columns:</p><ul>
+<li><p>package Name of the package.</p></li>
+<li><p>version Package version.</p></li>
+<li><p>result: More detailed result of the check. Can be <code>NULL</code> for errors.
+This is a list column with members: <code>status</code>, <code>errors</code>, <code>warnings</code>,
+<code>notes</code>.</p></li>
+<li><p>group: R-hub check group id.</p></li>
+<li><p>id: `R-hub check id.</p></li>
+<li><p>platform_name: Name of rthe check platform.</p></li>
+<li><p>build_time: Build time, a <a href='https://www.rdocumentation.org/packages/base/topics/difftime'>difftime</a> object.</p></li>
+<li><p>submitted: Time of submission.</p></li>
+<li><p>started: Time of the check start.</p></li>
+<li><p>platform: Detailed platform data, a list column.</p></li>
+<li><p>builder: Name of the builder machine.</p></li>
+<li><p>status Status of the check. Possible values:</p><ul>
+<li><p><code>created</code>: check job was created, but not running yet.</p></li>
+<li><p><code>in-progress</code>: check job is running.</p></li>
+<li><p><code>parseerror</code>: internal R-hub error parsing the check results.</p></li>
+<li><p><code>preperror</code>: check error, before the package check has started.</p></li>
+<li><p><code>aborted</code>: aborted by admin or user.</p></li>
+<li><p><code>error</code>: failed check. (Possibly warnings and notes as well.)</p></li>
+<li><p><code>warning</code>: <code>R CMD check</code> reported warnings. (Possibly notes as well.)</p></li>
+<li><p><code>note</code>: <code>R CMD check</code> reported notes.</p></li>
+<li><p><code>ok</code>: successful check.</p></li>
+</ul></li>
+<li><p>email: Email address of maintainer / submitter.</p></li>
+</ul>
+
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>ch</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='list_my_checks.html'>list_my_checks</a></span>()
+<span class='no'>ch</span> <span class='kw'>&lt;-</span> <span class='fu'>list_package_checks</span>()
 <span class='no'>ch</span>
 <span class='no'>ch</span>$<span class='fu'>details</span>(<span class='fl'>1</span>)
 <span class='co'># }</span></pre>

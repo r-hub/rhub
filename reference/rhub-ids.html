@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>An <code>rhub_check</code> object holds status and results of rhub checks — rhub_check • rhub</title>
+<title>R-hub check ids — rhub-ids • rhub</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -40,9 +40,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="An <code>rhub_check</code> object holds status and results of rhub checks — rhub_check" />
+<meta property="og:title" content="R-hub check ids — rhub-ids" />
 
-<meta property="og:description" content="An rhub_check object holds status and results of rhub checks" />
+<meta property="og:description" content="R-hub check ids" />
 
 <meta property="og:image" content="https://r-hub.github.io/rhub/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -129,69 +129,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>An <code>rhub_check</code> object holds status and results of rhub checks</h1>
+    <h1>R-hub check ids</h1>
     <small class="dont-index">Source: <a href='https://github.com/r-hub/rhub/blob/master/R/check-class.R'><code>R/check-class.R</code></a></small>
-    <div class="hidden name"><code>rhub_check.Rd</code></div>
+    <div class="hidden name"><code>rhub-ids.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>An <code>rhub_check</code> object holds status and results of rhub checks</p>
+    <p>R-hub check ids</p>
     
     </div>
 
         
-    <h2 class="hasAnchor" id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
+    <h2 class="hasAnchor" id="r-hub-ids"><a class="anchor" href="#r-hub-ids"></a>R-hub ids</h2>
 
-    <pre>ch &lt;- rhub_check$new(ids = NULL, status = NULL, group = NULL)
-ch$update()
-ch$print(...)
-ch$browse(which = NULL)
-ch$urls(which = NULL)
-ch$livelog(which = 1)
-ch$cran_summary()
+    
+    <p>Every R-hub check has a unique id, that is constructed from the
+name of the source package archive, and a random string. For example:</p><pre>devtools_2.0.0.tar.gz-fe53bbba85de4a579f6dc3b852bf76a3
 </pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <h2 class="hasAnchor" id="r-hub-group-ids"><a class="anchor" href="#r-hub-group-ids"></a>R-hub group ids</h2>
 
     
-    <ul>
-<li><p><code>ch</code> An rhub check object. It can be created using <code><a href='check.html'>check()</a></code>,
-and other check functions including <code><a href='check_for_cran.html'>check_for_cran</a></code>.
-See also <code><a href='last_check.html'>last_check()</a></code>.</p></li>
-<li><p><code>ids</code> Character vector of check ids.</p></li>
-<li><p><code>status</code> Check status for <code>ids</code> or <code>group</code>.</p></li>
-<li><p><code>group</code> Check group id, string scalar. Either <code>group</code> or <code>ids</code> must
-be non-<code>NULL</code>.</p></li>
-<li><p><code>...</code> Extra arguments are currently ignored.</p></li>
-<li><p><code>which</code> Which check to show, if the object contains multiple
-checks. For <code>browse</code> the default is all checks. For <code>livelog</code> the
-default is the first check. A check can be selected via its number
-or id.</p></li>
-</ul>
+    <p>For every check submission, R-hub also creates a unique check group id.
+One check group may contain multiple checks. E.g. <code><a href='check_for_cran.html'>check_for_cran()</a></code>
+typically creates three or four check groups. Group ids look the same
+as individual check ids.</p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="abbreviating-ids"><a class="anchor" href="#abbreviating-ids"></a>Abbreviating ids</h2>
 
     
-    <p>An <code>rhub_check</code> object can be created by <code><a href='check.html'>check()</a></code>, <code><a href='list_my_checks.html'>list_my_checks()</a></code>,
-or <code><a href='list_package_checks.html'>list_package_checks()</a></code>. <code><a href='last_check.html'>last_check()</a></code> returns the last check(s)
-submitted from the current R session. Do not confuse <code>rhub_check</code>/<code>rhub_check_for_cran</code>
-(classes) with <code><a href='check.html'>check()</a></code> or <code><a href='check_for_cran.html'>check_for_cran()</a></code> (functions).</p>
-<p><code>ch$update()</code> updates the status of the check. Printing the check
-status to the screen does not perform an update, unless the status of
-the check(s) is unknown.</p>
-<p><code>ch$print()</code> prints the status of the check(s) to the screen.</p>
-<p><code>ch$cran_summary()</code> prints text to be copy-pasted in cran-comments.md,
-it is especially useful on the output of <code><a href='check_for_cran.html'>check_for_cran()</a></code>.</p>
-<p><code>ch$browse()</code> opens a tab or window in the default web browser, that points
-to the detailed logs of the check(s).</p>
-<p><code>ch$urls()</code> return a table with URL to the html log, text log and artifacts
-of the check(s).</p>
-<p>For both <code>ch$browse()</code> and <code>ch$urls()</code>, note that the logs and artifacts
-are not kept forever, they are accessible for a few days after submission.</p>
-<p><code>ch$livelog()</code> shows the live log of the check. The live log can be
-interrupted using the usual interruption keyboard shortcut, usually
-<code>CTRL+c</code> or <code>ESC</code>.</p>
+    <p>The rhub package keeps a list of all the checks that it has seen in the
+current session, and these checks can be also referenced by any unique
+prefix of the random string part of the id, e.g. in the <code><a href='get_check.html'>get_check()</a></code>
+function. E.g. if rhub already know the devtools check above, then</p><pre>get_check("fe53bbb")
+</pre>
+    <p>works.</p>
+<p>This is only recommended in interactive mode, and we suggest that you
+always use the full ids when using rhub programmatically.</p>
     
 
   </div>
@@ -199,11 +174,11 @@ interrupted using the usual interruption keyboard shortcut, usually
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
-      <li><a href="#usage">Usage</a></li>
+      <li><a href="#r-hub-ids">R-hub ids</a></li>
 
-      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#r-hub-group-ids">R-hub group ids</a></li>
 
-      <li><a href="#details">Details</a></li>
+      <li><a href="#abbreviating-ids">Abbreviating ids</a></li>
           </ul>
 
   </div>

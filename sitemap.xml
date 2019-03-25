@@ -13,6 +13,9 @@
     <loc>https://r-hub.github.io/rhub/reference/check_shortcuts.html</loc>
   </url>
   <url>
+    <loc>https://r-hub.github.io/rhub/reference/get_check.html</loc>
+  </url>
+  <url>
     <loc>https://r-hub.github.io/rhub/reference/last_check.html</loc>
   </url>
   <url>
@@ -34,13 +37,13 @@
     <loc>https://r-hub.github.io/rhub/reference/platforms.html</loc>
   </url>
   <url>
+    <loc>https://r-hub.github.io/rhub/reference/rhub-ids.html</loc>
+  </url>
+  <url>
     <loc>https://r-hub.github.io/rhub/reference/rhub-package.html</loc>
   </url>
   <url>
     <loc>https://r-hub.github.io/rhub/reference/rhub_check.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/rhub_check_list.html</loc>
   </url>
   <url>
     <loc>https://r-hub.github.io/rhub/reference/validate_email.html</loc>
