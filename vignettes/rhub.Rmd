@@ -157,39 +157,24 @@ previous_builds <- rhub::list_package_checks(<package-path>,
                                   email = "maelle.salmon@yahoo.se",
                                   howmany = 4)
 previous_builds
-#>  package version status submitted             platform
-#>     note     1.0   note   ~3m ago   fedora-clang-devel
-#>     note     1.0   note   ~3m ago windows-x86_64-devel
-#>     note     1.0   note   ~3m ago   ubuntu-gcc-release
-#>     note     1.0   note   ~7d ago windows-x86_64-devel
-#>     note     1.0   note   ~7d ago   ubuntu-gcc-release
-#>     note     1.0   note   ~7d ago   fedora-clang-devel
-#>     note     1.0     ok  ~12d ago     debian-gcc-devel
-#>     note     1.0   note  ~13d ago   fedora-clang-devel
-#>     note     1.0   note  ~13d ago windows-x86_64-devel
-#>     note     1.0   note  ~13d ago   ubuntu-gcc-release
-#>                                          group_id
-#>  note_1.0.tar.gz-a99e137a4e7640faa6ea3d7e0e8e994d
-#>  note_1.0.tar.gz-a99e137a4e7640faa6ea3d7e0e8e994d
-#>  note_1.0.tar.gz-a99e137a4e7640faa6ea3d7e0e8e994d
-#>  note_1.0.tar.gz-9ceef8e7031d4b9b97699004d86162ba
-#>  note_1.0.tar.gz-9ceef8e7031d4b9b97699004d86162ba
-#>  note_1.0.tar.gz-9ceef8e7031d4b9b97699004d86162ba
-#>  note_1.0.tar.gz-d3b8509d709e7ce30956ae764388887c
-#>  note_1.0.tar.gz-c4abbbe41c884a65a9e7dea0f166fe17
-#>  note_1.0.tar.gz-c4abbbe41c884a65a9e7dea0f166fe17
-#>  note_1.0.tar.gz-c4abbbe41c884a65a9e7dea0f166fe17
-#>                                          check_id
-#>  note_1.0.tar.gz-197fd0ee76c0492aaff7bac7f68d1fa5
-#>  note_1.0.tar.gz-2ed7302acdfd42608d171d83e390bc56
-#>  note_1.0.tar.gz-88293d95ccf2402fac9b9da3b48ef465
-#>  note_1.0.tar.gz-4f9113c77256452791043ac07787ada8
-#>  note_1.0.tar.gz-6761ed27a295401286be600994037c12
-#>  note_1.0.tar.gz-f8bc9d2e812e42ba88dae2002c300d0b
-#>  note_1.0.tar.gz-d3b8509d709e7ce30956ae764388887c
-#>  note_1.0.tar.gz-0a9b7c77e7ca49b083d439483b658b44
-#>  note_1.0.tar.gz-42cb5428d955424c83113fc40d303b58
-#>  note_1.0.tar.gz-7cf1c5f8132c4195a03b0cb75d2f908a
+```
+
+```r
+# A tibble: 10 x 13
+   package version result group   id      platform_name build_time
+   <chr>   <chr>   <rhub> <rhub:> <rhub:> <chr>         <time>    
+ 1 note    1.0     NN     e863a86 00c375b windows-x86_… ~1m       
+ 2 note    1.0     NN     e863a86 5d67129 fedora-clang… ~1m       
+ 3 note    1.0     NN     e863a86 61a7543 ubuntu-gcc-r… ~53.2s    
+ 4 note    1.0     NN     a99e137 197fd0e fedora-clang… ~46s      
+ 5 note    1.0     NN     a99e137 2ed7302 windows-x86_… ~1m       
+ 6 note    1.0     NN     a99e137 88293d9 ubuntu-gcc-r… ~36.7s    
+ 7 note    1.0     NN     9ceef8e 4f9113c windows-x86_… ~1m       
+ 8 note    1.0     NN     9ceef8e 6761ed2 ubuntu-gcc-r… ~35.9s    
+ 9 note    1.0     N      9ceef8e f8bc9d2 fedora-clang… ~57.9s    
+10 note    1.0     ok     d3b8509 d3b8509 debian-gcc-d… ~45.5s    
+# … with 6 more variables: submitted <dttm>, started <dttm>, platform <list>,
+#   builder <chr>, status <rhub::status>, email <chr>
 ```
 
 You can then extract builds from this list using their `group_id` (ID for 
@@ -200,118 +185,121 @@ Here's an example where we extract the last group of builds, print it to the
 screen, and query its URLs. 
 
 ```r
-group_id <- previous_builds$summary()$group_id[1]
-group_check <- previous_builds$get_group(group_id)
+group_id <- previous_builds$group[1]
+group_check <- rhub::get_check(group_id)
 group_check
-#> Updating status...
-#> 
-#> ── note 1.0: NOTE
-#> 
-#>   Build ID:   note_1.0.tar.gz-197fd0ee76c0492aaff7bac7f68d1fa5
-#>   Platform:   Fedora Linux, R-devel, clang, gfortran
-#>   Submitted:  6m 18.7s ago
-#>   Build time: 46s
-#> 
-#> ❯ checking CRAN incoming feasibility ... NOTE
-#>   Maintainer: ‘Maëlle Salmon <maelle.salmon@yahoo.se>’
-#>   
-#>   New submission
-#>   
-#>   The Description field contains
-#>     <http://http://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file>
-#>   Please enclose URLs in angle brackets (<...>).
-#>   
-#>   The Date field is over a month old.
-#> 
-#> ❯ checking R code for possible problems ... NOTE
-#>   .bello: no visible global function definition for ‘tail’
-#>   Undefined global functions or variables:
-#>     tail
-#>   Consider adding
-#>     importFrom("utils", "tail")
-#>   to your NAMESPACE file.
-#> 
-#> 0 errors ✔ | 0 warnings ✔ | 2 notes ✖
-#> 
-#> ── note 1.0: NOTE
-#> 
-#>   Build ID:   note_1.0.tar.gz-2ed7302acdfd42608d171d83e390bc56
-#>   Platform:   Windows Server 2008 R2 SP1, R-devel, 32/64 bit
-#>   Submitted:  6m 19s ago
-#>   Build time: 1m 41.4s
-#> 
-#> ❯ checking CRAN incoming feasibility ... NOTE
-#>   Maintainer: 'Ma�lle Salmon <maelle.salmon@yahoo.se>'
-#>   
-#>   New submission
-#>   The Description field contains
-#>     <http://http://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file>
-#>   
-#>   Please enclose URLs in angle brackets (<...>).
-#>   
-#>   The Date field is over a month old.
-#> 
-#> ❯ checking R code for possible problems ... NOTE
-#>   .bello: no visible global function definition for 'tail'
-#>   Undefined global functions or variables:
-#>     tail
-#>   Consider adding
-#>     importFrom("utils", "tail")
-#>   to your NAMESPACE file.
-#> 
-#> 0 errors ✔ | 0 warnings ✔ | 2 notes ✖
-#> 
-#> ── note 1.0: NOTE
-#> 
-#>   Build ID:   note_1.0.tar.gz-88293d95ccf2402fac9b9da3b48ef465
-#>   Platform:   Ubuntu Linux 16.04 LTS, R-release, GCC
-#>   Submitted:  6m 19s ago
-#>   Build time: 36.7s
-#> 
-#> ❯ checking CRAN incoming feasibility ... NOTE
-#>   Maintainer: ‘Maëlle Salmon <maelle.salmon@yahoo.se>’
-#>   
-#>   New submission
-#>   
-#>   The Date field is over a month old.
-#> 
-#> ❯ checking R code for possible problems ... NOTE
-#>   .bello: no visible global function definition for ‘tail’
-#>   Undefined global functions or variables:
-#>     tail
-#>   Consider adding
-#>     importFrom("utils", "tail")
-#>   to your NAMESPACE file.
-#> 
-#> 0 errors ✔ | 0 warnings ✔ | 2 notes ✖
+```
 
+```r
+── note 1.0: NOTE
+
+  Build ID:   note_1.0.tar.gz-00c375b187024da7a32c27ef94fa8832
+  Platform:   Windows Server 2008 R2 SP1, R-devel, 32/64 bit
+  Submitted:  4d 1h 44m 17.5s ago
+  Build time: 1m 46.2s
+
+❯ checking CRAN incoming feasibility ... NOTE
+  Maintainer: 'Ma�lle Salmon <maelle.salmon@yahoo.se>'
+  
+  New submission
+  The Description field contains
+  
+    <http://http://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file>
+  Please enclose URLs in angle brackets (<...>).
+  
+  The Date field is over a month old.
+
+❯ checking R code for possible problems ... NOTE
+  .bello: no visible global function definition for 'tail'
+  Undefined global functions or variables:
+    tail
+  Consider adding
+    importFrom("utils", "tail")
+  to your NAMESPACE file.
+
+0 errors ✔ | 0 warnings ✔ | 2 notes ✖
+
+── note 1.0: NOTE
+
+  Build ID:   note_1.0.tar.gz-5d6712942ce243dcb8d34f7bdfc8ccc6
+  Platform:   Fedora Linux, R-devel, clang, gfortran
+  Submitted:  4d 1h 44m 17.6s ago
+  Build time: 1m 7.2s
+
+❯ checking CRAN incoming feasibility ... NOTE
+  Maintainer: ‘Maëlle Salmon <maelle.salmon@yahoo.se>’
+  
+  New submission
+  
+  The Description field contains
+    <http://http://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file>
+  Please enclose URLs in angle brackets (<...>).
+  
+  The Date field is over a month old.
+
+❯ checking R code for possible problems ... NOTE
+  .bello: no visible global function definition for ‘tail’
+  Undefined global functions or variables:
+    tail
+  Consider adding
+    importFrom("utils", "tail")
+  to your NAMESPACE file.
+
+0 errors ✔ | 0 warnings ✔ | 2 notes ✖
+
+── note 1.0: NOTE
+
+  Build ID:   note_1.0.tar.gz-61a75439c8b64c409a72c079dce20d30
+  Platform:   Ubuntu Linux 16.04 LTS, R-release, GCC
+  Submitted:  4d 1h 44m 17.7s ago
+  Build time: 53.2s
+
+❯ checking CRAN incoming feasibility ... NOTE
+  Maintainer: ‘Maëlle Salmon <maelle.salmon@yahoo.se>’
+  
+  New submission
+  
+  The Description field contains
+    <http://http://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file>
+  Please enclose URLs in angle brackets (<...>).
+  
+  The Date field is over a month old.
+
+❯ checking R code for possible problems ... NOTE
+  .bello: no visible global function definition for ‘tail’
+  Undefined global functions or variables:
+    tail
+  Consider adding
+    importFrom("utils", "tail")
+  to your NAMESPACE file.
+
+0 errors ✔ | 0 warnings ✔ | 2 notes ✖
+```
+
+```r
 group_check$urls()
-#>                                                                                    html
-#> 1 https://builder-test.r-hub.io/status/note_1.0.tar.gz-197fd0ee76c0492aaff7bac7f68d1fa5
-#> 2 https://builder-test.r-hub.io/status/note_1.0.tar.gz-2ed7302acdfd42608d171d83e390bc56
-#> 3 https://builder-test.r-hub.io/status/note_1.0.tar.gz-88293d95ccf2402fac9b9da3b48ef465
-#>                                                                                             text
-#> 1 https://builder-test.r-hub.io/status/original/note_1.0.tar.gz-197fd0ee76c0492aaff7bac7f68d1fa5
-#> 2 https://builder-test.r-hub.io/status/original/note_1.0.tar.gz-2ed7302acdfd42608d171d83e390bc56
-#> 3 https://builder-test.r-hub.io/status/original/note_1.0.tar.gz-88293d95ccf2402fac9b9da3b48ef465
-#>                                                                     artifacts
-#> 1 https://artifacts.r-hub.io/note_1.0.tar.gz-197fd0ee76c0492aaff7bac7f68d1fa5
-#> 2 https://artifacts.r-hub.io/note_1.0.tar.gz-2ed7302acdfd42608d171d83e390bc56
-#> 3 https://artifacts.r-hub.io/note_1.0.tar.gz-88293d95ccf2402fac9b9da3b48ef465
+```
 
+```r
+# A tibble: 3 x 4
+  html                 text                 artifacts             stringsAsFactors
+  <chr>                <chr>                <chr>                 <lgl>           
+1 https://builder-tes… https://builder-tes… https://artifacts.r-… FALSE           
+2 https://builder-tes… https://builder-tes… https://artifacts.r-… FALSE           
+3 https://builder-tes… https://builder-tes… https://artifacts.r-… FALSE  
 ```
 
 We could similarly extract the last build.
 
 ```r
-check_id <- previous_builds$summary()$check_id[1]
-previous_builds$get_check(check_id)
+check_id <- previous_builds$id[1]
+rhub::get_check(check_id)
 ```
 
 ## Prepare a CRAN submission
 
 First, run `check_for_cran()` and assign the result to an object (or retrieve 
-the results from a previous `check_for_cran()` submission by its `group_id` 
+the results from a previous `check_for_cran()` submission by its `group` ID 
 as shown in the previous subsection). Then once the builds are done, 
 use the `cran_summary()` method to get a message that you can copy-paste in 
 your cran-comments.md file (created via e.g. `usethis::use_cran_comments()`).
