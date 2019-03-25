@@ -16,7 +16,7 @@ If \code{NULL}, then the maintainer address is used.}
 is 20.}
 }
 \value{
-A tibble with columns:
+A \link[tibble:tibble]{tibble::tibble} with columns:
 \itemize{
 \item package Name of the package.
 \item version Package version.

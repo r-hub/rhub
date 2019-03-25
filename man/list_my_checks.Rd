@@ -18,7 +18,7 @@ the search for a single package.}
 to show. The current API limit is 20.}
 }
 \value{
-A tibble with columns:
+A \link[tibble:tibble]{tibble::tibble} with columns:
 \itemize{
 \item package Name of the package.
 \item version Package version.

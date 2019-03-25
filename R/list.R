@@ -8,7 +8,7 @@
 #'   the search for a single package.
 #' @param howmany How many check groups (checks submitted simultaneously)
 #'   to show. The current API limit is 20.
-#' @return A tibble with columns:
+#' @return A [tibble::tibble] with columns:
 #'   * package Name of the package.
 #'   * version Package version.
 #'   * result: More detailed result of the check. Can be `NULL` for errors.
