@@ -24,16 +24,28 @@ cache_put <- function(id, status) {
   invisible()
 }
 
-cache_put_id <- function(id) {
-  if (! id %in% package_data$ids) {
-    package_data$ids <- c(id, package_data$ids)
-  }
+cache_put_ids <- function(id) {
+  id <- unique(setdiff(id, package_data$ids))
+  if (length(id)) package_data$ids <- c(id, package_data$ids)
 }
 
-cache_put_group_id <- function(id) {
-  if (!is.null(id)) {
-    if (! id %in% package_data$groups) {
-      package_data$groups <- c(id, package_data$groups)
-    }
-  }
+cache_put_group_ids <- function(id) {
+  id <- unique(setdiff(id, package_data$groups))
+  if (length(id)) package_data$groups <- c(id, package_data$groups)
+}
+
+cache_get_ids <- function(ids) {
+  w <- match_partial(ids, package_data$ids)
+  package_data$ids[w]
+}
+
+cache_get_group_ids <- function(ids) {
+  w <- match_partial(ids, package_data$groups)
+  package_data$groups[w]
+}
+
+match_partial <- function(x, table) {
+  hash <- sub("^.*-", "", table)
+  m <- match(x, table)
+  ifelse(is.na(m), pmatch(x, hash), m)
 }

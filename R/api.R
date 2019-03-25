@@ -10,6 +10,7 @@ endpoints <- list(
   c("VALIDATE EMAIL",      "POST", "/check/validate_email", FALSE),
   c("SUBMIT PACKAGE",      "POST", "/check/submit",         FALSE),
   c("GET STATUS",          "POST", "/status",               FALSE),
+  c("GET GROUP STATUS",    "GET",  "/status/group/:id",     FALSE),
   c("LIST BUILDS EMAIL",   "GET",  "/list/:email",          TRUE),
   c("LIST BUILDS PACKAGE", "GET",  "/list/:email/:package", TRUE),
   c("LIVE LOG",            "GET",  "/livelog/text/:id",     FALSE)

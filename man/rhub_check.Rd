@@ -7,7 +7,8 @@
 An \code{rhub_check} object holds status and results of rhub checks
 }
 \section{Usage}{
-\preformatted{ch$update()
+\preformatted{ch <- rhub_check$new(ids = NULL, status = NULL, group = NULL)
+ch$update()
 ch$print(...)
 ch$browse(which = NULL)
 ch$livelog(which = 1)
@@ -20,6 +21,10 @@ ch$livelog(which = 1)
 \item \code{ch} An rhub check object. It can be created using \code{\link[=check]{check()}},
 and other check functions including \code{\link{check_for_cran}}.
 See also \code{\link[=last_check]{last_check()}}.
+\item \code{ids} Character vector of check ids.
+\item \code{status} Check status for \code{ids} or \code{group}.
+\item \code{group} Check group id, string scalar. Either \code{group} or \code{ids} must
+be non-\code{NULL}.
 \item \code{...} Extra arguments are currently ignored.
 \item \code{which} Which check to show, if the object contains multiple
 checks. For \code{browse} the default is all checks. For \code{livelog} the

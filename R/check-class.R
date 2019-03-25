@@ -3,6 +3,7 @@
 #'
 #' @section Usage:
 #' ```
+#' ch <- rhub_check$new(ids = NULL, status = NULL, group = NULL)
 #' ch$update()
 #' ch$print(...)
 #' ch$browse(which = NULL)
@@ -13,6 +14,10 @@
 #' * `ch` An rhub check object. It can be created using [`check()`],
 #'   and other check functions including [`check_for_cran`].
 #'   See also [last_check()].
+#' * `ids` Character vector of check ids.
+#' * `status` Check status for `ids` or `group`.
+#' * `group` Check group id, string scalar. Either `group` or `ids` must
+#'   be non-`NULL`.
 #' * `...` Extra arguments are currently ignored.
 #' * `which` Which check to show, if the object contains multiple
 #'   checks. For `browse` the default is all checks. For `livelog` the
@@ -60,8 +65,8 @@ rhub_check <- R6Class(
 
   public = list(
 
-    initialize = function(ids, status = NULL)
-      check_init(self, private, ids, status),
+    initialize = function(ids = NULL, status = NULL, group = NULL)
+      check_init(self, private, ids, status, group),
 
     update = function()
       check_update(self, private),
@@ -87,20 +92,37 @@ rhub_check <- R6Class(
 
   private = list(
     ids_ = NULL,                        # character vector of ids
+    group_ = NULL,                      # group id
     status_ = NULL,                     # list of status objects, as in DB
     status_updated_ = NULL              # last time status was updated
   )
 )
 
-check_init <- function(self, private, ids, status) {
-  assert_that(is_check_ids(ids))
+check_init <- function(self, private, ids, status, group) {
+  assert_that(
+    is_check_ids(ids) || is.null(ids),
+    (is_check_ids(group) && length(group) == 1) || is.null(group),
+    !is.null(ids) || !is.null(group))
+
   private$ids_ <- ids
+  private$group_ <- group
   private$status_ <- status
   status_updated_ <- Sys.time()
   invisible(self)
 }
 
 check_update <- function(self, private) {
+  ## If it is a group, we need to get the ids first. This also updates
+  ## the status of the individual checks
+  if (!is.null(private$group_) && is.null(private$ids_)) {
+    grp <- query("GET GROUP STATUS", list(id = private$group_))
+    private$ids_ <- map_chr(grp, "[[", "id")
+    private$status_ <- grp
+    private$status_updated_ <- Sys.time()
+    for (i in seq_along(grp)) cache_put(grp[[i]]$id, grp[[i]])
+    return(invisible(self))
+  }
+
   ## Check which ones need update. We need to update if we don't know
   ## anything about the id, or if it has not finished yet.
   cached <- lapply(private$ids_, cache_get)
@@ -121,6 +143,7 @@ check_update <- function(self, private) {
   ## Update the object, we always do this, in case the object is outdated,
   ## but the cache is not
   private$status_ <- cached
+  private$status_updated_ <- Sys.time()
 
   invisible(self)
 }
@@ -256,4 +279,47 @@ hash_check <- function(check) {
 first_line <- function(x) {
   l <- strsplit(x, "\n", fixed = TRUE)
   vapply(l, "[[", "", 1)
+}
+
+#' Retrieve the result of R-hub checks
+#'
+#' @param ids One of the folowing:
+#'  - A single R-hub check id. It may also be the beginning of the hash
+#'    of the id (i.e. the part after the last dash), if that check was
+#'    listed in the current session.
+#'  - A character vector of check ids. (Or their partial hashes.)
+#'  - An R-hub check group id. (Or its partial hash.)
+#' @return An [rhub_check] object.
+#'
+#' @export
+#' @seealso [list_my_checks()] and [list_package_checks()] to list
+#' R-hub checks.
+
+get_check <- function(ids) {
+  assert_that(is_check_ids(ids))
+
+  sle <- cache_get_ids(ids)
+  grp <- cache_get_group_ids(ids)
+
+  err <- NULL
+
+  ## If we are not sure that it is a group id, then query single ids
+  res <- if (length(ids) > 1 || is.na(grp)) {
+    ids2 <- ifelse(is.na(sle), ids, sle)
+    tryCatch(
+      rhub_check$new(ids2)$update(),
+      error = function(e) { err <<- e; NULL }
+    )
+  }
+
+  if (!is.null(res)) return(res)
+
+  ## If there is a chance that it is a group, then we try that as well
+  if (length(ids) == 1 && is.na(sle)) {
+    ids3 <- if (is.na(grp)) ids else grp
+    res <- rhub_check$new(group = ids3)$update()
+    res
+  } else {
+    stop(err)
+  }
 }
