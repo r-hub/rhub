@@ -20,6 +20,17 @@ A tibble with columns:
 \itemize{
 \item package Name of the package.
 \item version Package version.
+\item result: More detailed result of the check. Can be \code{NULL} for errors.
+This is a list column with members: \code{status}, \code{errors}, \code{warnings},
+\code{notes}.
+\item group: R-hub check group id.
+\item id: `R-hub check id.
+\item platform_name: Name of rthe check platform.
+\item build_time: Build time, a \link{difftime} object.
+\item submitted: Time of submission.
+\item started: Time of the check start.
+\item platform: Detailed platform data, a list column.
+\item builder: Name of the builder machine.
 \item status Status of the check. Possible values:
 \itemize{
 \item \code{created}: check job was created, but not running yet.
@@ -32,18 +43,7 @@ A tibble with columns:
 \item \code{note}: \code{R CMD check} reported notes.
 \item \code{ok}: successful check.
 }
-\item group: R-hub check group id.
-\item id: `R-hub check id.
-\item result: More detailed result of the check. Can be \code{NULL} for errors.
-This is a list column with members: \code{status}, \code{errors}, \code{warnings},
-\code{notes}.
 \item email: Email address of maintainer / submitter.
-\item submitted: Time of submission.
-\item started: Time of the check start.
-\item build_time: Build time, a \link{difftime} object.
-\item platform_name: Name of rthe check platform.
-\item platform: Detailed platform data, a list column.
-\item builder: Name of the builder machine.
 }
 }
 \description{

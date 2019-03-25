@@ -11,6 +11,17 @@
 #' @return A tibble with columns:
 #'   * package Name of the package.
 #'   * version Package version.
+#'   * result: More detailed result of the check. Can be `NULL` for errors.
+#'     This is a list column with members: `status`, `errors`, `warnings`,
+#'     `notes`.
+#'   * group: R-hub check group id.
+#'   * id: `R-hub check id.
+#'   * platform_name: Name of rthe check platform.
+#'   * build_time: Build time, a [difftime] object.
+#'   * submitted: Time of submission.
+#'   * started: Time of the check start.
+#'   * platform: Detailed platform data, a list column.
+#'   * builder: Name of the builder machine.
 #'   * status Status of the check. Possible values:
 #'     - `created`: check job was created, but not running yet.
 #'     - `in-progress`: check job is running.
@@ -21,18 +32,7 @@
 #'     - `warning`: `R CMD check` reported warnings. (Possibly notes as well.)
 #'     - `note`: `R CMD check` reported notes.
 #'     - `ok`: successful check.
-#'   * group: R-hub check group id.
-#'   * id: `R-hub check id.
-#'   * result: More detailed result of the check. Can be `NULL` for errors.
-#'     This is a list column with members: `status`, `errors`, `warnings`,
-#'     `notes`.
 #'   * email: Email address of maintainer / submitter.
-#'   * submitted: Time of submission.
-#'   * started: Time of the check start.
-#'   * build_time: Build time, a [difftime] object.
-#'   * platform_name: Name of rthe check platform.
-#'   * platform: Detailed platform data, a list column.
-#'   * builder: Name of the builder machine.
 #'
 #' @export
 #' @seealso list_package_checks
@@ -111,19 +111,19 @@ make_check_list <- function(response) {
   df <- tibble::tibble(
     package = map_chr(data, "[[", "package"),
     version = map_chr(data, "[[", "version"),
-    status = column_status(map_chr(data, "[[", "status")),
+    result = column_result(map(data, function(x) x$result)),
     group = column_group_id(map_chr(data, "[[", "group")),
     id = column_id(map_chr(data, "[[", "id")),
-    result = column_result(map(data, function(x) x$result)),
-    email = map_chr(data, "[[", "email"),
-    submitted = column_time(map_chr(data, "[[", "submitted")),
-    started = column_time(map_chr(data, function(x) x$started %||% NA_character_)),
+    platform_name = map_chr(data, function(x) x$platform$name),
     build_time = column_dt(map_int(data, function(x) {
       suppressWarnings(as.integer(x$build_time)) %||% NA_integer_
     })),
-    platform_name = map_chr(data, function(x) x$platform$name),
+    submitted = column_time(map_chr(data, "[[", "submitted")),
+    started = column_time(map_chr(data, function(x) x$started %||% NA_character_)),
     platform = map(data, "[[", "platform"),
-    builder = map_chr(data, function(x) x$builder_machine %||% NA_character_)
+    builder = map_chr(data, function(x) x$builder_machine %||% NA_character_),
+    status = column_status(map_chr(data, "[[", "status")),
+    email = map_chr(data, "[[", "email")
   )
 
   cache_put_ids(df$id)
