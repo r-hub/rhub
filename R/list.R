@@ -85,20 +85,26 @@ make_check_list <- function(response) {
   df <- tibble::tibble(
     package = map_chr(data, "[[", "package"),
     version = map_chr(data, "[[", "version"),
-    status = map_chr(data, "[[", "status"),
-    group = map_chr(data, "[[", "group"),
-    id = map_chr(data, "[[", "id"),
-    result = map(data, function(x) x$result),
+    status = column_status(map_chr(data, "[[", "status")),
+    group = column_group_id(map_chr(data, "[[", "group")),
+    id = column_id(map_chr(data, "[[", "id")),
+    result = column_result(map(data, function(x) x$result)),
     email = map_chr(data, "[[", "email"),
-    submitted = map_chr(data, "[[", "submitted"),
-    started = map_chr(data, function(x) x$started %||% NA_character_),
-    build_time = map_int(data, function(x) {
+    submitted = column_time(map_chr(data, "[[", "submitted")),
+    started = column_time(map_chr(data, function(x) x$started %||% NA_character_)),
+    build_time = column_dt(map_int(data, function(x) {
       suppressWarnings(as.integer(x$build_time)) %||% NA_integer_
-    }),
+    })),
     platform_name = map_chr(data, function(x) x$platform$name),
     platform = map(data, "[[", "platform"),
     builder = map_chr(data, function(x) x$builder_machine %||% NA_character_)
   )
 
   df
+}
+
+column_time <- function(x) {
+  res <- rep(as.POSIXct(NA_character_), length(x))
+  res[! is.na(x)] <- parse_iso_8601(x[!is.na(x)])
+  res
 }

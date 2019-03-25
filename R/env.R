@@ -1,6 +1,8 @@
 
 package_data <- new.env(parent = emptyenv())
 package_data$status <- new.env(parent = emptyenv())
+package_data$ids <- character()
+package_data$groups <- character()
 
 ## Since the status can be NULL, meaning unknown, we put all cache elements
 ## in a list of length 1.
@@ -16,6 +18,22 @@ cache_get <- function(id) {
 }
 
 cache_put <- function(id, status) {
+  cache_put_ids(id)
+  cache_put_group_ids(status$group)
   package_data$status[[id]] <- list(status)
   invisible()
+}
+
+cache_put_id <- function(id) {
+  if (! id %in% package_data$ids) {
+    package_data$ids <- c(id, package_data$ids)
+  }
+}
+
+cache_put_group_id <- function(id) {
+  if (!is.null(id)) {
+    if (! id %in% package_data$groups) {
+      package_data$groups <- c(id, package_data$groups)
+    }
+  }
 }

@@ -26,6 +26,7 @@ Imports:
     httr,
     jsonlite,
     parsedate,
+    pillar,
     prettyunits,
     processx,
     R6,
