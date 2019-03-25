@@ -132,7 +132,6 @@ check_update <- function(self, private) {
 
   if (any(need_upd)) {
     ## Update
-    message("Updating status...")
     upd <- query("GET STATUS", data = list(id = private$ids_[need_upd]))
     cached[need_upd] <- upd
 
