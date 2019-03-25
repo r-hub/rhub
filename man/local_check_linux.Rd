@@ -36,7 +36,7 @@ An \code{rcmdcheck::rcmdcheck} object, with extra fields:
 error.
 \item \code{container_name}: name of the Docker container that performed the
 build. It is a random name.
-\item \code{artifacts}: directory of build arftifacts.
+\item \code{artifacts}: directory of build artifacts.
 }
 }
 \description{

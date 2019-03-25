@@ -16,7 +16,7 @@
 #'     error.
 #'   * `container_name`: name of the Docker container that performed the
 #'      build. It is a random name.
-#'   * `artifacts`: directory of build arftifacts.
+#'   * `artifacts`: directory of build artifacts.
 #'
 #' @export
 #' @importFrom withr with_dir
