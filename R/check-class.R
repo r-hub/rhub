@@ -86,8 +86,8 @@ rhub_check <- R6Class(
     livelog = function(which = 1)
       check_livelog(self, private, which),
 
-    cran_summary = function(...)
-      check_cran_summary(self, private, ...)
+    cran_summary = function()
+      check_cran_summary(self, private)
   ),
 
   private = list(
@@ -187,7 +187,7 @@ select_ids <- function(which, self, private){
   return(ids)
 }
 
-check_cran_summary <- function(self, private, ...) {
+check_cran_summary <- function(self, private) {
 
   self$update()
 
