@@ -16,14 +16,42 @@ If \code{NULL}, then the maintainer address is used.}
 is 20.}
 }
 \value{
-An \code{\link{rhub_check_list}} object.
+A tibble with columns:
+\itemize{
+\item package Name of the package.
+\item version Package version.
+\item status Status of the check. Possible values:
+\itemize{
+\item \code{created}: check job was created, but not running yet.
+\item \code{in-progress}: check job is running.
+\item \code{parseerror}: internal R-hub error parsing the check results.
+\item \code{preperror}: check error, before the package check has started.
+\item \code{aborted}: aborted by admin or user.
+\item \code{error}: failed check. (Possibly warnings and notes as well.)
+\item \code{warning}: \code{R CMD check} reported warnings. (Possibly notes as well.)
+\item \code{note}: \code{R CMD check} reported notes.
+\item \code{ok}: successful check.
+}
+\item group: R-hub check group id.
+\item id: `R-hub check id.
+\item result: More detailed result of the check. Can be \code{NULL} for errors.
+This is a list column with members: \code{status}, \code{errors}, \code{warnings},
+\code{notes}.
+\item email: Email address of maintainer / submitter.
+\item submitted: Time of submission.
+\item started: Time of the check start.
+\item build_time: Build time, a \link{difftime} object.
+\item platform_name: Name of rthe check platform.
+\item platform: Detailed platform data, a list column.
+\item builder: Name of the builder machine.
+}
 }
 \description{
 List checks of a package
 }
 \examples{
 \dontrun{
-ch <- list_my_checks()
+ch <- list_package_checks()
 ch
 ch$details(1)
 }

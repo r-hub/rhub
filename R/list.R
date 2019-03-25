@@ -6,10 +6,36 @@
 #'   [validate_email()].
 #' @param package `NULL`, or a character scalar. Can be used to restrict
 #'   the search for a single package.
-#' @param howmany How many check groups (checks submitted simultaneously) to show. The current API limit is 20.
-#' @return An [`rhub_check_list`] object.
+#' @param howmany How many check groups (checks submitted simultaneously)
+#'   to show. The current API limit is 20.
+#' @return A tibble with columns:
+#'   * package Name of the package.
+#'   * version Package version.
+#'   * status Status of the check. Possible values:
+#'     - `created`: check job was created, but not running yet.
+#'     - `in-progress`: check job is running.
+#'     - `parseerror`: internal R-hub error parsing the check results.
+#'     - `preperror`: check error, before the package check has started.
+#'     - `aborted`: aborted by admin or user.
+#'     - `error`: failed check. (Possibly warnings and notes as well.)
+#'     - `warning`: `R CMD check` reported warnings. (Possibly notes as well.)
+#'     - `note`: `R CMD check` reported notes.
+#'     - `ok`: successful check.
+#'   * group: R-hub check group id.
+#'   * id: `R-hub check id.
+#'   * result: More detailed result of the check. Can be `NULL` for errors.
+#'     This is a list column with members: `status`, `errors`, `warnings`,
+#'     `notes`.
+#'   * email: Email address of maintainer / submitter.
+#'   * submitted: Time of submission.
+#'   * started: Time of the check start.
+#'   * build_time: Build time, a [difftime] object.
+#'   * platform_name: Name of rthe check platform.
+#'   * platform: Detailed platform data, a list column.
+#'   * builder: Name of the builder machine.
 #'
 #' @export
+#' @seealso list_package_checks
 #' @examples
 #' \dontrun{
 #' ch <- list_my_checks()
@@ -48,13 +74,13 @@ list_my_checks <- function(email = email_address(), package = NULL,
 #'   If `NULL`, then the maintainer address is used.
 #' @param howmany How many checks to show. The current maximum of the API
 #'   is 20.
-#' @return An [`rhub_check_list`] object.
+#' @inherit list_my_checks return
 #'
 #' @export
 #' @importFrom desc desc_get
 #' @examples
 #' \dontrun{
-#' ch <- list_my_checks()
+#' ch <- list_package_checks()
 #' ch
 #' ch$details(1)
 #' }
