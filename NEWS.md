@@ -9,7 +9,7 @@
 * New `check_on_solaris()` shortcut to check on Solaris X86, without
   building the PDF manual or the vignettes.
 
-* New `get_check()` method that works with check ids, or a check group id.
+* New `get_check()` function that works with check ids, or a check group id.
 
 * The output of `get_check()`, `check()`, `check_on_`, `check_for_cran()`,
   etc. functions gained
