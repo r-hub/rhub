@@ -82,3 +82,32 @@ get_group <- function(l){
 cat0 <- function(..., sep = "") {
   cat(..., sep = sep)
 }
+
+map <- function(.x, .f, ...) {
+  lapply(.x, .f, ...)
+}
+
+map_lgl <- function(.x, .f, ...) {
+  vapply(.x, .f, logical(1), ...)
+}
+
+map_chr <- function(.x, .f, ...) {
+  vapply(.x, .f, character(1), ...)
+}
+
+map_int <- function(.x, .f, ...) {
+  vapply(.x, .f, integer(1), ...)
+}
+
+shorten_rhub_id <- function(x) {
+  sx <- strsplit(x, "-", fixed = TRUE)
+  substr(map_chr(sx, tail, 1), 1, 7)
+}
+
+## This is a workaround to handle NAs
+
+my_pretty_dt <- function(x, compact = TRUE) {
+  res <- rep("?", length(x))
+  res[!is.na(x)] <- pretty_dt(x[!is.na(x)], compact = compact)
+  res
+}

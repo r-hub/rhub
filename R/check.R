@@ -72,9 +72,11 @@ check <- function(path = ".", platform = NULL,
     env_vars = env_vars
   )
 
-  chk <- rhub_check$new(ids = vapply(response, "[[", "", "id"))
+  ids <- vapply(response, "[[", "", "id")
+  chk <- rhub_check$new(ids = ids)
 
   package_data$last_handle <- chk
+  lapply(ids, cache_put, status = NULL)
 
   ## Show the live status, if requested
   if (show_status) chk$livelog()

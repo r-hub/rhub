@@ -6,10 +6,36 @@
 #'   [validate_email()].
 #' @param package `NULL`, or a character scalar. Can be used to restrict
 #'   the search for a single package.
-#' @param howmany How many check groups (checks submitted simultaneously) to show. The current API limit is 20.
-#' @return An [`rhub_check_list`] object.
+#' @param howmany How many check groups (checks submitted simultaneously)
+#'   to show. The current API limit is 20.
+#' @return A [tibble::tibble] with columns:
+#'   * package Name of the package.
+#'   * version Package version.
+#'   * result: More detailed result of the check. Can be `NULL` for errors.
+#'     This is a list column with members: `status`, `errors`, `warnings`,
+#'     `notes`.
+#'   * group: R-hub check group id.
+#'   * id: `R-hub check id.
+#'   * platform_name: Name of rthe check platform.
+#'   * build_time: Build time, a [difftime] object.
+#'   * submitted: Time of submission.
+#'   * started: Time of the check start.
+#'   * platform: Detailed platform data, a list column.
+#'   * builder: Name of the builder machine.
+#'   * status Status of the check. Possible values:
+#'     - `created`: check job was created, but not running yet.
+#'     - `in-progress`: check job is running.
+#'     - `parseerror`: internal R-hub error parsing the check results.
+#'     - `preperror`: check error, before the package check has started.
+#'     - `aborted`: aborted by admin or user.
+#'     - `error`: failed check. (Possibly warnings and notes as well.)
+#'     - `warning`: `R CMD check` reported warnings. (Possibly notes as well.)
+#'     - `note`: `R CMD check` reported notes.
+#'     - `ok`: successful check.
+#'   * email: Email address of maintainer / submitter.
 #'
 #' @export
+#' @seealso list_package_checks
 #' @examples
 #' \dontrun{
 #' ch <- list_my_checks()
@@ -37,8 +63,7 @@ list_my_checks <- function(email = email_address(), package = NULL,
 
   if (length(response) > howmany) response <- response[seq_len(howmany)]
 
-  rhub_check_list$new(ids = names(response),
-                      status = unlist(response, recursive = FALSE))
+  make_check_list(response)
 }
 
 
@@ -49,13 +74,13 @@ list_my_checks <- function(email = email_address(), package = NULL,
 #'   If `NULL`, then the maintainer address is used.
 #' @param howmany How many checks to show. The current maximum of the API
 #'   is 20.
-#' @return An [`rhub_check_list`] object.
+#' @inherit list_my_checks return
 #'
 #' @export
 #' @importFrom desc desc_get
 #' @examples
 #' \dontrun{
-#' ch <- list_my_checks()
+#' ch <- list_package_checks()
 #' ch
 #' ch$details(1)
 #' }
@@ -77,6 +102,38 @@ list_package_checks <- function(package = ".", email = NULL, howmany = 20) {
 
   if (length(response) > howmany) response <- response[seq_len(howmany)]
 
-  rhub_check_list$new(ids = names(response),
-                      status = unlist(response, recursive = FALSE))
+  make_check_list(response)
+}
+
+make_check_list <- function(response) {
+  data <- unlist(response, recursive = FALSE)
+
+  df <- tibble::tibble(
+    package = map_chr(data, "[[", "package"),
+    version = map_chr(data, "[[", "version"),
+    result = column_result(map(data, function(x) x$result)),
+    group = column_group_id(map_chr(data, "[[", "group")),
+    id = column_id(map_chr(data, "[[", "id")),
+    platform_name = map_chr(data, function(x) x$platform$name),
+    build_time = column_dt(map_int(data, function(x) {
+      suppressWarnings(as.integer(x$build_time)) %||% NA_integer_
+    })),
+    submitted = column_time(map_chr(data, "[[", "submitted")),
+    started = column_time(map_chr(data, function(x) x$started %||% NA_character_)),
+    platform = map(data, "[[", "platform"),
+    builder = map_chr(data, function(x) x$builder_machine %||% NA_character_),
+    status = column_status(map_chr(data, "[[", "status")),
+    email = map_chr(data, "[[", "email")
+  )
+
+  cache_put_ids(df$id)
+  cache_put_group_ids(df$group)
+
+  df
+}
+
+column_time <- function(x) {
+  res <- rep(as.POSIXct(NA_character_), length(x))
+  res[! is.na(x)] <- parse_iso_8601(x[!is.na(x)])
+  res
 }

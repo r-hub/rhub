@@ -43,7 +43,7 @@ validate_email <- function(email = NULL, token = NULL) {
   invisible()
 }
 
-#' @importFrom clisymbols symbol
+#' @importFrom cli symbol
 #' @importFrom utils menu
 #' @importFrom whoami email_address
 
