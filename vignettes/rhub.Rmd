@@ -340,7 +340,7 @@ cran_prep$cran_summary()
 
 For more general information about CRAN submissions, refer to 
 
-* [CRAN itself](https://cran.r-project.org/web/packages/submission_checklist.html)
+* [CRAN itself](https://cran.r-project.org//web//packages//submission_checklist.html)
  whose checklist suggest using R-hub :-);
 
 * [this book chapter](https://r-pkgs.org/release.html#release-process);
