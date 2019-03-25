@@ -1,4 +1,4 @@
-# devel
+# rhub 1.0.2.999
 
 ## New features
 
@@ -27,6 +27,6 @@
   explicitly specifying units for `as.numeric.difftime` (@jimhester, #94
   and @schloerke, #135).
 
-# 1.0.2
+# rhub 1.0.2
 
 First public release.
