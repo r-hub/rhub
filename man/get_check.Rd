@@ -9,11 +9,10 @@ get_check(ids)
 \arguments{
 \item{ids}{One of the following:
 \itemize{
-\item A single R-hub check id. It may also be the beginning of the hash
-of the id (i.e. the part after the last dash), if that check was
-listed in the current session.
-\item A character vector of check ids. (Or their partial hashes.)
-\item An R-hub check group id. (Or its partial hash.)
+\item A single R-hub check id.
+\item A character vector of check ids.
+\item An R-hub check group id.
+All ids can be abbreviated, see \link[=rhub-ids]{R-hub ids}.
 }}
 }
 \value{

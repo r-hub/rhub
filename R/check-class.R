@@ -1,4 +1,37 @@
 
+#' @title R-hub check ids
+#' @section R-hub ids:
+#'
+#' Every R-hub check has a unique id, that is constructed from the
+#' name of the source package archive, and a random string. For example:
+#' ```r
+#' devtools_2.0.0.tar.gz-fe53bbba85de4a579f6dc3b852bf76a3
+#' ```
+#'
+#' @section R-hub group ids:
+#'
+#' For every check submission, R-hub also creates a unique check group id.
+#' One check group may contain multiple checks. E.g. [check_for_cran()]
+#' typically creates three or four check groups. Group ids look the same
+#' as individual check ids.
+#'
+#' @section Abbreviating ids:
+#'
+#' The rhub package keeps a list of all the checks that it has seen in the
+#' current session, and these checks can be also referenced by any unique
+#' prefix of the random string part of the id, e.g. in the [get_check()]
+#' function. E.g. if rhub already know the devtools check above, then
+#' ```r
+#' get_check("fe53bbb")
+#' ```
+#' works.
+#'
+#' This is only recommended in interactive mode, and we suggest that you
+#' always use the full ids when using rhub programmatically.
+#' 
+#' @name rhub-ids
+NULL
+
 #' An `rhub_check` object holds status and results of rhub checks
 #'
 #' @section Usage:
@@ -284,11 +317,10 @@ first_line <- function(x) {
 #' Retrieve the result of R-hub checks
 #'
 #' @param ids One of the following:
-#'  - A single R-hub check id. It may also be the beginning of the hash
-#'    of the id (i.e. the part after the last dash), if that check was
-#'    listed in the current session.
-#'  - A character vector of check ids. (Or their partial hashes.)
-#'  - An R-hub check group id. (Or its partial hash.)
+#'  - A single R-hub check id.
+#'  - A character vector of check ids.
+#'  - An R-hub check group id.
+#' All ids can be abbreviated, see [R-hub ids][rhub-ids].
 #' @return An [rhub_check] object.
 #'
 #' @section Examples:
