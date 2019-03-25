@@ -131,12 +131,48 @@
       <small>Source: <a href='https://github.com/r-hub/rhub/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="rhub-1-0-2-999" class="section level1">
+<h1 class="page-header">
+<a href="#rhub-1-0-2-999" class="anchor"></a>rhub 1.0.2.999<small> Unreleased </small>
+</h1>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features</h2>
+<ul>
+<li><p>New <code><a href="../reference/local_check_linux.html">local_check_linux()</a></code> function to run an R-hub check on the local host’s Docker. New <code><a href="../reference/local_check_linux_images.html">local_check_linux_images()</a></code> function to list R-hub Docker images.</p></li>
+<li><p>New <code><a href="../reference/check_shortcuts.html">check_on_solaris()</a></code> shortcut to check on Solaris X86, without building the PDF manual or the vignettes.</p></li>
+<li><p>New <code><a href="../reference/get_check.html">get_check()</a></code> function that works with check ids, or a check group id.</p></li>
+<li>The output of <code><a href="../reference/get_check.html">get_check()</a></code>, <code><a href="../reference/check.html">check()</a></code>, <code>check_on_</code>, <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code>, etc. functions gained
+<ul>
+<li>an <code>urls()</code> method returning a <code>data.frame</code> with URLs to the html and text logs, as well as the artifacts, of the check(s);</li>
+<li>a <code>browse()</code> method replacing the <code>web()</code> method for opening the URLs corresponding to a <code>rhub_check</code> object.</li>
+</ul>
+</li>
+<li><p>New <code>cran_summary()</code> method to print a summary for a group or set of checks.</p></li>
+</ul>
+</div>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<ul>
+<li>In printing methods the submitted time is now always correct thanks to explicitly specifying units for <code>as.numeric.difftime</code> (<a href='https://github.com/jimhester'>@jimhester</a>, <a href='https://github.com/r-hub/rhub/issues/94'>#94</a> and <a href='https://github.com/schloerke'>@schloerke</a>, <a href='https://github.com/r-hub/rhub/issues/135'>#135</a>).</li>
+</ul>
+</div>
+</div>
+    <div id="rhub-1-0-2" class="section level1">
+<h1 class="page-header">
+<a href="#rhub-1-0-2" class="anchor"></a>rhub 1.0.2<small> 2017-11-02 </small>
+</h1>
+<p>First public release.</p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#rhub-1-0-2-999">1.0.2.999</a></li>
+        <li><a href="#rhub-1-0-2">1.0.2</a></li>
       </ul>
     </div>
   </div>
