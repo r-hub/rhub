@@ -116,7 +116,7 @@ make_check_list <- function(response) {
     id = column_id(map_chr(data, "[[", "id")),
     platform_name = map_chr(data, function(x) x$platform$name),
     build_time = column_dt(map_int(data, function(x) {
-      suppressWarnings(as.integer(x$build_time)) %||% NA_integer_
+      suppressWarnings(as.integer(x$build_time %||% NA_integer_))
     })),
     submitted = column_time(map_chr(data, "[[", "submitted")),
     started = column_time(map_chr(data, function(x) x$started %||% NA_character_)),
