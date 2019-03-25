@@ -22,6 +22,16 @@ An \link{rhub_check} object.
 \description{
 Retrieve the result of R-hub checks
 }
+\section{Examples}{
+\preformatted{chk <- get_check("915ee61")
+chk
+chk$update()
+chk$browse()
+chk$cran_summary()
+chk$urls()
+}
+}
+
 \seealso{
 \code{\link[=list_my_checks]{list_my_checks()}} and \code{\link[=list_package_checks]{list_package_checks()}} to list
 R-hub checks.

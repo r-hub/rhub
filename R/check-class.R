@@ -7,7 +7,9 @@
 #' ch$update()
 #' ch$print(...)
 #' ch$browse(which = NULL)
+#' ch$urls(which = NULL)
 #' ch$livelog(which = 1)
+#' ch$cran_summary()
 #' ```
 #'
 #' @section Arguments:
@@ -47,7 +49,7 @@
 #' `ch$urls()` return a table with URL to the html log, text log and artifacts
 #' of the check(s).
 #'
-#' For both `ch$browse()` and `ch$urls()`, not that the logs and artifacts
+#' For both `ch$browse()` and `ch$urls()`, note that the logs and artifacts
 #' are not kept forever, they are accessible for a few days after submission.
 #'
 #' `ch$livelog()` shows the live log of the check. The live log can be
@@ -55,7 +57,6 @@
 #' `CTRL+c` or `ESC`.
 #'
 #' @name rhub_check
-#' @keywords internal
 NULL
 
 #' @importFrom R6 R6Class
@@ -289,6 +290,16 @@ first_line <- function(x) {
 #'  - A character vector of check ids. (Or their partial hashes.)
 #'  - An R-hub check group id. (Or its partial hash.)
 #' @return An [rhub_check] object.
+#'
+#' @section Examples:
+#' ```
+#' chk <- get_check("915ee61")
+#' chk
+#' chk$update()
+#' chk$browse()
+#' chk$cran_summary()
+#' chk$urls()
+#' ```
 #'
 #' @export
 #' @seealso [list_my_checks()] and [list_package_checks()] to list
