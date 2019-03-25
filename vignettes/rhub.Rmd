@@ -177,8 +177,8 @@ previous_builds
 #   builder <chr>, status <rhub::status>, email <chr>
 ```
 
-You can then extract builds from this list using their `group_id` (ID for 
-builds submitted simultaneously e.g. via `check_for_cran()`) or `check_id`.
+You can then extract builds from this list using their `group` ID (ID for 
+builds submitted simultaneously e.g. via `check_for_cran()`) or `id` (check id).
  In both cases you'll get a `rhub_check` object.
 
 Here's an example where we extract the last group of builds, print it to the 
