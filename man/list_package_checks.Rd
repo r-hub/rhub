@@ -25,7 +25,7 @@ This is a list column with members: \code{status}, \code{errors}, \code{warnings
 \code{notes}.
 \item group: R-hub check group id.
 \item id: `R-hub check id.
-\item platform_name: Name of rthe check platform.
+\item platform_name: Name of the check platform.
 \item build_time: Build time, a \link{difftime} object.
 \item submitted: Time of submission.
 \item started: Time of the check start.

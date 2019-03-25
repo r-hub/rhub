@@ -16,7 +16,7 @@
 #'     `notes`.
 #'   * group: R-hub check group id.
 #'   * id: `R-hub check id.
-#'   * platform_name: Name of rthe check platform.
+#'   * platform_name: Name of the check platform.
 #'   * build_time: Build time, a [difftime] object.
 #'   * submitted: Time of submission.
 #'   * started: Time of the check start.
