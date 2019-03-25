@@ -15,8 +15,8 @@ knitr::opts_chunk$set(
 ```
 
 In this article you'll learn how to use `rhub` to connect to the R-hub 
-builder API to start new builds and get the results and artifacts of recent 
-builds.
+builder API to start new checks and get the results and artifacts of recent 
+checks.
 
 ```{r}
 library(rhub)
@@ -25,7 +25,7 @@ library(rhub)
 
 ## Validate your email address
 
-To build packages, first you need to validate your email address with
+To build and check packages, first you need to validate your email address with
 `validate_email()`.
 
 ![](figures/email-validation.png)
@@ -65,17 +65,17 @@ is used.
 
 In interactive R sessions, the output of the check is printed to
 the screen unless you set the `show_status` argument to `FALSE`. Therefore, 
-by default, your R session is busy showing the log until the build is finished, 
+by default, your R session is busy showing the log until the check is finished, 
 so set `show_status` to `FALSE` if you want to submit a check and then go on 
 with your work in the same session.
 
-In all cases, you will receive a notification email with results after the build.
+In all cases, you will receive a notification email with results after the check.
 
 ![recording of a check on a screen](figures/check-output.gif)
 
 You can either just run the function, or assign its output to an object, that 
-you can use to print results to the screen, to browse the web page of the build, 
-and to retrieve URLs to the web page of the build but also to its artifacts 
+you can use to print results to the screen, to browse the web page of the check, 
+and to retrieve URLs to the web page of the check but also to its artifacts 
 that are kept a few days.
 
 ```r
@@ -86,9 +86,9 @@ mycheck$livelog()
 mycheck$urls()
 ```
 
-To retrieve such objects from previous builds, see [the corresponding section](#browse-previous-builds).
+To retrieve such objects from previous checks, see [the corresponding section](#browse-previous-checks).
 
-## Select a build architecture
+## Select a building and checking architecture
 
 You can run checks on any platform. You can use the platform ids (e.g. `"debian-gcc-devel"` 
 or `c("debian-gcc-devel", "debian-gcc-patched")`) to select between platforms. 
@@ -115,10 +115,10 @@ These are quick shortcuts that select the right platform(s):
 * `check_on_debian()`, `check_on_ubuntu()`, `check_on_fedora()` and
   `check_on_centos()` select an appropriate Linux platform.
 * `check_on_solaris()` also selects an operating system, Solaris, and by 
-default builds neither vignettes nor manual (`--no-manual --no-build-vignettes`).
+default checks neither vignettes nor manual (`--no-manual --no-build-vignettes`).
 * `check_with_roldrel()`, `check_with_rrelease()`, `check_with_rpatched()`
   and `check_with_rdevel()` select an R version.
-* `check_for_cran()` runs builds on platforms that are closest to platforms used by CRAN on submission:
+* `check_for_cran()` runs checks on platforms that are closest to platforms used by CRAN on submission:
     * Fedora Linux, R-devel, clang, gfortran,
     * Ubuntu Linux 16.04 LTS, R-release, GCC,
     * Windows Server 2008 R2 SP1, R-devel, 32⁄64 bit,
@@ -145,18 +145,18 @@ This image does not run `R CMD check` at all, but it runs
 
 with ASAN and UBSAN enabled. Use it via `check_with_sanitizers()`.
 
-## Browse previous builds
+## Browse previous checks
 
-Once a build is finished (or failed), you will get a notification email but 
+Once a check is finished (or failed), you will get a notification email but 
 you can also get information from R. E.g. you could submit a check for a 
 package located at `<package-path>`, then turn off your computer and on the following days retrieve results
 via 
 
 ```r
-previous_builds <- rhub::list_package_checks(<package-path>,
+previous_checks <- rhub::list_package_checks(<package-path>,
                                   email = "maelle.salmon@yahoo.se",
                                   howmany = 4)
-previous_builds
+previous_checks
 ```
 
 ```r
@@ -177,15 +177,15 @@ previous_builds
 #   builder <chr>, status <rhub::status>, email <chr>
 ```
 
-You can then extract builds from this list using their `group` ID (ID for 
-builds submitted simultaneously e.g. via `check_for_cran()`) or `id` (check id).
+You can then extract checks from this list using their `group` ID (ID for 
+checks submitted simultaneously e.g. via `check_for_cran()`) or `id` (check id).
  In both cases you'll get a `rhub_check` object.
 
-Here's an example where we extract the last group of builds, print it to the 
+Here's an example where we extract the last group of checks, print it to the 
 screen, and query its URLs. 
 
 ```r
-group_id <- previous_builds$group[1]
+group_id <- previous_checks$group[1]
 group_check <- rhub::get_check(group_id)
 group_check
 ```
@@ -289,10 +289,10 @@ group_check$urls()
 3 https://builder-tes… https://builder-tes… https://artifacts.r-… FALSE  
 ```
 
-We could similarly extract the last build.
+We could similarly extract the last check.
 
 ```r
-check_id <- previous_builds$id[1]
+check_id <- previous_checks$id[1]
 rhub::get_check(check_id)
 ```
 
@@ -300,7 +300,7 @@ rhub::get_check(check_id)
 
 First, run `check_for_cran()` and assign the result to an object (or retrieve 
 the results from a previous `check_for_cran()` submission by its `group` ID 
-as shown in the previous subsection). Then once the builds are done, 
+as shown in the previous subsection). Then once the checks are done, 
 use the `cran_summary()` method to get a message that you can copy-paste in 
 your cran-comments.md file (created via e.g. `usethis::use_cran_comments()`).
 

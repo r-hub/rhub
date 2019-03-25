@@ -2,7 +2,7 @@
 #' Validate an email address on R-hub
 #'
 #' To build and check R packages on R-hub, you need to validate your
-#' email address. This is because R-hub sends out emails about build
+#' email address. This is because R-hub sends out emails about check
 #' results.
 #'
 #' The `rhub` package stores validated email addresses in a user

@@ -14,7 +14,7 @@ cache_get <- function(id) {
   sts <- grep(paste0("-", id, "[0-9a-f]*$"), nms)
   if (length(sts) == 0) return(NULL)
   if (length(sts) == 1) return(e[[ nms[sts] ]][[1]])
-  stop("Multiple builds match, please use a more specific id", call. = FALSE)
+  stop("Multiple checks match, please use a more specific id", call. = FALSE)
 }
 
 cache_put <- function(id, status) {

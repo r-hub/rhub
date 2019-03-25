@@ -13,7 +13,7 @@ validate_email(email = NULL, token = NULL)
 }
 \description{
 To build and check R packages on R-hub, you need to validate your
-email address. This is because R-hub sends out emails about build
+email address. This is because R-hub sends out emails about check
 results.
 }
 \details{

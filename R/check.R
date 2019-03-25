@@ -11,7 +11,7 @@
 #'   R-hub platforms is used. Can take a vector of platforms which saves
 #'   time by building one R package tarball that is used for all the
 #'   platforms specified.
-#' @param email Email address to send notification to about the build.
+#' @param email Email address to send notification to about the check.
 #'   It must be a validated email address, see [validate_email()]. If
 #'   `NULL`, then the email address of the maintainer is used, as defined
 #'   in the `DESCRIPTION` file of the package.
@@ -20,8 +20,8 @@
 #' @param check_args Extra arguments for the `R CMD check` command.
 #' @param env_vars Environment variables to set on the builder machine
 #'   before the check. A named character vector.
-#' @param show_status Whether to show the status of the build (live log) as
-#'  it is happening.
+#' @param show_status Whether to show the status of the build and check 
+#' (live log) as it is happening.
 #' @return An [rhub_check] object.
 #'
 #' @export
