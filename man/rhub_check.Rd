@@ -55,7 +55,7 @@ it is especially useful on the output of \code{\link[=check_for_cran]{check_for_
 \code{ch$browse()} opens a tab or window in the default web browser, that points
 to the detailed logs of the check(s).
 
-\code{ch$urls()} return a table with URL to the html log, text log and artifacts
+\code{ch$urls()} return a \code{\link[tibble:tibble]{tibble::tibble}} with URL to the html log, text log and artifacts
 of the check(s).
 
 For both \code{ch$browse()} and \code{ch$urls()}, note that the logs and artifacts

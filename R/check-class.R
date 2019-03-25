@@ -79,7 +79,7 @@ NULL
 #' `ch$browse()` opens a tab or window in the default web browser, that points
 #' to the detailed logs of the check(s).
 #'
-#' `ch$urls()` return a table with URL to the html log, text log and artifacts
+#' `ch$urls()` return a [`tibble::tibble`] with URL to the html log, text log and artifacts
 #' of the check(s).
 #'
 #' For both `ch$browse()` and `ch$urls()`, note that the logs and artifacts
@@ -199,7 +199,7 @@ check_urls <- function(self, private, which) {
   ids <- select_ids(which = which, self = self,
                     private = private)
 
-  data.frame(html = paste0(sub("/api$", "/status/", baseurl()), ids),
+  tibble::tibble(html = paste0(sub("/api$", "/status/", baseurl()), ids),
              text = paste0(sub("/api$", "/status/original/", baseurl()),
                            ids),
              artifacts = paste0("https://artifacts.r-hub.io/", ids),
