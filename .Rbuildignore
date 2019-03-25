@@ -7,3 +7,4 @@
 ^README.md$
 ^.travis.yml$
 ^appveyor.yml$
+^cran-comments\.md$
