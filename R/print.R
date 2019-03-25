@@ -27,7 +27,8 @@ title_line <- function(x) {
   )
 }
 
-#' @importFrom cli make_ansi_style style_bold col_red col_blue col_green
+#' @importFrom cli make_ansi_style style_bold style_inverse
+#'   col_red col_blue col_green
 
 status_style_created <- function(x) {
   x
