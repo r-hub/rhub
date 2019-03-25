@@ -131,7 +131,7 @@ is printed out by `local_check_linux()`. After running these commands, you
 will get a shell within the Docker container, where you can run R. Note
 that on some containers R is installed in `/opt/`.
 
-For more information, you may want to look at the shell script that rhub
+For more information, you may want to look at the shell script that `rhub`
 uses to set up the container for running the check. To find it, run the
 code below.
 
