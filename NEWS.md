@@ -9,16 +9,17 @@
 * New `check_on_solaris()` shortcut to check on Solaris X86, without
   building the PDF manual or the vignettes.
 
-* The output of `list_my_checks()` and `list_package_checks()` gained a
-  `get_group()` and a `get_check()` methods returning a `rhub_check` object
-  from the list, by group_id or check_id.
+* New `get_check()` method that works with check ids, or a check group id.
 
-* The output of `check()`, `check_on_` and `check_for_cran()` functions
-  gained
+* The output of `get_check()`, `check()`, `check_on_`, `check_for_cran()`,
+  etc. functions gained
     * an `urls()` method returning a `data.frame` with URLs to the html and
     text logs, as well as the artifacts, of the check(s);
     * a `browse()` method replacing the `web()` method for opening the
   URLs corresponding to a `rhub_check` object.
+
+* New `cran_summary()` method to print a summary for a group or set of
+  checks.
 
 ## Bug fixes
 
