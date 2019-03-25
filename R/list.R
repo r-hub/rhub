@@ -100,6 +100,9 @@ make_check_list <- function(response) {
     builder = map_chr(data, function(x) x$builder_machine %||% NA_character_)
   )
 
+  cache_put_ids(df$id)
+  cache_put_group_ids(df$group)
+
   df
 }
 
