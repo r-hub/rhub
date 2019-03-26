@@ -1,5 +1,10 @@
 # rhub 1.1.0.9000
 
+## Bug fix
+
+* `cran_summary()` now works for packages whose R CMD Check result include 
+no NOTE/WARNING/ERROR.
+
 # rhub 1.1.0
 
 ## New features

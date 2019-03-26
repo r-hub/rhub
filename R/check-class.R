@@ -240,26 +240,44 @@ check_cran_summary <- function(self, private) {
   cat("\n")
   cat("## R CMD check results\n")
 
-  unique_results <- unique(result[, c("type", "hash")])
-
-  makeshift <- structure(
-    list(
-      package = x$package,
-      version = toString(vapply(x, function(xx) xx$platform$name, "")),
-      rversion = toString(systems),
-      output = list(),
-      platform = toString(systems),
-      notes = unlist(lapply(unique(unique_results$hash[unique_results$type == "NOTE"]),
-                            combine_message, result = result)),
-      warnings = unlist(lapply(unique(unique_results$hash[unique_results$type == "WARNING"]),
-                               combine_message, result = result)),
-      errors = unlist(lapply(unique(unique_results$hash[unique_results$type == "ERROR"]),
-                             combine_message, result = result))
-    ),
-    class = "rcmdcheck"
-  )
+  if ("hash" %in% names(result)){
+    unique_results <- unique(result[, c("type", "hash")])
+    
+    makeshift <- structure(
+      list(
+        package = x$package,
+        version = toString(vapply(x, function(xx) xx$platform$name, "")),
+        rversion = toString(systems),
+        output = list(),
+        platform = toString(systems),
+        notes = unlist(lapply(unique(unique_results$hash[unique_results$type == "NOTE"]),
+                              combine_message, result = result)),
+        warnings = unlist(lapply(unique(unique_results$hash[unique_results$type == "WARNING"]),
+                                 combine_message, result = result)),
+        errors = unlist(lapply(unique(unique_results$hash[unique_results$type == "ERROR"]),
+                               combine_message, result = result))
+      ),
+      class = "rcmdcheck"
+    )
+    
+  } else {
+    makeshift <- structure(
+      list(
+        package = x$package,
+        version = toString(vapply(x, function(xx) xx$platform$name, "")),
+        rversion = toString(systems),
+        output = list(),
+        platform = toString(systems),
+        notes = NULL,
+        warnings = NULL,
+        errors = NULL
+      ),
+      class = "rcmdcheck"
+    )
+  }
+  
   print(makeshift, header = FALSE)
-
+  
   invisible(self)
 }
 
@@ -274,6 +292,7 @@ get_status_part <- function(part, x){
 }
 
 rectangle_status <- function(x){
+ 
   df <- rbind(data.frame(type = "ERROR",
                          message = get_status_part("errors", x$result),
                          stringsAsFactors = FALSE),
@@ -285,12 +304,18 @@ rectangle_status <- function(x){
                          stringsAsFactors = FALSE))
 
   df <- df[df$message != "",]
+  
+  if(nrow(df) == 0){
+    df <- data.frame(package = x$package)
+  } else{
+    df$hash <- hash_check(df$message)
+  }
+  
   df$package <- x$package
   df$version <- x$version
   df$submitted <- x$submitted
   df$platform <- paste0(x$platform$name, " (", x$platform$rversion,
                         ")")
-  df$hash <- hash_check(df$message)
 
   return(df)
 }
