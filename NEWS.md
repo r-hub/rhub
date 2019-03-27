@@ -9,7 +9,7 @@ WARNING, 0 ERROR.
 ## Bug fixes
 
 * `cran_summary()` now works for packages whose R CMD Check result include 
-no NOTE/WARNING/ERROR.
+no NOTE/WARNING/ERROR, and gives an informative error message when not all builds are completed yet.
 
 * `cran_summary()` now prints lines to screen without unwanted indentation.
 
