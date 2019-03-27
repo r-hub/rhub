@@ -237,7 +237,7 @@ check_cran_summary <- function(self, private) {
   lines <- paste0(systems, "\n")
 
   if ("hash" %in% names(result)){
-    message("For a CRAN submission it is recommended to get rid of all NOTEs, WARNINGs and ERRORs.")
+    message("For a CRAN submission we recommend that you fix all NOTEs, WARNINGs and ERRORs.")
     unique_results <- unique(result[, c("type", "hash")])
     
     makeshift <- structure(
