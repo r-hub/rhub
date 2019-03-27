@@ -1,9 +1,11 @@
 # rhub 1.1.0.9000
 
-## Bug fix
+## Bug fixes
 
 * `cran_summary()` now works for packages whose R CMD Check result include 
 no NOTE/WARNING/ERROR.
+
+* `cran_summary()` now prints lines to screen without unwanted indentation.
 
 # rhub 1.1.0
 

@@ -230,13 +230,13 @@ check_cran_summary <- function(self, private) {
   cat("## Test environments\n")
   result <- do.call("rbind",
                     lapply(x, rectangle_status))
-  systems <- paste0(vapply(x, function(xx) xx$platform$name, ""),
+  systems <- paste0("- R-hub ",
+                    vapply(x, function(xx) xx$platform$name, ""),
                     " (",
                     vapply(x, function(xx) xx$platform$rversion, ""),
                     ")")
-  cat(paste0("- R-hub ",
-             systems,
-             "\n"))
+  lines <- paste0(systems, "\n")
+  cat(lines, sep = "")
   cat("\n")
   cat("## R CMD check results\n")
 
