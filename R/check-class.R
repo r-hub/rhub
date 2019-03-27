@@ -227,8 +227,8 @@ check_cran_summary <- function(self, private) {
   
   x <- private$status_
   
-  if (any(vapply(x, function(xx) xx$status, "")) %in% 
-     c("in-progress", "created")) {
+  if (any(vapply(x, function(xx) xx$status, "") %in% 
+     c("in-progress", "created"))) {
     stop("At least one of the builds has not finished yet. Please wait before calling cran_summary() again.", 
          call. = FALSE)
   }
