@@ -227,7 +227,6 @@ check_cran_summary <- function(self, private) {
 
   x <- private$status_
 
-  cat("## Test environments\n")
   result <- do.call("rbind",
                     lapply(x, rectangle_status))
   systems <- paste0("- R-hub ",
@@ -236,11 +235,9 @@ check_cran_summary <- function(self, private) {
                     vapply(x, function(xx) xx$platform$rversion, ""),
                     ")")
   lines <- paste0(systems, "\n")
-  cat(lines, sep = "")
-  cat("\n")
-  cat("## R CMD check results\n")
 
   if ("hash" %in% names(result)){
+    message("For a CRAN submission it is recommended to get rid of all NOTEs, WARNINGs and ERRORs.")
     unique_results <- unique(result[, c("type", "hash")])
     
     makeshift <- structure(
@@ -276,6 +273,10 @@ check_cran_summary <- function(self, private) {
     )
   }
   
+  cat("## Test environments\n")
+  cat(lines, sep = "")
+  cat("\n")
+  cat("## R CMD check results\n")
   print(makeshift, header = FALSE)
   
   invisible(self)
