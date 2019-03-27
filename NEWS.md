@@ -1,5 +1,11 @@
 # rhub 1.1.0.9000
 
+## Enhancements
+
+* `cran_summary()` now messages that we recommend to fix all NOTEs, WARNINGs 
+and ERRORs before a CRAN submission when the check results aren't 0 NOTE, 0
+WARNING, 0 ERROR.
+
 ## Bug fixes
 
 * `cran_summary()` now works for packages whose R CMD Check result include 
