@@ -227,10 +227,9 @@ check_cran_summary <- function(self, private) {
 
   x <- private$status_
 
-  if (any(map_chr(x, "[[", "status") %in% 
-     c("in-progress", "created"))) {
+  if (any(map_chr(x, "[[", "status") %in% c("in-progress", "created"))) {
     stop(paste("At least one of the builds has not finished yet.",
-         "Please wait before calling `cran_summary()` again."), 
+               "Please wait before calling `cran_summary()` again."), 
          call. = FALSE)
   }
 
