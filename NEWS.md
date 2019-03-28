@@ -3,13 +3,14 @@
 ## Enhancements
 
 * `cran_summary()` now messages that we recommend to fix all NOTEs, WARNINGs 
-and ERRORs before a CRAN submission when the check results aren't 0 NOTE, 0
-WARNING, 0 ERROR.
+  and ERRORs before a CRAN submission when the check results aren't 0 NOTE, 0
+  WARNING, 0 ERROR.
 
 ## Bug fixes
 
 * `cran_summary()` now works for packages whose R CMD Check result include 
-no NOTE/WARNING/ERROR.
+  no NOTE/WARNING/ERROR, and gives an informative error message when not all 
+  builds are completed yet.
 
 * `cran_summary()` now prints lines to screen without unwanted indentation.
 
@@ -26,7 +27,8 @@ no NOTE/WARNING/ERROR.
 
 * New `get_check()` function that works with check ids, or a check group id.
 
-* `list_package_checks()` and `list_my_checks()` now output a `tibble`, that is nicely formatted when printed to the screen.
+* `list_package_checks()` and `list_my_checks()` now output a `tibble`, that 
+  is nicely formatted when printed to the screen.
 
 * The output of `get_check()`, `check()`, `check_on_`, `check_for_cran()`,
   etc. functions gained

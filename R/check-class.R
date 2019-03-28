@@ -227,6 +227,12 @@ check_cran_summary <- function(self, private) {
 
   x <- private$status_
 
+  if (any(map_chr(x, "[[", "status") %in% c("in-progress", "created"))) {
+    stop(paste("At least one of the builds has not finished yet.",
+               "Please wait before calling `cran_summary()` again."), 
+         call. = FALSE)
+  }
+
   result <- do.call("rbind",
                     lapply(x, rectangle_status))
   systems <- paste0("- R-hub ",
