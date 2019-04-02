@@ -111,3 +111,7 @@ my_pretty_dt <- function(x, compact = TRUE) {
   res[!is.na(x)] <- pretty_dt(x[!is.na(x)], compact = compact)
   res
 }
+
+problem_statuses <- function(){
+  c("parseerror", "preperror", "aborted")
+}
