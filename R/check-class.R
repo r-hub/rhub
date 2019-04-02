@@ -226,10 +226,23 @@ check_cran_summary <- function(self, private) {
   self$update()
 
   x <- private$status_
+  
+  statuses <- map_chr(x, "[[", "status")
 
-  if (any(map_chr(x, "[[", "status") %in% c("in-progress", "created"))) {
+  if (any(statuses %in% c("in-progress", "created"))) {
     stop(paste("At least one of the builds has not finished yet.",
                "Please wait before calling `cran_summary()` again."), 
+         call. = FALSE)
+  }
+  
+  if (any(statuses %in% problem_statuses())) {
+    platforms <- lapply(x, "[[", "platform")
+    platform_names <- map_chr(platforms, "[[", "name")
+    stop(paste("Build failures on platforms:",
+               toString(platform_names[statuses %in% problem_statuses()]),
+               ". \n",
+               "Read the log(s) to fix and if needed ask for help via ",
+               "https://docs.r-hub.io/#pkg-dev-help"), 
          call. = FALSE)
   }
 

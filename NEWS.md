@@ -5,6 +5,9 @@
 * `cran_summary()` now messages that we recommend to fix all NOTEs, WARNINGs 
   and ERRORs before a CRAN submission when the check results aren't 0 NOTE, 0
   WARNING, 0 ERROR.
+  
+* `cran_summary()` now outputs informative messages when any of the builds 
+  of the group hasn't completed (yet, or at all).
 
 ## Bug fixes
 
