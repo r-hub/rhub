@@ -47,6 +47,9 @@ In particular, if \code{platforms} is \code{NULL} (the default), then
 \item It uses the \code{--as-cran} argument to \code{R CMD check}.
 \item It requires all dependencies, including suggested ones.
 }
+
+This function is wrapped by \code{\link[devtools:check_rhub]{devtools::check_rhub()}} which you
+might find useful if you load \code{devtools} via your .Rprofile (see \code{\link[usethis:use_devtools]{usethis::use_devtools()}}).
 }
 \examples{
 \dontrun{
