@@ -198,6 +198,8 @@ platforms will be selected, see below.</p></td>
 <li><p>It uses the <code>--as-cran</code> argument to <code>R CMD check</code>.</p></li>
 <li><p>It requires all dependencies, including suggested ones.</p></li>
 </ul>
+    <p>This function is wrapped by <code><a href='https://www.rdocumentation.org/packages/devtools/topics/check_rhub'>devtools::check_rhub()</a></code> which you
+might find useful if you load <code>devtools</code> via your .Rprofile (see <code>usethis::use_devtools()</code>).</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
