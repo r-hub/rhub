@@ -122,29 +122,31 @@
 <p>To list the available images from R, you can use the <code><a href="../reference/local_check_linux_images.html">local_check_linux_images()</a></code> function that returns a <code>data.frame</code> and has a pretty default printing.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">imgs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/local_check_linux_images.html">local_check_linux_images</a></span>()</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">imgs</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; rhub/debian-gcc-devel:</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt;   Debian Linux, R-devel, GCC</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; rhub/debian-gcc-patched:</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;   Debian Linux, R-patched, GCC</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; rhub/debian-gcc-release:</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;   Debian Linux, R-release, GCC</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; rhub/fedora-clang-devel:</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt;   Fedora Linux, R-devel, clang, gfortran</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; rhub/fedora-gcc-devel:</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;   Fedora Linux, R-devel, GCC</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; rhub/centos6-epel:</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;   CentOS 6, stock R from EPEL</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; rhub/centos6-epel-rdt:</span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt;   CentOS 6 with Redhat Developer Toolset, R from EPEL</span></a>
-<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; rhub/rocker-gcc-san:</span></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt;   Debian Linux, R-devel, GCC ASAN/UBSAN</span></a>
-<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; rhub/ubuntu-gcc-devel:</span></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-devel, GCC</span></a>
-<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; rhub/ubuntu-gcc-release:</span></a>
-<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-release, GCC</span></a>
-<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt; rhub/ubuntu-rchk:</span></a>
-<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-devel with rchk</span></a>
-<a class="sourceLine" id="cb2-25" data-line-number="25">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(imgs, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; rhub/debian-clang-devel:</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt;   Debian Linux, R-devel, clang, ISO-8859-15 locale</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; rhub/debian-gcc-devel:</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;   Debian Linux, R-devel, GCC</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; rhub/debian-gcc-patched:</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;   Debian Linux, R-patched, GCC</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; rhub/debian-gcc-release:</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt;   Debian Linux, R-release, GCC</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; rhub/fedora-clang-devel:</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;   Fedora Linux, R-devel, clang, gfortran</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; rhub/fedora-gcc-devel:</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;   Fedora Linux, R-devel, GCC</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; rhub/centos6-epel:</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt;   CentOS 6, stock R from EPEL</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; rhub/centos6-epel-rdt:</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt;   CentOS 6 with Redhat Developer Toolset, R from EPEL</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; rhub/rocker-gcc-san:</span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt;   Debian Linux, R-devel, GCC ASAN/UBSAN</span></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; rhub/ubuntu-gcc-devel:</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-devel, GCC</span></a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt; rhub/ubuntu-gcc-release:</span></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-release, GCC</span></a>
+<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#&gt; rhub/ubuntu-rchk:</span></a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-devel with rchk</span></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(imgs, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -159,11 +161,29 @@
 <th align="left">sysreqs-platform</th>
 <th align="left">categories</th>
 <th align="left">node-labels</th>
+<th align="left">queue</th>
 <th align="left">output-parser</th>
 <th align="left">macos-version</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="left">debian-clang-devel</td>
+<td align="left">Debian Linux, R-devel, clang, ISO-8859-15 locale</td>
+<td align="left">r-devel-linux-x86_64-debian-clang</td>
+<td align="left">r-devel</td>
+<td align="left">Linux</td>
+<td align="left">x86_64</td>
+<td align="left">Debian GNU/Linux testing</td>
+<td align="left">clang version 7.0.1-8 (tags/RELEASE_701/final)</td>
+<td align="left">debian-clang-devel</td>
+<td align="left">linux-x86_64-debian-clang</td>
+<td align="left">Linux</td>
+<td align="left">linux</td>
+<td align="left">linux</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
 <td align="left">debian-gcc-devel</td>
 <td align="left">Debian Linux, R-devel, GCC</td>
 <td align="left">r-devel-linux-x86_64-debian-gcc</td>
@@ -171,15 +191,16 @@
 <td align="left">Linux</td>
 <td align="left">x86_64</td>
 <td align="left">Debian GNU/Linux testing</td>
-<td align="left">GCC 6.2.0 (Debian 6.2.0-6)</td>
+<td align="left">gcc version 8.3.0 (Debian 8.3.0-5)</td>
 <td align="left">debian-gcc-devel</td>
 <td align="left">linux-x86_64-debian-gcc</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">debian-gcc-patched</td>
 <td align="left">Debian Linux, R-patched, GCC</td>
 <td align="left">r-patched-linux-x86_64</td>
@@ -187,15 +208,16 @@
 <td align="left">Linux</td>
 <td align="left">x86_64</td>
 <td align="left">Debian GNU/Linux testing</td>
-<td align="left">GCC 6.2.0 (Debian 6.2.0-6)</td>
+<td align="left">gcc version 8.3.0 (Debian 8.3.0-5)</td>
 <td align="left">debian-gcc-patched</td>
 <td align="left">linux-x86_64-debian-gcc</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">debian-gcc-release</td>
 <td align="left">Debian Linux, R-release, GCC</td>
 <td align="left">r-release-linux-x86_64</td>
@@ -203,15 +225,16 @@
 <td align="left">Linux</td>
 <td align="left">x86_64</td>
 <td align="left">Debian GNU/Linux testing</td>
-<td align="left">GCC 6.2.0 (Debian 6.2.0-6)</td>
+<td align="left">gcc version 8.3.0 (Debian 8.3.0-5)</td>
 <td align="left">debian-gcc-release</td>
 <td align="left">linux-x86_64-debian-gcc</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">fedora-clang-devel</td>
 <td align="left">Fedora Linux, R-devel, clang, gfortran</td>
 <td align="left">r-devel-linux-x86_64-fedora-clang</td>
@@ -224,10 +247,11 @@
 <td align="left">linux-x86_64-fedora-clang</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">fedora-gcc-devel</td>
 <td align="left">Fedora Linux, R-devel, GCC</td>
 <td align="left">r-devel-linux-x86_64-fedora-gcc</td>
@@ -240,10 +264,11 @@
 <td align="left">linux-x86_64-fedora-gcc</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">linux-x86_64-centos6-epel</td>
 <td align="left">CentOS 6, stock R from EPEL</td>
 <td align="left">NA</td>
@@ -256,10 +281,11 @@
 <td align="left">linux-x86_64-centos6-epel</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">linux-x86_64-centos6-epel-rdt</td>
 <td align="left">CentOS 6 with Redhat Developer Toolset, R from EPEL</td>
 <td align="left">NA</td>
@@ -272,10 +298,11 @@
 <td align="left">linux-x86_64-centos6-epel</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">linux-x86_64-rocker-gcc-san</td>
 <td align="left">Debian Linux, R-devel, GCC ASAN/UBSAN</td>
 <td align="left">NA</td>
@@ -288,10 +315,11 @@
 <td align="left">linux-x86_64-debian-gcc</td>
 <td align="left">Checks for compiled code</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">sanitizers</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">ubuntu-gcc-devel</td>
 <td align="left">Ubuntu Linux 16.04 LTS, R-devel, GCC</td>
 <td align="left">NA</td>
@@ -304,10 +332,11 @@
 <td align="left">linux-x86_64-ubuntu-gcc</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">ubuntu-gcc-release</td>
 <td align="left">Ubuntu Linux 16.04 LTS, R-release, GCC</td>
 <td align="left">NA</td>
@@ -320,10 +349,11 @@
 <td align="left">linux-x86_64-ubuntu-gcc</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">ubuntu-rchk</td>
 <td align="left">Ubuntu Linux 16.04 LTS, R-devel with rchk</td>
 <td align="left">NA</td>
@@ -335,6 +365,7 @@
 <td align="left">ubuntu-rchk</td>
 <td align="left">linux-x86_64-ubuntu-gcc</td>
 <td align="left">Checks for compiled code</td>
+<td align="left">linux</td>
 <td align="left">linux</td>
 <td align="left">rchk</td>
 <td align="left">NA</td>

@@ -117,9 +117,9 @@
 <div id="run-a-package-check" class="section level2">
 <h2 class="hasAnchor">
 <a href="#run-a-package-check" class="anchor"></a>Run a package check</h2>
-<p><code><a href="../reference/check.html">check()</a></code> runs an <code>R CMD check</code> on the package in the specified directory, or specified source R package tarball created by <code>R CMD build</code> or <code><a href="https://www.rdocumentation.org/packages/devtools/topics/build">devtools::build()</a></code>. It defaults to the working directory.</p>
+<p><code><a href="../reference/check.html">check()</a></code> runs an <code>R CMD check</code> on the package in the specified directory, or specified source R package tarball created by <code>R CMD build</code> or <code>devtools::build()</code>. It defaults to the working directory.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/check.html">check</a></span>()</a></code></pre></div>
-<p>If the <code>platform</code> argument is NULL, and the R session is interactive, then a menu is shown. If it is NULL, and the session is not interactive, then the default R-hub platform <code>platforms()$name[1]</code>, i.e. debian-gcc-devel, is used.</p>
+<p>If the <code>platform</code> argument is NULL, and the R session is interactive, then a menu is shown. If it is NULL, and the session is not interactive, then the default R-hub platform <code>platforms()$name[1]</code>, i.e. debian-clang-devel, is used.</p>
 <p>In interactive R sessions, the output of the check is printed to the screen unless you set the <code>show_status</code> argument to <code>FALSE</code>. Therefore, by default, your R session is busy showing the log until the check is finished, so set <code>show_status</code> to <code>FALSE</code> if you want to submit a check and then go on with your work in the same session.</p>
 <p>In all cases, you will receive a notification email with results after the check.</p>
 <div class="figure">
@@ -156,11 +156,29 @@
 <th align="left">sysreqs-platform</th>
 <th align="left">categories</th>
 <th align="left">node-labels</th>
+<th align="left">queue</th>
 <th align="left">output-parser</th>
 <th align="left">macos-version</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="left">debian-clang-devel</td>
+<td align="left">Debian Linux, R-devel, clang, ISO-8859-15 locale</td>
+<td align="left">r-devel-linux-x86_64-debian-clang</td>
+<td align="left">r-devel</td>
+<td align="left">Linux</td>
+<td align="left">x86_64</td>
+<td align="left">Debian GNU/Linux testing</td>
+<td align="left">clang version 7.0.1-8 (tags/RELEASE_701/final)</td>
+<td align="left">debian-clang-devel</td>
+<td align="left">linux-x86_64-debian-clang</td>
+<td align="left">Linux</td>
+<td align="left">linux</td>
+<td align="left">linux</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
 <td align="left">debian-gcc-devel</td>
 <td align="left">Debian Linux, R-devel, GCC</td>
 <td align="left">r-devel-linux-x86_64-debian-gcc</td>
@@ -168,15 +186,16 @@
 <td align="left">Linux</td>
 <td align="left">x86_64</td>
 <td align="left">Debian GNU/Linux testing</td>
-<td align="left">GCC 6.2.0 (Debian 6.2.0-6)</td>
+<td align="left">gcc version 8.3.0 (Debian 8.3.0-5)</td>
 <td align="left">debian-gcc-devel</td>
 <td align="left">linux-x86_64-debian-gcc</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">debian-gcc-patched</td>
 <td align="left">Debian Linux, R-patched, GCC</td>
 <td align="left">r-patched-linux-x86_64</td>
@@ -184,15 +203,16 @@
 <td align="left">Linux</td>
 <td align="left">x86_64</td>
 <td align="left">Debian GNU/Linux testing</td>
-<td align="left">GCC 6.2.0 (Debian 6.2.0-6)</td>
+<td align="left">gcc version 8.3.0 (Debian 8.3.0-5)</td>
 <td align="left">debian-gcc-patched</td>
 <td align="left">linux-x86_64-debian-gcc</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">debian-gcc-release</td>
 <td align="left">Debian Linux, R-release, GCC</td>
 <td align="left">r-release-linux-x86_64</td>
@@ -200,15 +220,16 @@
 <td align="left">Linux</td>
 <td align="left">x86_64</td>
 <td align="left">Debian GNU/Linux testing</td>
-<td align="left">GCC 6.2.0 (Debian 6.2.0-6)</td>
+<td align="left">gcc version 8.3.0 (Debian 8.3.0-5)</td>
 <td align="left">debian-gcc-release</td>
 <td align="left">linux-x86_64-debian-gcc</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">fedora-clang-devel</td>
 <td align="left">Fedora Linux, R-devel, clang, gfortran</td>
 <td align="left">r-devel-linux-x86_64-fedora-clang</td>
@@ -221,10 +242,11 @@
 <td align="left">linux-x86_64-fedora-clang</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">fedora-gcc-devel</td>
 <td align="left">Fedora Linux, R-devel, GCC</td>
 <td align="left">r-devel-linux-x86_64-fedora-gcc</td>
@@ -237,10 +259,11 @@
 <td align="left">linux-x86_64-fedora-gcc</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">linux-x86_64-centos6-epel</td>
 <td align="left">CentOS 6, stock R from EPEL</td>
 <td align="left">NA</td>
@@ -253,10 +276,11 @@
 <td align="left">linux-x86_64-centos6-epel</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">linux-x86_64-centos6-epel-rdt</td>
 <td align="left">CentOS 6 with Redhat Developer Toolset, R from EPEL</td>
 <td align="left">NA</td>
@@ -269,10 +293,11 @@
 <td align="left">linux-x86_64-centos6-epel</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">linux-x86_64-rocker-gcc-san</td>
 <td align="left">Debian Linux, R-devel, GCC ASAN/UBSAN</td>
 <td align="left">NA</td>
@@ -285,10 +310,11 @@
 <td align="left">linux-x86_64-debian-gcc</td>
 <td align="left">Checks for compiled code</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">sanitizers</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">macos-elcapitan-release</td>
 <td align="left">macOS 10.11 El Capitan, R-release (experimental)</td>
 <td align="left">r-release-osx-x86_64</td>
@@ -301,10 +327,11 @@
 <td align="left">osx-x86_64-clang</td>
 <td align="left">macOS</td>
 <td align="left">c(“macos”, “elcapitan”, “r-release”)</td>
+<td align="left">elcapitan</td>
 <td align="left">NA</td>
 <td align="left">elcapitan</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">macos-mavericks-oldrel</td>
 <td align="left">macOS 10.9 Mavericks, R-oldrel (experimental)</td>
 <td align="left">r-oldrel-osx-x86_64</td>
@@ -317,10 +344,11 @@
 <td align="left">osx-x86_64-clang</td>
 <td align="left">macOS</td>
 <td align="left">c(“macos”, “mavericks”, “r-oldrel”)</td>
+<td align="left">mavericks</td>
 <td align="left">NA</td>
 <td align="left">mavericks</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">solaris-x86-patched</td>
 <td align="left">Oracle Solaris 10, x86, 32 bit, R-patched (experimental)</td>
 <td align="left">r-patched-solaris-x86</td>
@@ -333,10 +361,11 @@
 <td align="left">solaris-10</td>
 <td align="left">Solaris</td>
 <td align="left">solaris</td>
+<td align="left">solaris</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">ubuntu-gcc-devel</td>
 <td align="left">Ubuntu Linux 16.04 LTS, R-devel, GCC</td>
 <td align="left">NA</td>
@@ -349,10 +378,11 @@
 <td align="left">linux-x86_64-ubuntu-gcc</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">ubuntu-gcc-release</td>
 <td align="left">Ubuntu Linux 16.04 LTS, R-release, GCC</td>
 <td align="left">NA</td>
@@ -365,10 +395,11 @@
 <td align="left">linux-x86_64-ubuntu-gcc</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">ubuntu-rchk</td>
 <td align="left">Ubuntu Linux 16.04 LTS, R-devel with rchk</td>
 <td align="left">NA</td>
@@ -381,10 +412,11 @@
 <td align="left">linux-x86_64-ubuntu-gcc</td>
 <td align="left">Checks for compiled code</td>
 <td align="left">linux</td>
+<td align="left">linux</td>
 <td align="left">rchk</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">windows-x86_64-devel</td>
 <td align="left">Windows Server 2008 R2 SP1, R-devel, 32/64 bit</td>
 <td align="left">r-devel-windows-ix86+x86_64</td>
@@ -397,10 +429,11 @@
 <td align="left">windows-2008</td>
 <td align="left">Windows</td>
 <td align="left">c(“windows”, “rtools3”)</td>
+<td align="left">rtools3</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">windows-x86_64-devel-rtools4</td>
 <td align="left">Windows Server 2012, R-devel, Rtools4.0, 32/64 bit (experimental)</td>
 <td align="left">NA</td>
@@ -413,10 +446,11 @@
 <td align="left">windows-2012</td>
 <td align="left">Windows</td>
 <td align="left">c(“windows”, “rtools4.0”)</td>
+<td align="left">rtools4.0</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">windows-x86_64-oldrel</td>
 <td align="left">Windows Server 2008 R2 SP1, R-oldrel, 32/64 bit</td>
 <td align="left">r-oldrel-windows-ix86+x86_64</td>
@@ -429,10 +463,11 @@
 <td align="left">windows-2008</td>
 <td align="left">Windows</td>
 <td align="left">c(“windows”, “rtools3”)</td>
+<td align="left">rtools3</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">windows-x86_64-patched</td>
 <td align="left">Windows Server 2008 R2 SP1, R-patched, 32/64 bit</td>
 <td align="left">NA</td>
@@ -445,10 +480,11 @@
 <td align="left">windows-2008</td>
 <td align="left">Windows</td>
 <td align="left">c(“windows”, “rtools3”)</td>
+<td align="left">rtools3</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">windows-x86_64-release</td>
 <td align="left">Windows Server 2008 R2 SP1, R-release, 32/64 bit</td>
 <td align="left">r-release-windows-ix86+x86_64</td>
@@ -461,6 +497,7 @@
 <td align="left">windows-2008</td>
 <td align="left">Windows</td>
 <td align="left">c(“windows”, “rtools3”)</td>
+<td align="left">rtools3</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
@@ -633,7 +670,7 @@
 <div id="prepare-a-cran-submission" class="section level2">
 <h2 class="hasAnchor">
 <a href="#prepare-a-cran-submission" class="anchor"></a>Prepare a CRAN submission</h2>
-<p>First, run <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> and assign the result to an object (or retrieve the results from a previous <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> submission by its <code>group</code> ID as shown in the previous subsection). Then once the checks are done, use the <code>cran_summary()</code> method to get a message that you can copy-paste in your cran-comments.md file (created via e.g. <code><a href="https://www.rdocumentation.org/packages/usethis/topics/use_cran_comments">usethis::use_cran_comments()</a></code>).</p>
+<p>First, run <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> and assign the result to an object (or retrieve the results from a previous <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> submission by its <code>group</code> ID as shown in the previous subsection). Then once the checks are done, use the <code>cran_summary()</code> method to get a message that you can copy-paste in your cran-comments.md file (created via e.g. <code>usethis::use_cran_comments()</code>).</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">cran_prep &lt;-<span class="st"> </span><span class="kw"><a href="../reference/check_for_cran.html">check_for_cran</a></span>()</a>
 <a class="sourceLine" id="cb12-2" data-line-number="2">cran_prep<span class="op">$</span><span class="kw">cran_summary</span>()</a>
 <a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt; ## Test environments</span></a>
