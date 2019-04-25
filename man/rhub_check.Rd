@@ -14,6 +14,7 @@ ch$browse(which = NULL)
 ch$urls(which = NULL)
 ch$livelog(which = 1)
 ch$cran_summary()
+ch$results_df()
 }
 }
 
@@ -51,6 +52,11 @@ the check(s) is unknown.
 
 \code{ch$cran_summary()} prints text to be copy-pasted in cran-comments.md,
 it is especially useful on the output of \code{\link[=check_for_cran]{check_for_cran()}}.
+
+\code{ch$results_df()} returns a \code{data.frame} of check results (package,
+version, submitted, platform, and message+hash+type for any NOTE,
+WARNING or ERROR. If there's none of these, the \code{data.frame} has
+a single line with message, hash and type equal to NA.
 
 \code{ch$browse()} opens a tab or window in the default web browser, that points
 to the detailed logs of the check(s).

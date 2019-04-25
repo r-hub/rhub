@@ -43,6 +43,7 @@ NULL
 #' ch$urls(which = NULL)
 #' ch$livelog(which = 1)
 #' ch$cran_summary()
+#' ch$results_df()
 #' ```
 #'
 #' @section Arguments:
@@ -75,6 +76,11 @@ NULL
 #'
 #' `ch$cran_summary()` prints text to be copy-pasted in cran-comments.md,
 #'  it is especially useful on the output of [`check_for_cran()`].
+#'
+#' `ch$results_df()` returns a `data.frame` of check results (package,
+#' version, submitted, platform, and message+hash+type for any NOTE,
+#'  WARNING or ERROR. If there's none of these, the `data.frame` has
+#'  a single line with message, hash and type equal to NA.
 #'
 #' `ch$browse()` opens a tab or window in the default web browser, that points
 #' to the detailed logs of the check(s).
@@ -121,7 +127,11 @@ rhub_check <- R6Class(
       check_livelog(self, private, which),
 
     cran_summary = function()
-      check_cran_summary(self, private)
+      check_cran_summary(self, private),
+    
+    results_df = function()
+      check_results_df(self, private)
+    
   ),
 
   private = list(
@@ -302,6 +312,35 @@ check_cran_summary <- function(self, private) {
 }
 
 
+check_results_df <- function(self, private){
+  self$update()
+  
+  x <- private$status_
+  
+  statuses <- map_chr(x, "[[", "status")
+  
+  if (any(statuses %in% c("in-progress", "created"))) {
+    stop(paste("At least one of the builds has not finished yet.",
+               "Please wait before calling `results_df()` again."), 
+         call. = FALSE)
+  }
+  
+  if (any(statuses %in% problem_statuses())) {
+    platforms <- lapply(x, "[[", "platform")
+    platform_names <- map_chr(platforms, "[[", "name")
+    stop(paste("Build failures on platforms:",
+               toString(platform_names[statuses %in% problem_statuses()]),
+               ". \n",
+               "Read the log(s) to fix and if needed ask for help via ",
+               "https://docs.r-hub.io/#pkg-dev-help"), 
+         call. = FALSE)
+  }
+  
+  do.call("rbind", lapply(x, rectangle_status))
+  
+
+}
+
 get_status_part <- function(part, x){
   output <- unlist(x[part])
   if(is.null(output)){
@@ -376,6 +415,7 @@ first_line <- function(x) {
 #' chk$browse()
 #' chk$cran_summary()
 #' chk$urls()
+#' chk$results_df()
 #' ```
 #'
 #' @export
