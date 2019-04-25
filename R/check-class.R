@@ -248,6 +248,7 @@ check_cran_summary <- function(self, private) {
 
   result <- do.call("rbind",
                     lapply(x, rectangle_status))
+  
   systems <- paste0("- R-hub ",
                     vapply(x, function(xx) xx$platform$name, ""),
                     " (",
@@ -255,7 +256,10 @@ check_cran_summary <- function(self, private) {
                     ")")
   lines <- paste0(systems, "\n")
 
-  if ("hash" %in% names(result)){
+  
+  result <- result[!is.na(result$type),]
+  
+  if (nrow(result) > 0){
     message("For a CRAN submission we recommend that you fix all NOTEs, WARNINGs and ERRORs.")
     unique_results <- unique(result[, c("type", "hash")])
     
@@ -326,7 +330,10 @@ rectangle_status <- function(x){
   df <- df[df$message != "",]
   
   if(nrow(df) == 0){
-    df <- data.frame(package = x$package)
+    df <- data.frame(package = x$package,
+                     type = NA,
+                     message = NA, 
+                     hash = NA)
   } else{
     df$hash <- hash_check(df$message)
   }
