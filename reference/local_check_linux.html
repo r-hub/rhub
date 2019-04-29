@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Run a package check locally, in a Docker container — local_check_linux • rhub</title>
+<title>Run a package check locally, in a Docker container — local_check_linux • Connect to R-hub</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -75,7 +75,7 @@ ON WINDOWS, bug reports welcome. :-)" />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">rhub</a>
+        <a class="navbar-link" href="../index.html">Connect to R-hub</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1.9000</span>
       </span>
     </div>
@@ -143,8 +143,8 @@ ON WINDOWS, bug reports welcome. :-)</p>
     </div>
 
     <pre class="usage"><span class='fu'>local_check_linux</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>image</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>valgrind</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>check_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(), <span class='kw'>env_vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(),
-  <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>artifacts</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempfile</a></span>())</pre>
+  <span class='kw'>valgrind</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>check_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(), <span class='kw'>env_vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(),
+  <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>artifacts</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -189,7 +189,7 @@ that will be interpreted as seconds.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <code><a href='https://www.rdocumentation.org/packages/rcmdcheck/topics/rcmdcheck'>rcmdcheck::rcmdcheck</a></code> object, with extra fields:</p><ul>
+    <p>An <code><a href='https://rdrr.io/pkg/rcmdcheck/man/rcmdcheck.html'>rcmdcheck::rcmdcheck</a></code> object, with extra fields:</p><ul>
 <li><p><code>all_output</code>: all output from the check, both standard output and
 error.</p></li>
 <li><p><code>container_name</code>: name of the Docker container that performed the

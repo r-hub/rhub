@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get started with <code>rhub</code> • rhub</title>
+<title>Get started with <code>rhub</code> • Connect to R-hub</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -38,7 +38,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">rhub</a>
+        <a class="navbar-link" href="../index.html">Connect to R-hub</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1.9000</span>
       </span>
     </div>
@@ -104,7 +104,7 @@
     
     
 <p>In this article you’ll learn how to use <code>rhub</code> to connect to the R-hub builder API to start new checks and get the results and artifacts of recent checks.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(rhub)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(rhub)</a></code></pre></div>
 <div id="validate-your-email-address" class="section level2">
 <h2 class="hasAnchor">
 <a href="#validate-your-email-address" class="anchor"></a>Validate your email address</h2>
@@ -128,7 +128,7 @@
 <p>You can either just run the function, or assign its output to an object, that you can use to print results to the screen, to browse the web page of the check, and to retrieve URLs to the web page of the check but also to its artifacts that are kept a few days.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">mycheck &lt;-<span class="st"> </span><span class="kw"><a href="../reference/check.html">check</a></span>()</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">mycheck<span class="op">$</span><span class="kw">browse</span>()</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">mycheck<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>()</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">mycheck<span class="op">$</span><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>()</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">mycheck<span class="op">$</span><span class="kw">livelog</span>()</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">mycheck<span class="op">$</span><span class="kw">urls</span>()</a></code></pre></div>
 <p>To retrieve such objects from previous checks, see <a href="#browse-previous-checks">the corresponding section</a>.</p>
@@ -136,12 +136,12 @@
 <div id="select-a-building-and-checking-architecture" class="section level2">
 <h2 class="hasAnchor">
 <a href="#select-a-building-and-checking-architecture" class="anchor"></a>Select a building and checking architecture</h2>
-<p>You can run checks on any platform. You can use the platform ids (e.g. <code>"debian-gcc-devel"</code> or <code><a href="https://www.rdocumentation.org/packages/base/topics/c">c("debian-gcc-devel", "debian-gcc-patched")</a></code>) to select between platforms. You should not run checks on all platforms at once. E.g. if preparing for a CRAN submission, use the shortcut function <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> that will submit your package to a few recommended platforms. The following subsections give more info on how to select platforms.</p>
+<p>You can run checks on any platform. You can use the platform ids (e.g. <code>"debian-gcc-devel"</code> or <code><a href="https://rdrr.io/r/base/c.html">c("debian-gcc-devel", "debian-gcc-patched")</a></code>) to select between platforms. You should not run checks on all platforms at once. E.g. if preparing for a CRAN submission, use the shortcut function <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> that will submit your package to a few recommended platforms. The following subsections give more info on how to select platforms.</p>
 <div id="listing-r-hub-platforms" class="section level3">
 <h3 class="hasAnchor">
 <a href="#listing-r-hub-platforms" class="anchor"></a>Listing R-hub platforms</h3>
 <p>If looking for a platform with particular characteristics, in particular to reproduce a result from CRAN’s own platform, have a look at the R-hub platform characteristics.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw"><a href="../reference/platforms.html">platforms</a></span>(), <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="../reference/platforms.html">platforms</a></span>(), <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>

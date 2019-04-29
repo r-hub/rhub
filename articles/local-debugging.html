@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Local Linux checks with Docker • rhub</title>
+<title>Local Linux checks with Docker • Connect to R-hub</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -38,7 +38,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">rhub</a>
+        <a class="navbar-link" href="../index.html">Connect to R-hub</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1.9000</span>
       </span>
     </div>
@@ -102,7 +102,7 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(rhub)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(rhub)</a></code></pre></div>
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
@@ -146,7 +146,7 @@
 <a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-release, GCC</span></a>
 <a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#&gt; rhub/ubuntu-rchk:</span></a>
 <a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-devel with rchk</span></a>
-<a class="sourceLine" id="cb2-27" data-line-number="27">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(imgs, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb2-27" data-line-number="27">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(imgs, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -388,7 +388,7 @@
 <p>You can either just run the check as shown above, which will print a log to the screen, including <code>R CMD check</code> results in the end, or assign it to an object:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">pkg_path &lt;-<span class="st"> "/home/maelle/Documents/R-hub/test-packages/note"</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">chk &lt;-<span class="st"> </span><span class="kw"><a href="../reference/local_check_linux.html">local_check_linux</a></span>(pkg_path, <span class="dt">image =</span> <span class="st">"rhub/debian-gcc-release"</span>)</a></code></pre></div>
-<p>The object returned is of the class <code><a href="https://www.rdocumentation.org/packages/rcmdcheck/topics/rcmdcheck">rcmdcheck::rcmdcheck</a></code> which is an S3 object with fields <code>errors</code>, <code>warnings</code> and <code>notes</code> (character vectors), that you could operate on if you wish.</p>
+<p>The object returned is of the class <code><a href="https://rdrr.io/pkg/rcmdcheck/man/rcmdcheck.html">rcmdcheck::rcmdcheck</a></code> which is an S3 object with fields <code>errors</code>, <code>warnings</code> and <code>notes</code> (character vectors), that you could operate on if you wish.</p>
 <p>The <code><a href="../reference/local_check_linux.html">local_check_linux()</a></code> function creates a container (instance of the image) that won’t be deleted after use so you might want to clean up once in a while.</p>
 </div>
 <div id="do-more-with-r-hub-linux-images" class="section level2">
@@ -399,7 +399,7 @@
 docker exec -it 7181196d-bc3c-4fc8-a0e8-dc511150335d-2 bash</code></pre>
 <p>where <code>7181196d-bc3c-4fc8-a0e8-dc511150335d-2</code> is the container name, this is printed out by <code><a href="../reference/local_check_linux.html">local_check_linux()</a></code>. After running these commands, you will get a shell within the Docker container, where you can run R. Note that on some containers R is installed in <code>/opt/</code>.</p>
 <p>For more information, you may want to look at the shell script that <code>rhub</code> uses to set up the container for running the check. To find it, run the code below.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="dt">package =</span> <span class="st">"rhub"</span>, <span class="st">"bin"</span>, <span class="st">"rhub-linux-docker.sh"</span>)</a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="dt">package =</span> <span class="st">"rhub"</span>, <span class="st">"bin"</span>, <span class="st">"rhub-linux-docker.sh"</span>)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; [1] "/home/travis/R/Library/rhub/bin/rhub-linux-docker.sh"</span></a></code></pre></div>
 </div>
   </div>
