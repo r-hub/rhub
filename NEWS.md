@@ -3,7 +3,7 @@
 
 ## Bug fixes
 
-* `cran_summary()` now works even if there is a NOTE/WARNING/ERROR in one platform and nothing on other platforms.
+* `cran_summary()` now works even if there is a NOTE/WARNING/ERROR in one platform and nothing on other platforms (@fabian-s, #259).
 
 # rhub 1.1.1
 
