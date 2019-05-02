@@ -395,8 +395,8 @@ get_check <- function(ids) {
   
   if (length(package_data$ids) == 0 && 
       length(package_data$groups) == 0){
-    stop(paste0("No check IDs in cache, please run list_my_checks()",
-                " or list_package_checks() first."),
+    stop("No check IDs in cache, please run list_my_checks()",
+         " or list_package_checks() first.",
          call. = FALSE)
   }
   
