@@ -392,6 +392,14 @@ first_line <- function(x) {
 get_check <- function(ids) {
   assert_that(is_check_ids(ids))
 
+  
+  if (length(package_data$ids) == 0 && 
+      length(package_data$groups) == 0){
+    stop(paste0("No check IDs in cache, please run list_my_checks()",
+                " or list_package_checks() first."),
+         call. = FALSE)
+  }
+  
   sle <- cache_get_ids(ids)
   grp <- cache_get_group_ids(ids)
 
