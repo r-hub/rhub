@@ -42,7 +42,7 @@ local_check_linux <- function(path = ".", quiet = FALSE, image = NULL,
   assert_that(is.character(artifacts))
 
   if ((bash <- Sys.which("bash")) == "") {
-    stop("You need bash, and Docker run local Linux checks")
+    stop("You need bash to run local Linux checks")
   }
 
   ## Build the tar.gz, if needed
