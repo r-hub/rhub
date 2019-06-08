@@ -37,7 +37,7 @@ config_all() {
     export R_LIBS=~/R
     mkdir -p ~/R
     echo "options(repos = c(CRAN = \"$RHUB_CRAN_MIRROR\"))" >> ~/.Rprofile
-    "$RBINARY" -q -e "source('https://bioconductor.org/biocLite.R')"
+    "$RBINARY" -q -e "if (getRversion() >= '3.6.0'){ install.packages('BiocManager'); BiocManager::install() } else { source('https://bioconductor.org/biocLite.R')}"
     echo "options(repos = BiocInstaller::biocinstallRepos())" >> ~/.Rprofile
     echo "unloadNamespace('BiocInstaller')" >> ~/.Rprofile
     cp "/tmp/${package}" .
