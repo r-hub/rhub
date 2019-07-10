@@ -41,8 +41,8 @@ local_check_linux <- function(path = ".", quiet = FALSE, image = NULL,
   assert_that(is_timeout(timeout <- as_timeout(timeout)))
   assert_that(is.character(artifacts))
 
-  if ((bash <- Sys.which("bash")) == "") {
-    stop("You need bash, and Docker run local Linux checks")
+  if ((bash <- Sys.which("bash")) == "" || Sys.which("docker") == "") {
+    stop("You need bash and Docker to run local Linux checks")
   }
 
   ## Build the tar.gz, if needed
