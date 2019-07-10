@@ -60,6 +60,7 @@
 <![endif]-->
 
 
+
   </head>
 
   <body>
@@ -125,6 +126,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -145,14 +147,19 @@
     <h2 class="hasAnchor" id="r-hub-ids"><a class="anchor" href="#r-hub-ids"></a>R-hub ids</h2>
 
     
-    <p>Every R-hub check has a unique id, that is constructed from the
+
+
+<p>Every R-hub check has a unique id, that is constructed from the
 name of the source package archive, and a random string. For example:</p><pre>devtools_2.0.0.tar.gz-fe53bbba85de4a579f6dc3b852bf76a3
 </pre>
+
     
     <h2 class="hasAnchor" id="r-hub-group-ids"><a class="anchor" href="#r-hub-group-ids"></a>R-hub group ids</h2>
 
     
-    <p>For every check submission, R-hub also creates a unique check group id.
+
+
+<p>For every check submission, R-hub also creates a unique check group id.
 One check group may contain multiple checks. E.g. <code><a href='check_for_cran.html'>check_for_cran()</a></code>
 typically creates three or four check groups. Group ids look the same
 as individual check ids.</p>
@@ -160,12 +167,15 @@ as individual check ids.</p>
     <h2 class="hasAnchor" id="abbreviating-ids"><a class="anchor" href="#abbreviating-ids"></a>Abbreviating ids</h2>
 
     
-    <p>The rhub package keeps a list of all the checks that it has seen in the
+
+
+<p>The rhub package keeps a list of all the checks that it has seen in the
 current session, and these checks can be also referenced by any unique
 prefix of the random string part of the id, e.g. in the <code><a href='get_check.html'>get_check()</a></code>
 function. E.g. if rhub already know the devtools check above, then</p><pre>get_check("fe53bbb")
 </pre>
-    <p>works.</p>
+
+<p>works.</p>
 <p>This is only recommended in interactive mode, and we suggest that you
 always use the full ids when using rhub programmatically.</p>
     
@@ -185,6 +195,7 @@ always use the full ids when using rhub programmatically.</p>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by Gábor Csárdi, Maëlle Salmon, <a href='https://www.r-consortium.org/'><img src='https://www.r-consortium.org/wp-content/uploads/sites/13/2016/09/RConsortium_Horizontal_Pantone.png' height=24></a>.</p>
@@ -193,11 +204,14 @@ always use the full ids when using rhub programmatically.</p>
 <div class="pkgdown">
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
