@@ -37,6 +37,7 @@ NULL
 #' @section Usage:
 #' ```
 #' ch <- rhub_check$new(ids = NULL, status = NULL, group = NULL)
+#' ch$get_ids()
 #' ch$update()
 #' ch$print(...)
 #' ch$browse(which = NULL)
@@ -66,6 +67,8 @@ NULL
 #' submitted from the current R session. Do not confuse `rhub_check`/`rhub_check_for_cran`
 #' (classes) with [check()] or [check_for_cran()] (functions).
 #'
+#' `ch$get_ids()` returns the check ids. These can be used to query if a
+#' check has finished.
 #'
 #' `ch$update()` updates the status of the check. Printing the check
 #' status to the screen does not perform an update, unless the status of
@@ -101,6 +104,8 @@ rhub_check <- R6Class(
 
     initialize = function(ids = NULL, status = NULL, group = NULL)
       check_init(self, private, ids, status, group),
+
+    get_ids = function() private$ids_,
 
     update = function()
       check_update(self, private),
