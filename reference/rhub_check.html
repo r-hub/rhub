@@ -148,6 +148,7 @@
 
     
 <pre>ch &lt;- rhub_check$new(ids = NULL, status = NULL, group = NULL)
+ch$get_ids()
 ch$update()
 ch$print(...)
 ch$browse(which = NULL)
@@ -186,6 +187,8 @@ or id.</p></li>
 or <code><a href='list_package_checks.html'>list_package_checks()</a></code>. <code><a href='last_check.html'>last_check()</a></code> returns the last check(s)
 submitted from the current R session. Do not confuse <code>rhub_check</code>/<code>rhub_check_for_cran</code>
 (classes) with <code><a href='check.html'>check()</a></code> or <code><a href='check_for_cran.html'>check_for_cran()</a></code> (functions).</p>
+<p><code>ch$get_ids()</code> returns the check ids. These can be used to query if a
+check has finished.</p>
 <p><code>ch$update()</code> updates the status of the check. Printing the check
 status to the screen does not perform an update, unless the status of
 the check(s) is unknown.</p>
