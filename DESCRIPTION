@@ -43,7 +43,8 @@ Suggests:
     testthat,
     knitr,
     rmarkdown,
-    vcr
+    vcr,
+    mockery
 Encoding: UTF-8
 VignetteBuilder: knitr
 Remotes:
