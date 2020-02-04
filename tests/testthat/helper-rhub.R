@@ -1,4 +1,5 @@
 # to record delete tests/testthat/validated_emails.csv
+# and delete the fixtures/ folder
 
 recreate_email <- function() {
   write.table(data.frame(e = "foo@bar.com",

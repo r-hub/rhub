@@ -11,6 +11,5 @@ vcr::use_cassette("check_for_cran", {
     expect_is(crancheck, "rhub_check")
     expect_is(crancheck$urls(), "data.frame")
     
-    recreate_email()
   })
 })

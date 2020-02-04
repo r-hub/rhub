@@ -15,6 +15,8 @@ test_that("email_file", {
 })
 
 test_that("email_get_token, email_add_token", {
+  recreate_email()
+  
   expect_null(email_get_token("bugs.bunny@acme.com"))
   email_add_token("bugs.bunny@acme.com", "tokenxxx")
   expect_equal(email_get_token("bugs.bunny@acme.com"), "tokenxxx")
