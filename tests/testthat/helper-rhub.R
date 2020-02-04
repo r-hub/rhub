@@ -1,5 +1,4 @@
 # to record delete tests/testthat/validated_emails.csv
-# then run recreate_email()
 
 recreate_email <- function() {
   write.table(data.frame(e = "foo@bar.com",
