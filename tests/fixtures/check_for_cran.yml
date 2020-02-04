@@ -1,0 +1,186 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://builder-test.r-hub.io/api/platform/list
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      Accept: application/json
+      Content-Type: application/json
+      User-Agent: R-hub client
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      server: nginx
+      date: Tue, 04 Feb 2020 13:09:39 GMT
+      content-type: application/json; charset=utf-8
+      transfer-encoding: chunked
+      connection: keep-alive
+      vary: Accept-Encoding
+      x-powered-by: Express
+      cache-control: public, max-age=0
+      last-modified: Mon, 20 Jan 2020 21:39:39 GMT
+      etag: W/"234d-16fc4e59978"
+      set-cookie: r-hub frontend=s%3Aba4501e8-44b6-455e-bed2-1233202ad9df.alPZNjWvJ3l2Dwyf%2FnfzqSsbjPZp8EKcL6KxPO44WLI;
+        Path=/; Expires=Tue, 04 Feb 2020 23:09:39 GMT
+      content-encoding: gzip
+    body:
+      encoding: UTF-8
+      file: no
+      string: "[\n    {\n\t\"name\": \"debian-gcc-devel\",\n\t\"description\": \"Debian
+        Linux, R-devel, GCC\",\n\t\"cran-name\": \"r-devel-linux-x86_64-debian-gcc\",\n\t\"rversion\":
+        \"r-devel\",\n\t\"os-type\": \"Linux\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\":
+        \"Debian GNU/Linux testing\",\n\t\"compilers\": \"gcc version 8.3.0 (Debian
+        8.3.0-5)\",\n\t\"docker-image\": \"debian-gcc-devel\",\n\t\"sysreqs-platform\":
+        \"linux-x86_64-debian-gcc\",\n\t\"categories\": [\"Linux\"],\n\t\"node-labels\":
+        [\"linux\"],\n\t\"queue\": \"linux\"\n    },\n\n    {\n\t\"name\": \"debian-gcc-devel-nold\",\n\t\"description\":
+        \"Debian Linux, R-devel, GCC, no long double\",\n\t\"cran-name\": null,\n\t\"rversion\":
+        \"r-devel\",\n\t\"os-type\": \"Linux\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\":
+        \"Debian GNU/Linux testing\",\n\t\"compilers\": \"gcc version 8.3.0 (Debian
+        8.3.0-5)\",\n\t\"docker-image\": \"debian-gcc-devel-nold\",\n\t\"sysreqs-platform\":
+        \"linux-x86_64-debian-gcc\",\n\t\"categories\": [\"Linux\"],\n\t\"node-labels\":
+        [\"linux\"],\n\t\"queue\": \"linux\"\n    },\n\n    {\n\t\"name\": \"debian-gcc-release\",\n\t\"description\":
+        \"Debian Linux, R-release, GCC\",\n\t\"cran-name\": \"r-release-linux-x86_64\",\n\t\"rversion\":
+        \"r-release\",\n\t\"os-type\": \"Linux\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\":
+        \"Debian GNU/Linux testing\",\n\t\"compilers\": \"gcc version 8.3.0 (Debian
+        8.3.0-5)\",\n\t\"docker-image\": \"debian-gcc-release\",\n\t\"sysreqs-platform\":
+        \"linux-x86_64-debian-gcc\",\n\t\"categories\": [\"Linux\"],\n\t\"node-labels\":
+        [\"linux\"],\n\t\"queue\": \"linux\"\n    },\n\n    {\n\t\"name\": \"debian-gcc-patched\",\n\t\"description\":
+        \"Debian Linux, R-patched, GCC\",\n\t\"cran-name\": \"r-patched-linux-x86_64\",\n\t\"rversion\":
+        \"r-patched\",\n\t\"os-type\": \"Linux\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\":
+        \"Debian GNU/Linux testing\",\n\t\"compilers\": \"gcc version 8.3.0 (Debian
+        8.3.0-5)\",\n\t\"docker-image\": \"debian-gcc-patched\",\n\t\"sysreqs-platform\":
+        \"linux-x86_64-debian-gcc\",\n\t\"categories\": [\"Linux\"],\n\t\"node-labels\":
+        [\"linux\"],\n\t\"queue\": \"linux\"\n    },\n\n    {\n\t\"name\": \"debian-clang-devel\",\n\t\"description\":
+        \"Debian Linux, R-devel, clang, ISO-8859-15 locale\",\n\t\"cran-name\": \"r-devel-linux-x86_64-debian-clang\",\n\t\"rversion\":
+        \"r-devel\",\n\t\"os-type\": \"Linux\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\":
+        \"Debian GNU/Linux testing\",\n\t\"compilers\": \"clang version 7.0.1-8 (tags/RELEASE_701/final)\",\n\t\"docker-image\":
+        \"debian-clang-devel\",\n\t\"sysreqs-platform\": \"linux-x86_64-debian-clang\",\n\t\"categories\":
+        [\"Linux\"],\n\t\"node-labels\": [\"linux\"],\n\t\"queue\": \"linux\"\n    },\n\n
+        \   {\n\t\"name\": \"fedora-gcc-devel\",\n\t\"description\": \"Fedora Linux,
+        R-devel, GCC\",\n\t\"cran-name\": \"r-devel-linux-x86_64-fedora-gcc\",\n\t\"rversion\":
+        \"r-devel\",\n\t\"os-type\": \"Linux\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\":
+        \"Fedora 24\",\n\t\"compilers\": \"GCC 6.1.1\",\n\t\"docker-image\": \"fedora-gcc-devel\",\n\t\"sysreqs-platform\":
+        \"linux-x86_64-fedora-gcc\",\n\t\"categories\": [\"Linux\"],\n\t\"node-labels\":
+        [\"linux\"],\n\t\"queue\": \"linux\"\n    },\n\n    {\n\t\"name\": \"fedora-clang-devel\",\n\t\"description\":
+        \"Fedora Linux, R-devel, clang, gfortran\",\n\t\"cran-name\": \"r-devel-linux-x86_64-fedora-clang\",\n\t\"rversion\":
+        \"r-devel\",\n\t\"os-type\": \"Linux\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\":
+        \"Fedora 24\",\n\t\"compilers\": \"clang version 3.8.0; GNU Fortran 6.1.1\",\n\t\"docker-image\":
+        \"fedora-clang-devel\",\n\t\"sysreqs-platform\": \"linux-x86_64-fedora-clang\",\n\t\"categories\":
+        [\"Linux\"],\n\t\"node-labels\": [\"linux\"],\n\t\"queue\": \"linux\"\n    },\n\n
+        \   {\n\t\"name\": \"ubuntu-gcc-devel\",\n\t\"description\": \"Ubuntu Linux
+        16.04 LTS, R-devel, GCC\",\n\t\"cran-name\": null,\n\t\"rversion\": \"r-devel\",\n\t\"os-type\":
+        \"Linux\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\": \"Ubuntu 16.04 LTS\",\n\t\"compilers\":
+        \"GCC 5.3.1\",\n\t\"docker-image\": \"ubuntu-gcc-devel\",\n\t\"sysreqs-platform\":
+        \"linux-x86_64-ubuntu-gcc\",\n\t\"categories\": [\"Linux\"],\n\t\"node-labels\":
+        [\"linux\"],\n\t\"queue\": \"linux\"\n    },\n\n    {\n\t\"name\": \"ubuntu-gcc-release\",\n\t\"description\":
+        \"Ubuntu Linux 16.04 LTS, R-release, GCC\",\n\t\"cran-name\": null,\n\t\"rversion\":
+        \"r-release\",\n\t\"os-type\": \"Linux\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\":
+        \"Ubuntu 16.04 LTS\",\n\t\"compilers\": \"GCC 5.3.1\",\n\t\"docker-image\":
+        \"ubuntu-gcc-release\",\n\t\"sysreqs-platform\": \"linux-x86_64-ubuntu-gcc\",\n\t\"categories\":
+        [\"Linux\"],\n\t\"node-labels\": [\"linux\"],\n\t\"queue\": \"linux\"\n    },\n\n
+        \   {\n\t\"name\": \"linux-x86_64-centos6-epel\",\n\t\"description\": \"CentOS
+        6, stock R from EPEL\",\n\t\"cran-name\": null,\n\t\"rversion\": \"r-release\",\n\t\"os-type\":
+        \"Linux\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\": \"CentOS 6\",\n\t\"compilers\":
+        \"GCC 4.4.x\",\n\t\"docker-image\": \"centos6-epel\",\n\t\"sysreqs-platform\":
+        \"linux-x86_64-centos6-epel\",\n\t\"categories\": [\"Linux\"],\n\t\"node-labels\":
+        [\"linux\"],\n\t\"queue\": \"linux\"\n    },\n\n    {\n\t\"name\": \"linux-x86_64-centos6-epel-rdt\",\n\t\"description\":
+        \"CentOS 6 with Redhat Developer Toolset, R from EPEL\",\n\t\"cran-name\":
+        null,\n\t\"rversion\": \"r-release\",\n\t\"os-type\": \"Linux\",\n\t\"cpu-type\":
+        \"x86_64\",\n\t\"os-info\": \"CentOS 6\",\n\t\"compilers\": \"GCC 5.2.1\",\n\t\"docker-image\":
+        \"centos6-epel-rdt\",\n\t\"sysreqs-platform\": \"linux-x86_64-centos6-epel\",\n\t\"categories\":
+        [\"Linux\"],\n\t\"node-labels\": [\"linux\"],\n\t\"queue\": \"linux\"\n    },\n\n
+        \   {\n\t\"name\": \"linux-x86_64-rocker-gcc-san\",\n\t\"description\": \"Debian
+        Linux, R-devel, GCC ASAN/UBSAN\",\n\t\"cran-name\": null,\n\t\"rversion\":
+        \"r-devel\",\n\t\"os-type\": \"Linux\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\":
+        \"Debian GNU/Linux testing\",\n\t\"compilers\": \"GCC 5.4.0 (Debian 5.4.0-4)\",\n\t\"docker-image\":
+        \"rocker-gcc-san\",\n\t\"sysreqs-platform\": \"linux-x86_64-debian-gcc\",\n
+        \       \"output-parser\": \"sanitizers\",\n\t\"categories\": [\"Checks for
+        compiled code\"],\n\t\"node-labels\": [\"linux\"],\n\t\"queue\": \"linux\"\n
+        \   },\n\n    {\n\t\"name\": \"windows-x86_64-oldrel\",\n\t\"description\":
+        \"Windows Server 2008 R2 SP1, R-oldrel, 32/64 bit\",\n\t\"cran-name\": \"r-oldrel-windows-ix86+x86_64\",\n\t\"rversion\":
+        \"r-oldrel\",\n\t\"os-type\": \"Windows\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\":
+        \"Windows Server 2008 R2 SP1\",\n\t\"compilers\": \"GCC 4.6.3, Rtools 3.3\",\n\t\"docker-image\":
+        null,\n\t\"sysreqs-platform\": \"windows-2008\",\n\t\"categories\": [\"Windows\"],\n\t\"node-labels\":
+        [\"windows\", \"rtools3\"],\n\t\"queue\": \"rtools3\"\n    },\n\n    {\n\t\"name\":
+        \"windows-x86_64-release\",\n\t\"description\": \"Windows Server 2008 R2 SP1,
+        R-release, 32/64 bit\",\n\t\"cran-name\": \"r-release-windows-ix86+x86_64\",\n\t\"rversion\":
+        \"r-release\",\n\t\"os-type\": \"Windows\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\":
+        \"Windows Server 2008 R2 SP1\",\n\t\"compilers\": \"GCC 4.9.3, Rtools 3.4\",\n\t\"docker-image\":
+        null,\n\t\"sysreqs-platform\": \"windows-2008\",\n\t\"categories\": [\"Windows\"],\n\t\"node-labels\":
+        [\"windows\", \"rtools3\"],\n\t\"queue\": \"rtools3\"\n    },\n\n    {\n\t\"name\":
+        \"windows-x86_64-patched\",\n\t\"description\": \"Windows Server 2008 R2 SP1,
+        R-patched, 32/64 bit\",\n\t\"cran-name\": null,\n\t\"rversion\": \"r-patched\",\n\t\"os-type\":
+        \"Windows\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\": \"Windows Server
+        2008 R2 SP1\",\n\t\"compilers\": \"GCC 4.9.3, Rtools 3.4\",\n\t\"docker-image\":
+        null,\n\t\"sysreqs-platform\": \"windows-2008\",\n\t\"categories\": [\"Windows\"],\n\t\"node-labels\":
+        [\"windows\", \"rtools3\"],\n\t\"queue\": \"rtools3\"\n    },\n\n    {\n\t\"name\":
+        \"windows-x86_64-devel\",\n\t\"description\": \"Windows Server 2008 R2 SP1,
+        R-devel, 32/64 bit\",\n\t\"cran-name\": \"r-devel-windows-ix86+x86_64\",\n\t\"rversion\":
+        \"r-devel\",\n\t\"os-type\": \"Windows\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\":
+        \"Windows Server 2008 R2 SP1\",\n\t\"compilers\": \"GCC 4.9.3, Rtools 3.4\",\n\t\"docker-image\":
+        null,\n\t\"sysreqs-platform\": \"windows-2008\",\n\t\"categories\": [\"Windows\"],\n\t\"node-labels\":
+        [\"windows\", \"rtools3\"],\n\t\"queue\": \"rtools3\"\n    },\n\n    {\n\t\"name\":
+        \"windows-x86_64-devel-rtools4\",\n\t\"description\": \"Windows Server 2012,
+        R-devel, Rtools4.0, 32/64 bit (experimental)\",\n\t\"cran-name\": null,\n\t\"rversion\":
+        \"r-testing\",\n\t\"os-type\": \"Windows\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\":
+        \"Windows Server 2012\",\n\t\"compilers\": \"Rtools 4.0\",\n\t\"docker-image\":
+        null,\n\t\"sysreqs-platform\": \"windows-2012\",\n\t\"categories\": [\"Windows\"],\n\t\"node-labels\":
+        [\"windows\", \"rtools4.0\"],\n\t\"queue\": \"rtools4.0\"\n    },\n\n    {\n\t\"name\":
+        \"macos-elcapitan-release\",\n\t\"description\": \"macOS 10.11 El Capitan,
+        R-release (experimental)\",\n\t\"cran-name\": \"r-release-osx-x86_64\",\n\t\"rversion\":
+        \"r-release\",\n\t\"os-type\": \"macOS\",\n\t\"macos-version\": \"elcapitan\",\n\t\"cpu-type\":
+        \"x86_64\",\n\t\"os-info\": \"Mac OS X 10.11.6 15G1217\",\n\t\"compilers\":
+        \"Apple LLVM version 8.0 (clang-800.0.42.1); GNU Fortran 4.2.3\",\n\t\"docker-image\":
+        null,\n\t\"sysreqs-platform\": \"osx-x86_64-clang\",\n\t\"categories\": [\"macOS\"],\n\t\"node-labels\":
+        [\"macos\", \"elcapitan\", \"r-release\"],\n\t\"queue\": \"elcapitan\"\n    },\n\n
+        \   {\n\t\"name\": \"ubuntu-rchk\",\n\t\"description\": \"Ubuntu Linux 16.04
+        LTS, R-devel with rchk\",\n\t\"cran-name\": null,\n\t\"rversion\": \"r-devel\",\n\t\"os-type\":
+        \"Linux\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\": \"Ubuntu 16.04 LTS\",\n\t\"compilers\":
+        \"clang 3.8.0-2ubuntu4\",\n\t\"docker-image\": \"ubuntu-rchk\",\n\t\"sysreqs-platform\":
+        \"linux-x86_64-ubuntu-gcc\",\n        \"output-parser\": \"rchk\",\n\t\"categories\":
+        [\"Checks for compiled code\"],\n\t\"node-labels\": [\"linux\"],\n\t\"queue\":
+        \"linux\"\n    },\n\n    {\n\t\"name\": \"solaris-x86-patched\",\n\t\"description\":
+        \"Oracle Solaris 10, x86, 32 bit, R-patched (experimental)\",\n\t\"cran-name\":
+        \"r-patched-solaris-x86\",\n\t\"rversion\": \"r-patched\",\n\t\"os-type\":
+        \"Solaris\",\n\t\"cpu-type\": \"x86_64\",\n\t\"os-info\": \"SunOS 5.10 Generic_147148-26
+        i86pc i386 i86pc\",\n\t\"compilers\": \"GCC 5.2.0\",\n\t\"docker-image\":
+        null,\n\t\"sysreqs-platform\": \"solaris-10\",\n\t\"categories\": [\"Solaris\"],\n\t\"node-labels\":
+        [\"solaris\"],\n\t\"queue\": \"solaris\"\n    }\n]\n"
+  recorded_at: 2020-02-04 13:09:40 GMT
+  recorded_with: vcr/0.4.1.93, webmockr/0.5.1.98
+- request:
+    method: post
+    uri: https://builder-test.r-hub.io/api/check/submit
+    body:
+      encoding: ''
+      string: '{"email":"<<<my_email>>>","token":"<<<my_rhub_token>>>","package":"myminimalpackage","version":"1.0.0","platform":["windows-x86_64-devel","ubuntu-gcc-release","fedora-clang-devel"],"env":{"_R_CHECK_FORCE_SUGGESTS_":["true"],"_R_CHECK_CRAN_INCOMING_USE_ASPELL_":["true"]},"check_args":"--as-cran","file":"H4sIAAAAAAAAA+2VUW+bMBDHefanOPGUSIEYAqRj7ZSIZFWrJI3SbC/THjwwmTewI9tMyqZ9\n9xrIQxVpqiZFqTbxk5A5OPt89/dBeSgZZyUp9iT9TnZ0OJs/Jpu79fbuYWWdCWyIgqAevXGI\nn48NkR9a3ijyIj+KAt+3sBcG/tgCbF2ASmkizVZKQouC/tnvpff/KOtW9hjKk4OAtkwX5nkz\nQEIURR+pVEzwGDwXuxhNK/1VSDXZxIDAkPb2xkHw3o79oBxuwL4X9gByUrLiUJszQY1NS8KK\n2vwmMkEnmShdwrg9aNYAkMKEuzGL2aTSxt1OJbX7/T5aGi9tLipjyJlUGhRNBc/gurHc1prk\nQrhfiHyHZlSlku11s+Nlmxsck4NcSNBUacZ3LiyrQrN9QV20YCnlymR9u144PlqQn4cZ0SQG\nLSuK5jwVmZkRw4fte+cKrSjNVCLKPStIG4YLdCxoFoOPfexg38EBeKMYv4lHV2Zi8hbao3Ss\nXwz3Akxl4JPJdwAm28/ogvqfyj5cTZfzx/U0mZ8vxkv9b3jW/17d/575DHT9/xr6b4Znj1EL\nPA7Dv9A/8LzIgrDT/zX0P965m4v1vx+c9n80wl3/X4Icrh3IK57WP7BeH37Bb2R1dHR0dPz3\nPAHKU/oAABAAAA=="}'
+    headers:
+      Accept: application/json
+      Content-Type: application/json
+      User-Agent: R-hub client
+  response:
+    status:
+      status_code: 201
+      category: Success
+      reason: Created
+      message: 'Success: (201) Created'
+    headers:
+      server: nginx
+      date: Tue, 04 Feb 2020 13:09:40 GMT
+      content-type: application/json; charset=utf-8
+      content-length: '1152'
+      connection: keep-alive
+      x-powered-by: Express
+      etag: W/"480-2fVNfFUNDpoz8U22WJDuxA"
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"windows-x86_64-devel":{"result":"submitted","email":"<<<my_email>>>","id":"myminimalpackage_1.0.0.tar.gz-ad8497480d0a4cfd943fc28f1805ccac","status-url":"https://builder-test.r-hub.io/status/myminimalpackage_1.0.0.tar.gz-ad8497480d0a4cfd943fc28f1805ccac","log-url":"https://builder-test.r-hub.io/status/original/myminimalpackage_1.0.0.tar.gz-ad8497480d0a4cfd943fc28f1805ccac"},"ubuntu-gcc-release":{"result":"submitted","email":"<<<my_email>>>","id":"myminimalpackage_1.0.0.tar.gz-81cf336dcdfb4c75ac0dc3d691da5b65","status-url":"https://builder-test.r-hub.io/status/myminimalpackage_1.0.0.tar.gz-81cf336dcdfb4c75ac0dc3d691da5b65","log-url":"https://builder-test.r-hub.io/status/original/myminimalpackage_1.0.0.tar.gz-81cf336dcdfb4c75ac0dc3d691da5b65"},"fedora-clang-devel":{"result":"submitted","email":"<<<my_email>>>","id":"myminimalpackage_1.0.0.tar.gz-1e0141f319c740d189da6704fe6da12c","status-url":"https://builder-test.r-hub.io/status/myminimalpackage_1.0.0.tar.gz-1e0141f319c740d189da6704fe6da12c","log-url":"https://builder-test.r-hub.io/status/original/myminimalpackage_1.0.0.tar.gz-1e0141f319c740d189da6704fe6da12c"}}'
+  recorded_at: 2020-02-04 13:09:40 GMT
+  recorded_with: vcr/0.4.1.93, webmockr/0.5.1.98

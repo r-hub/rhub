@@ -42,6 +42,9 @@ Suggests:
     covr,
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    vcr
 Encoding: UTF-8
 VignetteBuilder: knitr
+Remotes:
+   ropensci/vcr
