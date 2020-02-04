@@ -12,7 +12,7 @@ mockery::stub(where = email_add_token,
 library("vcr")
 invisible(vcr::vcr_configure(
   dir = "../fixtures",
-  filter_sensitive_data = list("<<<my_rhub_token>>>" = email_get_token(list_validated_emails()[1]),
+  filter_sensitive_data = list("<<<my_rhub_token>>>" = email_get_token(list_validated_emails()[[1]]),
                                "<<<my_email>>>" = list_validated_emails()[[1]])
 ))
 
