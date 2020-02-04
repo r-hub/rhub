@@ -17,7 +17,7 @@ http_interactions:
       message: 'Success: (200) OK'
     headers:
       server: nginx
-      date: Tue, 04 Feb 2020 13:09:39 GMT
+      date: Tue, 04 Feb 2020 14:44:15 GMT
       content-type: application/json; charset=utf-8
       transfer-encoding: chunked
       connection: keep-alive
@@ -26,8 +26,8 @@ http_interactions:
       cache-control: public, max-age=0
       last-modified: Mon, 20 Jan 2020 21:39:39 GMT
       etag: W/"234d-16fc4e59978"
-      set-cookie: r-hub frontend=s%3Aba4501e8-44b6-455e-bed2-1233202ad9df.alPZNjWvJ3l2Dwyf%2FnfzqSsbjPZp8EKcL6KxPO44WLI;
-        Path=/; Expires=Tue, 04 Feb 2020 23:09:39 GMT
+      set-cookie: r-hub frontend=s%3A22b7cb4c-0125-4165-9eba-1bcc838e45ad.Grn9%2Bh4IvEFIxF%2BOVkMv0U7ZG%2BvWctnes4%2FuJYiLKG4;
+        Path=/; Expires=Wed, 05 Feb 2020 00:44:15 GMT
       content-encoding: gzip
     body:
       encoding: UTF-8
@@ -152,14 +152,14 @@ http_interactions:
         i86pc i386 i86pc\",\n\t\"compilers\": \"GCC 5.2.0\",\n\t\"docker-image\":
         null,\n\t\"sysreqs-platform\": \"solaris-10\",\n\t\"categories\": [\"Solaris\"],\n\t\"node-labels\":
         [\"solaris\"],\n\t\"queue\": \"solaris\"\n    }\n]\n"
-  recorded_at: 2020-02-04 13:09:40 GMT
+  recorded_at: 2020-02-04 14:44:17 GMT
   recorded_with: vcr/0.4.1.93, webmockr/0.5.1.98
 - request:
     method: post
     uri: https://builder-test.r-hub.io/api/check/submit
     body:
       encoding: ''
-      string: '{"email":"<<<my_email>>>","token":"<<<my_rhub_token>>>","package":"myminimalpackage","version":"1.0.0","platform":["windows-x86_64-devel","ubuntu-gcc-release","fedora-clang-devel"],"env":{"_R_CHECK_FORCE_SUGGESTS_":["true"],"_R_CHECK_CRAN_INCOMING_USE_ASPELL_":["true"]},"check_args":"--as-cran","file":"H4sIAAAAAAAAA+2VUW+bMBDHefanOPGUSIEYAqRj7ZSIZFWrJI3SbC/THjwwmTewI9tMyqZ9\n9xrIQxVpqiZFqTbxk5A5OPt89/dBeSgZZyUp9iT9TnZ0OJs/Jpu79fbuYWWdCWyIgqAevXGI\nn48NkR9a3ijyIj+KAt+3sBcG/tgCbF2ASmkizVZKQouC/tnvpff/KOtW9hjKk4OAtkwX5nkz\nQEIURR+pVEzwGDwXuxhNK/1VSDXZxIDAkPb2xkHw3o79oBxuwL4X9gByUrLiUJszQY1NS8KK\n2vwmMkEnmShdwrg9aNYAkMKEuzGL2aTSxt1OJbX7/T5aGi9tLipjyJlUGhRNBc/gurHc1prk\nQrhfiHyHZlSlku11s+Nlmxsck4NcSNBUacZ3LiyrQrN9QV20YCnlymR9u144PlqQn4cZ0SQG\nLSuK5jwVmZkRw4fte+cKrSjNVCLKPStIG4YLdCxoFoOPfexg38EBeKMYv4lHV2Zi8hbao3Ss\nXwz3Akxl4JPJdwAm28/ogvqfyj5cTZfzx/U0mZ8vxkv9b3jW/17d/575DHT9/xr6b4Znj1EL\nPA7Dv9A/8LzIgrDT/zX0P965m4v1vx+c9n80wl3/X4Icrh3IK57WP7BeH37Bb2R1dHR0dPz3\nPAHKU/oAABAAAA=="}'
+      string: '{"email":"<<<my_email>>>","token":"<<<my_rhub_token>>>","package":"myminimalpackage","version":"1.0.0","platform":["windows-x86_64-devel","ubuntu-gcc-release","fedora-clang-devel"],"env":{"_R_CHECK_FORCE_SUGGESTS_":["true"],"_R_CHECK_CRAN_INCOMING_USE_ASPELL_":["true"]},"check_args":"--as-cran","file":"H4sIAAAAAAAAA+2V0WrbMBSGfa2nOPgqgdiRXNkZXjsSkmy0JFlIs92MXWi2nGmzpSDLhWz0\n3SvbuSiBUQYhZcMfGPnYxzo6+vXj4lAIKQqW71nyk+34cDa/n25u19vbjyvnTGBLRGk9klGI\nn48NURA65Coi0RUmdBQ5mIQ0iBzAzgWoSsO0XUrBeJ7zP+e99P4fZd3KHkNxchDQVpjcPm8G\nmLKSo89cl0LJGIiPfYwmlfmudDnexIDAkvT2NkHJ3k48cAk34N4pdwAZK0R+qMOZ4jbmBRN5\nHf5QqeLjVBU+E9IdNHMAaGXL3djJXFYZm+4mmrv9fh8tbZaxF9cxZEKXBkqeKJnCdRP5bTTO\nlPK/Mf0OzXiZaLE3zYqXbW9wbA4ypcHw0gi582FZ5Ubsc+6jhUi4LG3XH9YLL0AL9uswY4bF\nYHTF0VwmKrVfxPBp+957g1acp+VUFXuRs7aMVOi4oWkMAQ6whwMPUyA0pjQm1H44fQvtUTru\nXwx3CuzOwBfb7wBst1/RBfU/lX24mizn9+vJdH6+Gi/53/LM/2HtfxKQzv+vov9mePYatcCj\nMPwL/SkhoQNhp/9r6H+88zcX839AT/0fBaPO/5cgg2sPskom9Q+s14ff8Iicjo6Ojo7/nie0\nUaa5ABAAAA=="}'
     headers:
       Accept: application/json
       Content-Type: application/json
@@ -172,15 +172,15 @@ http_interactions:
       message: 'Success: (201) Created'
     headers:
       server: nginx
-      date: Tue, 04 Feb 2020 13:09:40 GMT
+      date: Tue, 04 Feb 2020 14:44:16 GMT
       content-type: application/json; charset=utf-8
       content-length: '1152'
       connection: keep-alive
       x-powered-by: Express
-      etag: W/"480-2fVNfFUNDpoz8U22WJDuxA"
+      etag: W/"480-FnIwK1oH1ma4aIL9wOWazw"
     body:
       encoding: UTF-8
       file: no
-      string: '{"windows-x86_64-devel":{"result":"submitted","email":"<<<my_email>>>","id":"myminimalpackage_1.0.0.tar.gz-ad8497480d0a4cfd943fc28f1805ccac","status-url":"https://builder-test.r-hub.io/status/myminimalpackage_1.0.0.tar.gz-ad8497480d0a4cfd943fc28f1805ccac","log-url":"https://builder-test.r-hub.io/status/original/myminimalpackage_1.0.0.tar.gz-ad8497480d0a4cfd943fc28f1805ccac"},"ubuntu-gcc-release":{"result":"submitted","email":"<<<my_email>>>","id":"myminimalpackage_1.0.0.tar.gz-81cf336dcdfb4c75ac0dc3d691da5b65","status-url":"https://builder-test.r-hub.io/status/myminimalpackage_1.0.0.tar.gz-81cf336dcdfb4c75ac0dc3d691da5b65","log-url":"https://builder-test.r-hub.io/status/original/myminimalpackage_1.0.0.tar.gz-81cf336dcdfb4c75ac0dc3d691da5b65"},"fedora-clang-devel":{"result":"submitted","email":"<<<my_email>>>","id":"myminimalpackage_1.0.0.tar.gz-1e0141f319c740d189da6704fe6da12c","status-url":"https://builder-test.r-hub.io/status/myminimalpackage_1.0.0.tar.gz-1e0141f319c740d189da6704fe6da12c","log-url":"https://builder-test.r-hub.io/status/original/myminimalpackage_1.0.0.tar.gz-1e0141f319c740d189da6704fe6da12c"}}'
-  recorded_at: 2020-02-04 13:09:40 GMT
+      string: '{"windows-x86_64-devel":{"result":"submitted","email":"<<<my_email>>>","id":"myminimalpackage_1.0.0.tar.gz-84b2ef05fcf940c49d33294bd24ba197","status-url":"https://builder-test.r-hub.io/status/myminimalpackage_1.0.0.tar.gz-84b2ef05fcf940c49d33294bd24ba197","log-url":"https://builder-test.r-hub.io/status/original/myminimalpackage_1.0.0.tar.gz-84b2ef05fcf940c49d33294bd24ba197"},"ubuntu-gcc-release":{"result":"submitted","email":"<<<my_email>>>","id":"myminimalpackage_1.0.0.tar.gz-a3f44009f31941a998fa43a6332c74a3","status-url":"https://builder-test.r-hub.io/status/myminimalpackage_1.0.0.tar.gz-a3f44009f31941a998fa43a6332c74a3","log-url":"https://builder-test.r-hub.io/status/original/myminimalpackage_1.0.0.tar.gz-a3f44009f31941a998fa43a6332c74a3"},"fedora-clang-devel":{"result":"submitted","email":"<<<my_email>>>","id":"myminimalpackage_1.0.0.tar.gz-2f66e692a068418c8f6bea94ab2de94e","status-url":"https://builder-test.r-hub.io/status/myminimalpackage_1.0.0.tar.gz-2f66e692a068418c8f6bea94ab2de94e","log-url":"https://builder-test.r-hub.io/status/original/myminimalpackage_1.0.0.tar.gz-2f66e692a068418c8f6bea94ab2de94e"}}'
+  recorded_at: 2020-02-04 14:44:17 GMT
   recorded_with: vcr/0.4.1.93, webmockr/0.5.1.98
