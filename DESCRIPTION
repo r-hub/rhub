@@ -48,4 +48,5 @@ Suggests:
 Encoding: UTF-8
 VignetteBuilder: knitr
 Remotes:
-   ropensci/vcr
+   ropensci/vcr,
+   ropensci/webmockr
