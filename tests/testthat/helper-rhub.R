@@ -15,6 +15,5 @@ invisible(vcr::vcr_configure(
   filter_sensitive_data = list("<<<my_rhub_token>>>" = email_get_token(list_validated_emails()[1]),
                                "<<<my_email>>>" = list_validated_emails()[[1]])
 ))
-vcr::check_cassette_names()
 
 

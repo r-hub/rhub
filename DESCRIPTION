@@ -47,6 +47,3 @@ Suggests:
     mockery
 Encoding: UTF-8
 VignetteBuilder: knitr
-Remotes:
-   ropensci/vcr,
-   ropensci/webmockr
