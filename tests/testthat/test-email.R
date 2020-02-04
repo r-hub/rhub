@@ -15,7 +15,6 @@ test_that("email_file", {
 })
 
 test_that("email_get_token, email_add_token", {
-  
   expect_null(email_get_token("bugs.bunny@acme.com"))
   email_add_token("bugs.bunny@acme.com", "tokenxxx")
   expect_equal(email_get_token("bugs.bunny@acme.com"), "tokenxxx")
@@ -25,12 +24,7 @@ test_that("email_get_token, email_add_token", {
   expect_equal(email_get_token("bugs.bunny@acme.com"), "token2")
   expect_null(email_get_token("duffy.duck@acme.com"))
   
-  write.table(data.frame(e = "foo@bar.com",
-                         t = "lalala"),
-              file.path(testthat::test_path(), "validated_emails.csv"),
-              sep = ",",
-              col.names = FALSE,
-              row.names = FALSE)
+  recreate_email()
 
 })
 

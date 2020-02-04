@@ -1,15 +1,13 @@
-recording <- FALSE
+# to record delete tests/testthat/validated_emails.csv
+# then run recreate_email()
 
-if (!recording) {
-  mockery::stub(where = list_validated_emails2,
-                what = "email_file", 
-                how = file.path(testthat::test_path(), "validated_emails.csv"))
-  mockery::stub(where = email_get_token,
-                what = "email_file", 
-                how = file.path(testthat::test_path(), "validated_emails.csv"))
-  mockery::stub(where = email_add_token,
-                what = "email_file", 
-                how = file.path(testthat::test_path(), "validated_emails.csv"))
+recreate_email <- function() {
+  write.table(data.frame(e = "foo@bar.com",
+                         t = "lalala"),
+              file.path(testthat::test_path(), "validated_emails.csv"),
+              sep = ",",
+              col.names = FALSE,
+              row.names = FALSE)
 }
 
 library("vcr")

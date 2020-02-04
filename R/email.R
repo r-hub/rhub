@@ -161,6 +161,11 @@ list_validated_emails2 <- function(msg_if_empty = TRUE) {
 #' @importFrom rappdirs user_data_dir
 
 email_file <- function() {
+  
+  if (file.exists("validated_emails.csv")) {
+    return("validated_emails.csv")
+  }
+  
   rhub_data_dir <- user_data_dir("rhub", "rhub")
   file.path(rhub_data_dir, "validated_emails.csv")
 }
