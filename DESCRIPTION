@@ -41,6 +41,7 @@ Imports:
 Suggests: 
     covr,
     testthat,
-    knitr
+    knitr,
+    rmarkdown
 Encoding: UTF-8
 VignetteBuilder: knitr, rmarkdown
