@@ -124,7 +124,7 @@ check_with_sanitizers <- function(path = ".", ...) {
 check_shortcut_platforms <- list(
   "linux"      = "debian-gcc-release",
   "windows"    = "windows-x86_64-release",
-  "macos"      = "macos-elcapitan-release",
+  "macos"      = "macos-highsierra-release",
   "valgrind"   = "debian-gcc-release",
   "sanitizers" = "linux-x86_64-rocker-gcc-san",
   "roldrel"    = "windows-x86_64-oldrel",
