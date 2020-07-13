@@ -153,7 +153,7 @@
 
 
 <p>Every R-hub check has a unique id, that is constructed from the
-name of the source package archive, and a random string. For example:</p><pre><span class='no'>devtools_2.0.0.tar.gz</span>-<span class='no'>fe53bbba85de4a579f6dc3b852bf76a3</span></pre>
+name of the source package archive, and a random string. For example:</p><pre><span class='kw'>devtools_2.0.0.tar.gz</span><span class='op'>-</span><span class='kw'>fe53bbba85de4a579f6dc3b852bf76a3</span></pre>
 
     <h2 class="hasAnchor" id="r-hub-group-ids"><a class="anchor" href="#r-hub-group-ids"></a>R-hub group ids</h2>
 
@@ -161,7 +161,7 @@ name of the source package archive, and a random string. For example:</p><pre><s
 
 
 <p>For every check submission, R-hub also creates a unique check group id.
-One check group may contain multiple checks. E.g. <code><a href='check_for_cran.html'>check_for_cran()</a></code>
+One check group may contain multiple checks. E.g. <code>check_for_cran()</code>
 typically creates three or four check groups. Group ids look the same
 as individual check ids.</p>
     <h2 class="hasAnchor" id="abbreviating-ids"><a class="anchor" href="#abbreviating-ids"></a>Abbreviating ids</h2>
@@ -171,8 +171,8 @@ as individual check ids.</p>
 
 <p>The rhub package keeps a list of all the checks that it has seen in the
 current session, and these checks can be also referenced by any unique
-prefix of the random string part of the id, e.g. in the <code><a href='get_check.html'>get_check()</a></code>
-function. E.g. if rhub already know the devtools check above, then</p><pre><span class='fu'><a href='get_check.html'>get_check</a></span>(<span class='st'>"fe53bbb"</span>)</pre>
+prefix of the random string part of the id, e.g. in the <code>get_check()</code>
+function. E.g. if rhub already know the devtools check above, then</p><pre><span class='fu'>get_check</span>(<span class='st'>"fe53bbb"</span>)</pre>
 
 <p>works.</p>
 <p>This is only recommended in interactive mode, and we suggest that you

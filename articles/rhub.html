@@ -105,7 +105,9 @@
     
     
 <p>In this article you’ll learn how to use <code>rhub</code> to connect to the R-hub builder API to start new checks and get the results and artifacts of recent checks.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rhub</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/r-hub/rhub">rhub</a></span>)
+</pre></div>
 <div id="validate-your-email-address" class="section level2">
 <h2 class="hasAnchor">
 <a href="#validate-your-email-address" class="anchor"></a>Validate your email address</h2>
@@ -119,7 +121,9 @@
 <h2 class="hasAnchor">
 <a href="#run-a-package-check" class="anchor"></a>Run a package check</h2>
 <p><code><a href="../reference/check.html">check()</a></code> runs an <code>R CMD check</code> on the package in the specified directory, or specified source R package tarball created by <code>R CMD build</code> or <code>devtools::build()</code>. It defaults to the working directory.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/check.html">check</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="../reference/check.html">check</a></span>()
+</pre></div>
 <p>If the <code>platform</code> argument is NULL, and the R session is interactive, then a menu is shown. If it is NULL, and the session is not interactive, then the default R-hub platform <code>platforms()$name[1]</code>, i.e. debian-clang-devel, is used.</p>
 <p>In interactive R sessions, the output of the check is printed to the screen unless you set the <code>show_status</code> argument to <code>FALSE</code>. Therefore, by default, your R session is busy showing the log until the check is finished, so set <code>show_status</code> to <code>FALSE</code> if you want to submit a check and then go on with your work in the same session.</p>
 <p>In all cases, you will receive a notification email with results after the check.</p>
@@ -127,11 +131,13 @@
 <img src="figures/check-output.gif" alt="recording of a check on a screen"><p class="caption">recording of a check on a screen</p>
 </div>
 <p>You can either just run the function, or assign its output to an object, that you can use to print results to the screen, to browse the web page of the check, and to retrieve URLs to the web page of the check but also to its artifacts that are kept a few days.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">mycheck</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/check.html">check</a></span>()
-<span class="no">mycheck</span>$<span class="fu">browse</span>()
-<span class="no">mycheck</span>$<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>()
-<span class="no">mycheck</span>$<span class="fu">livelog</span>()
-<span class="no">mycheck</span>$<span class="fu">urls</span>()</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">mycheck</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check.html">check</a></span>()
+<span class="kw">mycheck</span><span class="op">$</span><span class="fu">browse</span>()
+<span class="kw">mycheck</span><span class="op">$</span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>()
+<span class="kw">mycheck</span><span class="op">$</span><span class="fu">livelog</span>()
+<span class="kw">mycheck</span><span class="op">$</span><span class="fu">urls</span>()
+</pre></div>
 <p>To retrieve such objects from previous checks, see <a href="#browse-previous-checks">the corresponding section</a>.</p>
 </div>
 <div id="select-a-building-and-checking-architecture" class="section level2">
@@ -142,8 +148,28 @@
 <h3 class="hasAnchor">
 <a href="#listing-r-hub-platforms" class="anchor"></a>Listing R-hub platforms</h3>
 <p>If looking for a platform with particular characteristics, in particular to reproduce a result from CRAN’s own platform, have a look at the R-hub platform characteristics.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="fu"><a href="../reference/platforms.html">platforms</a></span>(), <span class="kw">row.names</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="fu"><a href="../reference/platforms.html">platforms</a></span>(), row.names = <span class="fl">FALSE</span>)
+</pre></div>
 <table class="table">
+<colgroup>
+<col width="6%">
+<col width="16%">
+<col width="7%">
+<col width="2%">
+<col width="1%">
+<col width="2%">
+<col width="12%">
+<col width="13%">
+<col width="4%">
+<col width="5%">
+<col width="5%">
+<col width="9%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="2%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">name</th>
 <th align="left">description</th>
@@ -355,7 +381,7 @@
 <td align="left">NA</td>
 <td align="left">osx-x86_64-clang</td>
 <td align="left">macOS</td>
-<td align="left">c(“macos”, “highsierra”, “r-release”)</td>
+<td align="left">macos , highsierra, r-release</td>
 <td align="left">highsierra</td>
 <td align="left">NA</td>
 <td align="left">highsierra</td>
@@ -373,7 +399,7 @@
 <td align="left">NA</td>
 <td align="left">osx-x86_64-clang</td>
 <td align="left">macOS</td>
-<td align="left">c(“macos”, “highsierracran”, “r-release”)</td>
+<td align="left">macos , highsierracran, r-release</td>
 <td align="left">highsierracran</td>
 <td align="left">NA</td>
 <td align="left">highsierra</td>
@@ -481,7 +507,7 @@
 <td align="left">NA</td>
 <td align="left">windows-2008</td>
 <td align="left">Windows</td>
-<td align="left">c(“windows”, “rtools4”)</td>
+<td align="left">windows, rtools4</td>
 <td align="left">rtools4</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
@@ -499,7 +525,7 @@
 <td align="left">NA</td>
 <td align="left">windows-2008</td>
 <td align="left">Windows</td>
-<td align="left">c(“windows”, “rtools3”)</td>
+<td align="left">windows, rtools3</td>
 <td align="left">rtools3</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
@@ -517,7 +543,7 @@
 <td align="left">NA</td>
 <td align="left">windows-2008</td>
 <td align="left">Windows</td>
-<td align="left">c(“windows”, “rtools4”)</td>
+<td align="left">windows, rtools4</td>
 <td align="left">rtools4</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
@@ -535,7 +561,7 @@
 <td align="left">NA</td>
 <td align="left">windows-2008</td>
 <td align="left">Windows</td>
-<td align="left">c(“windows”, “rtools4”)</td>
+<td align="left">windows, rtools4</td>
 <td align="left">rtools4</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
@@ -550,13 +576,13 @@
 <p>These are quick shortcuts that select the right platform(s):</p>
 <ul>
 <li>
-<code><a href="../reference/check_shortcuts.html">check_on_linux()</a></code> and <code><a href="../reference/check_shortcuts.html">check_on_windows()</a></code> select the operating system.</li>
+<code><a href="../reference/check_on_linux.html">check_on_linux()</a></code> and <code><a href="../reference/check_on_linux.html">check_on_windows()</a></code> select the operating system.</li>
 <li>
-<code><a href="../reference/check_shortcuts.html">check_on_debian()</a></code>, <code><a href="../reference/check_shortcuts.html">check_on_ubuntu()</a></code>, <code><a href="../reference/check_shortcuts.html">check_on_fedora()</a></code> and <code><a href="../reference/check_shortcuts.html">check_on_centos()</a></code> select an appropriate Linux platform.</li>
+<code><a href="../reference/check_on_linux.html">check_on_debian()</a></code>, <code><a href="../reference/check_on_linux.html">check_on_ubuntu()</a></code>, <code><a href="../reference/check_on_linux.html">check_on_fedora()</a></code> and <code><a href="../reference/check_on_linux.html">check_on_centos()</a></code> select an appropriate Linux platform.</li>
 <li>
-<code><a href="../reference/check_shortcuts.html">check_on_solaris()</a></code> also selects an operating system, Solaris, and by default checks neither vignettes nor manual (<code>--no-manual --no-build-vignettes</code>).</li>
+<code><a href="../reference/check_on_linux.html">check_on_solaris()</a></code> also selects an operating system, Solaris, and by default checks neither vignettes nor manual (<code>--no-manual --no-build-vignettes</code>).</li>
 <li>
-<code><a href="../reference/check_shortcuts.html">check_with_roldrel()</a></code>, <code><a href="../reference/check_shortcuts.html">check_with_rrelease()</a></code>, <code><a href="../reference/check_shortcuts.html">check_with_rpatched()</a></code> and <code><a href="../reference/check_shortcuts.html">check_with_rdevel()</a></code> select an R version.</li>
+<code><a href="../reference/check_on_linux.html">check_with_roldrel()</a></code>, <code><a href="../reference/check_on_linux.html">check_with_rrelease()</a></code>, <code><a href="../reference/check_on_linux.html">check_with_rpatched()</a></code> and <code><a href="../reference/check_on_linux.html">check_with_rdevel()</a></code> select an R version.</li>
 <li>
 <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> runs checks on platforms that are closest to platforms used by CRAN on submission:
 <ul>
@@ -567,9 +593,9 @@
 </ul>
 </li>
 <li>
-<code><a href="../reference/check_shortcuts.html">check_with_valgrind()</a></code> runs the build and check on Linux, in <code>valgrind</code> to find memory leaks and pointer errors.</li>
+<code><a href="../reference/check_on_linux.html">check_with_valgrind()</a></code> runs the build and check on Linux, in <code>valgrind</code> to find memory leaks and pointer errors.</li>
 <li>
-<code><a href="../reference/check_shortcuts.html">check_with_sanitizers()</a></code> runs all package package tests, examples and vignettes with Address Sanitizer and Undefined Behavior Sanitizer, see below.</li>
+<code><a href="../reference/check_on_linux.html">check_with_sanitizers()</a></code> runs all package package tests, examples and vignettes with Address Sanitizer and Undefined Behavior Sanitizer, see below.</li>
 </ul>
 </div>
 <div id="sanitizers-for-compiled-code" class="section level3">
@@ -582,137 +608,144 @@
 <li>all manual examples, and</li>
 <li>all vignette code</li>
 </ol>
-<p>with ASAN and UBSAN enabled. Use it via <code><a href="../reference/check_shortcuts.html">check_with_sanitizers()</a></code>.</p>
+<p>with ASAN and UBSAN enabled. Use it via <code><a href="../reference/check_on_linux.html">check_with_sanitizers()</a></code>.</p>
 </div>
 </div>
 <div id="browse-previous-checks" class="section level2">
 <h2 class="hasAnchor">
 <a href="#browse-previous-checks" class="anchor"></a>Browse previous checks</h2>
 <p>Once a check is finished (or failed), you will get a notification email but you can also get information from R. E.g. you could submit a check for a package located at <code>&lt;package-path&gt;</code>, then turn off your computer and on the following days retrieve results via</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r">previous_checks &lt;- rhub::list_package_checks(&lt;package-path&gt;,
-                                  email = "maelle.salmon@yahoo.se",
-                                  howmany = 4)
-previous_checks</pre></body></html></div>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"># A tibble: 10 x 13
-   package version result group   id      platform_name build_time
-   &lt;chr&gt;   &lt;chr&gt;   &lt;rhub&gt; &lt;rhub:&gt; &lt;rhub:&gt; &lt;chr&gt;         &lt;time&gt;    
- 1 note    1.0     NN     e863a86 00c375b windows-x86_… ~1m       
- 2 note    1.0     NN     e863a86 5d67129 fedora-clang… ~1m       
- 3 note    1.0     NN     e863a86 61a7543 ubuntu-gcc-r… ~53.2s    
- 4 note    1.0     NN     a99e137 197fd0e fedora-clang… ~46s      
- 5 note    1.0     NN     a99e137 2ed7302 windows-x86_… ~1m       
- 6 note    1.0     NN     a99e137 88293d9 ubuntu-gcc-r… ~36.7s    
- 7 note    1.0     NN     9ceef8e 4f9113c windows-x86_… ~1m       
- 8 note    1.0     NN     9ceef8e 6761ed2 ubuntu-gcc-r… ~35.9s    
- 9 note    1.0     N      9ceef8e f8bc9d2 fedora-clang… ~57.9s    
-10 note    1.0     ok     d3b8509 d3b8509 debian-gcc-d… ~45.5s    
-# … with 6 more variables: submitted &lt;dttm&gt;, started &lt;dttm&gt;, platform &lt;list&gt;,
-#   builder &lt;chr&gt;, status &lt;rhub::status&gt;, email &lt;chr&gt;</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">previous_checks &lt;-<span class="st"> </span>rhub<span class="op">::</span><span class="kw">list_package_checks</span>(<span class="op">&lt;</span>package<span class="op">-</span>path<span class="op">&gt;</span>,</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">                                  <span class="dt">email =</span> <span class="st">"maelle.salmon@yahoo.se"</span>,</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">                                  <span class="dt">howmany =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">previous_checks</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># A tibble: 10 x 13</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">   package version result group   id      platform_name build_time</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">   <span class="op">&lt;</span>chr<span class="op">&gt;</span><span class="st">   </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">   </span><span class="er">&lt;</span>rhub<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>rhub<span class="op">:</span><span class="er">&gt;</span><span class="st"> </span><span class="er">&lt;</span>rhub<span class="op">:</span><span class="er">&gt;</span><span class="st"> </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">         </span><span class="er">&lt;</span>time<span class="op">&gt;</span><span class="st">    </span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="st"> </span><span class="dv">1</span> note    <span class="fl">1.0</span>     NN     e863a86 00c375b windows<span class="op">-</span>x86_… <span class="op">~</span>1m       </a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"> <span class="dv">2</span> note    <span class="fl">1.0</span>     NN     e863a86 5d67129 fedora<span class="op">-</span>clang… <span class="op">~</span>1m       </a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"> <span class="dv">3</span> note    <span class="fl">1.0</span>     NN     e863a86 61a7543 ubuntu<span class="op">-</span>gcc<span class="op">-</span>r… <span class="op">~</span><span class="fl">53.2</span>s    </a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"> <span class="dv">4</span> note    <span class="fl">1.0</span>     NN     a99e137 197fd0e fedora<span class="op">-</span>clang… <span class="op">~</span>46s      </a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"> <span class="dv">5</span> note    <span class="fl">1.0</span>     NN     a99e137 2ed7302 windows<span class="op">-</span>x86_… <span class="op">~</span>1m       </a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"> <span class="dv">6</span> note    <span class="fl">1.0</span>     NN     a99e137 88293d9 ubuntu<span class="op">-</span>gcc<span class="op">-</span>r… <span class="op">~</span><span class="fl">36.7</span>s    </a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"> <span class="dv">7</span> note    <span class="fl">1.0</span>     NN     9ceef8e 4f9113c windows<span class="op">-</span>x86_… <span class="op">~</span>1m       </a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"> <span class="dv">8</span> note    <span class="fl">1.0</span>     NN     9ceef8e 6761ed2 ubuntu<span class="op">-</span>gcc<span class="op">-</span>r… <span class="op">~</span><span class="fl">35.9</span>s    </a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"> <span class="dv">9</span> note    <span class="fl">1.0</span>     N      9ceef8e f8bc9d2 fedora<span class="op">-</span>clang… <span class="op">~</span><span class="fl">57.9</span>s    </a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="dv">10</span> note    <span class="fl">1.0</span>     ok     d3b8509 d3b8509 debian<span class="op">-</span>gcc<span class="op">-</span>d… <span class="op">~</span><span class="fl">45.5</span>s    </a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co"># … with 6 more variables: submitted &lt;dttm&gt;, started &lt;dttm&gt;, platform &lt;list&gt;,</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#   builder &lt;chr&gt;, status &lt;rhub::status&gt;, email &lt;chr&gt;</span></a></code></pre></div>
 <p>You can then extract checks from this list using their <code>group</code> ID (ID for checks submitted simultaneously e.g. via <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code>) or <code>id</code> (check id). In both cases you’ll get a <code>rhub_check</code> object.</p>
 <p>Here’s an example where we extract the last group of checks, print it to the screen, and query its URLs.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">group_id</span> <span class="kw">&lt;-</span> <span class="no">previous_checks</span>$<span class="no">group</span>[<span class="fl">1</span>]
-<span class="no">group_check</span> <span class="kw">&lt;-</span> <span class="kw pkg">rhub</span><span class="kw ns">::</span><span class="fu"><a href="../reference/get_check.html">get_check</a></span>(<span class="no">group_id</span>)
-<span class="no">group_check</span></pre></body></html></div>
-<div class="sourceCode" id="cb8"><html><body><pre class="r">── note 1.0: NOTE
-
-  Build ID:   note_1.0.tar.gz-00c375b187024da7a32c27ef94fa8832
-  Platform:   Windows Server 2008 R2 SP1, R-devel, 32/64 bit
-  Submitted:  4d 1h 44m 17.5s ago
-  Build time: 1m 46.2s
-
-❯ checking CRAN incoming feasibility ... NOTE
-  Maintainer: 'Ma�lle Salmon &lt;maelle.salmon@yahoo.se&gt;'
-  
-  New submission
-  The Description field contains
-  
-    &lt;http://http://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file&gt;
-  Please enclose URLs in angle brackets (&lt;...&gt;).
-  
-  The Date field is over a month old.
-
-❯ checking R code for possible problems ... NOTE
-  .bello: no visible global function definition for 'tail'
-  Undefined global functions or variables:
-    tail
-  Consider adding
-    importFrom("utils", "tail")
-  to your NAMESPACE file.
-
-0 errors ✔ | 0 warnings ✔ | 2 notes ✖
-
-── note 1.0: NOTE
-
-  Build ID:   note_1.0.tar.gz-5d6712942ce243dcb8d34f7bdfc8ccc6
-  Platform:   Fedora Linux, R-devel, clang, gfortran
-  Submitted:  4d 1h 44m 17.6s ago
-  Build time: 1m 7.2s
-
-❯ checking CRAN incoming feasibility ... NOTE
-  Maintainer: ‘Maëlle Salmon &lt;maelle.salmon@yahoo.se&gt;’
-  
-  New submission
-  
-  The Description field contains
-    &lt;http://http://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file&gt;
-  Please enclose URLs in angle brackets (&lt;...&gt;).
-  
-  The Date field is over a month old.
-
-❯ checking R code for possible problems ... NOTE
-  .bello: no visible global function definition for ‘tail’
-  Undefined global functions or variables:
-    tail
-  Consider adding
-    importFrom("utils", "tail")
-  to your NAMESPACE file.
-
-0 errors ✔ | 0 warnings ✔ | 2 notes ✖
-
-── note 1.0: NOTE
-
-  Build ID:   note_1.0.tar.gz-61a75439c8b64c409a72c079dce20d30
-  Platform:   Ubuntu Linux 16.04 LTS, R-release, GCC
-  Submitted:  4d 1h 44m 17.7s ago
-  Build time: 53.2s
-
-❯ checking CRAN incoming feasibility ... NOTE
-  Maintainer: ‘Maëlle Salmon &lt;maelle.salmon@yahoo.se&gt;’
-  
-  New submission
-  
-  The Description field contains
-    &lt;http://http://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file&gt;
-  Please enclose URLs in angle brackets (&lt;...&gt;).
-  
-  The Date field is over a month old.
-
-❯ checking R code for possible problems ... NOTE
-  .bello: no visible global function definition for ‘tail’
-  Undefined global functions or variables:
-    tail
-  Consider adding
-    importFrom("utils", "tail")
-  to your NAMESPACE file.
-
-0 errors ✔ | 0 warnings ✔ | 2 notes ✖</pre></body></html></div>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">group_check</span>$<span class="fu">urls</span>()</pre></body></html></div>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"># A tibble: 3 x 4
-  html                 text                 artifacts             stringsAsFactors
-  &lt;chr&gt;                &lt;chr&gt;                &lt;chr&gt;                 &lt;lgl&gt;           
-1 https://builder-tes… https://builder-tes… https://artifacts.r-… FALSE           
-2 https://builder-tes… https://builder-tes… https://artifacts.r-… FALSE           
-3 https://builder-tes… https://builder-tes… https://artifacts.r-… FALSE  </pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="kw">group_id</span> <span class="op">&lt;-</span> <span class="kw">previous_checks</span><span class="op">$</span><span class="kw">group</span>[<span class="fl">1</span>]
+<span class="kw">group_check</span> <span class="op">&lt;-</span> <span class="kw">rhub</span>::<span class="fu"><a href="../reference/get_check.html">get_check</a></span>(<span class="kw">group_id</span>)
+<span class="kw">group_check</span>
+</pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">── note <span class="fl">1.0</span><span class="op">:</span><span class="st"> </span>NOTE</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">  Build ID<span class="op">:</span><span class="st">   </span>note_<span class="dv">1</span>.<span class="fl">0.</span>tar.gz<span class="op">-</span>00c375b187024da7a32c27ef94fa8832</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">  Platform<span class="op">:</span><span class="st">   </span>Windows Server <span class="dv">2008</span> R2 SP1, R<span class="op">-</span>devel, <span class="dv">32</span><span class="op">/</span><span class="dv">64</span> bit</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">  Submitted<span class="op">:</span><span class="st">  </span>4d 1h 44m <span class="fl">17.5</span>s ago</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">  Build time<span class="op">:</span><span class="st"> </span>1m <span class="fl">46.2</span>s</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">❯ checking CRAN incoming feasibility ... NOTE</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">  Maintainer<span class="op">:</span><span class="st"> 'Ma�lle Salmon &lt;maelle.salmon@yahoo.se&gt;'</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">  </a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">  New submission</a>
+<a class="sourceLine" id="cb8-12" data-line-number="12">  The Description field contains</a>
+<a class="sourceLine" id="cb8-13" data-line-number="13">  </a>
+<a class="sourceLine" id="cb8-14" data-line-number="14">    <span class="op">&lt;</span>http<span class="op">:</span><span class="er">//</span>http<span class="op">:</span><span class="er">//</span>cran.r<span class="op">-</span>project.org<span class="op">/</span>doc<span class="op">/</span>manuals<span class="op">/</span>r<span class="op">-</span>release<span class="op">/</span>R<span class="op">-</span>exts.html<span class="co">#The-DESCRIPTION-file&gt;</span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15">  Please enclose URLs <span class="cf">in</span> angle <span class="kw">brackets</span> (<span class="op">&lt;</span>...<span class="op">&gt;</span>).</a>
+<a class="sourceLine" id="cb8-16" data-line-number="16">  </a>
+<a class="sourceLine" id="cb8-17" data-line-number="17">  The Date field is over a month old.</a>
+<a class="sourceLine" id="cb8-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb8-19" data-line-number="19">❯ checking R code <span class="cf">for</span> possible problems ... NOTE</a>
+<a class="sourceLine" id="cb8-20" data-line-number="20">  .bello<span class="op">:</span><span class="st"> </span>no visible global <span class="cf">function</span> definition <span class="cf">for</span> <span class="st">'tail'</span></a>
+<a class="sourceLine" id="cb8-21" data-line-number="21">  Undefined global functions or variables<span class="op">:</span></a>
+<a class="sourceLine" id="cb8-22" data-line-number="22"><span class="st">    </span>tail</a>
+<a class="sourceLine" id="cb8-23" data-line-number="23">  Consider adding</a>
+<a class="sourceLine" id="cb8-24" data-line-number="24">    <span class="kw">importFrom</span>(<span class="st">"utils"</span>, <span class="st">"tail"</span>)</a>
+<a class="sourceLine" id="cb8-25" data-line-number="25">  to your NAMESPACE file.</a>
+<a class="sourceLine" id="cb8-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb8-27" data-line-number="27"><span class="dv">0</span> errors ✔ <span class="op">|</span><span class="st"> </span><span class="dv">0</span> warnings ✔ <span class="op">|</span><span class="st"> </span><span class="dv">2</span> notes ✖</a>
+<a class="sourceLine" id="cb8-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb8-29" data-line-number="29">── note <span class="fl">1.0</span><span class="op">:</span><span class="st"> </span>NOTE</a>
+<a class="sourceLine" id="cb8-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb8-31" data-line-number="31">  Build ID<span class="op">:</span><span class="st">   </span>note_<span class="dv">1</span>.<span class="fl">0.</span>tar.gz<span class="op">-</span>5d6712942ce243dcb8d34f7bdfc8ccc6</a>
+<a class="sourceLine" id="cb8-32" data-line-number="32">  Platform<span class="op">:</span><span class="st">   </span>Fedora Linux, R<span class="op">-</span>devel, clang, gfortran</a>
+<a class="sourceLine" id="cb8-33" data-line-number="33">  Submitted<span class="op">:</span><span class="st">  </span>4d 1h 44m <span class="fl">17.6</span>s ago</a>
+<a class="sourceLine" id="cb8-34" data-line-number="34">  Build time<span class="op">:</span><span class="st"> </span>1m <span class="fl">7.2</span>s</a>
+<a class="sourceLine" id="cb8-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb8-36" data-line-number="36">❯ checking CRAN incoming feasibility ... NOTE</a>
+<a class="sourceLine" id="cb8-37" data-line-number="37">  Maintainer<span class="op">:</span><span class="st"> </span>‘Maëlle Salmon <span class="op">&lt;</span>maelle.salmon<span class="op">@</span>yahoo.se<span class="op">&gt;</span>’</a>
+<a class="sourceLine" id="cb8-38" data-line-number="38">  </a>
+<a class="sourceLine" id="cb8-39" data-line-number="39">  New submission</a>
+<a class="sourceLine" id="cb8-40" data-line-number="40">  </a>
+<a class="sourceLine" id="cb8-41" data-line-number="41">  The Description field contains</a>
+<a class="sourceLine" id="cb8-42" data-line-number="42">    <span class="op">&lt;</span>http<span class="op">:</span><span class="er">//</span>http<span class="op">:</span><span class="er">//</span>cran.r<span class="op">-</span>project.org<span class="op">/</span>doc<span class="op">/</span>manuals<span class="op">/</span>r<span class="op">-</span>release<span class="op">/</span>R<span class="op">-</span>exts.html<span class="co">#The-DESCRIPTION-file&gt;</span></a>
+<a class="sourceLine" id="cb8-43" data-line-number="43">  Please enclose URLs <span class="cf">in</span> angle <span class="kw">brackets</span> (<span class="op">&lt;</span>...<span class="op">&gt;</span>).</a>
+<a class="sourceLine" id="cb8-44" data-line-number="44">  </a>
+<a class="sourceLine" id="cb8-45" data-line-number="45">  The Date field is over a month old.</a>
+<a class="sourceLine" id="cb8-46" data-line-number="46"></a>
+<a class="sourceLine" id="cb8-47" data-line-number="47">❯ checking R code <span class="cf">for</span> possible problems ... NOTE</a>
+<a class="sourceLine" id="cb8-48" data-line-number="48">  .bello<span class="op">:</span><span class="st"> </span>no visible global <span class="cf">function</span> definition <span class="cf">for</span> ‘tail’</a>
+<a class="sourceLine" id="cb8-49" data-line-number="49">  Undefined global functions or variables<span class="op">:</span></a>
+<a class="sourceLine" id="cb8-50" data-line-number="50"><span class="st">    </span>tail</a>
+<a class="sourceLine" id="cb8-51" data-line-number="51">  Consider adding</a>
+<a class="sourceLine" id="cb8-52" data-line-number="52">    <span class="kw">importFrom</span>(<span class="st">"utils"</span>, <span class="st">"tail"</span>)</a>
+<a class="sourceLine" id="cb8-53" data-line-number="53">  to your NAMESPACE file.</a>
+<a class="sourceLine" id="cb8-54" data-line-number="54"></a>
+<a class="sourceLine" id="cb8-55" data-line-number="55"><span class="dv">0</span> errors ✔ <span class="op">|</span><span class="st"> </span><span class="dv">0</span> warnings ✔ <span class="op">|</span><span class="st"> </span><span class="dv">2</span> notes ✖</a>
+<a class="sourceLine" id="cb8-56" data-line-number="56"></a>
+<a class="sourceLine" id="cb8-57" data-line-number="57">── note <span class="fl">1.0</span><span class="op">:</span><span class="st"> </span>NOTE</a>
+<a class="sourceLine" id="cb8-58" data-line-number="58"></a>
+<a class="sourceLine" id="cb8-59" data-line-number="59">  Build ID<span class="op">:</span><span class="st">   </span>note_<span class="dv">1</span>.<span class="fl">0.</span>tar.gz<span class="op">-</span>61a75439c8b64c409a72c079dce20d30</a>
+<a class="sourceLine" id="cb8-60" data-line-number="60">  Platform<span class="op">:</span><span class="st">   </span>Ubuntu Linux <span class="fl">16.04</span> LTS, R<span class="op">-</span>release, GCC</a>
+<a class="sourceLine" id="cb8-61" data-line-number="61">  Submitted<span class="op">:</span><span class="st">  </span>4d 1h 44m <span class="fl">17.7</span>s ago</a>
+<a class="sourceLine" id="cb8-62" data-line-number="62">  Build time<span class="op">:</span><span class="st"> </span><span class="fl">53.2</span>s</a>
+<a class="sourceLine" id="cb8-63" data-line-number="63"></a>
+<a class="sourceLine" id="cb8-64" data-line-number="64">❯ checking CRAN incoming feasibility ... NOTE</a>
+<a class="sourceLine" id="cb8-65" data-line-number="65">  Maintainer<span class="op">:</span><span class="st"> </span>‘Maëlle Salmon <span class="op">&lt;</span>maelle.salmon<span class="op">@</span>yahoo.se<span class="op">&gt;</span>’</a>
+<a class="sourceLine" id="cb8-66" data-line-number="66">  </a>
+<a class="sourceLine" id="cb8-67" data-line-number="67">  New submission</a>
+<a class="sourceLine" id="cb8-68" data-line-number="68">  </a>
+<a class="sourceLine" id="cb8-69" data-line-number="69">  The Description field contains</a>
+<a class="sourceLine" id="cb8-70" data-line-number="70">    <span class="op">&lt;</span>http<span class="op">:</span><span class="er">//</span>http<span class="op">:</span><span class="er">//</span>cran.r<span class="op">-</span>project.org<span class="op">/</span>doc<span class="op">/</span>manuals<span class="op">/</span>r<span class="op">-</span>release<span class="op">/</span>R<span class="op">-</span>exts.html<span class="co">#The-DESCRIPTION-file&gt;</span></a>
+<a class="sourceLine" id="cb8-71" data-line-number="71">  Please enclose URLs <span class="cf">in</span> angle <span class="kw">brackets</span> (<span class="op">&lt;</span>...<span class="op">&gt;</span>).</a>
+<a class="sourceLine" id="cb8-72" data-line-number="72">  </a>
+<a class="sourceLine" id="cb8-73" data-line-number="73">  The Date field is over a month old.</a>
+<a class="sourceLine" id="cb8-74" data-line-number="74"></a>
+<a class="sourceLine" id="cb8-75" data-line-number="75">❯ checking R code <span class="cf">for</span> possible problems ... NOTE</a>
+<a class="sourceLine" id="cb8-76" data-line-number="76">  .bello<span class="op">:</span><span class="st"> </span>no visible global <span class="cf">function</span> definition <span class="cf">for</span> ‘tail’</a>
+<a class="sourceLine" id="cb8-77" data-line-number="77">  Undefined global functions or variables<span class="op">:</span></a>
+<a class="sourceLine" id="cb8-78" data-line-number="78"><span class="st">    </span>tail</a>
+<a class="sourceLine" id="cb8-79" data-line-number="79">  Consider adding</a>
+<a class="sourceLine" id="cb8-80" data-line-number="80">    <span class="kw">importFrom</span>(<span class="st">"utils"</span>, <span class="st">"tail"</span>)</a>
+<a class="sourceLine" id="cb8-81" data-line-number="81">  to your NAMESPACE file.</a>
+<a class="sourceLine" id="cb8-82" data-line-number="82"></a>
+<a class="sourceLine" id="cb8-83" data-line-number="83"><span class="dv">0</span> errors ✔ <span class="op">|</span><span class="st"> </span><span class="dv">0</span> warnings ✔ <span class="op">|</span><span class="st"> </span><span class="dv">2</span> notes ✖</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="kw">group_check</span><span class="op">$</span><span class="fu">urls</span>()
+</pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># A tibble: 3 x 4</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">  html                 text                 artifacts             stringsAsFactors</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">  <span class="op">&lt;</span>chr<span class="op">&gt;</span><span class="st">                </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">                </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">                 </span><span class="er">&lt;</span>lgl<span class="op">&gt;</span><span class="st">           </span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="dv">1</span> https<span class="op">:</span><span class="er">//</span>builder<span class="op">-</span>tes… https<span class="op">:</span><span class="er">//</span>builder<span class="op">-</span>tes… https<span class="op">:</span><span class="er">//</span>artifacts.r<span class="op">-</span>… <span class="ot">FALSE</span>           </a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="dv">2</span> https<span class="op">:</span><span class="er">//</span>builder<span class="op">-</span>tes… https<span class="op">:</span><span class="er">//</span>builder<span class="op">-</span>tes… https<span class="op">:</span><span class="er">//</span>artifacts.r<span class="op">-</span>… <span class="ot">FALSE</span>           </a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="dv">3</span> https<span class="op">:</span><span class="er">//</span>builder<span class="op">-</span>tes… https<span class="op">:</span><span class="er">//</span>builder<span class="op">-</span>tes… https<span class="op">:</span><span class="er">//</span>artifacts.r<span class="op">-</span>… <span class="ot">FALSE</span>  </a></code></pre></div>
 <p>We could similarly extract the last check.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">check_id</span> <span class="kw">&lt;-</span> <span class="no">previous_checks</span>$<span class="no">id</span>[<span class="fl">1</span>]
-<span class="kw pkg">rhub</span><span class="kw ns">::</span><span class="fu"><a href="../reference/get_check.html">get_check</a></span>(<span class="no">check_id</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="kw">check_id</span> <span class="op">&lt;-</span> <span class="kw">previous_checks</span><span class="op">$</span><span class="kw">id</span>[<span class="fl">1</span>]
+<span class="kw">rhub</span>::<span class="fu"><a href="../reference/get_check.html">get_check</a></span>(<span class="kw">check_id</span>)
+</pre></div>
 </div>
 <div id="prepare-a-cran-submission" class="section level2">
 <h2 class="hasAnchor">
 <a href="#prepare-a-cran-submission" class="anchor"></a>Prepare a CRAN submission</h2>
 <p>First, run <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> and assign the result to an object (or retrieve the results from a previous <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> submission by its <code>group</code> ID as shown in the previous subsection). Then once the checks are done, use the <code>cran_summary()</code> method to get a message that you can copy-paste in your cran-comments.md file (created via e.g. <code>usethis::use_cran_comments()</code>).</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">cran_prep</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/check_for_cran.html">check_for_cran</a></span>()
-<span class="no">cran_prep</span>$<span class="fu">cran_summary</span>()
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="kw">cran_prep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_for_cran.html">check_for_cran</a></span>()
+<span class="kw">cran_prep</span><span class="op">$</span><span class="fu">cran_summary</span>()
 <span class="co">#&gt; ## Test environments</span>
 <span class="co">#&gt; - R-hub fedora-clang-devel (r-devel)</span>
 <span class="co">#&gt;  - R-hub windows-x86_64-devel (r-devel)</span>
@@ -740,7 +773,8 @@ previous_checks</pre></body></html></div>
 <span class="co">#&gt;     importFrom("utils", "tail")</span>
 <span class="co">#&gt;   to your NAMESPACE file.</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; 0 errors ✔ | 0 warnings ✔ | 2 notes ✖</span></pre></body></html></div>
+<span class="co">#&gt; 0 errors ✔ | 0 warnings ✔ | 2 notes ✖</span>
+</pre></div>
 <p>For more general information about CRAN submissions, refer to</p>
 <ul>
 <li><p><a href="https://cran.r-project.org//web//packages//submission_checklist.html">CRAN itself</a> whose checklist suggest using R-hub :-);</p></li>

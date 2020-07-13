@@ -103,7 +103,9 @@
 
     
     
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rhub</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/r-hub/rhub">rhub</a></span>)
+</pre></div>
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
@@ -121,8 +123,9 @@
 <a href="#list-r-hub-linux-images" class="anchor"></a>List R-hub Linux images</h2>
 <p>Each of R-hub Linux platforms is associated to a Docker image, whose Dockerfile is stored in the <a href="https://github.com/r-hub/rhub-linux-builders#rhub-linux-builders">r-hub/rhub-linux-builders repository</a>, and that is built and available on Docker Hub. Note, if you’re used to using Docker images outside of R, you might want to just refer to the information in <a href="https://github.com/r-hub/rhub-linux-builders#rhub-linux-builders">R-hub Linux Docker images GitHub repository</a> (including links to the built images on Docker Hub). The advantage of using the rhub package instead of Docker directly, is that the package will install the system requirements properly.</p>
 <p>To list the available images from R, you can use the <code><a href="../reference/local_check_linux_images.html">local_check_linux_images()</a></code> function that returns a <code>data.frame</code> and has a pretty default printing.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">imgs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/local_check_linux_images.html">local_check_linux_images</a></span>()
-<span class="no">imgs</span>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">imgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/local_check_linux_images.html">local_check_linux_images</a></span>()
+<span class="kw">imgs</span>
 <span class="co">#&gt; rhub/debian-clang-devel:</span>
 <span class="co">#&gt;   Debian Linux, R-devel, clang, ISO-8859-15 locale</span>
 <span class="co">#&gt; rhub/debian-gcc-devel:</span>
@@ -149,8 +152,27 @@
 <span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-release, GCC</span>
 <span class="co">#&gt; rhub/ubuntu-rchk:</span>
 <span class="co">#&gt;   Ubuntu Linux 16.04 LTS, R-devel with rchk</span>
-<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">imgs</span>, <span class="kw">row.names</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
+<span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw">imgs</span>, row.names = <span class="fl">FALSE</span>)
+</pre></div>
 <table class="table">
+<colgroup>
+<col width="8%">
+<col width="15%">
+<col width="9%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="7%">
+<col width="13%">
+<col width="6%">
+<col width="7%">
+<col width="7%">
+<col width="3%">
+<col width="1%">
+<col width="4%">
+<col width="4%">
+<col width="2%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">name</th>
 <th align="left">description</th>
@@ -417,11 +439,15 @@
 <h2 class="hasAnchor">
 <a href="#run-local-checks" class="anchor"></a>Run local checks</h2>
 <p>Below we’ll start a check of a package on the “rhub/debian-gcc-release” image (Debian Linux, R-release, GCC). The first time you use an image on your machine, it’ll be downloaded from Docker Hub, which might take a while. The image won’t be deleted after use, so next time will be faster until you clean up your machine’s Docker images, which one should do once in a while (note that R-hub images are regularly updated).</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">pkg_path</span> <span class="kw">&lt;-</span> <span class="st">"/home/maelle/Documents/R-hub/test-packages/note"</span>
-<span class="fu"><a href="../reference/local_check_linux.html">local_check_linux</a></span>(<span class="no">pkg_path</span>, <span class="kw">image</span> <span class="kw">=</span> <span class="st">"rhub/debian-gcc-release"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">pkg_path</span> <span class="op">&lt;-</span> <span class="st">"/home/maelle/Documents/R-hub/test-packages/note"</span>
+<span class="fu"><a href="../reference/local_check_linux.html">local_check_linux</a></span>(<span class="kw">pkg_path</span>, image = <span class="st">"rhub/debian-gcc-release"</span>)
+</pre></div>
 <p>You can either just run the check as shown above, which will print a log to the screen, including <code>R CMD check</code> results in the end, or assign it to an object:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">pkg_path</span> <span class="kw">&lt;-</span> <span class="st">"/home/maelle/Documents/R-hub/test-packages/note"</span>
-<span class="no">chk</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/local_check_linux.html">local_check_linux</a></span>(<span class="no">pkg_path</span>, <span class="kw">image</span> <span class="kw">=</span> <span class="st">"rhub/debian-gcc-release"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">pkg_path</span> <span class="op">&lt;-</span> <span class="st">"/home/maelle/Documents/R-hub/test-packages/note"</span>
+<span class="kw">chk</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/local_check_linux.html">local_check_linux</a></span>(<span class="kw">pkg_path</span>, image = <span class="st">"rhub/debian-gcc-release"</span>)
+</pre></div>
 <p>The object returned is of the class <code><a href="https://rdrr.io/pkg/rcmdcheck/man/rcmdcheck.html">rcmdcheck::rcmdcheck</a></code> which is an S3 object with fields <code>errors</code>, <code>warnings</code> and <code>notes</code> (character vectors), that you could operate on if you wish.</p>
 <p>The <code><a href="../reference/local_check_linux.html">local_check_linux()</a></code> function creates a container (instance of the image) that won’t be deleted after use so you might want to clean up once in a while.</p>
 </div>
@@ -433,8 +459,10 @@
 docker exec -it 7181196d-bc3c-4fc8-a0e8-dc511150335d-2 bash</code></pre>
 <p>where <code>7181196d-bc3c-4fc8-a0e8-dc511150335d-2</code> is the container name, this is printed out by <code><a href="../reference/local_check_linux.html">local_check_linux()</a></code>. After running these commands, you will get a shell within the Docker container, where you can run R. Note that on some containers R is installed in <code>/opt/</code>.</p>
 <p>For more information, you may want to look at the shell script that <code>rhub</code> uses to set up the container for running the check. To find it, run the code below.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="kw">package</span> <span class="kw">=</span> <span class="st">"rhub"</span>, <span class="st">"bin"</span>, <span class="st">"rhub-linux-docker.sh"</span>)
-<span class="co">#&gt; [1] "/home/travis/R/Library/rhub/bin/rhub-linux-docker.sh"</span></pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(package = <span class="st">"rhub"</span>, <span class="st">"bin"</span>, <span class="st">"rhub-linux-docker.sh"</span>)
+<span class="co">#&gt; [1] "/home/travis/R/Library/rhub/bin/rhub-linux-docker.sh"</span>
+</pre></div>
 </div>
   </div>
 

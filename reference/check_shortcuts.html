@@ -149,34 +149,34 @@ package on a platform with some particular aspect. Which platform
 they use might change over time.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_on_linux</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>check_on_linux</span>(path = <span class='st'>"."</span>, <span class='kw'>...</span>)
 
-<span class='fu'>check_on_windows</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
+<span class='fu'>check_on_windows</span>(path = <span class='st'>"."</span>, <span class='kw'>...</span>)
 
-<span class='fu'>check_on_macos</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
+<span class='fu'>check_on_macos</span>(path = <span class='st'>"."</span>, <span class='kw'>...</span>)
 
-<span class='fu'>check_on_debian</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
+<span class='fu'>check_on_debian</span>(path = <span class='st'>"."</span>, <span class='kw'>...</span>)
 
-<span class='fu'>check_on_ubuntu</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
+<span class='fu'>check_on_ubuntu</span>(path = <span class='st'>"."</span>, <span class='kw'>...</span>)
 
-<span class='fu'>check_on_fedora</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
+<span class='fu'>check_on_fedora</span>(path = <span class='st'>"."</span>, <span class='kw'>...</span>)
 
-<span class='fu'>check_on_solaris</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>,
-  <span class='kw'>check_args</span> <span class='kw'>=</span> <span class='st'>"'--no-manual --no-build-vignettes'"</span>, <span class='no'>...</span>)
+<span class='fu'>check_on_solaris</span>(path = <span class='st'>"."</span>,
+  check_args = <span class='st'>"'--no-manual --no-build-vignettes'"</span>, <span class='kw'>...</span>)
 
-<span class='fu'>check_on_centos</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
+<span class='fu'>check_on_centos</span>(path = <span class='st'>"."</span>, <span class='kw'>...</span>)
 
-<span class='fu'>check_with_roldrel</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
+<span class='fu'>check_with_roldrel</span>(path = <span class='st'>"."</span>, <span class='kw'>...</span>)
 
-<span class='fu'>check_with_rrelease</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
+<span class='fu'>check_with_rrelease</span>(path = <span class='st'>"."</span>, <span class='kw'>...</span>)
 
-<span class='fu'>check_with_rpatched</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
+<span class='fu'>check_with_rpatched</span>(path = <span class='st'>"."</span>, <span class='kw'>...</span>)
 
-<span class='fu'>check_with_rdevel</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
+<span class='fu'>check_with_rdevel</span>(path = <span class='st'>"."</span>, <span class='kw'>...</span>)
 
-<span class='fu'>check_with_valgrind</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)
+<span class='fu'>check_with_valgrind</span>(path = <span class='st'>"."</span>, <span class='kw'>...</span>)
 
-<span class='fu'>check_with_sanitizers</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>check_with_sanitizers</span>(path = <span class='st'>"."</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -189,7 +189,7 @@ source R package tarball built with <code>R CMD build</code> or
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional arguments are passed to <code><a href='check.html'>check()</a></code>.</p></td>
+      <td><p>Additional arguments are passed to <code><a href='https://rdrr.io/r/utils/PkgUtils.html'>check()</a></code>.</p></td>
     </tr>
     <tr>
       <th>check_args</th>
@@ -199,7 +199,7 @@ source R package tarball built with <code>R CMD build</code> or
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <a href='rhub_check.html'>rhub_check</a> object.</p>
+    <p>An rhub_check object.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

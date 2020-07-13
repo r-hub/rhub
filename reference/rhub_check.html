@@ -150,23 +150,23 @@
     <h2 class="hasAnchor" id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
 
     
-<pre><span class='no'>ch</span> <span class='kw'>&lt;-</span> <span class='no'>rhub_check</span>$<span class='fu'>new</span>(<span class='kw'>ids</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-<span class='no'>ch</span>$<span class='fu'>get_ids</span>()
-<span class='no'>ch</span>$<span class='fu'><a href='https://rdrr.io/r/stats/update.html'>update</a></span>()
-<span class='no'>ch</span>$<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>...</span>)
-<span class='no'>ch</span>$<span class='fu'>browse</span>(<span class='kw'>which</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-<span class='no'>ch</span>$<span class='fu'>urls</span>(<span class='kw'>which</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-<span class='no'>ch</span>$<span class='fu'>livelog</span>(<span class='kw'>which</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='no'>ch</span>$<span class='fu'>cran_summary</span>()</pre>
+<pre><span class='kw'>ch</span> <span class='op'>&lt;-</span> <span class='kw'>rhub_check</span><span class='op'>$</span><span class='fu'>new</span>(ids = <span class='kw'>NULL</span>, status = <span class='kw'>NULL</span>, group = <span class='kw'>NULL</span>)
+<span class='kw'>ch</span><span class='op'>$</span><span class='fu'>get_ids</span>()
+<span class='kw'>ch</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/update.html'>update</a></span>()
+<span class='kw'>ch</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>...</span>)
+<span class='kw'>ch</span><span class='op'>$</span><span class='fu'>browse</span>(which = <span class='kw'>NULL</span>)
+<span class='kw'>ch</span><span class='op'>$</span><span class='fu'>urls</span>(which = <span class='kw'>NULL</span>)
+<span class='kw'>ch</span><span class='op'>$</span><span class='fu'>livelog</span>(which = <span class='fl'>1</span>)
+<span class='kw'>ch</span><span class='op'>$</span><span class='fu'>cran_summary</span>()</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
 
     
 
 <ul>
-<li><p><code>ch</code> An rhub check object. It can be created using <code><a href='check.html'>check()</a></code>,
-and other check functions including <code><a href='check_for_cran.html'>check_for_cran</a></code>.
-See also <code><a href='last_check.html'>last_check()</a></code>.</p></li>
+<li><p><code>ch</code> An rhub check object. It can be created using <code><a href='https://rdrr.io/r/utils/PkgUtils.html'>check()</a></code>,
+and other check functions including <code>check_for_cran</code>.
+See also <code>last_check()</code>.</p></li>
 <li><p><code>ids</code> Character vector of check ids.</p></li>
 <li><p><code>status</code> Check status for <code>ids</code> or <code>group</code>.</p></li>
 <li><p><code>group</code> Check group id, string scalar. Either <code>group</code> or <code>ids</code> must
@@ -183,10 +183,10 @@ or id.</p></li>
     
 
 
-<p>An <code>rhub_check</code> object can be created by <code><a href='check.html'>check()</a></code>, <code><a href='list_my_checks.html'>list_my_checks()</a></code>,
-or <code><a href='list_package_checks.html'>list_package_checks()</a></code>. <code><a href='last_check.html'>last_check()</a></code> returns the last check(s)
+<p>An <code>rhub_check</code> object can be created by <code><a href='https://rdrr.io/r/utils/PkgUtils.html'>check()</a></code>, <code>list_my_checks()</code>,
+or <code>list_package_checks()</code>. <code>last_check()</code> returns the last check(s)
 submitted from the current R session. Do not confuse <code>rhub_check</code>/<code>rhub_check_for_cran</code>
-(classes) with <code><a href='check.html'>check()</a></code> or <code><a href='check_for_cran.html'>check_for_cran()</a></code> (functions).</p>
+(classes) with <code><a href='https://rdrr.io/r/utils/PkgUtils.html'>check()</a></code> or <code>check_for_cran()</code> (functions).</p>
 <p><code>ch$get_ids()</code> returns the check ids. These can be used to query if a
 check has finished.</p>
 <p><code>ch$update()</code> updates the status of the check. Printing the check
@@ -194,7 +194,7 @@ status to the screen does not perform an update, unless the status of
 the check(s) is unknown.</p>
 <p><code>ch$print()</code> prints the status of the check(s) to the screen.</p>
 <p><code>ch$cran_summary()</code> prints text to be copy-pasted in cran-comments.md,
-it is especially useful on the output of <code><a href='check_for_cran.html'>check_for_cran()</a></code>.</p>
+it is especially useful on the output of <code>check_for_cran()</code>.</p>
 <p><code>ch$browse()</code> opens a tab or window in the default web browser, that points
 to the detailed logs of the check(s).</p>
 <p><code>ch$urls()</code> return a <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble</a></code> with URL to the html log, text log and artifacts

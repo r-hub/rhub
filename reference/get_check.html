@@ -145,7 +145,7 @@
     <p>Retrieve the result of R-hub checks</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_check</span>(<span class='no'>ids</span>)</pre>
+    <pre class="usage"><span class='fu'>get_check</span>(<span class='kw'>ids</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,27 +156,27 @@
 <li><p>A single R-hub check id.</p></li>
 <li><p>A character vector of check ids.</p></li>
 <li><p>An R-hub check group id.
-All ids can be abbreviated, see <a href='rhub-ids.html'>R-hub ids</a>.</p></li>
+All ids can be abbreviated, see R-hub ids.</p></li>
 </ul></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <a href='rhub_check.html'>rhub_check</a> object.</p>
+    <p>An rhub_check object.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
 
     
-<pre><span class='no'>chk</span> <span class='kw'>&lt;-</span> <span class='fu'>get_check</span>(<span class='st'>"915ee61"</span>)
-<span class='no'>chk</span>
-<span class='no'>chk</span>$<span class='fu'><a href='https://rdrr.io/r/stats/update.html'>update</a></span>()
-<span class='no'>chk</span>$<span class='fu'>browse</span>()
-<span class='no'>chk</span>$<span class='fu'>cran_summary</span>()
-<span class='no'>chk</span>$<span class='fu'>urls</span>()</pre>
+<pre><span class='kw'>chk</span> <span class='op'>&lt;-</span> <span class='fu'>get_check</span>(<span class='st'>"915ee61"</span>)
+<span class='kw'>chk</span>
+<span class='kw'>chk</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/update.html'>update</a></span>()
+<span class='kw'>chk</span><span class='op'>$</span><span class='fu'>browse</span>()
+<span class='kw'>chk</span><span class='op'>$</span><span class='fu'>cran_summary</span>()
+<span class='kw'>chk</span><span class='op'>$</span><span class='fu'>urls</span>()</pre>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='list_my_checks.html'>list_my_checks()</a></code> and <code><a href='list_package_checks.html'>list_package_checks()</a></code> to list
+    <div class='dont-index'><p><code>list_my_checks()</code> and <code>list_package_checks()</code> to list
 R-hub checks.</p></div>
 
   </div>

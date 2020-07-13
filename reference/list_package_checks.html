@@ -145,7 +145,7 @@
     <p>List checks of a package</p>
     </div>
 
-    <pre class="usage"><span class='fu'>list_package_checks</span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>howmany</span> <span class='kw'>=</span> <span class='fl'>20</span>)</pre>
+    <pre class="usage"><span class='fu'>list_package_checks</span>(package = <span class='st'>"."</span>, email = <span class='kw'>NULL</span>, howmany = <span class='fl'>20</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -198,10 +198,10 @@ This is a list column with members: <code>status</code>, <code>errors</code>, <c
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>ch</span> <span class='kw'>&lt;-</span> <span class='fu'>list_package_checks</span>()
-<span class='no'>ch</span>
-<span class='no'>ch</span>$<span class='fu'>details</span>(<span class='fl'>1</span>)
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>ch</span> <span class='op'>&lt;-</span> <span class='fu'>list_package_checks</span>()
+<span class='kw'>ch</span>
+<span class='kw'>ch</span><span class='op'>$</span><span class='fu'>details</span>(<span class='fl'>1</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

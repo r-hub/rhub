@@ -1,10 +1,8 @@
 pandoc: '2.2'
 pkgdown: 1.5.1.9000
-pkgdown_sha: aeb1cfb080f566b32da6613b6e12c13eb743daff
-articles:
-  local-debugging: local-debugging.html
-  rhub: rhub.html
-last_built: 2020-06-02T14:52Z
+pkgdown_sha: caf7cc74e008e8d0d6e53eeda93cd3cad3545bf2
+articles: []
+last_built: 2020-07-13T10:39Z
 urls:
   reference: https://r-hub.github.io/rhub/reference
   article: https://r-hub.github.io/rhub/articles

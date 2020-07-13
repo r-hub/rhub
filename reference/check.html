@@ -145,9 +145,9 @@
     <p>Check an R package on R-hub</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>platform</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>valgrind</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>check_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(), <span class='kw'>env_vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(),
-  <span class='kw'>show_status</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>())</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/PkgUtils.html'>check</a></span>(path = <span class='st'>"."</span>, platform = <span class='kw'>NULL</span>, email = <span class='kw'>NULL</span>, valgrind = <span class='fl'>FALSE</span>,
+  check_args = <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(), env_vars = <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(),
+  show_status = <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,7 +161,7 @@ source R package tarball built with <code>R CMD build</code> or
     <tr>
       <th>platform</th>
       <td><p>Platform to build/check the package on. See
-<code><a href='platforms.html'>platforms()</a></code> for the available platforms. If this is <code>NULL</code>,
+<code>platforms()</code> for the available platforms. If this is <code>NULL</code>,
 and the R session is interactive, then a menu is shown. If it is
 <code>NULL</code>, and the session is not interactive, then the default
 R-hub platforms is used. Can take a vector of platforms which saves
@@ -171,7 +171,7 @@ platforms specified.</p></td>
     <tr>
       <th>email</th>
       <td><p>Email address to send notification to about the check.
-It must be a validated email address, see <code><a href='validate_email.html'>validate_email()</a></code>. If
+It must be a validated email address, see <code>validate_email()</code>. If
 <code>NULL</code>, then the email address of the maintainer is used, as defined
 in the <code>DESCRIPTION</code> file of the package.</p></td>
     </tr>
@@ -198,12 +198,12 @@ before the check. A named character vector.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <a href='rhub_check.html'>rhub_check</a> object.</p>
+    <p>An rhub_check object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>check</span>(<span class='st'>"."</span>)
-<span class='fu'>check</span>(<span class='st'>"mypackage_1.0.0.tar.gz"</span>, <span class='kw'>platform</span> <span class='kw'>=</span> <span class='st'>"fedora-clang-devel"</span>)
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/utils/PkgUtils.html'>check</a></span>(<span class='st'>"."</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/PkgUtils.html'>check</a></span>(<span class='st'>"mypackage_1.0.0.tar.gz"</span>, platform = <span class='st'>"fedora-clang-devel"</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
