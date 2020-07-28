@@ -9,8 +9,8 @@
 #' * It checks the package on R-release and R-devel.
 #' * It uses the `--as-cran` argument to `R CMD check`.
 #' * It requires all dependencies, including suggested ones.
-#' 
-#' @details This function is wrapped by `devtools::check_rhub()` which you 
+#'
+#' @details This function is wrapped by `devtools::check_rhub()` which you
 #' might find useful if you load `devtools` via your .Rprofile (see `usethis::use_devtools()`).
 #'
 #' @param check_args Arguments for `R CMD check`. By default `--as-cran`
@@ -37,7 +37,8 @@
 check_for_cran <- function(
   path = ".", email = NULL, check_args = "--as-cran",
   env_vars = c("_R_CHECK_FORCE_SUGGESTS_" = "true",
-    "_R_CHECK_CRAN_INCOMING_USE_ASPELL_" = "true"), platforms = NULL,
+    "_R_CHECK_CRAN_INCOMING_USE_ASPELL_" = "true",
+    "_R_CHECK_CRAN_INCOMING_CHECK_FILE_URIS_" = "true"), platforms = NULL,
   ...) {
 
   path <- normalizePath(path)
