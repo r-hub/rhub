@@ -34,21 +34,21 @@
 check <- function(path = ".", platform = NULL,
                   email = NULL, valgrind = FALSE, check_args = character(),
                   env_vars = character(), show_status = interactive()) {
-
+  
   ## Check that it is a package
   path <- normalizePath(path)
   assert_that(is_pkg_dir_or_tarball(path))
   assert_that(is_flag(valgrind))
   assert_that(is_named(env_vars))
   assert_that(is.character(env_vars))
-
+  
   ## Make sure that maintainer email was validated
   if (is.null(email)) email <- get_maintainer_email(path)
   if (is.na(email)) stop("Cannot get email address from package")
   assert_validated_email_for_check(email)
-
+  
   platform <- match_platform(platform)
-
+  
   ## Build the tar.gz, if needed
   if (file.info(path)$isdir) {
     header_line("Building package")
@@ -56,13 +56,15 @@ check <- function(path = ".", platform = NULL,
   } else {
     pkg_targz <- path
   }
-
+  
   ## Add valgrind to check_args
+  ## Add --no-build-vignettes --no-manual for fedora
   check_args <- c(
     check_args,
+    if (grepl("fedora",platform)) "--no-build-vignettes --no-manual",
     if (valgrind) "--use-valgrind"
   )
-
+  
   ## Submit to R-hub
   response <- submit_package(
     email,
@@ -71,21 +73,21 @@ check <- function(path = ".", platform = NULL,
     check_args = check_args,
     env_vars = env_vars
   )
-
+  
   ids <- vapply(response, "[[", "", "id")
   chk <- rhub_check$new(ids = ids)
-
+  
   package_data$last_handle <- chk
   lapply(ids, cache_put, status = NULL)
-
+  
   ## Show the live status, if requested
   if (show_status) chk$livelog()
-
+  
   invisible(chk)
 }
 
 assert_validated_email_for_check <- function(email) {
-
+  
   assert_that(is_email(email))
   code <- email_get_token(email)
   if (is.null(code)) {
@@ -93,7 +95,7 @@ assert_validated_email_for_check <- function(email) {
       cat("\n")
       message(paste(collapse = "\n", strwrap(indent = 2, exdent = 2, paste(
         sQuote(crayon::green(email)), "is not validated, or does not match",
-         "the package maintainer's email. To validate it now, please enter",
+        "the package maintainer's email. To validate it now, please enter",
         "the email address below. Note that R-hub will send a token to",
         "this address. If the address does not belong to you, quit now by",
         "pressing ", crayon::yellow("ENTER"), "."
