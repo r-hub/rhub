@@ -28,6 +28,7 @@ chk$update()
 chk$browse()
 chk$cran_summary()
 chk$urls()
+chk$results_df()
 }
 }
 
