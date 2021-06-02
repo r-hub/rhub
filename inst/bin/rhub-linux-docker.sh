@@ -38,7 +38,7 @@ config_all() {
     mkdir -p ~/R
     echo "options(repos = c(CRAN = \"$RHUB_CRAN_MIRROR\"))" >> ~/.Rprofile
     "$RBINARY" -q -e "install.packages('BiocManager')"
-    echo "options(repos = BiocManager::repositories())" >> ~/.Rprofile
+    echo "try(options(repos = BiocManager::repositories()))" >> ~/.Rprofile
     echo "unloadNamespace('BiocManager')" >> ~/.Rprofile
     cp "/tmp/${package}" .
 }
