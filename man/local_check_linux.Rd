@@ -4,13 +4,20 @@
 \alias{local_check_linux}
 \title{Run a package check locally, in a Docker container}
 \usage{
-local_check_linux(path = ".", quiet = FALSE, image = NULL,
-  valgrind = FALSE, check_args = character(), env_vars = character(),
-  timeout = Inf, artifacts = tempfile())
+local_check_linux(
+  path = ".",
+  quiet = FALSE,
+  image = NULL,
+  valgrind = FALSE,
+  check_args = character(),
+  env_vars = character(),
+  timeout = Inf,
+  artifacts = tempfile()
+)
 }
 \arguments{
 \item{path}{Path to a directory containing an R package, or path to
-source R package tarball built with \code{R CMD build} or
+source R package tarball built with \verb{R CMD build} or
 \code{devtools::build()}.}
 
 \item{quiet}{Whether to print the check output}
@@ -19,7 +26,7 @@ source R package tarball built with \code{R CMD build} or
 
 \item{valgrind}{Whether to run the check with Valgrind.}
 
-\item{check_args}{Extra arguments for the \code{R CMD check} command.}
+\item{check_args}{Extra arguments for the \verb{R CMD check} command.}
 
 \item{env_vars}{Environment variables to set on the builder machine
 before the check. A named character vector.}

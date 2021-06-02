@@ -10,8 +10,8 @@ R-hub check ids
 
 
 Every R-hub check has a unique id, that is constructed from the
-name of the source package archive, and a random string. For example:\preformatted{devtools_2.0.0.tar.gz-fe53bbba85de4a579f6dc3b852bf76a3
-}
+name of the source package archive, and a random string. For example:\if{html}{\out{<div class="r">}}\preformatted{devtools_2.0.0.tar.gz-fe53bbba85de4a579f6dc3b852bf76a3
+}\if{html}{\out{</div>}}
 }
 
 \section{R-hub group ids}{
@@ -29,8 +29,8 @@ as individual check ids.
 The rhub package keeps a list of all the checks that it has seen in the
 current session, and these checks can be also referenced by any unique
 prefix of the random string part of the id, e.g. in the \code{\link[=get_check]{get_check()}}
-function. E.g. if rhub already know the devtools check above, then\preformatted{get_check("fe53bbb")
-}
+function. E.g. if rhub already know the devtools check above, then\if{html}{\out{<div class="r">}}\preformatted{get_check("fe53bbb")
+}\if{html}{\out{</div>}}
 
 works.
 

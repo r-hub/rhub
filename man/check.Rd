@@ -4,13 +4,19 @@
 \alias{check}
 \title{Check an R package on R-hub}
 \usage{
-check(path = ".", platform = NULL, email = NULL, valgrind = FALSE,
-  check_args = character(), env_vars = character(),
-  show_status = interactive())
+check(
+  path = ".",
+  platform = NULL,
+  email = NULL,
+  valgrind = FALSE,
+  check_args = character(),
+  env_vars = character(),
+  show_status = interactive()
+)
 }
 \arguments{
 \item{path}{Path to a directory containing an R package, or path to
-source R package tarball built with \code{R CMD build} or
+source R package tarball built with \verb{R CMD build} or
 \code{devtools::build()}.}
 
 \item{platform}{Platform to build/check the package on. See
@@ -29,7 +35,7 @@ in the \code{DESCRIPTION} file of the package.}
 \item{valgrind}{Whether to run the check in valgrind. Only supported on
 Linux currently, and ignored on other platforms.}
 
-\item{check_args}{Extra arguments for the \code{R CMD check} command.}
+\item{check_args}{Extra arguments for the \verb{R CMD check} command.}
 
 \item{env_vars}{Environment variables to set on the builder machine
 before the check. A named character vector.}
