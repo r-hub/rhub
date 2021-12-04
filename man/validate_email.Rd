@@ -30,6 +30,7 @@ machine), to the configuration file, call this function with the \code{email}
 and \code{token} arguments.
 }
 \seealso{
-Other email validation: \code{\link{list_validated_emails}}
+Other email validation: 
+\code{\link{list_validated_emails}()}
 }
 \concept{email validation}

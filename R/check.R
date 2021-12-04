@@ -4,13 +4,12 @@
 #' @param path Path to a directory containing an R package, or path to
 #'   source R package tarball built with `R CMD build` or
 #'   `devtools::build()`.
-#' @param platform Platform to build/check the package on. See
-#'   [platforms()] for the available platforms. If this is \code{NULL},
-#'   and the R session is interactive, then a menu is shown. If it is
-#'   \code{NULL}, and the session is not interactive, then the default
-#'   R-hub platforms is used. Can take a vector of platforms which saves
-#'   time by building one R package tarball that is used for all the
-#'   platforms specified.
+#' @param platforms A character vector of one or more platforms to build/check
+#'   the package on. See [platforms()] for the available platforms. If this is
+#'   \code{NULL}, and the R session is interactive, then a menu is shown. If it
+#'   is \code{NULL}, and the session is not interactive, then the default R-hub
+#'   platforms are used. A vector of platforms which saves time by building one
+#'   R package tarball that is used for all the platforms specified.
 #' @param email Email address to send notification to about the check.
 #'   It must be a validated email address, see [validate_email()]. If
 #'   `NULL`, then the email address of the maintainer is used, as defined
@@ -28,10 +27,10 @@
 #' @examples
 #' \dontrun{
 #' check(".")
-#' check("mypackage_1.0.0.tar.gz", platform = "fedora-clang-devel")
+#' check("mypackage_1.0.0.tar.gz", platforms = "fedora-clang-devel")
 #' }
 
-check <- function(path = ".", platform = NULL,
+check <- function(path = ".", platforms = NULL,
                   email = NULL, valgrind = FALSE, check_args = character(),
                   env_vars = character(), show_status = interactive()) {
 
@@ -47,7 +46,7 @@ check <- function(path = ".", platform = NULL,
   if (is.na(email)) stop("Cannot get email address from package")
   assert_validated_email_for_check(email)
 
-  platform <- match_platform(platform)
+  platforms <- match_platform(platforms)
 
   ## Build the tar.gz, if needed
   if (file.info(path)$isdir) {
@@ -67,7 +66,7 @@ check <- function(path = ".", platform = NULL,
   response <- submit_package(
     email,
     pkg_targz,
-    platform = platform,
+    platforms = platforms,
     check_args = check_args,
     env_vars = env_vars
   )

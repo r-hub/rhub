@@ -34,13 +34,13 @@ This is a list column with members: \code{status}, \code{errors}, \code{warnings
 \item status Status of the check. Possible values:
 \itemize{
 \item \code{created}: check job was created, but not running yet.
-\item \code{in-progress}: check job is running.
+\item \verb{in-progress}: check job is running.
 \item \code{parseerror}: internal R-hub error parsing the check results.
 \item \code{preperror}: check error, before the package check has started.
 \item \code{aborted}: aborted by admin or user.
 \item \code{error}: failed check. (Possibly warnings and notes as well.)
-\item \code{warning}: \code{R CMD check} reported warnings. (Possibly notes as well.)
-\item \code{note}: \code{R CMD check} reported notes.
+\item \code{warning}: \verb{R CMD check} reported warnings. (Possibly notes as well.)
+\item \code{note}: \verb{R CMD check} reported notes.
 \item \code{ok}: successful check.
 }
 \item email: Email address of maintainer / submitter.

@@ -15,21 +15,21 @@
 #' @rdname check_shortcuts
 
 check_on_linux <- function(path = ".", ...) {
-  check(path = path, platform = check_shortcut_platforms$linux, ...)
+  check(path = path, platforms = check_shortcut_platforms$linux, ...)
 }
 
 #' @export
 #' @rdname check_shortcuts
 
 check_on_windows <- function(path = ".", ...) {
-  check(path = path, platform = check_shortcut_platforms$windows, ...)
+  check(path = path, platforms = check_shortcut_platforms$windows, ...)
 }
 
 #' @export
 #' @rdname check_shortcuts
 
 check_on_macos <- function(path = ".", ...) {
-  check(path = path, platform = check_shortcut_platforms$macos, ...)
+  check(path = path, platforms = check_shortcut_platforms$macos, ...)
 }
 
 ## Various Linux OSes --------------------------------------------------
@@ -38,21 +38,21 @@ check_on_macos <- function(path = ".", ...) {
 #' @rdname check_shortcuts
 
 check_on_debian <- function(path = ".", ...) {
-  check(path = path, platform = check_shortcut_platforms$debian, ...)
+  check(path = path, platforms = check_shortcut_platforms$debian, ...)
 }
 
 #' @export
 #' @rdname check_shortcuts
 
 check_on_ubuntu <- function(path = ".", ...) {
-  check(path = path, platform = check_shortcut_platforms$ubuntu, ...)
+  check(path = path, platforms = check_shortcut_platforms$ubuntu, ...)
 }
 
 #' @export
 #' @rdname check_shortcuts
 
 check_on_fedora <- function(path = ".", ...) {
-  check(path = path, platform = check_shortcut_platforms$fedora, ...)
+  check(path = path, platforms = check_shortcut_platforms$fedora, ...)
 }
 
 #' @export
@@ -60,7 +60,7 @@ check_on_fedora <- function(path = ".", ...) {
 
 check_on_solaris <- function(path = ".", check_args =
                              "'--no-manual --no-build-vignettes'", ...) {
-  check(path = path, platform = check_shortcut_platforms$solaris,
+  check(path = path, platforms = check_shortcut_platforms$solaris,
         check_args = check_args, ...)
 }
 
@@ -68,7 +68,7 @@ check_on_solaris <- function(path = ".", check_args =
 #' @rdname check_shortcuts
 
 check_on_centos <- function(path = ".", ...) {
-  check(path = path, platform = check_shortcut_platforms$centos, ...)
+  check(path = path, platforms = check_shortcut_platforms$centos, ...)
 }
 
 ## R versions --------------------------------------------------------
@@ -77,28 +77,28 @@ check_on_centos <- function(path = ".", ...) {
 #' @rdname check_shortcuts
 
 check_with_roldrel <- function(path = ".", ...) {
-  check(path = path, platform = check_shortcut_platforms$roldrel, ...)
+  check(path = path, platforms = check_shortcut_platforms$roldrel, ...)
 }
 
 #' @export
 #' @rdname check_shortcuts
 
 check_with_rrelease <- function(path = ".", ...) {
-  check(path = path, platform = check_shortcut_platforms$rrelease, ...)
+  check(path = path, platforms = check_shortcut_platforms$rrelease, ...)
 }
 
 #' @export
 #' @rdname check_shortcuts
 
 check_with_rpatched <- function(path = ".", ...) {
-  check(path = path, platform = check_shortcut_platforms$rpatched, ...)
+  check(path = path, platforms = check_shortcut_platforms$rpatched, ...)
 }
 
 #' @export
 #' @rdname check_shortcuts
 
 check_with_rdevel <- function(path = ".", ...) {
-  check(path = path, platform = check_shortcut_platforms$rdevel, ...)
+  check(path = path, platforms = check_shortcut_platforms$rdevel, ...)
 }
 
 ## Extra checks --------------------------------------------------------
@@ -107,7 +107,7 @@ check_with_rdevel <- function(path = ".", ...) {
 #' @rdname check_shortcuts
 
 check_with_valgrind <- function(path = ".", ...) {
-  check(path = path, platform = check_shortcut_platforms$valgrind,
+  check(path = path, platforms = check_shortcut_platforms$valgrind,
         valgrind = TRUE, ...)
 }
 
@@ -115,7 +115,7 @@ check_with_valgrind <- function(path = ".", ...) {
 #' @rdname check_shortcuts
 
 check_with_sanitizers <- function(path = ".", ...) {
-  check(path = path, platform = check_shortcut_platforms$sanitizers, ...)
+  check(path = path, platforms = check_shortcut_platforms$sanitizers, ...)
 }
 
 ## -------------------------------------------------------------------
