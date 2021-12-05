@@ -15,6 +15,7 @@ then a message is printed and the data frame is returned invisibly.
 List email addresses validated on R-hub on the current machine.
 }
 \seealso{
-Other email validation: \code{\link{validate_email}}
+Other email validation: 
+\code{\link{validate_email}()}
 }
 \concept{email validation}

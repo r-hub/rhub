@@ -4,13 +4,19 @@
 \alias{check_for_cran}
 \title{Check an R-package on R-hub, for a CRAN submission}
 \usage{
-check_for_cran(path = ".", email = NULL, check_args = "--as-cran",
+check_for_cran(
+  path = ".",
+  email = NULL,
+  check_args = "--as-cran",
   env_vars = c(`_R_CHECK_FORCE_SUGGESTS_` = "true",
-  `_R_CHECK_CRAN_INCOMING_USE_ASPELL_` = "true"), platforms = NULL, ...)
+    `_R_CHECK_CRAN_INCOMING_USE_ASPELL_` = "true"),
+  platforms = NULL,
+  ...
+)
 }
 \arguments{
 \item{path}{Path to a directory containing an R package, or path to
-source R package tarball built with \code{R CMD build} or
+source R package tarball built with \verb{R CMD build} or
 \code{devtools::build()}.}
 
 \item{email}{Email address to send notification to about the check.
@@ -18,17 +24,20 @@ It must be a validated email address, see \code{\link[=validate_email]{validate_
 \code{NULL}, then the email address of the maintainer is used, as defined
 in the \code{DESCRIPTION} file of the package.}
 
-\item{check_args}{Arguments for \code{R CMD check}. By default \code{--as-cran}
+\item{check_args}{Arguments for \verb{R CMD check}. By default \code{--as-cran}
 is used.}
 
 \item{env_vars}{Environment variables to set on the builder. By default
-\code{_R_CHECK_FORCE_SUGGESTS_=true} is set, to require all packages used.
-\code{_R_CHECK_CRAN_INCOMING_USE_ASPELL_=true} is also set, to use the
+\verb{_R_CHECK_FORCE_SUGGESTS_=true} is set, to require all packages used.
+\verb{_R_CHECK_CRAN_INCOMING_USE_ASPELL_=true} is also set, to use the
 spell checker.}
 
-\item{platforms}{Character vector of platform ids to use
-(see \code{\link[=platforms]{platforms()}}), or \code{NULL}. If \code{NULL}, then a set of default
-platforms will be selected, see below.}
+\item{platforms}{A character vector of one or more platforms to build/check
+the package on. See \code{\link[=platforms]{platforms()}} for the available platforms. If this is
+\code{NULL}, and the R session is interactive, then a menu is shown. If it
+is \code{NULL}, and the session is not interactive, then the default R-hub
+platforms are used. A vector of platforms which saves time by building one
+R package tarball that is used for all the platforms specified.}
 
 \item{...}{Additional arguments are passed to \code{\link[=check]{check()}}.}
 }
@@ -44,7 +53,7 @@ In particular, if \code{platforms} is \code{NULL} (the default), then
 \itemize{
 \item It checks the package on Windows, and Linux.
 \item It checks the package on R-release and R-devel.
-\item It uses the \code{--as-cran} argument to \code{R CMD check}.
+\item It uses the \code{--as-cran} argument to \verb{R CMD check}.
 \item It requires all dependencies, including suggested ones.
 }
 

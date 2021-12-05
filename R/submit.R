@@ -3,13 +3,13 @@
 #' @importFrom jsonlite base64_enc
 #' @importFrom crayon blue
 
-submit_package <- function(email, pkg_targz, platform, check_args,
+submit_package <- function(email, pkg_targz, platforms, check_args,
                            env_vars) {
 
   assert_that(is_email(email))
   assert_that(
-    is.character(platform),
-    length(platform) >= 1
+    is.character(platforms),
+    length(platforms) >= 1
   )
 
   m <- re_match(
@@ -26,7 +26,7 @@ submit_package <- function(email, pkg_targz, platform, check_args,
       token = unbox(email_get_token(email)),
       package = unbox(unname(m[, "package"])),
       version = unbox(unname(m[, "version"])),
-      platform = platform,
+      platform = platforms,
       env = as.list(env_vars),
       check_args = unbox(paste(check_args, collapse = " ")),
       file = unbox(base64_enc(buf))
