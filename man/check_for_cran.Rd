@@ -14,14 +14,14 @@ check_for_cran(
     `_R_CLASS_MATRIX_ARRARY_` = "true", `_R_CHECK_FORCE_SUGGESTS_` = "true",
     `_R_CHECK_RD_LINE_WIDTHS_` = "true", `_R_CHECK_EXECUTABLES_EXCLUSIONS_` = "false",
     `_R_CHECK_DOC_SIZES2_` = "true", `_R_CHECK_TIMINGS_` = "10",
-    `_R_CHECK_INSTALL_DEPENDS_` = "true", `_R_CHECK_SUGGESTS_ONLY_` = "true",     
+    `_R_CHECK_INSTALL_DEPENDS_` = "true", `_R_CHECK_SUGGESTS_ONLY_` = "true",
     `_R_CHECK_DEPENDS_ONLY_DATA_` = "true", `_R_CHECK_CRAN_INCOMING_ ` = "true",
     `_R_CHECK_CRAN_INCOMING_REMOTE_` = "true", `_R_CHECK_CODE_ASSIGN_TO_GLOBALENV_` =
     "true", `_R_CHECK_CODE_ATTACH_` = "true", `_R_CHECK_CODE_DATA_INTO_GLOBALENV_` =
     "true", `_R_CHECK_DOT_FIRSTLIB_` = "true", `_R_CHECK_DEPRECATED_DEFUNCT_` = "true",
     `_R_CHECK_SCREEN_DEVICE_` = "stop", `_R_CHECK_WINDOWS_DEVICE_` = "stop",
     `_R_CHECK_TOPLEVEL_FILES_` = "true", `_R_CHECK_LIMIT_CORES_` = "true",
-    `_R_CHECK_CODE_USAGE_VIA_NAMESPACES_` = "true",     
+    `_R_CHECK_CODE_USAGE_VIA_NAMESPACES_` = "true",
     `_R_CHECK_OVERWRITE_REGISTERED_S3_METHODS_` = "true",
     `_R_CHECK_NATIVE_ROUTINE_REGISTRATION_` = "true", `_R_CHECK_NO_STOP_ON_TEST_ERROR_` =
     "true", `_R_CHECK_PRAGMAS_` = "true", `_R_CHECK_COMPILATION_FLAGS_` = "true",
@@ -57,13 +57,20 @@ is used.}
 \item{env_vars}{Environment variables to set on the builder. By default
 \verb{_R_CHECK_FORCE_SUGGESTS_=true} is set, to require all packages used.
 \verb{_R_CHECK_CRAN_INCOMING_USE_ASPELL_=true} is also set, to use the
+<<<<<<< HEAD
 spell checker.
 \verb{_R_CHECK_CRAN_INCOMING_CHECK_FILE_URIS_=true} is set to check for valid
 url.}
+=======
+spell checker.}
+>>>>>>> a54ccc55f2d89ce79fa72c67fbd8be59cac92b30
 
-\item{platforms}{Character vector of platform ids to use
-(see \code{\link[=platforms]{platforms()}}), or \code{NULL}. If \code{NULL}, then a set of default
-platforms will be selected, see below.}
+\item{platforms}{A character vector of one or more platforms to build/check
+the package on. See \code{\link[=platforms]{platforms()}} for the available platforms. If this is
+\code{NULL}, and the R session is interactive, then a menu is shown. If it
+is \code{NULL}, and the session is not interactive, then the default R-hub
+platforms are used. A vector of platforms which saves time by building one
+R package tarball that is used for all the platforms specified.}
 
 \item{...}{Additional arguments are passed to \code{\link[=check]{check()}}.}
 }

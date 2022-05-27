@@ -8,9 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Run 'R CMD check' on any of the 'R-hub' (<https://builder.r-hub.io/>)
-    architectures, from the command line. The current architectures include
-    'Windows', 'macOS', 'Solaris' and various 'Linux' distributions.
+Run 'R CMD check' on any of the 'R-hub' (<https://builder.r-hub.io/>) architectures, from the command line. The current architectures include 'Windows', 'macOS', 'Solaris' and various 'Linux' distributions.
 }
 \seealso{
 Useful links:

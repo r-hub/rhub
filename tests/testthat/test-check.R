@@ -14,7 +14,7 @@ test_that("check", {
       list(list(id = "foobar"))
     },
     `rhub:::match_platform` = function(x) x,
-    check(pkg_targz, email = "e", platform = "p", show_status = FALSE)
+    check(pkg_targz, email = "e", platforms = "p", show_status = FALSE)
   )
 
   expect_equal(sub[[1]], "e")
@@ -24,7 +24,7 @@ test_that("check", {
 
 test_that("check shortcuts", {
   with_mock(
-    `rhub::check` = function(path = ".", platform, ...) platform,
+    `rhub::check` = function(path = ".", platforms, ...) platforms,
     expect_equal(check_on_linux(), check_shortcut_platforms$linux),
     expect_equal(check_on_windows(), check_shortcut_platforms$windows),
 

@@ -6,7 +6,7 @@
 \usage{
 check(
   path = ".",
-  platform = NULL,
+  platforms = NULL,
   email = NULL,
   valgrind = FALSE,
   check_args = character(),
@@ -19,13 +19,12 @@ check(
 source R package tarball built with \verb{R CMD build} or
 \code{devtools::build()}.}
 
-\item{platform}{Platform to build/check the package on. See
-\code{\link[=platforms]{platforms()}} for the available platforms. If this is \code{NULL},
-and the R session is interactive, then a menu is shown. If it is
-\code{NULL}, and the session is not interactive, then the default
-R-hub platforms is used. Can take a vector of platforms which saves
-time by building one R package tarball that is used for all the
-platforms specified.}
+\item{platforms}{A character vector of one or more platforms to build/check
+the package on. See \code{\link[=platforms]{platforms()}} for the available platforms. If this is
+\code{NULL}, and the R session is interactive, then a menu is shown. If it
+is \code{NULL}, and the session is not interactive, then the default R-hub
+platforms are used. A vector of platforms which saves time by building one
+R package tarball that is used for all the platforms specified.}
 
 \item{email}{Email address to send notification to about the check.
 It must be a validated email address, see \code{\link[=validate_email]{validate_email()}}. If
@@ -52,6 +51,6 @@ Check an R package on R-hub
 \examples{
 \dontrun{
 check(".")
-check("mypackage_1.0.0.tar.gz", platform = "fedora-clang-devel")
+check("mypackage_1.0.0.tar.gz", platforms = "fedora-clang-devel")
 }
 }

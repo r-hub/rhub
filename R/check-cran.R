@@ -19,11 +19,6 @@
 #'   `_R_CHECK_FORCE_SUGGESTS_=true` is set, to require all packages used.
 #'   `_R_CHECK_CRAN_INCOMING_USE_ASPELL_=true` is also set, to use the
 #'   spell checker.
-#'  `_R_CHECK_CRAN_INCOMING_CHECK_FILE_URIS_=true` is set to check for valid
-#'  url.
-#' @param platforms Character vector of platform ids to use
-#'   (see [platforms()]), or `NULL`. If `NULL`, then a set of default
-#'   platforms will be selected, see below.
 #' @param ... Additional arguments are passed to [check()].
 #' @inheritParams check
 #' @return An [rhub_check] object.
@@ -98,7 +93,7 @@ check_for_cran <- function(
 
   platforms <- platforms %||% default_cran_check_platforms(path)
 
-  check(path = path, platform = platforms, email = email,
+  check(path = path, platforms = platforms, email = email,
         check_args = check_args, env_vars = env_vars, ...)
 }
 
