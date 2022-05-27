@@ -49,7 +49,7 @@ check_for_cran <- function(
     "_R_CHECK_INSTALL_DEPENDS_" = "true",
     "_R_CHECK_SUGGESTS_ONLY_" = "true",
     "_R_CHECK_DEPENDS_ONLY_DATA_" = "true",
-    "_R_CHECK_CRAN_INCOMING_ " = "true",
+    "_R_CHECK_CRAN_INCOMING_" = "true",
     "_R_CHECK_CRAN_INCOMING_REMOTE_" = "true",
     "_R_CHECK_CODE_ASSIGN_TO_GLOBALENV_" = "true",
     "_R_CHECK_CODE_ATTACH_" = "true",
