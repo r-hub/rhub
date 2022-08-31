@@ -20,7 +20,7 @@ results.
 The \code{rhub} package stores validated email addresses in a user
 configuration file, at a platform-dependent location.
 On your current platform the file is at
-\Sexpr{rhub:::email_file()}.
+\Sexpr[stage=render]{rhub:::email_file()}.
 
 To validate a new email address, call this function from an interactive
 R session, without any arguments.
