@@ -15,9 +15,9 @@
 #'
 #' @param check_args Arguments for `R CMD check`. By default `--as-cran`
 #'   is used.
-#' @param env_vars Environment variables to set on the builder. By default
-#'   `_R_CHECK_FORCE_SUGGESTS_=true` is set, to require all packages used.
-#'   `_R_CHECK_CRAN_INCOMING_USE_ASPELL_=true` is also set, to use the
+#' @param env_vars Character vecctor of environment variables to set on the builder. 
+#'   By default `_R_CHECK_FORCE_SUGGESTS_="true"` is set, to require all packages used.
+#'   `_R_CHECK_CRAN_INCOMING_USE_ASPELL_="true"` is also set, to use the
 #'   spell checker.
 #' @param ... Additional arguments are passed to [check()].
 #' @inheritParams check
