@@ -1,5 +1,5 @@
 
-# dev
+# rhub 1.1.2
 
 * Replace `platform` parameter with `platforms` in `check()` (#497).
 
