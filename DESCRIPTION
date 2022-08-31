@@ -11,7 +11,6 @@ Description: Run 'R CMD check' on any of the 'R-hub' (<https://builder.r-hub.io/
     architectures, from the command line. The current architectures include
     'Windows', 'macOS', 'Solaris' and various 'Linux' distributions.
 License: MIT + file LICENSE
-LazyData: true
 URL: https://github.com/r-hub/rhub, https://r-hub.github.io/rhub/
 BugReports: https://github.com/r-hub/rhub/issues
 RoxygenNote: 7.2.1.9000
