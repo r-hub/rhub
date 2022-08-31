@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://r-hub.github.io/rhub/404.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub/articles/local-debugging.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub/articles/rhub.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub/authors.html</loc>
+  </url>
+  <url>
     <loc>https://r-hub.github.io/rhub/index.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub/news/index.html</loc>
   </url>
   <url>
     <loc>https://r-hub.github.io/rhub/reference/check.html</loc>
@@ -14,6 +35,9 @@
   </url>
   <url>
     <loc>https://r-hub.github.io/rhub/reference/get_check.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub/reference/index.html</loc>
   </url>
   <url>
     <loc>https://r-hub.github.io/rhub/reference/last_check.html</loc>
@@ -47,11 +71,5 @@
   </url>
   <url>
     <loc>https://r-hub.github.io/rhub/reference/validate_email.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/articles/local-debugging.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/articles/rhub.html</loc>
   </url>
 </urlset>
