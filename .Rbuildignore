@@ -9,3 +9,5 @@
 ^appveyor.yml$
 ^cran-comments\.md$
 ^revdep$
+^codecov\.yml$
+^\.github$

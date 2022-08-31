@@ -3,13 +3,12 @@
 > Connect to R-hub, from R
 
 <!-- badges: start -->
-[![Linux Build Status](https://travis-ci.org/r-hub/rhub.svg?branch=master)](https://travis-ci.org/r-hub/rhub)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-hub/rhub?svg=true)](https://ci.appveyor.com/project/gaborcsardi/rhub)
 [![](http://www.r-pkg.org/badges/version/rhub)](http://www.r-pkg.org/pkg/rhub)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/rhub)](http://www.r-pkg.org/pkg/rhub)
-[![Coverage Status](https://img.shields.io/codecov/c/github/r-hub/rhub/master.svg)](https://codecov.io/github/r-hub/rhub?branch=master)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/r-hub/community)
+[![Codecov test coverage](https://codecov.io/gh/r-hub/rhub/branch/master/graph/badge.svg)](https://app.codecov.io/gh/r-hub/rhub?branch=master)
+[![R-CMD-check](https://github.com/r-hub/rhub/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-hub/rhub/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ## Introduction
