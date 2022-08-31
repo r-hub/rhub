@@ -44,3 +44,24 @@ test_that("check shortcuts", {
     )
   )
 })
+
+test_that("get_check", {
+  package_data$ids <- character()
+  package_data$groups <- character()
+  expect_error(
+    get_check("foo"),
+    "Short check id 'foo' can only be used for cached ids",
+    fixed = TRUE
+  )
+  expect_error(
+    get_check(c("foo", "bar")),
+    "Short check id 'foo' (and 1 more) can only be used for cached ids",
+    fixed = TRUE
+  )
+  real <- "rversions_2.1.1.9000.tar.gz-73d9f48a0ede4deeac27fb9910be2a02"
+  expect_error(
+    get_check(c("foo", "bar", real)),
+    "Short check id 'foo' (and 1 more) can only be used for cached ids",
+    fixed = TRUE
+  )
+})
