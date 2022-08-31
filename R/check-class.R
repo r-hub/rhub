@@ -392,12 +392,16 @@ first_line <- function(x) {
 get_check <- function(ids) {
   assert_that(is_check_ids(ids))
 
-  
-  if (length(package_data$ids) == 0 && 
-      length(package_data$groups) == 0){
-    stop("No check IDs in cache, please run list_my_checks()",
-         " or list_package_checks() first.",
-         call. = FALSE)
+  short <- grep(re_id, ids, invert = TRUE, value = TRUE)
+  if (length(short) &&
+      length(package_data$ids) == 0 &&
+      length(package_data$groups) == 0) {
+    stop(
+      "Short check id '", short[1], "' ",
+      if (length(short) > 1) paste0("(and ", length(short)-1, " more) "),
+      "can only be used for cached ids, and no ids are cached yet.\n",
+      "  Try calling `list_my_checks()` or `list_package_checks()` first."
+    )
   }
   
   sle <- cache_get_ids(ids)
@@ -425,3 +429,5 @@ get_check <- function(ids) {
     stop(err)
   }
 }
+
+re_id <- "-[0-9a-f]{32}$"
