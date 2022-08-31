@@ -27,9 +27,9 @@ in the \code{DESCRIPTION} file of the package.}
 \item{check_args}{Arguments for \verb{R CMD check}. By default \code{--as-cran}
 is used.}
 
-\item{env_vars}{Environment variables to set on the builder. By default
-\verb{_R_CHECK_FORCE_SUGGESTS_=true} is set, to require all packages used.
-\verb{_R_CHECK_CRAN_INCOMING_USE_ASPELL_=true} is also set, to use the
+\item{env_vars}{Character vecctor of environment variables to set on the builder.
+By default \verb{_R_CHECK_FORCE_SUGGESTS_="true"} is set, to require all packages used.
+\verb{_R_CHECK_CRAN_INCOMING_USE_ASPELL_="true"} is also set, to use the
 spell checker.}
 
 \item{platforms}{A character vector of one or more platforms to build/check
