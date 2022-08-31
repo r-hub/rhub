@@ -1,11 +1,12 @@
 
 # dev
 
-* Replace platform parameter with platforms in check(). (#497)
+* Replace `platform` parameter with `platforms` in `check()` (#497).
 
 * Update shortcut for Mac OS platform (@echasnovski, #393)
 
-* `cran_summary()` now works even if there is a NOTE/WARNING/ERROR in one platform and nothing on other platforms (@fabian-s, #259).
+* `cran_summary()` now works even if there is a NOTE/WARNING/ERROR in one
+  platform and nothing on other platforms (@fabian-s, #259).
 
 * Check results have now a `get_ids()` method, to easily query the id(s)
   of the check.
