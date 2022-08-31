@@ -1,6 +1,6 @@
 Package: rhub
 Title: Connect to 'R-hub'
-Version: 1.1.2
+Version: 1.1.2.9000
 Authors@R: c(
     person("Gábor", "Csárdi",, "csardi.gabor@gmail.com", role = c("aut", "cre")),
     person("Maëlle", "Salmon", role = "aut", 
