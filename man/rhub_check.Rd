@@ -7,7 +7,9 @@
 An \code{rhub_check} object holds status and results of rhub checks
 }
 \section{Usage}{
-\preformatted{ch <- rhub_check$new(ids = NULL, status = NULL, group = NULL)
+
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ch <- rhub_check$new(ids = NULL, status = NULL, group = NULL)
 ch$get_ids()
 ch$update()
 ch$print(...)
@@ -15,7 +17,7 @@ ch$browse(which = NULL)
 ch$urls(which = NULL)
 ch$livelog(which = 1)
 ch$cran_summary()
-}
+}\if{html}{\out{</div>}}
 }
 
 \section{Arguments}{

@@ -8,8 +8,8 @@ check_for_cran(
   path = ".",
   email = NULL,
   check_args = "--as-cran",
-  env_vars = c(`_R_CHECK_FORCE_SUGGESTS_` = "true",
-    `_R_CHECK_CRAN_INCOMING_USE_ASPELL_` = "true"),
+  env_vars = c(`_R_CHECK_FORCE_SUGGESTS_` = "true", `_R_CHECK_CRAN_INCOMING_USE_ASPELL_`
+    = "true"),
   platforms = NULL,
   ...
 )

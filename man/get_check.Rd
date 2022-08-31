@@ -22,13 +22,15 @@ An \link{rhub_check} object.
 Retrieve the result of R-hub checks
 }
 \section{Examples}{
-\preformatted{chk <- get_check("915ee61")
+
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{chk <- get_check("915ee61")
 chk
 chk$update()
 chk$browse()
 chk$cran_summary()
 chk$urls()
-}
+}\if{html}{\out{</div>}}
 }
 
 \seealso{
