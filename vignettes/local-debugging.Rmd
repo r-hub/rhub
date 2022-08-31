@@ -46,7 +46,7 @@ prefix.
 If you are new to Docker, for the basic use shown in the next two sections
 you don't need to learn anything, you won't have to leave R. Nonetheless,
 if you're curious, this tutorial
-[features a nice introduction](https://ropenscilabs.github.io/r-docker-tutorial/01-what-and-why.html).
+[features a nice introduction](https://jsta.github.io/r-docker-tutorial/01-what-and-why.html).
 Also see [this blog post](https://colinfay.me/docker-r-reproducibility/)
 and the list of resources it shows at the end.
 

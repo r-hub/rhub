@@ -3,8 +3,8 @@
 > Connect to R-hub, from R
 
 <!-- badges: start -->
-[![](http://www.r-pkg.org/badges/version/rhub)](http://www.r-pkg.org/pkg/rhub)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/rhub)](http://www.r-pkg.org/pkg/rhub)
+[![](https://www.r-pkg.org/badges/version/rhub)](https://www.r-pkg.org/pkg/rhub)
+[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/rhub)](https://www.r-pkg.org/pkg/rhub)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/r-hub/community)
 [![Codecov test coverage](https://codecov.io/gh/r-hub/rhub/branch/master/graph/badge.svg)](https://app.codecov.io/gh/r-hub/rhub?branch=master)
