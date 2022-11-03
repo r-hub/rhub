@@ -100,31 +100,63 @@
 
     
     
-<p>In this article you’ll learn how to use <code>rhub</code> to connect to the R-hub builder API to start new checks and get the results and artifacts of recent checks.</p>
+<p>In this article you’ll learn how to use <code>rhub</code> to connect
+to the R-hub builder API to start new checks and get the results and
+artifacts of recent checks.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-hub/rhub" class="external-link">rhub</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="validate-your-email-address">Validate your email address<a class="anchor" aria-label="anchor" href="#validate-your-email-address"></a>
 </h2>
-<p>To build and check packages, first you need to validate your email address with <code><a href="../reference/validate_email.html">validate_email()</a></code>.</p>
+<p>To build and check packages, first you need to validate your email
+address with <code><a href="../reference/validate_email.html">validate_email()</a></code>.</p>
 <p><img src="figures/email-validation.png"></p>
-<p>The package tries to detect your email address using <a href="https://github.com/r-lib/whoami#whoami" class="external-link"><code>whoami</code></a> (note that <code>whoami</code> does so using your global git config) and the maintainer email listed in DESCRIPTION; and if it fails to do this correctly, you’ll need to specify it. This means that if running <code><a href="../reference/validate_email.html">validate_email()</a></code> gives an error, you should either run <code>validate_email("youremail@example.com")</code> ( quickest fix), or edit your global git config (less quick, but useful for package development in general; to set it up smoothly <a href="https://usethis.r-lib.org/articles/articles/usethis-setup.html#configure-user-name-and-user-emails" class="external-link">refer to this <code>usethis</code> helper</a>).</p>
-<p><code>rhub</code> stores the token permanently on the machine, so you do not need to validate your email again. You can also copy your token to other machines: run <code><a href="../reference/list_validated_emails.html">list_validated_emails()</a></code> to get the token, and use the <code><a href="../reference/validate_email.html">validate_email()</a></code> function on the new machine, using both the <code>email</code> and <code>token</code> arguments.</p>
-<p>Currently you cannot use the token obtained via this function in the Web UI of the R-hub builder.</p>
+<p>The package tries to detect your email address using <a href="https://github.com/r-lib/whoami#whoami" class="external-link"><code>whoami</code></a>
+(note that <code>whoami</code> does so using your global git config) and
+the maintainer email listed in DESCRIPTION; and if it fails to do this
+correctly, you’ll need to specify it. This means that if running
+<code><a href="../reference/validate_email.html">validate_email()</a></code> gives an error, you should either run
+<code>validate_email("youremail@example.com")</code> ( quickest fix), or
+edit your global git config (less quick, but useful for package
+development in general; to set it up smoothly <a href="https://usethis.r-lib.org/articles/articles/usethis-setup.html#configure-user-name-and-user-emails" class="external-link">refer
+to this <code>usethis</code> helper</a>).</p>
+<p><code>rhub</code> stores the token permanently on the machine, so you
+do not need to validate your email again. You can also copy your token
+to other machines: run <code><a href="../reference/list_validated_emails.html">list_validated_emails()</a></code> to get the
+token, and use the <code><a href="../reference/validate_email.html">validate_email()</a></code> function on the new
+machine, using both the <code>email</code> and <code>token</code>
+arguments.</p>
+<p>Currently you cannot use the token obtained via this function in the
+Web UI of the R-hub builder.</p>
 </div>
 <div class="section level2">
 <h2 id="run-a-package-check">Run a package check<a class="anchor" aria-label="anchor" href="#run-a-package-check"></a>
 </h2>
-<p><code><a href="../reference/check.html">check()</a></code> runs an <code>R CMD check</code> on the package in the specified directory, or specified source R package tarball created by <code>R CMD build</code> or <code>devtools::build()</code>. It defaults to the working directory.</p>
+<p><code><a href="../reference/check.html">check()</a></code> runs an <code>R CMD check</code> on the package
+in the specified directory, or specified source R package tarball
+created by <code>R CMD build</code> or <code>devtools::build()</code>.
+It defaults to the working directory.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/check.html">check</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>If the <code>platform</code> argument is NULL, and the R session is interactive, then a menu is shown. If it is NULL, and the session is not interactive, then the default R-hub platform <code>platforms()$name[1]</code>, i.e. debian-clang-devel, is used.</p>
-<p>In interactive R sessions, the output of the check is printed to the screen unless you set the <code>show_status</code> argument to <code>FALSE</code>. Therefore, by default, your R session is busy showing the log until the check is finished, so set <code>show_status</code> to <code>FALSE</code> if you want to submit a check and then go on with your work in the same session.</p>
-<p>In all cases, you will receive a notification email with results after the check.</p>
+<p>If the <code>platform</code> argument is NULL, and the R session is
+interactive, then a menu is shown. If it is NULL, and the session is not
+interactive, then the default R-hub platform
+<code>platforms()$name[1]</code>, i.e. debian-clang-devel, is used.</p>
+<p>In interactive R sessions, the output of the check is printed to the
+screen unless you set the <code>show_status</code> argument to
+<code>FALSE</code>. Therefore, by default, your R session is busy
+showing the log until the check is finished, so set
+<code>show_status</code> to <code>FALSE</code> if you want to submit a
+check and then go on with your work in the same session.</p>
+<p>In all cases, you will receive a notification email with results
+after the check.</p>
 <div class="figure">
 <img src="figures/check-output.gif" alt=""><p class="caption">recording of a check on a screen</p>
 </div>
-<p>You can either just run the function, or assign its output to an object, that you can use to print results to the screen, to browse the web page of the check, and to retrieve URLs to the web page of the check but also to its artifacts that are kept a few days.</p>
+<p>You can either just run the function, or assign its output to an
+object, that you can use to print results to the screen, to browse the
+web page of the check, and to retrieve URLs to the web page of the check
+but also to its artifacts that are kept a few days.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mycheck</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check.html">check</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">mycheck</span><span class="op">$</span><span class="fu">browse</span><span class="op">(</span><span class="op">)</span></span>
@@ -136,11 +168,20 @@
 <div class="section level2">
 <h2 id="select-a-building-and-checking-architecture">Select a building and checking architecture<a class="anchor" aria-label="anchor" href="#select-a-building-and-checking-architecture"></a>
 </h2>
-<p>You can run checks on any platform. You can use the platform ids (e.g. <code>"debian-gcc-devel"</code> or <code>c("debian-gcc-devel", "debian-gcc-patched")</code>) to select between platforms. You should not run checks on all platforms at once. E.g. if preparing for a CRAN submission, use the shortcut function <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> that will submit your package to a few recommended platforms. The following subsections give more info on how to select platforms.</p>
+<p>You can run checks on any platform. You can use the platform ids
+(e.g. <code>"debian-gcc-devel"</code> or
+<code>c("debian-gcc-devel", "debian-gcc-patched")</code>) to select
+between platforms. You should not run checks on all platforms at once.
+E.g. if preparing for a CRAN submission, use the shortcut function
+<code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> that will submit your package to a few
+recommended platforms. The following subsections give more info on how
+to select platforms.</p>
 <div class="section level3">
 <h3 id="listing-r-hub-platforms">Listing R-hub platforms<a class="anchor" aria-label="anchor" href="#listing-r-hub-platforms"></a>
 </h3>
-<p>If looking for a platform with particular characteristics, in particular to reproduce a result from CRAN’s own platform, have a look at the R-hub platform characteristics.</p>
+<p>If looking for a platform with particular characteristics, in
+particular to reproduce a result from CRAN’s own platform, have a look
+at the R-hub platform characteristics.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/platforms.html">platforms</a></span><span class="op">(</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -333,7 +374,8 @@
 <td align="left">macOS</td>
 <td align="left">x86_64</td>
 <td align="left">Mac OS 10.13.6</td>
-<td align="left">XCode 10.1, Apple LLVM version 10.0.0 (clang-1000.10.44.4)</td>
+<td align="left">XCode 10.1, Apple LLVM version 10.0.0
+(clang-1000.10.44.4)</td>
 <td align="left">NA</td>
 <td align="left">osx-x86_64-clang</td>
 <td align="left">macOS</td>
@@ -351,7 +393,8 @@
 <td align="left">macOS</td>
 <td align="left">x86_64</td>
 <td align="left">Mac OS 10.13.6</td>
-<td align="left">XCode 10.1, Apple LLVM version 10.0.0 (clang-1000.10.44.4)</td>
+<td align="left">XCode 10.1, Apple LLVM version 10.0.0
+(clang-1000.10.44.4)</td>
 <td align="left">NA</td>
 <td align="left">osx-x86_64-clang</td>
 <td align="left">macOS</td>
@@ -362,31 +405,14 @@
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">macos-m1-bigsur-release</td>
-<td align="left">Apple Silicon (M1), macOS 11.6 Big Sur, R-release</td>
-<td align="left">r-release-macos-arm64</td>
-<td align="left">r-release</td>
-<td align="left">macOS</td>
-<td align="left">aarch64</td>
-<td align="left">Mac OS 11.6</td>
-<td align="left">XCode 12.4, Apple clang version 12.0.0</td>
-<td align="left">NA</td>
-<td align="left">osx-aarch64-clang</td>
-<td align="left">macOS</td>
-<td align="left">macos , m1 , r-release</td>
-<td align="left">m1</td>
-<td align="left">NA</td>
-<td align="left">bigsur</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
 <td align="left">solaris-x86-patched</td>
 <td align="left">Oracle Solaris 10, x86, 32 bit, R-release</td>
 <td align="left">r-patched-solaris-x86</td>
 <td align="left">r-release</td>
 <td align="left">Solaris</td>
 <td align="left">x86_64</td>
-<td align="left">SunOS unknown 5.10 Generic_147148-26 i86pc i386 i86pc</td>
+<td align="left">SunOS unknown 5.10 Generic_147148-26 i86pc i386
+i86pc</td>
 <td align="left">GCC 5.5.0</td>
 <td align="left">NA</td>
 <td align="left">solaris-10</td>
@@ -397,14 +423,16 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">solaris-x86-patched-ods</td>
-<td align="left">Oracle Solaris 10, x86, 32 bit, R release, Oracle Developer Studio 12.6</td>
+<td align="left">Oracle Solaris 10, x86, 32 bit, R release, Oracle
+Developer Studio 12.6</td>
 <td align="left">r-patched-solaris-x86</td>
 <td align="left">r-release</td>
 <td align="left">Solaris</td>
 <td align="left">x86_64</td>
-<td align="left">SunOS unknown 5.10 Generic_147148-26 i86pc i386 i86pc</td>
+<td align="left">SunOS unknown 5.10 Generic_147148-26 i86pc i386
+i86pc</td>
 <td align="left">Oracle Developer Studio 12.6</td>
 <td align="left">NA</td>
 <td align="left">solaris-10</td>
@@ -415,7 +443,7 @@
 <td align="left">NA</td>
 <td align="left">ods=true</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">ubuntu-gcc-devel</td>
 <td align="left">Ubuntu Linux 20.04.1 LTS, R-devel, GCC</td>
 <td align="left">NA</td>
@@ -433,7 +461,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">ubuntu-gcc-release</td>
 <td align="left">Ubuntu Linux 20.04.1 LTS, R-release, GCC</td>
 <td align="left">NA</td>
@@ -451,7 +479,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">ubuntu-rchk</td>
 <td align="left">Ubuntu Linux 20.04.1 LTS, R-devel with rchk</td>
 <td align="left">NA</td>
@@ -469,7 +497,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">windows-x86_64-devel</td>
 <td align="left">Windows Server 2022, R-devel, 64 bit</td>
 <td align="left">r-devel-windows-x86_64-new-UL</td>
@@ -487,7 +515,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">windows-x86_64-oldrel</td>
 <td align="left">Windows Server 2022, R-oldrel, 32/64 bit</td>
 <td align="left">r-oldrel-windows-ix86+x86_64</td>
@@ -505,7 +533,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">windows-x86_64-patched</td>
 <td align="left">Windows Server 2022, R-patched, 32/64 bit</td>
 <td align="left">NA</td>
@@ -523,7 +551,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">windows-x86_64-release</td>
 <td align="left">Windows Server 2022, R-release, 32/64 bit</td>
 <td align="left">r-release-windows-ix86+x86_64</td>
@@ -550,45 +578,68 @@
 <p>These are quick shortcuts that select the right platform(s):</p>
 <ul>
 <li>
-<code><a href="../reference/check_shortcuts.html">check_on_linux()</a></code> and <code><a href="../reference/check_shortcuts.html">check_on_windows()</a></code> select the operating system.</li>
+<code><a href="../reference/check_shortcuts.html">check_on_linux()</a></code> and <code><a href="../reference/check_shortcuts.html">check_on_windows()</a></code>
+select the operating system.</li>
 <li>
-<code><a href="../reference/check_shortcuts.html">check_on_debian()</a></code>, <code><a href="../reference/check_shortcuts.html">check_on_ubuntu()</a></code>, <code><a href="../reference/check_shortcuts.html">check_on_fedora()</a></code> and <code><a href="../reference/check_shortcuts.html">check_on_centos()</a></code> select an appropriate Linux platform.</li>
+<code><a href="../reference/check_shortcuts.html">check_on_debian()</a></code>, <code><a href="../reference/check_shortcuts.html">check_on_ubuntu()</a></code>,
+<code><a href="../reference/check_shortcuts.html">check_on_fedora()</a></code> and <code><a href="../reference/check_shortcuts.html">check_on_centos()</a></code> select
+an appropriate Linux platform.</li>
 <li>
-<code><a href="../reference/check_shortcuts.html">check_on_solaris()</a></code> also selects an operating system, Solaris, and by default checks neither vignettes nor manual (<code>--no-manual --no-build-vignettes</code>).</li>
+<code><a href="../reference/check_shortcuts.html">check_on_solaris()</a></code> also selects an operating system,
+Solaris, and by default checks neither vignettes nor manual
+(<code>--no-manual --no-build-vignettes</code>).</li>
 <li>
-<code><a href="../reference/check_shortcuts.html">check_with_roldrel()</a></code>, <code><a href="../reference/check_shortcuts.html">check_with_rrelease()</a></code>, <code><a href="../reference/check_shortcuts.html">check_with_rpatched()</a></code> and <code><a href="../reference/check_shortcuts.html">check_with_rdevel()</a></code> select an R version.</li>
+<code><a href="../reference/check_shortcuts.html">check_with_roldrel()</a></code>,
+<code><a href="../reference/check_shortcuts.html">check_with_rrelease()</a></code>, <code><a href="../reference/check_shortcuts.html">check_with_rpatched()</a></code>
+and <code><a href="../reference/check_shortcuts.html">check_with_rdevel()</a></code> select an R version.</li>
 <li>
-<code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> runs checks on platforms that are closest to platforms used by CRAN on submission:
+<code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> runs checks on platforms that are
+closest to platforms used by CRAN on submission:
 <ul>
 <li>Fedora Linux, R-devel, clang, gfortran,</li>
 <li>Ubuntu Linux 16.04 LTS, R-release, GCC,</li>
 <li>Windows Server 2008 R2 SP1, R-devel, 32⁄64 bit,</li>
-<li>and, if your package needs compilation, Debian Linux, R-devel, GCC ASAN/UBSAN. You can run <code>rhub:::default_cran_check_platforms(&lt;package-path&gt;)</code> to find out which platforms will be selected for your package.</li>
+<li>and, if your package needs compilation, Debian Linux, R-devel, GCC
+ASAN/UBSAN. You can run
+<code>rhub:::default_cran_check_platforms(&lt;package-path&gt;)</code>
+to find out which platforms will be selected for your package.</li>
 </ul>
 </li>
 <li>
-<code><a href="../reference/check_shortcuts.html">check_with_valgrind()</a></code> runs the build and check on Linux, in <code>valgrind</code> to find memory leaks and pointer errors.</li>
+<code><a href="../reference/check_shortcuts.html">check_with_valgrind()</a></code> runs the build and check on
+Linux, in <code>valgrind</code> to find memory leaks and pointer
+errors.</li>
 <li>
-<code><a href="../reference/check_shortcuts.html">check_with_sanitizers()</a></code> runs all package package tests, examples and vignettes with Address Sanitizer and Undefined Behavior Sanitizer, see below.</li>
+<code><a href="../reference/check_shortcuts.html">check_with_sanitizers()</a></code> runs all package package tests,
+examples and vignettes with Address Sanitizer and Undefined Behavior
+Sanitizer, see below.</li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="sanitizers-for-compiled-code">Sanitizers for compiled code<a class="anchor" aria-label="anchor" href="#sanitizers-for-compiled-code"></a>
 </h3>
-<p>R-hub provides a special Docker image to run Address Sanitizer (ASAN) and Undefined Behavior Sanitizer (UBSAN). This is based on the <code>r-devel-san</code> image of the <a href="https://github.com/rocker-org/r-devel-san" class="external-link">Rocker project</a>.</p>
-<p>This image does not run <code>R CMD check</code> at all, but it runs</p>
+<p>R-hub provides a special Docker image to run Address Sanitizer (ASAN)
+and Undefined Behavior Sanitizer (UBSAN). This is based on the
+<code>r-devel-san</code> image of the <a href="https://github.com/rocker-org/r-devel-san" class="external-link">Rocker project</a>.</p>
+<p>This image does not run <code>R CMD check</code> at all, but it
+runs</p>
 <ol style="list-style-type: decimal">
 <li>package tests,</li>
 <li>all manual examples, and</li>
 <li>all vignette code</li>
 </ol>
-<p>with ASAN and UBSAN enabled. Use it via <code><a href="../reference/check_shortcuts.html">check_with_sanitizers()</a></code>.</p>
+<p>with ASAN and UBSAN enabled. Use it via
+<code><a href="../reference/check_shortcuts.html">check_with_sanitizers()</a></code>.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="browse-previous-checks">Browse previous checks<a class="anchor" aria-label="anchor" href="#browse-previous-checks"></a>
 </h2>
-<p>Once a check is finished (or failed), you will get a notification email but you can also get information from R. E.g. you could submit a check for a package located at <code>&lt;package-path&gt;</code>, then turn off your computer and on the following days retrieve results via</p>
+<p>Once a check is finished (or failed), you will get a notification
+email but you can also get information from R. E.g. you could submit a
+check for a package located at <code>&lt;package-path&gt;</code>, then
+turn off your computer and on the following days retrieve results
+via</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>previous_checks <span class="ot">&lt;-</span> rhub<span class="sc">::</span><span class="fu">list_package_checks</span>(<span class="sc">&lt;</span>package<span class="sc">-</span>path<span class="sc">&gt;</span>,</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">email =</span> <span class="st">"maelle.salmon@yahoo.se"</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">howmany =</span> <span class="dv">4</span>)</span>
@@ -608,8 +659,12 @@
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> note    <span class="fl">1.0</span>     ok     d3b8509 d3b8509 debian<span class="sc">-</span>gcc<span class="sc">-</span>d… <span class="sc">~</span><span class="fl">45.5</span>s    </span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># … with 6 more variables: submitted &lt;dttm&gt;, started &lt;dttm&gt;, platform &lt;list&gt;,</span></span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#   builder &lt;chr&gt;, status &lt;rhub::status&gt;, email &lt;chr&gt;</span></span></code></pre></div>
-<p>You can then extract checks from this list using their <code>group</code> ID (ID for checks submitted simultaneously e.g. via <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code>) or <code>id</code> (check id). In both cases you’ll get a <code>rhub_check</code> object.</p>
-<p>Here’s an example where we extract the last group of checks, print it to the screen, and query its URLs.</p>
+<p>You can then extract checks from this list using their
+<code>group</code> ID (ID for checks submitted simultaneously e.g. via
+<code><a href="../reference/check_for_cran.html">check_for_cran()</a></code>) or <code>id</code> (check id). In both
+cases you’ll get a <code>rhub_check</code> object.</p>
+<p>Here’s an example where we extract the last group of checks, print it
+to the screen, and query its URLs.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">group_id</span> <span class="op">&lt;-</span> <span class="va">previous_checks</span><span class="op">$</span><span class="va">group</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">group_check</span> <span class="op">&lt;-</span> <span class="fu">rhub</span><span class="fu">::</span><span class="fu"><a href="../reference/get_check.html">get_check</a></span><span class="op">(</span><span class="va">group_id</span><span class="op">)</span></span>
@@ -713,7 +768,13 @@
 <div class="section level2">
 <h2 id="prepare-a-cran-submission">Prepare a CRAN submission<a class="anchor" aria-label="anchor" href="#prepare-a-cran-submission"></a>
 </h2>
-<p>First, run <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> and assign the result to an object (or retrieve the results from a previous <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> submission by its <code>group</code> ID as shown in the previous subsection). Then once the checks are done, use the <code>cran_summary()</code> method to get a message that you can copy-paste in your cran-comments.md file (created via e.g. <code>usethis::use_cran_comments()</code>).</p>
+<p>First, run <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> and assign the result to an
+object (or retrieve the results from a previous
+<code><a href="../reference/check_for_cran.html">check_for_cran()</a></code> submission by its <code>group</code> ID as
+shown in the previous subsection). Then once the checks are done, use
+the <code>cran_summary()</code> method to get a message that you can
+copy-paste in your cran-comments.md file (created via
+e.g. <code>usethis::use_cran_comments()</code>).</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cran_prep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_for_cran.html">check_for_cran</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">cran_prep</span><span class="op">$</span><span class="fu">cran_summary</span><span class="op">(</span><span class="op">)</span></span>
@@ -747,20 +808,28 @@
 <span><span class="co">#&gt; 0 errors ✔ | 0 warnings ✔ | 2 notes ✖</span></span></code></pre></div>
 <p>For more general information about CRAN submissions, refer to</p>
 <ul>
-<li><p><a href="https://cran.r-project.org//web//packages//submission_checklist.html" class="external-link">CRAN itself</a> whose checklist suggest using R-hub :-);</p></li>
-<li><p><a href="https://r-pkgs.org/release.html#release-process" class="external-link">this book chapter</a>;</p></li>
-<li><p><a href="https://github.com/ThinkR-open/prepare-for-cran" class="external-link">this collaborative list</a>.</p></li>
+<li><p><a href="https://cran.r-project.org//web//packages//submission_checklist.html" class="external-link">CRAN
+itself</a> whose checklist suggest using R-hub :-);</p></li>
+<li><p><a href="https://r-pkgs.org/release.html#release-process" class="external-link">this
+book chapter</a>;</p></li>
+<li><p><a href="https://github.com/ThinkR-open/prepare-for-cran" class="external-link">this
+collaborative list</a>.</p></li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="get-more-info-and-help">Get more info and help<a class="anchor" aria-label="anchor" href="#get-more-info-and-help"></a>
 </h2>
 <p>The R-hub builder has a <a href="https://docs.r-hub.io/" class="external-link">documentation website</a>.</p>
-<p>If you need further help with the <code>rhub</code> package or the R-hub package builder in general (e.g. if you think a system dependency is missing), please refer to:</p>
+<p>If you need further help with the <code>rhub</code> package or the
+R-hub package builder in general (e.g. if you think a system dependency
+is missing), please refer to:</p>
 <ul>
-<li><p><a href="https://gitter.im/r-hub/community" class="external-link">R-hub community on gitter</a>;</p></li>
-<li><p><a href="https://github.com/r-hub/rhub" class="external-link"><code>rhub</code> issue tracker, for any feedback</a>.</p></li>
-<li><p>If you need to communicate sensitive information, contact <a href="mailto:admin@r-hub.io" class="email">admin@r-hub.io</a> Otherwise please use the two public spaces mentioned above.</p></li>
+<li><p><a href="https://gitter.im/r-hub/community" class="external-link">R-hub community on
+gitter</a>;</p></li>
+<li><p><a href="https://github.com/r-hub/rhub" class="external-link"><code>rhub</code> issue
+tracker, for any feedback</a>.</p></li>
+<li><p>If you need to communicate sensitive information, contact <a href="mailto:admin@r-hub.io" class="email">admin@r-hub.io</a> Otherwise
+please use the two public spaces mentioned above.</p></li>
 </ul>
 </div>
   </div>
