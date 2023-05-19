@@ -6,15 +6,30 @@ on:
 
 jobs:
 
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      containers: ${{ steps.rhub-setup.outputs.containers }}
+      platforms: ${{ steps.rhub-setup.outputs.platforms }}
+
+    steps:
+    - name: Setup R-hub platforms
+      id: rhub-setup
+      run: |
+        containers='["ghcr.io/r-hub/containers/clang16:latest", "ghcr.io/r-hub/containers/gcc13:latest"]'
+        echo "containers=$containers" >> $GITHUB_OUTPUT
+      run: |
+        platforms='[{"os": "macos-latest","r": "release"},{"os":"windows-latest","r": "release"}]'
+        echo "platforms=$platforms" >> $GITHUB_OUTPUT
+
   conts:
+    needs: setup
     runs-on: ubuntu-latest
     name: ${{ matrix.container }}
     strategy:
       fail-fast: false
       matrix:
-        container:
-        - ghcr.io/r-hub/containers/clang16:latest
-        - ghcr.io/r-hub/containers/gcc13:latest
+        container: ${{ fromJson(needs.setup.outputs.containers) }}
     container:
       image: ${{ matrix.container }}
 
@@ -24,16 +39,15 @@ jobs:
         run: |
           sessionInfo()
         shell: Rscript {0}
-      
+
   notconts:
+    needs: setup
     runs-on: ${{ matrix.config.os }}
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
     strategy:
       fail-fast: false
       matrix:
-        config:
-          - { os: macOS-latest,   r: release }
-          - { os: windows-latest, r: release }
+        config: ${{ fromJson(needs.setup.outputs.platforms) }}
 
     steps:
       - uses: actions/checkout@v3
