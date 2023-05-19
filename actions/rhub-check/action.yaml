@@ -1,0 +1,17 @@
+name: 'rhub-check'
+description: |
+  Run R-hub checks.
+author: 'Gábor Csárdi'
+
+inputs:
+  config:
+    description: |
+      R-hub configuration. A JSON string, see documentation for details.
+
+runs:
+  using: "composite"
+  steps:
+  - name: Session info
+    run: |
+      sessionInfo()
+    shell: Rscript {0}
