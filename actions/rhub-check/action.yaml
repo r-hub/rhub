@@ -16,10 +16,12 @@ runs:
       sessionInfo()
     shell: Rscript {0}
 
+  # TODO: fix caching, R_LIBS_USER is not set in Docker, only if setup-r runs
   - uses: r-lib/actions/setup-r-dependencies@v2-branch
     with:
       extra-packages: any::rcmdcheck
       needs: check
+      cache: false
     env:
       R_KEEP_PKG_SOURCE: yes
 
