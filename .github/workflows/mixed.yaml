@@ -18,7 +18,6 @@ jobs:
       run: |
         containers='["ghcr.io/r-hub/containers/clang16:latest", "ghcr.io/r-hub/containers/gcc13:latest"]'
         echo "containers=$containers" >> $GITHUB_OUTPUT
-      run: |
         platforms='[{"os": "macos-latest","r": "release"},{"os":"windows-latest","r": "release"}]'
         echo "platforms=$platforms" >> $GITHUB_OUTPUT
 
