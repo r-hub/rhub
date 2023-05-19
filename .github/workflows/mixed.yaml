@@ -18,6 +18,8 @@ jobs:
       platforms: ${{ steps.rhub-setup.outputs.platforms }}
 
     steps:
+    # TODO: checkout is not needed, untimately, once we refer to repo explicitly
+    - uses: actions/checkout@v3
     - uses: ./actions/rhub-setup
       with:
         config: ${{ github.event.inputs.config }}
