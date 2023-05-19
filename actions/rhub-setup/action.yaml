@@ -23,3 +23,4 @@ runs:
         echo "containers=$containers" >> $GITHUB_OUTPUT
         platforms='[{"os": "macos-latest","r": "release"},{"os":"windows-latest","r": "release"}]'
         echo "platforms=$platforms" >> $GITHUB_OUTPUT
+    shell: bash
