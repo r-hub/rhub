@@ -25,7 +25,7 @@ jobs:
         config: ${{ github.event.inputs.config }}
       id: rhub-setup
 
-  conts:
+  linux-containers::
     needs: setup
     runs-on: ubuntu-latest
     name: ${{ matrix.config.name }}
@@ -42,7 +42,7 @@ jobs:
         with:
           config: ${{ github.event.inputs.config }}
 
-  notconts:
+  other-platforms:
     needs: setup
     runs-on: ${{ matrix.config.os }}
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
