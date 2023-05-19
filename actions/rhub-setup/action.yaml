@@ -11,13 +11,16 @@ inputs:
 outputs:
   containers:
     description: 'Container platforms.'
+    value: ${{ steps.config.outputs.containers }}
   platforms:
     description: 'Other R-hub platforms.'
+    value: ${{ steps.config.outputs.platforms }}
 
 runs:
   using: "composite"
   steps:
   - name: Configure R-hub platforms
+    id: config
     run: |
         containers='["ghcr.io/r-hub/containers/clang16:latest", "ghcr.io/r-hub/containers/gcc13:latest"]'
         echo "containers=$containers" >> $GITHUB_OUTPUT
