@@ -3,6 +3,11 @@ name: R-hub
 
 on:
   workflow_dispatch:
+    inputs:
+      config:
+        description: 'R-hub configutation.'
+        type: string
+        default: 'CRAN'
 
 jobs:
 
@@ -13,13 +18,10 @@ jobs:
       platforms: ${{ steps.rhub-setup.outputs.platforms }}
 
     steps:
-    - name: Setup R-hub platforms
+    - uses: ./actions/rhub-setup
+      with:
+        config: ${{ github.event.inputs.config }}
       id: rhub-setup
-      run: |
-        containers='["ghcr.io/r-hub/containers/clang16:latest", "ghcr.io/r-hub/containers/gcc13:latest"]'
-        echo "containers=$containers" >> $GITHUB_OUTPUT
-        platforms='[{"os": "macos-latest","r": "release"},{"os":"windows-latest","r": "release"}]'
-        echo "platforms=$platforms" >> $GITHUB_OUTPUT
 
   conts:
     needs: setup

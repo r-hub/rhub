@@ -1,0 +1,25 @@
+name: 'rhub-setup'
+description: |
+  Setup platform matrices to run R-hub jobs.
+author: 'Gábor Csárdi'
+
+inputs:
+  config:
+    description: |
+      R-hub configuration. A JSON string, see documentation for details.
+
+outputs:
+  containers:
+    description: 'Container platforms.'
+  platforms:
+    description: 'Other R-hub platforms.'
+
+runs:
+  using: "composite"
+  steps:
+  - name: Configure R-hub platforms
+    run: |
+        containers='["ghcr.io/r-hub/containers/clang16:latest", "ghcr.io/r-hub/containers/gcc13:latest"]'
+        echo "containers=$containers" >> $GITHUB_OUTPUT
+        platforms='[{"os": "macos-latest","r": "release"},{"os":"windows-latest","r": "release"}]'
+        echo "platforms=$platforms" >> $GITHUB_OUTPUT
