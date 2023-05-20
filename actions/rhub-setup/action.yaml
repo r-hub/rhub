@@ -24,7 +24,11 @@ runs:
     run: |
       cd ${{github.action_path}}
       cnt=$(R -s -f platforms.R --args --containers '${{ github.event.inputs.config }}')
+      echo "Containers:"
+      echo "$cnt" | jq
       echo "containers=$cnt" >> $GITHUB_OUTPUT
       plt=$(R -s -f platforms.R --args --not-containers '${{ github.event.inputs.config }}')
+      echo "Other platforms:"
+      echo "$plt" | jq
       echo "platforms=$plt" >> $GITHUB_OUTPUT
     shell: bash
