@@ -5,9 +5,9 @@ on:
   workflow_dispatch:
     inputs:
       config:
-        description: 'R-hub configutation.'
+        description: 'A comma separated list of R-hub platforms to use.'
         type: string
-        default: 'CRAN'
+        default: 'linux,windows,macos'
 
 jobs:
 
