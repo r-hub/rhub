@@ -13,11 +13,11 @@ Imports:
     callr,
     cli,
     curl,
-    debugme,
     processx,
     R6,
     zip
-Suggests: 
+Suggests:
+    debugme,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://github.com/gaborcsardi/rhub2
