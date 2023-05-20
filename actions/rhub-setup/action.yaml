@@ -22,8 +22,8 @@ runs:
   - name: Configure R-hub platforms
     id: config
     run: |
-        containers='[{"name": "clang16", "container": "ghcr.io/r-hub/containers/clang16:latest"}, {"name": "gcc13", "container": "ghcr.io/r-hub/containers/gcc13:latest"}]'
-        echo "containers=$containers" >> $GITHUB_OUTPUT
-        platforms='[{"os": "macos-latest","r": "release"},{"os":"windows-latest","r": "release"}]'
-        echo "platforms=$platforms" >> $GITHUB_OUTPUT
+        cnt=$(R -s -f platforms.R --args --containers '${{ github.event.inputs.config }}')
+        echo "containers=$cnt" >> $GITHUB_OUTPUT
+        plt=$(R -s -f platforms.R --args --not-containers '${{ github.event.inputs.config }}')
+        echo "platforms=$plt" >> $GITHUB_OUTPUT
     shell: bash

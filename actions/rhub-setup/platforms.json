@@ -1,0 +1,135 @@
+[
+    {
+        "name": "ubuntu-clang",
+        "cran-names": ["r-devel-linux-x86_64-debian-clang"],
+        "aliases": ["r-devel-linux-x86_64-debian-clang", "linux", "linux-x86_64", "ubuntu"],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/ubuntu-clang:latest"
+    },
+
+    {
+        "name": "ubuntu-gcc12",
+        "cran-names": ["r-devel-linux-x86_64-debian-gcc"],
+        "aliases": ["r-devel-linux-x86_64-debian-gcc"],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/ubuntu-gcc12:latest"
+    },
+
+    {
+        "name": "ubuntu-next",
+        "cran-names": ["r-patched-linux-x86_64"],
+        "aliases": ["r-patched-linux-x86_64", "r-patched", "r-next"],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/ubuntu-next:latest"
+    },
+
+    {
+        "name": "ubuntu-release",
+        "cran-names": ["r-release-linux-x86_64"],
+        "aliases": ["r-release-linux-x86_64"],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/ubuntu-release:latest"
+    },
+
+    {
+        "name": "atlas",
+        "cran-names": ["ATLAS"],
+        "aliases": [],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/atlas:latest"
+    },
+
+    {
+        "name": "clang-asan",
+        "cran-names": ["clang-ASAN", "clang-UBSAN"],
+        "aliases": ["clang-ubsan", "asan", "ubsan"],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/clang-asan:latest"
+    },
+
+    {
+        "name": "clang16",
+        "cran-names": ["clang16"],
+        "aliases": [],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/clang16:latest"
+    },
+
+    {
+        "name": "gcc13",
+        "cran-names": ["gcc13"],
+        "aliases": [],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/gcc13:latest"
+    },
+
+    {
+        "name": "nold",
+        "cran-names": ["noLD"],
+        "aliases": [],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/nold:latest"
+    },
+
+    {
+        "name": "r-devel-windows",
+        "cran-names": ["r-devel-windows-x86_64"],
+        "aliases": ["r-devel-windows-x86_64", "windows", "r-devel"],
+        "type": "os",
+        "os-type": "Windows",
+        "os": "windows-latest",
+        "r-version": "devel"
+    },
+
+
+    {
+        "name": "r-release-windows",
+        "cran-names": ["r-release-windows-x86_64"],
+        "aliases": ["r-release-windows-x86_64", "r-release"],
+        "type": "os",
+        "os-type": "Windows",
+        "os": "windows-latest",
+        "r-version": "release"
+    },
+
+    {
+        "name": "r-oldrel-windows",
+        "cran-names": ["r-oldrel-windows-x86_64"],
+        "aliases": ["r-oldrel-windows-x86_64", "r-oldrel"],
+        "type": "os",
+        "os-type": "Windows",
+        "os": "windows-latest",
+        "r-version": "oldrel"
+    },
+
+    {
+        "name": "r-release-macos",
+        "cran-name": ["r-release-macos-x86_64"],
+        "aliases": ["r-release-macos-x86_64", "macos", "macos-x86_64"],
+        "type": "os",
+        "os-type": "macOS",
+        "os": "macos-latest",
+        "arch": "x86_64",
+        "r-version": "release"
+    },
+
+    {
+        "name": "r-oldrel-macos",
+        "cran-name": ["r-oldrel-macos-x86_64"],
+        "aliases": ["r-oldrel-macos-x86_64"],
+        "type": "os",
+        "os-type": "macOS",
+        "os": "macos-latest",
+        "arch": "x86_64",
+        "r-version": "oldrel"
+    }
+]
