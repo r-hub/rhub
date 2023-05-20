@@ -19,7 +19,7 @@ runs:
   - name: Set user library location
     run: |
       dir.create(lib <- Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
-      writeLines(paste0("R_LIBS_USER=", Sys.getenv("R_LIBS_USER"))
+      writeLines(paste0("R_LIBS_USER=", Sys.getenv("R_LIBS_USER")), Sys.getenv("GITHUB_ENV"))
     shell: Rscript {0}
 
   # TODO: need to improve the cache key for R builds/packages that
