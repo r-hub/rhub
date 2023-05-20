@@ -120,9 +120,9 @@ to_json <- function(x) {
         )
       }else {
         paste0(
-          if (length(x) != 1) "[",
+          "[",
           paste0(vcapply(x, to_json), collapse = ","),
-          if (length(x) != 1) "]"
+          "]"
         )
       }
     },
