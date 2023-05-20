@@ -18,7 +18,7 @@ jobs:
       platforms: ${{ steps.rhub-setup.outputs.platforms }}
 
     steps:
-    - uses: ./actions/rhub-setup
+    - uses: r-hub/rhub2/actions/rhub-setup@v1
       with:
         config: ${{ github.event.inputs.config }}
       id: rhub-setup
