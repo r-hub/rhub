@@ -16,12 +16,19 @@ runs:
       sessionInfo()
     shell: Rscript {0}
 
-  # TODO: fix caching, R_LIBS_USER is not set in Docker, only if setup-r runs
+  - name: Set user library location
+  - run: |
+      dir.create(lib <- Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
+      writeLines(paste0("R_LIBS_USER=", Sys.getenv("R_LIBS_USER"))
+    shell: Rscript {0}
+
+  # TODO: need to improve the cache key for R builds/packages that
+  # - link to libc++ on Linux
+  # - don't have an R shared library
   - uses: r-lib/actions/setup-r-dependencies@v2-branch
     with:
       extra-packages: any::rcmdcheck
       needs: check
-      cache: false
     env:
       R_KEEP_PKG_SOURCE: yes
 
