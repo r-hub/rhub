@@ -113,7 +113,7 @@
 
     {
         "name": "r-release-macos",
-        "cran-name": ["r-release-macos-x86_64"],
+        "cran-names": ["r-release-macos-x86_64"],
         "aliases": ["r-release-macos-x86_64", "macos", "macos-x86_64"],
         "type": "os",
         "os-type": "macOS",
@@ -124,7 +124,7 @@
 
     {
         "name": "r-oldrel-macos",
-        "cran-name": ["r-oldrel-macos-x86_64"],
+        "cran-names": ["r-oldrel-macos-x86_64"],
         "aliases": ["r-oldrel-macos-x86_64"],
         "type": "os",
         "os-type": "macOS",
