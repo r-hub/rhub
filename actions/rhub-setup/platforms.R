@@ -75,7 +75,7 @@ match_platforms <- function(config) {
         } else {
           np[["name"]]
         }
-        if (is.null(np[["r-version"]]) || np[["r-version"]] == "*") {
+        if (!is.null(np[["r-version"]]) && np[["r-version"]] == "*") {
           np[["r-version"]] <- match_r_version(p)
           np[["label"]] <- paste0(np[["label"]], " (R-", np[["r-version"]], ")")
         }
