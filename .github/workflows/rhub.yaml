@@ -51,11 +51,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      # TODO: use our own installer action for flexibility?
-      - uses: r-lib/actions/setup-r@v2
+      - uses: ./actions/rhub-setup-r
         with:
-          r-version: ${{ matrix.config.r-version }}
-          use-public-rspm: true
+          config: ${{ github.event.inputs.config }}
+          platform: ${{ matrix.config }}
       - uses: ./actions/rhub-check
         with:
           config: ${{ github.event.inputs.config }}
