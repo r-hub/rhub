@@ -1,12 +1,21 @@
 
+strict_mode <- function() {
+  options(
+    useFancyQuotes = FALSE,
+    warn = 2,
+    warnPartialMatchArgs = TRUE,
+    warnPartialMatchAttr = TRUE,
+    warnPartialMatchDollar = TRUE
+  )
+}
+
 get_platforms <- function() {
   source("json.R")
-  platforms <- json$parse_file("platforms.json")
-  names(platforms) <- vcapply(platforms, "[[", "name")
-  platforms
+  json[["parse_file"]]("platforms.json")
 }
 
 parse_args <- function(args) {
+  source("json.R")
   containers <- "--containers" %in% args
   platforms <- "--not-containers" %in% args
   if (containers + platforms != 1) {
@@ -21,7 +30,7 @@ parse_args <- function(args) {
   }
 
   config <- tryCatch(
-    json$parse(args),
+    json[["parse"]](args),
     error = function(e) {
       list(platforms = trimws(strsplit(args, ",")[[1]]))
     }
@@ -30,31 +39,62 @@ parse_args <- function(args) {
   list(config = config, containers = containers, platforms = platforms)
 }
 
+match_r_version <- function(p) {
+  if (p[["r-version"]] != "default") {
+    p[["r-version"]]
+  } else if (startsWith(p$name, "r-devel-")) {
+    "devel"
+  } else if (startsWith(p$name, "r-patched-")) {
+    "next"
+  } else if (startsWith(p$name, "r-release-")) {
+    "release"
+  } else if (startsWith(p$name, "r-oldrel-")) {
+    "oldrel"
+  } else {
+    "devel"
+  }
+}
+
 match_platforms <- function(config) {
   platforms <- get_platforms()
-  cnt <- plt <- character()
+  cnt <- plt <- list()
   for (p in config$platforms) {
+
+    # Allow a simple character form specifying a platform or alias
+    if (is.character(p)) {
+      p <- list(name = p, "r-version" = "default")
+    }
     done <- FALSE
+
+    # Collect **all** matching platforms
     for (np in platforms) {
-      if (p == np$name || p %in% np$`cran-names` || p %in% np$aliases) {
+      if (p$name %in% c(np[["name"]], np[["cran-names"]], np[["aliases"]])) {
         done <- TRUE
-        if (np$type == "container") {
-          cnt <- c(cnt, np$name)
+        np[["label"]] <- if (np[["name"]] != p[["name"]]) {
+          paste0(np[["name"]], " (", p[["name"]], ")")
         } else {
-          plt <- c(plt, np$name)
+          np[["name"]]
+        }
+        if (is.null(np[["r-version"]]) || np[["r-version"]] == "*") {
+          np[["r-version"]] <- match_r_version(p)
+          np[["label"]] <- paste0(np[["label"]], " (R-", np[["r-version"]], ")")
+        }
+        if (np[["type"]] == "container") {
+          cnt <- c(cnt, list(np))
+        } else {
+          plt <- c(plt, list(np))
         }
       }
     }
     if (!done) {
-      stop("Unknown R-hub platform: ", p)
+      stop("Unknown R-hub platform: ", p$name)
     }
   }
 
-  cnt <- platforms[unique(cnt)]
-  plt <- platforms[unique(plt)]
-
-  cnt <- lapply(cnt, "[", c("name", "container"))
-  plt <- lapply(plt, "[", c("name", "os", "r-version"))
+  cnt <- unique(cnt)
+  plt <- unique(plt)
+  cnt <- lapply(cnt, "[", c("label", "name", "container"))
+  plt <- lapply(plt, "[", c("label", "name", "os", "r-version"))
 
   list(containers = unname(cnt), platforms = unname(plt))
 }
@@ -131,6 +171,7 @@ to_json <- function(x) {
 }
 
 main <- function() {
+  strict_mode()
   args <- parse_args(commandArgs(TRUE))
   run <- match_platforms(args$config)
   if (args$containers) {
@@ -143,3 +184,17 @@ main <- function() {
 if (is.null(sys.calls())) {
   main()
 }
+
+# -------------------------------------------------------------------------
+
+if (Sys.getenv("TESTTHAT") == "") {
+  test_that <- function(...) invisible()
+}
+
+test_that("to_json", {
+  expect_snapshot({
+    to_json(1)
+    to_json(1:4)
+    to_json(FALSE)
+    })
+})

@@ -2,7 +2,7 @@
     {
         "name": "ubuntu-clang",
         "cran-names": ["r-devel-linux-x86_64-debian-clang"],
-        "aliases": ["r-devel-linux-x86_64-debian-clang", "linux", "linux-x86_64", "ubuntu"],
+        "aliases": ["r-devel-linux-x86_64-debian-clang", "linux-x86_64", "ubuntu"],
         "type": "container",
         "os-type": "Linux",
         "container": "ghcr.io/r-hub/containers/ubuntu-clang:latest"
@@ -81,55 +81,48 @@
     },
 
     {
-        "name": "r-devel-windows",
-        "cran-names": ["r-devel-windows-x86_64"],
-        "aliases": ["r-devel-windows-x86_64", "windows", "r-devel"],
+        "name": "windows",
+        "cran-names": [
+            "r-devel-windows-x86_64",
+            "r-release-windows-x86_64",
+            "r-oldrel-windows-x86_64"
+        ],
+        "aliases": [
+            "r-devel-windows",
+            "r-release-windows",
+            "r-oldrel-windows"
+        ],
         "type": "os",
         "os-type": "Windows",
         "os": "windows-latest",
-        "r-version": "devel"
-    },
-
-
-    {
-        "name": "r-release-windows",
-        "cran-names": ["r-release-windows-x86_64"],
-        "aliases": ["r-release-windows-x86_64", "r-release"],
-        "type": "os",
-        "os-type": "Windows",
-        "os": "windows-latest",
-        "r-version": "release"
+        "r-version": "*"
     },
 
     {
-        "name": "r-oldrel-windows",
-        "cran-names": ["r-oldrel-windows-x86_64"],
-        "aliases": ["r-oldrel-windows-x86_64", "r-oldrel"],
-        "type": "os",
-        "os-type": "Windows",
-        "os": "windows-latest",
-        "r-version": "oldrel"
-    },
-
-    {
-        "name": "r-release-macos",
-        "cran-names": ["r-release-macos-x86_64"],
-        "aliases": ["r-release-macos-x86_64", "macos", "macos-x86_64"],
+        "name": "macos",
+        "cran-names": [
+            "r-release-macos-x86_64",
+            "r-oldrel-macos-x86_64"
+        ],
+        "aliases": [
+            "r-release-macos",
+            "r-oldrel-macos"
+        ],
         "type": "os",
         "os-type": "macOS",
         "os": "macos-latest",
         "arch": "x86_64",
-        "r-version": "release"
+        "r-version": "*"
     },
 
     {
-        "name": "r-oldrel-macos",
-        "cran-names": ["r-oldrel-macos-x86_64"],
-        "aliases": ["r-oldrel-macos-x86_64"],
+        "name": "linux",
+        "cran-names": [],
+        "aliases": [],
         "type": "os",
-        "os-type": "macOS",
-        "os": "macos-latest",
+        "os-type": "Linux",
+        "os": "ubuntu-latest",
         "arch": "x86_64",
-        "r-version": "oldrel"
+        "r-version": "*"
     }
 ]
