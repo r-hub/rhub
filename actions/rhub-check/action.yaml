@@ -39,7 +39,7 @@ runs:
         system("system_profiler SPSoftwareDataType SPHardwareDataType")
       } else if (Sys.info()[["sysname"]] == "Windows") {
         writeLines("-- Windows system info --------------------------------------------------")
-        system("sysinfo")
+        system("systeminfo")
       }
       cat("::endgroup::\n")
     shell: Rscript {0}
