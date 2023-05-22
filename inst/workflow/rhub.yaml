@@ -40,6 +40,7 @@ jobs:
       - uses: ./actions/rhub-check
         with:
           config: ${{ github.event.inputs.config }}
+          token: ${{ secrets.RHUB_TOKEN }}
 
   other-platforms:
     needs: setup
@@ -56,6 +57,8 @@ jobs:
         with:
           config: ${{ github.event.inputs.config }}
           platform: ${{ toJSON(matrix.config) }}
+          token: ${{ secrets.RHUB_TOKEN }}
       - uses: r-hub/rhub2/actions/rhub-check@v1
         with:
           config: ${{ github.event.inputs.config }}
+          token: ${{ secrets.RHUB_TOKEN }}
