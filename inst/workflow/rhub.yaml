@@ -1,3 +1,10 @@
+# R-hub's genetic GitHub Actions workflow file. It's canonical location is at
+# https://github.com/r-hub/rhub2/blob/v1/inst/workflow/rhub.yaml
+# You can update this file to a newer version using the rhub2 package:
+#
+# rhub2::rhub_setup()
+#
+# It is unlikely that you need to modify this file manually.
 
 name: R-hub
 
