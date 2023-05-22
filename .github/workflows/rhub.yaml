@@ -56,9 +56,9 @@ jobs:
       - uses: ./actions/rhub-setup-r
         with:
           config: ${{ github.event.inputs.config }}
-          platform: ${{ toJSON(matrix.config) }}
+          platform: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}
       - uses: ./actions/rhub-check
         with:
-          config: ${{ github.event.inputs.config }}
+          config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}

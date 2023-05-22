@@ -7,10 +7,9 @@ inputs:
   config:
     description: |
       R-hub configuration. A JSON string, see documentation for details.
-  platform:
+  job-config:
     description: |
       The matrix config, as set up by the r-hub-setup action.
-
   token:
     description: |
       Custom GitHub personal access token. Useful to allow access to
@@ -21,5 +20,5 @@ runs:
   steps:
   - uses: r-lib/actions/setup-r@v2
     with:
-      r-version: ${{ fromJSON('${{ github.event.inputs.platform}}').r-version }}
+      r-version: ${{ fromJson(github.event.inputs.job-config).r-version }}
       use-public-rspm: true
