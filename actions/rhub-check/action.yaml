@@ -22,25 +22,52 @@ runs:
 
   - name: OS information
     run: |
+      #
       if (Sys.info()[["sysname"]] == "Linux") {
+        writeLines("-- uname -a -------------------------------------------------------------")
         system("uname -a")
         if (file.exists("/etc/os-release")) {
+          writeLines("-- /etc/os-release ----------------------------------------------------")
           writeLines(readLines("/etc/os-release"))
         }
+      } else if (Sys.info()[["sysname"]] == "Darwin") {
+        writeLines("-- macOS system info ----------------------------------------------------")
+        system("system_profiler SPSoftwareDataType SPHardwareDataType")
+      } else if (Sys.info()[["sysname"]] == "Windows") {
+        writeLines("-- Windows system info --------------------------------------------------")
+        system("sysinfo")
       }
+    shell: Rscript {0}
+
+  - name: Compiler information
+    run: |
+      #
+      writeLines("-- $(CC) --version ------------------------------------------------------")
+      invisible(system(paste(system(paste0(file.path(R.home("bin"), "R"), " CMD config CC"), intern = TRUE), "--version")))
+      writeLines("-- $(CXX) --version  ----------------------------------------------------")
+      invisible(system(paste(system(paste0(file.path(R.home("bin"), "R"), " CMD config CXX"), intern = TRUE), "--version")))
+      writeLines("-- $(FC) --version ------------------------------------------------------")
+      invisible(system(paste(system(paste0(file.path(R.home("bin"), "R"), " CMD config FC"), intern = TRUE), "--version")))
     shell: Rscript {0}
 
   - name: R infomation
     run: |
+      #
+      writeLines("-- sessionInfo() --------------------------------------------------------")
       sessionInfo()
+      writeLines("-- capabilities() -------------------------------------------------------")
       capabilities()
+      writeLines("-- extSoftVersion() -----------------------------------------------------")
       extSoftVersion()
+      writeLines("-- l10n_info() ----------------------------------------------------------")
       l10n_info()
+      writeLines("-- R CMD config --all ---------------------------------------------------")
+      system(paste0(file.path(R.home("bin"), "R"), " CMD config --all"))
     shell: Rscript {0}
 
   - name: Set user library location
     run: |
-      # Set user library location for setup-r-dependencies caching
+      #
       dir.create(lib <- Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
       writeLines(paste0("R_LIBS_USER=", Sys.getenv("R_LIBS_USER")), Sys.getenv("GITHUB_ENV"))
     shell: Rscript {0}
