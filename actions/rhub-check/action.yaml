@@ -15,9 +15,27 @@ inputs:
 runs:
   using: "composite"
   steps:
-  - name: Session info
+  - name: Environment variables
+    run: |
+      Sys.getenv()
+    shell: Rscript {0}
+
+  - name: OS information
+    run: |
+      if (Sys.info()[["sysname"]] == "Linux") {
+        system("uname -a")
+        if (file.exists("/etc/os-release")) {
+          writeLines(readLines("/etc/os-release"))
+        }
+      }
+    shell: Rscript {0}
+
+  - name: R infomation
     run: |
       sessionInfo()
+      capabilities()
+      extSoftVersion()
+      l10n_info()
     shell: Rscript {0}
 
   - name: Set user library location
