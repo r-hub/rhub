@@ -18,6 +18,7 @@ jobs:
       platforms: ${{ steps.rhub-setup.outputs.platforms }}
 
     steps:
+    - uses: actions/checkout@v3
     - uses: ./actions/rhub-setup
       with:
         config: ${{ github.event.inputs.config }}

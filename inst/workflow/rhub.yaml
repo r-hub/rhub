@@ -18,6 +18,7 @@ jobs:
       platforms: ${{ steps.rhub-setup.outputs.platforms }}
 
     steps:
+    # NO NEED TO CHECKOUT HERE
     - uses: r-hub/rhub2/actions/rhub-setup@v1
       with:
         config: ${{ github.event.inputs.config }}
