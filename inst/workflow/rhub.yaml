@@ -38,7 +38,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: ./actions/rhub-check
+      - uses: r-hub/rhub2/actions/rhub-check@v1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
 
