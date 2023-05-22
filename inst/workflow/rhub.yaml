@@ -56,7 +56,7 @@ jobs:
       - uses: r-hub/rhub2/actions/rhub-setup-r@v1
         with:
           config: ${{ github.event.inputs.config }}
-          platform: ${{ matrix.config.job-config }}
+          job-config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}
       - uses: r-hub/rhub2/actions/rhub-check@v1
         with:
