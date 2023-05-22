@@ -113,8 +113,8 @@ to_json <- function(x) {
   }
 
   esc <- function(x) {
-    x <- sub("\\", "\\\\", x, fixed = TRUE)
-    x <- sub("\"", "\\\"", x, fixed = TRUE)
+    x <- gsub("\\", "\\\\", x, fixed = TRUE)
+    x <- gsub("\"", "\\\"", x, fixed = TRUE)
     x
   }
 
