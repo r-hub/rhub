@@ -75,6 +75,15 @@ runs:
       extSoftVersion()
       writeLines("-- l10n_info() ----------------------------------------------------------")
       l10n_info()
+      writeLines("-- La_version(), La_library() -------------------------------------------")
+      La_version()
+      La_library()
+      writeLines("-- grSoftVersion() ------------------------------------------------------")
+      grSoftVersion()
+      writeLines("-- pcre_config() --------------------------------------------------------")
+      pcre_config()
+      writeLines("-- libcurlVersion() -----------------------------------------------------")
+      libcurlVersion()
       cat("::endgroup::\n")
     shell: Rscript {0}
 
