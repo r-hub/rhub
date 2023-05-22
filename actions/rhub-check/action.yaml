@@ -15,19 +15,23 @@ inputs:
 runs:
   using: "composite"
   steps:
-  - name: Environment variables
+  - name: Environment variables in R
     run: |
+      #
+      cat("::group::Environment variables in R\n")
       Sys.getenv()
+      cat("::endgroup::\n")
     shell: Rscript {0}
 
   - name: OS information
     run: |
       #
+      cat("::group::OS information\n")
       if (Sys.info()[["sysname"]] == "Linux") {
         writeLines("-- uname -a -------------------------------------------------------------")
         system("uname -a")
         if (file.exists("/etc/os-release")) {
-          writeLines("-- /etc/os-release ----------------------------------------------------")
+          writeLines("-- /etc/os-release ------------------------------------------------------")
           writeLines(readLines("/etc/os-release"))
         }
       } else if (Sys.info()[["sysname"]] == "Darwin") {
@@ -37,39 +41,59 @@ runs:
         writeLines("-- Windows system info --------------------------------------------------")
         system("sysinfo")
       }
+      cat("::endgroup::\n")
     shell: Rscript {0}
 
   - name: Compiler information
     run: |
       #
+      cat("::group::Compiler information\n")
       writeLines("-- $(CC) --version ------------------------------------------------------")
       invisible(system(paste(system(paste0(file.path(R.home("bin"), "R"), " CMD config CC"), intern = TRUE), "--version")))
       writeLines("-- $(CXX) --version  ----------------------------------------------------")
       invisible(system(paste(system(paste0(file.path(R.home("bin"), "R"), " CMD config CXX"), intern = TRUE), "--version")))
       writeLines("-- $(FC) --version ------------------------------------------------------")
       invisible(system(paste(system(paste0(file.path(R.home("bin"), "R"), " CMD config FC"), intern = TRUE), "--version")))
+      cat("::endgroup::\n")
     shell: Rscript {0}
 
-  - name: R infomation
+  - name: R session information
     run: |
       #
-      writeLines("-- sessionInfo() --------------------------------------------------------")
+      cat("::group::R session information\n")
       sessionInfo()
+      cat("::endgroup::\n")
+    shell: Rscript {0}
+
+  - name: More R infomation
+    run: |
+      #
+      cat("::group::More R information\n")
       writeLines("-- capabilities() -------------------------------------------------------")
       capabilities()
       writeLines("-- extSoftVersion() -----------------------------------------------------")
       extSoftVersion()
       writeLines("-- l10n_info() ----------------------------------------------------------")
       l10n_info()
-      writeLines("-- R CMD config --all ---------------------------------------------------")
-      system(paste0(file.path(R.home("bin"), "R"), " CMD config --all"))
+      cat("::endgroup::\n")
     shell: Rscript {0}
+
+  - name: R CMD config
+    run: |
+      #
+      cat("::group::R CMD config\n")
+      system(paste0(file.path(R.home("bin"), "R"), " CMD config --all"))
+      cat("::endgroup::\n")
+    shell: Rscript {0}
+
 
   - name: Set user library location
     run: |
       #
+      cat("::group::Set user library location\n")
       dir.create(lib <- Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
       writeLines(paste0("R_LIBS_USER=", Sys.getenv("R_LIBS_USER")), Sys.getenv("GITHUB_ENV"))
+      cat("::endgroup::\n")
     shell: Rscript {0}
 
   # TODO: need to improve the cache key for R builds/packages that
