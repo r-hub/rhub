@@ -4,9 +4,6 @@ description: |
 author: 'Gábor Csárdi'
 
 inputs:
-  config:
-    description: |
-      R-hub configuration. A JSON string, see documentation for details.
   token:
     description: |
       Custom GitHub personal access token. Useful to allow access to

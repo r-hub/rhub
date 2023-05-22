@@ -39,7 +39,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./actions/rhub-check
         with:
-          config: ${{ github.event.inputs.config }}
           token: ${{ secrets.RHUB_TOKEN }}
 
   other-platforms:
@@ -55,10 +54,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: r-hub/rhub2/actions/rhub-setup-r@v1
         with:
-          config: ${{ github.event.inputs.config }}
           job-config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}
       - uses: r-hub/rhub2/actions/rhub-check@v1
         with:
-          config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}

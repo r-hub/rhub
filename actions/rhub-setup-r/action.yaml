@@ -4,9 +4,6 @@ description: |
 author: 'Gábor Csárdi'
 
 inputs:
-  config:
-    description: |
-      R-hub configuration. A JSON string, see documentation for details.
   job-config:
     description: |
       The matrix config, as set up by the r-hub-setup action.
