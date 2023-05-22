@@ -55,7 +55,7 @@ jobs:
       - uses: ./actions/rhub-setup-r
         with:
           config: ${{ github.event.inputs.config }}
-          platform: ${{ matrix.config }}
+          platform: ${{ toJSON(matrix.config) }}
       - uses: ./actions/rhub-check
         with:
           config: ${{ github.event.inputs.config }}
