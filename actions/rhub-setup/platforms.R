@@ -96,6 +96,9 @@ match_platforms <- function(config) {
   cnt <- lapply(cnt, "[", c("label", "name", "container"))
   plt <- lapply(plt, "[", c("label", "name", "os", "r-version"))
 
+  for (i in seq_along(cnt)) {
+    cnt[[i]]$`job-config` <- to_json(cnt[[i]])
+  }
   for (i in seq_along(plt)) {
     plt[[i]]$`job-config` <- to_json(plt[[i]])
   }

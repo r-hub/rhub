@@ -41,6 +41,7 @@ jobs:
       - uses: ./actions/rhub-check
         with:
           token: ${{ secrets.RHUB_TOKEN }}
+          job-config: ${{ matrix.config.job-config }}
 
   other-platforms:
     needs: setup
@@ -60,4 +61,5 @@ jobs:
           token: ${{ secrets.RHUB_TOKEN }}
       - uses: ./actions/rhub-check
         with:
+          job-config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}
