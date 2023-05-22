@@ -111,6 +111,7 @@ runs:
   - uses: r-lib/actions/setup-r-dependencies@v2-branch
     with:
       extra-packages: any::rcmdcheck
+      pak-version: devel
       needs: check
     env:
       R_KEEP_PKG_SOURCE: yes
