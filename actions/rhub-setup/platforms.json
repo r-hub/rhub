@@ -2,7 +2,7 @@
     {
         "name": "ubuntu-clang",
         "cran-names": ["r-devel-linux-x86_64-debian-clang"],
-        "aliases": ["r-devel-linux-x86_64-debian-clang", "linux-x86_64", "ubuntu"],
+        "aliases": ["r-devel-linux-x86_64-debian-clang"],
         "type": "container",
         "os-type": "Linux",
         "container": "ghcr.io/r-hub/containers/ubuntu-clang:latest"
@@ -29,7 +29,7 @@
     {
         "name": "ubuntu-release",
         "cran-names": ["r-release-linux-x86_64"],
-        "aliases": ["r-release-linux-x86_64"],
+        "aliases": ["r-release-linux-x86_64", "ubuntu", "r-release"],
         "type": "container",
         "os-type": "Linux",
         "container": "ghcr.io/r-hub/containers/ubuntu-release:latest"
@@ -47,7 +47,7 @@
     {
         "name": "clang-asan",
         "cran-names": ["clang-ASAN", "clang-UBSAN"],
-        "aliases": ["clang-ubsan", "asan", "ubsan"],
+        "aliases": ["asan", "ubsan"],
         "type": "container",
         "os-type": "Linux",
         "container": "ghcr.io/r-hub/containers/clang-asan:latest"

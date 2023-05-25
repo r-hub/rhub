@@ -45,3 +45,50 @@ add_class <- function(obj, classes, where = c("start", "end")) {
   class(obj) <- unique(nc)
   obj
 }
+
+zip <- function(x, y) {
+  mapply(FUN = c, x, y, SIMPLIFY = FALSE)
+}
+
+first_char <- function(x) {
+  substr(x, 1, 1)
+}
+
+last_char <- function(x) {
+  substr(x, nchar(x), nchar(x))
+}
+
+unquote <- function(x) {
+  ifelse(
+    first_char(x) == last_char(x) & first_char(x) %in% c("'", '"'),
+    substr(x, 2L, nchar(x) - 1L),
+    x
+  )
+}
+
+has_emoji <- function() {
+  if (!cli::is_utf8_output()) return(FALSE)
+  if (isTRUE(opt <- getOption("pkg.emoji"))) return(TRUE)
+  if (identical(opt, FALSE)) return(FALSE)
+  if (Sys.info()[["sysname"]] != "Darwin") return(FALSE)
+  TRUE
+}
+
+parse_url <- function(url) {
+  re_url <- paste0(
+    "^(?<protocol>[a-zA-Z0-9]+)://",
+    "(?:(?<username>[^@/:]+)(?::(?<password>[^@/]+))?@)?",
+    "(?<host>[^/]+)",
+    "(?<path>.*)$"            # don't worry about query params here...
+  )
+
+  mch <- re_match(url, re_url)
+  mch[, setdiff(colnames(mch), c(".match", ".text")), drop = FALSE]
+}
+
+read_file <- function(path) {
+  bin <- readBin(path, "raw", file.size(path))
+  chr <- rawToChar(bin)
+  Encoding(chr) <- "UTF-8"
+  chr
+}
