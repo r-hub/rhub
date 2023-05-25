@@ -2,7 +2,10 @@
 
 S3method("[",rhub2_platforms)
 S3method(format,rhub2_platforms)
+S3method(format,rhub2_platforms_summary)
 S3method(print,rhub2_platforms)
+S3method(print,rhub2_platforms_summary)
+S3method(summary,rhub2_platforms)
 export(rhub_check)
 export(rhub_doctor)
 export(rhub_platforms)

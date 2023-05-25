@@ -42,13 +42,24 @@ gh_query_process_response <- function(resp) {
 }
 
 gh_rest_get <- function(host, endpoint, token) {
-  synchronise(async_gh_rest_get(host, token = token))
+  synchronise(async_gh_rest_get(host, endpoint, token = token))
 }
 
 async_gh_rest_get <- function(host, endpoint, token) {
   url <- paste0(host, endpoint)
   headers <- gh_headers(token)
   http_get(url, headers = headers)$
+    then(gh_query_process_response)
+}
+
+gh_rest_post <- function(host, endpoint, token, data) {
+  synchronise(async_gh_rest_post(host, endpoint, token, data))
+}
+
+async_gh_rest_post <- function(host, endpoint, token, data) {
+  url <- paste0(host, endpoint)
+  headers <- gh_headers(token)
+  http_post(url, data = data, headers = headers)$
     then(gh_query_process_response)
 }
 

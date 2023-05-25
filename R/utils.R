@@ -92,3 +92,9 @@ read_file <- function(path) {
   Encoding(chr) <- "UTF-8"
   chr
 }
+
+ansi_align_width <- function(text) {
+  if (length(text) == 0) return(text)
+  width <- max(cli::ansi_nchar(text, type = "width"))
+  cli::ansi_align(text, width = width)
+}

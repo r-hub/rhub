@@ -25,7 +25,7 @@ get_platforms <- function() {
 #'   can be selected for this platform.
 #' * `os_name`: name of the operating system, including Linux distribution
 #'   name and version for container actions.
-#' 
+#'
 #' @export
 
 rhub_platforms <- function() {
@@ -141,4 +141,60 @@ print.rhub2_platforms <- function(x, ...) {
 `[.rhub2_platforms` <- function(x, i, j, drop = FALSE) {
   class(x) <- setdiff(class(x), "rhub2_platforms")
   NextMethod("[")
+}
+
+#' @export
+
+summary.rhub2_platforms <- function(object, ...) {
+  class(object) <- c("rhub2_platforms_summary", class(object))
+  object
+}
+
+#' @export
+
+format.rhub2_platforms_summary <- function(x, ...) {
+  num <- format(seq_len(nrow(x)))
+  icon <- if (!has_emoji()) {
+    ifelse(x$type == "os", "[VM]", "[CT]")
+  } else {
+    ifelse(x$type == "os", "\U1F5A5", "\U1F40B")
+  }
+  name <- cli::style_bold(cli::col_blue(x$name))
+  rv <- abbrev_version(x$r_version)
+  os <- ifelse(
+    is.na(x$os_name),
+    paste0(x$github_os, " on GitHub"),
+    x$os_name
+  )
+
+  lines <- paste(
+    ansi_align_width(num),
+    ansi_align_width(icon),
+    ansi_align_width(name),
+    ansi_align_width(rv),
+    ansi_align_width(os)
+  )
+
+  trimws(lines, which = "right")
+}
+
+#' @export
+
+print.rhub2_platforms_summary <- function(x, ...) {
+  writeLines(cli::ansi_strtrim(format(x, ...)))
+}
+
+abbrev_version <- function(x) {
+  sel <- grepl("^R Under development", x)
+  x[sel] <- sub("R Under development [(]unstable[)]", "R-devel", x[sel])
+
+  sel <- grepl("R version [0-9.]+ Patched", x)
+  x[sel] <- sub("R version ([0-9.]+) Patched", "R-\\1 (patched)", x[sel])
+
+  sel <- grepl("R version [0-9.]+", x)
+  x[sel] <- sub("R version ([0-9.]+)", "R-\\1", x[sel])
+
+  x[x == "*"] <- "R-* (any version)"
+
+  x
 }

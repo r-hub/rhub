@@ -1,4 +1,24 @@
 
+is_character <- function(x) {
+  if (!is.character(x)) {
+    structure(
+      FALSE,
+      msg = "{.arg {(.arg)}} must be a character vector without {.code NA},
+             but it is {.type {x}}",
+      env = environment()
+    )
+  } else if (anyNA(x)) {
+    structure(
+      FALSE,
+      msg = "{.arg {(.arg)}} must be a character vector without {.code NA},
+             but it has {sum(is.na(x))} {.code NA} value{?s}.",
+      env = environment()
+    )
+  } else {
+    TRUE
+  }
+}
+
 is_string <- function(x) {
   if (is.character(x) && length(x) == 1 && !is.na(x)) return(TRUE)
   if (is.character(x) && length(x) == 1 && is.na(x)) {
