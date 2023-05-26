@@ -41,6 +41,7 @@ rhub_setup <- function(overwrite = FALSE) {
   wfc <- rawToChar(wf)
   Encoding(wfc) <- "UTF-8"
 
+  updated <- FALSE
   wf_file <- file.path(git_root, ".github", "workflows", "rhub.yaml")
   if (file.exists(wf_file)) {
     wf_current <- read_file(wf_file)
@@ -48,6 +49,7 @@ rhub_setup <- function(overwrite = FALSE) {
       if (overwrite) {
         dir.create(dirname(wf_file), showWarnings = FALSE, recursive = TRUE)
         writeBin(wf, wf_file)
+        updated <- TRUE
         cli::cli_bullets(c(
           i = "Updated existing workflow file at {.file {wf_file}},
                as requested"
@@ -66,6 +68,7 @@ rhub_setup <- function(overwrite = FALSE) {
   } else {
     dir.create(dirname(wf_file), showWarnings = FALSE, recursive = TRUE)
     writeBin(wf, wf_file)
+    updated <- TRUE
     cli::cli_bullets(c(
       v = "Created workflow file {.file {wf_file}}."
     ))
@@ -83,8 +86,10 @@ rhub_setup <- function(overwrite = FALSE) {
   cli::cli_bullets(c(
     "Next steps:",
     "*" = "Add the workflow file to git using {.code git add <filename>}.",
-    "*" = "Commit it to git using {.code git commit}.",
-    "*" = "Push the commit to GitHub using {.code git push}.",
+    "*" = if (updated) "Commit it to git using {.code git commit}.",
+    "*" = if (!updated) "Commit it to git using {.code git commit} (if not committed already).",
+    "*" = if (updated) "Push the commit to GitHub using {.code git push}.",
+    "*" = if (!updated) "Push the commit to GitHub using {.code git push} (if not pushed already).",
     "*" = "Call {.run rhub2::rhub_doctor()} to check that you have set up
            R-hub correctly.",
     "*" = "Call {.run rhub2::rhub_check()} to check your package."
