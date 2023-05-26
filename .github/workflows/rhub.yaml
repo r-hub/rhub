@@ -7,6 +7,7 @@
 # It is unlikely that you need to modify this file manually.
 
 name: R-hub
+run-name: ${{ github.event.inputs.name || format('Manually run by {0}', github.triggering_actor) }} ${{ github.event.inputs.id }}
 
 on:
   workflow_dispatch:
@@ -15,6 +16,12 @@ on:
         description: 'A comma separated list of R-hub platforms to use.'
         type: string
         default: 'linux,windows,macos'
+      name:
+        description: 'Run name. You can leave this empty now.'
+        type: string
+      id:
+        description: 'Unique ID. You can leave this empty now.'
+        type: string
 
 jobs:
 
