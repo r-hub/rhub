@@ -54,13 +54,21 @@ rhub_check <- function(gh_url = NULL, platforms = NULL, r_versions = NULL,
       ))
     }
     cli::cli_text()
-    cli::cli_text("Available platforms:")
+    cli::cli_text(
+      "Available platforms
+       (see {.code rhub2::rhub_platforms()} for details):"
+    )
     cli::cli_text()
     cli::cli_verbatim(paste(
       cli::ansi_strtrim(format(summary(plat))),
       collapse = "\n"
     ))
-    pnums <- readline(prompt = "\nSelection (comma separated numbers): ")
+    pnums <- trimws(readline(
+      prompt = "\nSelection (comma separated numbers, 0 to cancel): "
+    ))
+    if (pnums == "" || pnums == "0") {
+      throw(pkg_error("R-hub check cancelled"))
+    }
     pnums <- unique(trimws(strsplit(pnums, ",", fixed = TRUE)[[1]]))
     pnums2 <- suppressWarnings(as.integer(pnums))
     bad <- is.na(pnums2) | pnums2 < 1 | pnums2 > nrow(plat)
