@@ -7,7 +7,7 @@
 # It is unlikely that you need to modify this file manually.
 
 name: R-hub
-run-name: ${{ github.event.inputs.name || format('Manually run by {0}', github.triggering_actor) }} ${{ github.event.inputs.id }}
+run-name: ${{ github.event.inputs.name || format('Manually run by {0}', github.triggering_actor) }} (${{ github.event.inputs.id }})
 
 on:
   workflow_dispatch:
