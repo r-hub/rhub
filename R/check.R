@@ -93,9 +93,15 @@ rhub_check <- function(gh_url = NULL, platforms = NULL, r_versions = NULL,
   url <- parse_gh_url(gh_url)
   ep <- glue::glue("/repos/{url$user}/{url$repo}/actions/workflows/rhub.yaml/dispatches")
   config <- list(platforms = platforms)
+  name <- paste(platforms, collapse = ", ")
+  id <- random_id()
   data <- list(
     ref = branch,
-    inputs = list(config = jsonlite::toJSON(config, auto_unbox = TRUE))
+    inputs = list(
+      config = jsonlite::toJSON(config, auto_unbox = TRUE),
+      name = name,
+      id = id
+    )
   )
   jsondata <- jsonlite::toJSON(data, auto_unbox = TRUE)
 
@@ -111,7 +117,11 @@ rhub_check <- function(gh_url = NULL, platforms = NULL, r_versions = NULL,
 
   aurl <- paste0("https://", url$host, "/", url$user, "/", url$repo, "/actions")
   cli::cli_text()
-  cli::cli_alert_success("Check started. See {.url {aurl}} for live output!")
+  cli::cli_bullets(c(
+    "v" = "Check started: {name} ({id}).",
+    " " = "See {.url {aurl}} for live output!"
+  ))
+
 
   invisible(NULL)
 }

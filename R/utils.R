@@ -98,3 +98,8 @@ ansi_align_width <- function(text) {
   width <- max(cli::ansi_nchar(text, type = "width"))
   cli::ansi_align(text, width = width)
 }
+
+random_id <- function() {
+  r <- paste0(sample(c(letters, LETTERS, 0:9), 20, replace = TRUE), collapse = "")
+  gsub(" ", "-", cli::hash_animal(r, n = 1)$hash)
+}
