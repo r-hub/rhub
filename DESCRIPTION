@@ -1,10 +1,11 @@
 Package: rhub2
-Title: What the Package Does (One Line, Title Case)
+Title: The 'R-hub' package builder, version 2
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Gábor", "Csárdi", , "csardi.gabor@gmail.com", role = c("aut", "cre"))
+Description: 'R-hub' 2 uses 'GitHub' Actions to run 'R CMD check' and
+    similar package checks. The 'rhub2' package helps you set up 'R-hub' 2
+    for your R package, and start package checks.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -25,5 +26,5 @@ Suggests:
     pillar,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://github.com/gaborcsardi/rhub2
-BugReports: https://github.com/gaborcsardi/rhub2/issues
+URL: https://github.com/r-hub/rhub2
+BugReports: https://github.com/r-hub/rhub2/issues
