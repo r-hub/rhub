@@ -1,0 +1,51 @@
+---
+output:
+  github_document:
+    toc: true
+    toc_depth: 3
+    includes:
+      before_body: inst/header.md
+always_allow_html: yes
+editor_options:
+  markdown:
+    wrap: sentence
+---
+
+```{r, setup, include = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  fig.path = "man/figures",
+  fig.width = 10,
+  asciicast_theme = if (Sys.getenv("IN_PKGDOWN") == "true") "pkgdown" else "readme"
+)
+asciicast::init_knitr_engine(
+  echo = TRUE,
+  echo_input = FALSE,
+  startup = quote({
+    library(cli)
+    options(cli.num_colors = cli::truecolor)
+  })
+)
+```
+
+## Features
+
+## Installation
+
+Install the stable version from CRAN:
+
+```{r, asciicast-setup, eval = FALSE, cache = FALSE}
+install.packages("rhub2")
+```
+
+## Usage
+
+## Code of Conduct
+
+Please note that the callr project is released with a
+[Contributor Code of Conduct](https://callr.r-lib.org/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
+
+## License
+
+MIT © R Consortium

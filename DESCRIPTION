@@ -22,6 +22,7 @@ Imports:
     R6,
     rprojroot
 Suggests:
+    asciicast,
     debugme,
     pillar,
     testthat (>= 3.0.0)

@@ -2,3 +2,4 @@
 ^\.github$
 ^actions$
 ^Makefile$
+^README\.Rmd$
