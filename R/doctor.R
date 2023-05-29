@@ -52,7 +52,8 @@ rhub_doctor <- function(gh_url = NULL) {
   doctor_check_workflow(gh_url, resp$gql, resp$wfl)
 
   cli::cli_alert(
-    "WOOT! You are ready to run {.run rhub2::rhub_check()} on this package."
+    "WOOT! You are ready to run {.run rhub2::rhub_check()} on this package.",
+    wrap = TRUE
   )
 
   invisible(NULL)
@@ -138,7 +139,10 @@ doctor_check_github <- function(gh_url, resp) {
     ))
   }
   cli::cli_status_clear(pid, result = "clear")
-  cli::cli_alert_success("Found repository on GitHub at {.url {gh_url}}.")
+  cli::cli_alert_success(
+    "Found repository on GitHub at {.url {gh_url}}.",
+    wrap = TRUE
+  )
 }
 
 # we can assume a GH response at this point
