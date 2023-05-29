@@ -14,6 +14,6 @@
 
 R-hub 2 uses GitHub Actions to run `R CMD check` and similar package checks.
 The rhub2 package helps you set up R-hub 2 for your R package, and start
-package checks.
+running checks.
 
 ---

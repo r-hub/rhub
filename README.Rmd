@@ -28,17 +28,80 @@ asciicast::init_knitr_engine(
 )
 ```
 
-## Features
+```{asciicast asciicast-setup, include = FALSE, results = "hide"}
+pkgload::load_all()
+# emoji output is slightly incorrect currently, maybe a font issue
+options(pkg.emoji = FALSE)
+# we do this to have a package to use in the examples
+setwd("/tmp")
+if (!file.exists("cli")) system("git clone --depth 1 https://github.com/r-lib/cli")
+setwd("cli")
+unlink(".github/workflows/rhub.yaml")
+```
 
 ## Installation
 
 Install the stable version from CRAN:
 
-```{r, asciicast-setup, eval = FALSE, cache = FALSE}
+```{r, asciicast-install, eval = FALSE, cache = FALSE}
 install.packages("rhub2")
 ```
 
 ## Usage
+
+### Requirements
+
+- A Github account.
+- Your R package must be in a GitHub repository.
+- You need a GitHub [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+  You can use the [gitcreds package](https://gitcreds.r-lib.org/) to add
+  the token to the git credential store.
+
+### Private repositories
+
+rhub2 uses GitHub Actions, which is free for public repositories.
+For private repositories you also get some minutes for free, depending on
+the GitHub subscription you have. See
+[About billing for GitHub Actions](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions) for details.
+
+### Setup
+
+1. Switch to the directory of your package, and call `rhub2::rhub_setup()` to
+  add the R-hub workflow file to your package.
+```{asciicast rhub-setup}
+rhub2::rhub_setup()
+```
+
+2. Run `git commit` and `git push` to push the workflow file to GitHub.
+
+3. Run `rhub2::rhub_doctor()` to check if everything is set up correctly:
+```{asciicast rhub-doctor}
+rhub2::rhub_doctor()
+```
+
+### Run checks
+
+Use `rhub2::rhub_platforms()` to get a list of supported platforms and checks:
+```{asciicast rhub-platforms}
+rhub2::rhub_platforms()
+```
+
+```{asciicast include = FALSE}
+testthat::local_mocked_bindings(
+  gh_rest_post = function(...) list(status_code = 204L),
+  readline = function(prompt) {
+    cat(prompt)
+    Sys.sleep(1)
+    cat("1, 5\n")
+    "1, 5"
+  }
+)
+```
+
+Run `rhub2::rhub_check()` to start R-hub 2 checks on GitHub Actions:
+```{asciicast rhub-check}
+rhub2::rhub_check()
+```
 
 ## Code of Conduct
 
