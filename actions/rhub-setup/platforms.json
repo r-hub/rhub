@@ -63,6 +63,15 @@
     },
 
     {
+        "name": "clang17",
+        "cran-names": ["clang17"],
+        "aliases": [],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/clang17:latest"
+    },
+
+    {
         "name": "gcc13",
         "cran-names": ["gcc13"],
         "aliases": [],
