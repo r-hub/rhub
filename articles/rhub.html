@@ -184,24 +184,22 @@ particular to reproduce a result from CRAN’s own platform, have a look
 at the R-hub platform characteristics.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/platforms.html">platforms</a></span><span class="op">(</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="6%">
-<col width="16%">
-<col width="7%">
+<col width="8%">
+<col width="15%">
+<col width="10%">
+<col width="3%">
 <col width="2%">
-<col width="1%">
 <col width="2%">
-<col width="12%">
+<col width="8%">
 <col width="13%">
-<col width="4%">
+<col width="6%">
+<col width="8%">
+<col width="7%">
 <col width="5%">
-<col width="5%">
-<col width="9%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
 <col width="2%">
+<col width="4%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">name</th>
@@ -218,8 +216,6 @@ at the R-hub platform characteristics.</p>
 <th align="left">node-labels</th>
 <th align="left">queue</th>
 <th align="left">output-parser</th>
-<th align="left">macos-version</th>
-<th align="left">params</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -237,8 +233,6 @@ at the R-hub platform characteristics.</p>
 <td align="left">linux</td>
 <td align="left">linux</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">debian-gcc-devel</td>
@@ -254,8 +248,6 @@ at the R-hub platform characteristics.</p>
 <td align="left">Linux</td>
 <td align="left">linux</td>
 <td align="left">linux</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
@@ -273,8 +265,6 @@ at the R-hub platform characteristics.</p>
 <td align="left">linux</td>
 <td align="left">linux</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">debian-gcc-patched</td>
@@ -290,8 +280,6 @@ at the R-hub platform characteristics.</p>
 <td align="left">Linux</td>
 <td align="left">linux</td>
 <td align="left">linux</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
@@ -309,8 +297,6 @@ at the R-hub platform characteristics.</p>
 <td align="left">linux</td>
 <td align="left">linux</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">fedora-clang-devel</td>
@@ -326,8 +312,6 @@ at the R-hub platform characteristics.</p>
 <td align="left">Linux</td>
 <td align="left">linux</td>
 <td align="left">linux</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
@@ -345,8 +329,6 @@ at the R-hub platform characteristics.</p>
 <td align="left">linux</td>
 <td align="left">linux</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">linux-x86_64-rocker-gcc-san</td>
@@ -363,85 +345,6 @@ at the R-hub platform characteristics.</p>
 <td align="left">linux</td>
 <td align="left">linux</td>
 <td align="left">sanitizers</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">macos-highsierra-release</td>
-<td align="left">macOS 10.13.6 High Sierra, R-release, brew</td>
-<td align="left">NA</td>
-<td align="left">r-release</td>
-<td align="left">macOS</td>
-<td align="left">x86_64</td>
-<td align="left">Mac OS 10.13.6</td>
-<td align="left">XCode 10.1, Apple LLVM version 10.0.0
-(clang-1000.10.44.4)</td>
-<td align="left">NA</td>
-<td align="left">osx-x86_64-clang</td>
-<td align="left">macOS</td>
-<td align="left">macos , highsierra, r-release</td>
-<td align="left">highsierra</td>
-<td align="left">NA</td>
-<td align="left">highsierra</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">macos-highsierra-release-cran</td>
-<td align="left">macOS 10.13.6 High Sierra, R-release, CRAN’s setup</td>
-<td align="left">r-release-osx-x86_64</td>
-<td align="left">r-release</td>
-<td align="left">macOS</td>
-<td align="left">x86_64</td>
-<td align="left">Mac OS 10.13.6</td>
-<td align="left">XCode 10.1, Apple LLVM version 10.0.0
-(clang-1000.10.44.4)</td>
-<td align="left">NA</td>
-<td align="left">osx-x86_64-clang</td>
-<td align="left">macOS</td>
-<td align="left">macos , highsierracran, r-release</td>
-<td align="left">highsierracran</td>
-<td align="left">NA</td>
-<td align="left">highsierra</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">solaris-x86-patched</td>
-<td align="left">Oracle Solaris 10, x86, 32 bit, R-release</td>
-<td align="left">r-patched-solaris-x86</td>
-<td align="left">r-release</td>
-<td align="left">Solaris</td>
-<td align="left">x86_64</td>
-<td align="left">SunOS unknown 5.10 Generic_147148-26 i86pc i386
-i86pc</td>
-<td align="left">GCC 5.5.0</td>
-<td align="left">NA</td>
-<td align="left">solaris-10</td>
-<td align="left">Solaris</td>
-<td align="left">solaris</td>
-<td align="left">solaris</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">solaris-x86-patched-ods</td>
-<td align="left">Oracle Solaris 10, x86, 32 bit, R release, Oracle
-Developer Studio 12.6</td>
-<td align="left">r-patched-solaris-x86</td>
-<td align="left">r-release</td>
-<td align="left">Solaris</td>
-<td align="left">x86_64</td>
-<td align="left">SunOS unknown 5.10 Generic_147148-26 i86pc i386
-i86pc</td>
-<td align="left">Oracle Developer Studio 12.6</td>
-<td align="left">NA</td>
-<td align="left">solaris-10</td>
-<td align="left">Solaris</td>
-<td align="left">solaris</td>
-<td align="left">solaris</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">ods=true</td>
 </tr>
 <tr class="odd">
 <td align="left">ubuntu-gcc-devel</td>
@@ -457,8 +360,6 @@ i86pc</td>
 <td align="left">Linux</td>
 <td align="left">linux</td>
 <td align="left">linux</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
@@ -476,8 +377,6 @@ i86pc</td>
 <td align="left">linux</td>
 <td align="left">linux</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
 <tr class="odd">
 <td align="left">ubuntu-rchk</td>
@@ -494,8 +393,6 @@ i86pc</td>
 <td align="left">linux</td>
 <td align="left">linux</td>
 <td align="left">rchk</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">windows-x86_64-devel</td>
@@ -511,8 +408,6 @@ i86pc</td>
 <td align="left">Windows</td>
 <td align="left">windows-ucrt</td>
 <td align="left">ucrt</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
@@ -530,8 +425,6 @@ i86pc</td>
 <td align="left">windows, rtools4</td>
 <td align="left">rtools4</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">windows-x86_64-patched</td>
@@ -548,8 +441,6 @@ i86pc</td>
 <td align="left">windows, rtools4</td>
 <td align="left">rtools4</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
 <tr class="odd">
 <td align="left">windows-x86_64-release</td>
@@ -565,8 +456,6 @@ i86pc</td>
 <td align="left">Windows</td>
 <td align="left">windows, rtools4</td>
 <td align="left">rtools4</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
 </tbody>

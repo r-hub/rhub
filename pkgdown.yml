@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   local-debugging: local-debugging.html
   rhub: rhub.html
-last_built: 2022-12-31T08:05Z
+last_built: 2023-06-28T06:21Z
 urls:
   reference: https://r-hub.github.io/rhub/reference
   article: https://r-hub.github.io/rhub/articles
