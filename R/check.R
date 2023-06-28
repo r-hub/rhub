@@ -95,7 +95,8 @@ assert_validated_email_for_check <- function(email) {
         "the package maintainer's email. To validate it now, please enter ",
         "the email address below. Note that R-hub will send a token to ",
         "this address. If the address does not belong to you, quit now by ",
-        "pressing ", crayon::yellow("ENTER"), "."
+        "pressing ", crayon::yellow("ENTER"), ". You can also specify a ",
+        "different email by suppling email=."
       ))))
       cat("\n")
       email2 <- readline("  Email address: ")
