@@ -101,7 +101,7 @@ ansi_align_width <- function(text) {
 
 random_id <- function() {
   r <- paste0(sample(c(letters, LETTERS, 0:9), 20, replace = TRUE), collapse = "")
-  gsub(" ", "-", cli::hash_animal(r, n = 1)$hash)
+  gsub(" ", "-", cli::hash_animal(r, n_adj = 1)$hash)
 }
 
 readline <- function(prompt) {
