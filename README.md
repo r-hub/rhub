@@ -31,7 +31,7 @@ running checks.
 
 ## Installation
 
-Install the stable version from CRAN:
+Once releaseed, install the stable version from CRAN:
 
 ``` r
 install.packages("rhub2")

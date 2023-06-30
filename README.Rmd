@@ -41,7 +41,7 @@ unlink(".github/workflows/rhub.yaml")
 
 ## Installation
 
-Install the stable version from CRAN:
+Once releaseed, install the stable version from CRAN:
 
 ```{r, asciicast-install, eval = FALSE, cache = FALSE}
 install.packages("rhub2")
