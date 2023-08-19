@@ -90,6 +90,15 @@
     },
 
     {
+        "name": "valgrind",
+        "cran-names": ["valgrind"],
+        "aliases": [],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/valgrind:latest"
+    },
+    
+    {
         "name": "windows",
         "cran-names": [
             "r-devel-windows-x86_64",
