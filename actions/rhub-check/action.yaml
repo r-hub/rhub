@@ -118,6 +118,7 @@ runs:
 
   - uses: r-lib/actions/check-r-package@v2
     with:
+      args: "c('--no-manual', '--as-cran', strsplit(Sys.getenv('CHECK_ARGS'), '[ ]+')[[1]])"
       upload-snapshots: true
     env:
       R_KEEP_PKG_SOURCE: yes
