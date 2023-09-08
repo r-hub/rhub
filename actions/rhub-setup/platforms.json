@@ -97,6 +97,15 @@
         "os-type": "Linux",
         "container": "ghcr.io/r-hub/containers/valgrind:latest"
     },
+
+    {
+        "name": "mkl",
+        "cran-names": ["MKL"],
+        "aliases": [],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/mkl:latest"
+    },
     
     {
         "name": "windows",
