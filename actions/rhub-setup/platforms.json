@@ -106,7 +106,25 @@
         "os-type": "Linux",
         "container": "ghcr.io/r-hub/containers/mkl:latest"
     },
-    
+
+    {
+        "name": "intel",
+        "cran-names": ["Intel"],
+        "aliases": [],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/intel:latest"
+    },
+
+    {
+        "name": "donttest",
+        "cran-names": ["donttest"],
+        "aliases": [],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/donttest:latest"
+    },
+
     {
         "name": "windows",
         "cran-names": [
