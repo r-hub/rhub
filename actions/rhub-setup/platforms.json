@@ -126,6 +126,15 @@
     },
 
     {
+        "name": "nosuggests",
+        "cran-names": ["noSuggests"],
+        "aliases": [],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/nosuggests:latest"
+    },
+
+    {
         "name": "windows",
         "cran-names": [
             "r-devel-windows-x86_64",
