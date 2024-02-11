@@ -32,7 +32,7 @@ jobs:
       platforms: ${{ steps.rhub-setup.outputs.platforms }}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: ./actions/rhub-setup
       with:
         config: ${{ github.event.inputs.config }}
@@ -51,7 +51,7 @@ jobs:
       image: ${{ matrix.config.container }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./actions/rhub-check
         with:
           token: ${{ secrets.RHUB_TOKEN }}
@@ -68,7 +68,7 @@ jobs:
         config: ${{ fromJson(needs.setup.outputs.platforms) }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./actions/rhub-setup-r
         with:
           job-config: ${{ matrix.config.job-config }}
