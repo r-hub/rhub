@@ -159,8 +159,11 @@
             "r-oldrel-macos-x86_64"
         ],
         "aliases": [
+            "macos-x86_64",
             "r-release-macos",
-            "r-oldrel-macos"
+            "r-oldrel-macos",
+            "r-release-macos-x86_64",
+            "r-oldrel-macos-x86_64"
         ],
         "type": "os",
         "os-type": "macOS",
