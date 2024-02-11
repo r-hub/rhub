@@ -170,6 +170,20 @@
     },
 
     {
+        "name": "macos-arm64",
+        "cran-names": [
+            "r-release-macos-arm64",
+            "r-oldrel-macos-arm64"
+        ],
+        "aliases": [],
+        "type": "os",
+        "os-type": "macOS",
+        "os": "macos-14",
+        "arch": "arm64",
+        "r-version": "*"
+    },
+
+    {
         "name": "linux",
         "cran-names": [],
         "aliases": [],
