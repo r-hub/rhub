@@ -1,0 +1,14 @@
+name: "rhub-checkout"
+descritpion: |
+  Check out a repo, a wrapper to https://github.com/actions/checkout.
+author: 'Gábor Csárdi'
+
+inputs:
+  repository:
+    description: 'Repository name with owner. For example, actions/checkout'
+    default: ${{ github.repository }}
+
+runs:
+  using: "composite"
+  steps:
+  - uses: actions/checkout@v4
