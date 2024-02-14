@@ -72,6 +72,15 @@
     },
 
     {
+        "name": "clang18",
+        "cran-names": ["clang18"],
+        "aliases": [],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/clang18:latest"
+    },
+
+    {
         "name": "gcc13",
         "cran-names": ["gcc13"],
         "aliases": [],
