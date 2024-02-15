@@ -11,6 +11,26 @@ inputs:
   job-config:
     description: |
       The matrix config, as set up by the r-hub-setup action.
+  extra-packages:
+    description: |
+      Any extra packages to install outside of the packages listed in the
+      dependencies.
+    default: any::rcmdcheck
+  needs:
+    description: |
+      Any extra Config/Needs fields which need to be included when
+      installing dependencies.
+    default: check
+  pak-version:
+    description: |
+      Which pak version to use. Possible values are "stable", "rc" and
+      "devel".
+    default: stable
+  dependencies:
+    description: |
+      Types of dependencies to install. Must be an R expression. Note that
+      it often needs to be quoted in YAML, see the README for details.
+    default: '"all"'
 
 runs:
   using: "composite"
@@ -29,8 +49,9 @@ runs:
   # - don't have an R shared library
   - uses: r-lib/actions/setup-r-dependencies@v2
     with:
-      extra-packages: any::rcmdcheck
-      pak-version: devel
-      needs: check
+      extra-packages: ${{ inputs.extra-packages }}
+      needs: ${{ inputs.needs }}
+      pak-version: ${{ inputs.pak-version }}
+      dependencies: ${{ inputs.dependencies }}
     env:
       R_KEEP_PKG_SOURCE: yes
