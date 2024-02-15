@@ -94,13 +94,3 @@ runs:
       system(paste0(file.path(R.home("bin"), "R"), " CMD config --all"))
       cat("::endgroup::\n")
     shell: Rscript {0}
-
-
-  - name: Set user library location
-    run: |
-      #
-      cat("::group::Set user library location\n")
-      dir.create(lib <- Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
-      writeLines(paste0("R_LIBS_USER=", Sys.getenv("R_LIBS_USER")), Sys.getenv("GITHUB_ENV"))
-      cat("::endgroup::\n")
-    shell: Rscript {0}
