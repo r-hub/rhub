@@ -1,8 +1,6 @@
-name: 'rhub-check'
+name: 'rhub-platform-info'
 description: |
-  Set up R package dependencies, and run R-hub checks. This action
-  is deprecated in favor of `r-hub/rhub2/rhub-platform-info`,
-  `r-hub/rhub2/rhub-setup-deps` and `r-hub/rhub2/rhub-run-check`.
+  R platform information.
 author: 'Gábor Csárdi'
 
 inputs:
@@ -97,71 +95,12 @@ runs:
       cat("::endgroup::\n")
     shell: Rscript {0}
 
+
   - name: Set user library location
     run: |
-      # Set user library location
+      #
       cat("::group::Set user library location\n")
       dir.create(lib <- Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
       writeLines(paste0("R_LIBS_USER=", Sys.getenv("R_LIBS_USER")), Sys.getenv("GITHUB_ENV"))
       cat("::endgroup::\n")
     shell: Rscript {0}
-
-  # TODO: need to improve the cache key for R builds/packages that
-  # - link to libc++ on Linux
-  # - don't have an R shared library
-  - uses: r-lib/actions/setup-r-dependencies@v2
-    with:
-      extra-packages: any::rcmdcheck
-      pak-version: devel
-      needs: check
-    env:
-      R_KEEP_PKG_SOURCE: yes
-
-  - uses: r-lib/actions/check-r-package@v2
-    with:
-      args: "c('--no-manual', '--as-cran', strsplit(Sys.getenv('CHECK_ARGS'), '[ ]+')[[1]])"
-      upload-results: false
-      upload-snapshots: false
-    env:
-      R_KEEP_PKG_SOURCE: yes
-
-  - name: Output
-    run: |
-      # Show output of examples and tests
-      cat("::group::Show output of examples and tests\n")
-      out <- dir("check", recursive=TRUE, pattern = "[.]Rout", full.names = TRUE)
-      writeLines("-- Examples and test output ---------------------------------------------")
-      for (of in out) {
-        writeLines(paste0("-- ", of))
-        writeLines(readLines(of, warn = FALSE))
-      }
-      writeLines("-------------------------------------------------------------------------")
-      cat("::endgroup::\n")
-    shell: Rscript {0}
-
-  - name: Check for valgrind errors
-    if: ${{ matrix.config.label == 'valgrind' }}
-    run: |
-      # Fail for valgrind errors
-      cat("::group::Fail for valgrind errors\n")
-      writeLines("-- Checking for valgrind errors -----------------------------------------")
-      out <- dir("check", recursive=TRUE, pattern = "[.]Rout", full.names = TRUE)
-      fail <- 0
-      for (of in out) {
-        l <- readLines(of, warn = FALSE)
-        if (any(grepl("==[0-9]+== ERROR SUMMARY: [1-9][0-9]* error", l))) {
-          fail <- 1
-          writeLines(paste0("-- ", of))
-          writeLines(l)
-        }
-      }
-      writeLines("-------------------------------------------------------------------------")
-      q(save = "no", status = fail)
-      cat("::endgroup::\n")
-    shell: Rscript {0}
-
-  - uses: actions/upload-artifact@v4
-    if: ${{ always() }}
-    with:
-      name: ${{ runner.os }}-${{ runner.arch }}-r${{ matrix.config.r }}-${{ github.job }}-${{ matrix.config.id || strategy.job-index }}-results
-      path: check

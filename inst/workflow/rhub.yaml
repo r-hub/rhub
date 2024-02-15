@@ -52,7 +52,15 @@ jobs:
 
     steps:
       - uses: r-hub/rhub2/actions/rhub-checkout@v1
-      - uses: r-hub/rhub2/actions/rhub-check@v1
+      - uses: r-hub/rhub2/actions/rhub-platform-info@v1
+        with:
+          token: ${{ secrets.RHUB_TOKEN }}
+          job-config: ${{ matrix.config.job-config }}
+      - uses: r-hub/rhub2/actions/rhub-setup-deps@v1
+        with:
+          token: ${{ secrets.RHUB_TOKEN }}
+          job-config: ${{ matrix.config.job-config }}
+      - uses: r-hub/rhub2/actions/rhub-run-check@v1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
@@ -73,7 +81,15 @@ jobs:
         with:
           job-config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}
-      - uses: r-hub/rhub2/actions/rhub-check@v1
+      - uses: r-hub/rhub2/actions/rhub-platform-info@v1
+        with:
+          token: ${{ secrets.RHUB_TOKEN }}
+          job-config: ${{ matrix.config.job-config }}
+      - uses: r-hub/rhub2/actions/rhub-setup-deps@v1
+        with:
+          job-config: ${{ matrix.config.job-config }}
+          token: ${{ secrets.RHUB_TOKEN }}
+      - uses: r-hub/rhub2/actions/rhub-run-check@v1
         with:
           job-config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}

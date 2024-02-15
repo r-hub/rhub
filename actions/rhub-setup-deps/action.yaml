@@ -1,0 +1,36 @@
+name: rhub-setup-check
+description: |
+  Set up dependencies for R-hub checks.
+author: 'Gábor Csárdi'
+
+inputs:
+  token:
+    description: |
+      Custom GitHub personal access token. Useful to allow access to
+      private repositories or other resources.
+  job-config:
+    description: |
+      The matrix config, as set up by the r-hub-setup action.
+
+runs:
+  using: "composite"
+  steps:
+  - name: Set user library location
+    run: |
+      # Set user library location
+      cat("::group::Set user library location\n")
+      dir.create(lib <- Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
+      writeLines(paste0("R_LIBS_USER=", Sys.getenv("R_LIBS_USER")), Sys.getenv("GITHUB_ENV"))
+      cat("::endgroup::\n")
+    shell: Rscript {0}
+
+  # TODO: need to improve the cache key for R builds/packages that
+  # - link to libc++ on Linux
+  # - don't have an R shared library
+  - uses: r-lib/actions/setup-r-dependencies@v2
+    with:
+      extra-packages: any::rcmdcheck
+      pak-version: devel
+      needs: check
+    env:
+      R_KEEP_PKG_SOURCE: yes
