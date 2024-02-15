@@ -3,3 +3,4 @@
 ^actions$
 ^Makefile$
 ^README\.Rmd$
+^README[.]html$
