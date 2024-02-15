@@ -39,7 +39,7 @@ runs:
     shell: Rscript {0}
 
   - name: Check for valgrind errors
-    if: ${{ always() %% matrix.config.label == 'valgrind' }}
+    if: ${{ always() && matrix.config.label == 'valgrind' }}
     run: |
       # Fail for valgrind errors
       cat("::group::Fail for valgrind errors\n")
