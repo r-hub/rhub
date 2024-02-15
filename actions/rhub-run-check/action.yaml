@@ -24,6 +24,7 @@ runs:
       R_KEEP_PKG_SOURCE: yes
 
   - name: Output
+    if: ${{ always() }}
     run: |
       # Show output of examples and tests
       cat("::group::Show output of examples and tests\n")
@@ -38,7 +39,7 @@ runs:
     shell: Rscript {0}
 
   - name: Check for valgrind errors
-    if: ${{ matrix.config.label == 'valgrind' }}
+    if: ${{ always() %% matrix.config.label == 'valgrind' }}
     run: |
       # Fail for valgrind errors
       cat("::group::Fail for valgrind errors\n")
