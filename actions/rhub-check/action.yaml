@@ -127,6 +127,7 @@ runs:
   - name: Output
     run: |
       # Show output of examples and tests
+      cat("::group::Show output of examples and tests\n")
       out <- dir("check", recursive=TRUE, pattern = "[.]Rout", full.names = TRUE)
       writeLines("-- Examples and test output ---------------------------------------------")
       for (of in out) {
@@ -134,12 +135,14 @@ runs:
         writeLines(readLines(of, warn = FALSE))
       }
       writeLines("-------------------------------------------------------------------------")
+      cat("::endgroup::\n")
     shell: Rscript {0}
 
   - name: Check for valgrind errors
     if: ${{ matrix.config.label == 'valgrind' }}
     run: |
       # Fail for valgrind errors
+      cat("::group::Fail for valgrind errors\n")
       writeLines("-- Checking for valgrind errors -----------------------------------------")
       out <- dir("check", recursive=TRUE, pattern = "[.]Rout", full.names = TRUE)
       fail <- 0
@@ -153,8 +156,8 @@ runs:
       }
       writeLines("-------------------------------------------------------------------------")
       q(save = "no", status = fail)
+      cat("::endgroup::\n")
     shell: Rscript {0}
-
 
   - uses: actions/upload-artifact@v4
     if: ${{ always() }}
