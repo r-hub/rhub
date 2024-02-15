@@ -124,7 +124,40 @@ runs:
     env:
       R_KEEP_PKG_SOURCE: yes
 
+  - name: Output
+    run: |
+      # Show output of examples and tests
+      out <- dir("check", recursive=TRUE, pattern = "[.]Rout", full.names = TRUE)
+      writeLines("-- Examples and test output ---------------------------------------------")
+      for (of in out) {
+        writeLines(paste0("-- ", of))
+        writeLines(readLines(of, warn = FALSE))
+      }
+      writeLines("-------------------------------------------------------------------------")
+    shell: Rscript {0}
+
+  - name: Check for valgrind errors
+    if: ${{ matrix.config.label == 'valgrind' }}
+    run: |
+      # Fail for valgrind errors
+      writeLines("-- Checking for valgrind errors -----------------------------------------")
+      out <- dir("check", recursive=TRUE, pattern = "[.]Rout", full.names = TRUE)
+      fail <- 0
+      for (of in out) {
+        l <- readLines(of, warn = FALSE)
+        if (any(grepl("==[0-9]+== ERROR SUMMARY: [1-9][0-9]* error", l))) {
+          fail <- 1
+          writeLines(paste0("-- ", of))
+          writeLines(l)
+        }
+      }
+      writeLines("-------------------------------------------------------------------------")
+      q(save = "no", status = fail)
+    shell: Rscript {0}
+
+
   - uses: actions/upload-artifact@v4
+    if: ${{ always() }}
     with:
       name: ${{ runner.os }}-${{ runner.arch }}-r${{ matrix.config.r }}-${{ github.job }}-${{ matrix.config.id || strategy.job-index }}-results
       path: check
