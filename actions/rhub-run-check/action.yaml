@@ -63,6 +63,8 @@ runs:
   - name: Save binary package
     if: ${{ always() }}
     run: |
+      # Save binary package
+      cat("::group::Save binary package\n")
       out <- dir("check", recursive=TRUE, pattern = "00install.out", full.names = TRUE)
       if (length(out) > 0) {
         lns <- readLines(out[1])
@@ -80,6 +82,7 @@ runs:
       } else {
         warning("Could not find binary package.")
       }
+      cat("::endgroup::\n")
     shell: Rscript {0}
 
   - uses: actions/upload-artifact@v4
