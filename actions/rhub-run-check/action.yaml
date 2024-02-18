@@ -60,6 +60,28 @@ runs:
       cat("::endgroup::\n")
     shell: Rscript {0}
 
+  - name: Save binary package
+    if: ${{ always() }}
+    run: |
+      out <- dir("check", recursive=TRUE, pattern = "00install.out", full.names = TRUE)
+      if (length(out) > 0) {
+        lns <- readLines(out[1])
+        pkgline <- grep("^packaged installation", lns, value = TRUE)
+        if (length(pkgline) > 0) {
+          pkg <- sub("['’].*$", "", sub("^.*as ['‘]", "", pkgline))
+          if (file.copy(pkg, "check")) {
+            message("Copied binary package '", pkg, "' to check/")
+          } else {
+            warning("Could not copy binary package '", pkg, "' to check/")
+          }
+        } else {
+          warning("Could not find binary package.")
+        }
+      } else {
+        warning("Could not find binary package.")
+      }
+    shell: Rscript {0}
+
   - uses: actions/upload-artifact@v4
     if: ${{ always() }}
     with:
