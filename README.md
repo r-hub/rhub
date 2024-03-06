@@ -108,7 +108,7 @@ rhub2::rhub_check()
 
 ## Code of Conduct
 
-Please note that the callr project is released with a [Contributor Code
+Please note that the rhub2 project is released with a [Contributor Code
 of Conduct](https://callr.r-lib.org/CODE_OF_CONDUCT.html). By
 contributing to this project, you agree to abide by its terms.
 
