@@ -1,14 +1,23 @@
 name: "rhub-checkout"
-descritpion: |
+description: |
   Check out a repo, a wrapper to https://github.com/actions/checkout.
 author: 'Gábor Csárdi'
 
 inputs:
   repository:
-    description: 'Repository name with owner. For example, actions/checkout'
+    description: >
+      Repository name with owner. For example, actions/checkout.
     default: ${{ github.repository }}
+  ref:
+    description: >
+      The branch, tag or SHA to checkout. When checking out the repository that
+      triggered a workflow, this defaults to the reference or SHA for that
+      event.  Otherwise, uses the default branch.
 
 runs:
   using: "composite"
   steps:
   - uses: actions/checkout@v4
+    with:
+      repository: ${{ inputs.repository }}
+      ref: ${{ inputs.ref }}
