@@ -11,10 +11,22 @@ inputs:
   job-config:
     description: |
       The matrix config, as set up by the r-hub-setup action.
+  remove-dot-github:
+    description: |
+      Whether to delete `.github` directory before the check. This is
+      usually not a good idea, but R-hub needs to do it when running on
+      a package submitted to the RC cluster.
+    default: false
 
 runs:
   using: "composite"
   steps:
+  - name: Remove .github
+    if: ${{ inputs.remove-dot-github == 'true' }}
+    run: |
+      unlink(".github", force = TRUE, recursive = TRUE)
+    shell: Rscript {0}
+
   - uses: r-lib/actions/check-r-package@v2
     with:
       args: "c('--no-manual', if (!grepl('(^| )[-][-]extra[-]arch( |$)', Sys.getenv('CHECK_ARGS'))) '--as-cran', '--install-args=--build', strsplit(Sys.getenv('CHECK_ARGS'), '[ ]+')[[1]])"
