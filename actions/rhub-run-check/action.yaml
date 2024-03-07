@@ -39,7 +39,15 @@ runs:
   - name: Output
     if: ${{ always() }}
     run: |
-      # Show output of examples and tests
+      # Show output of installation, examples and tests
+      cat("::group::Show installation output\n")
+      out <- dir("check", recursive=TRUE, pattern = "00install.out", full.names = TRUE)
+      if (length(out) > 0) {
+        for (of in out) {
+          writeLines(readLines(of))
+        }
+      }
+      cat("::endgroup::\n")
       cat("::group::Show output of examples and tests\n")
       out <- dir("check", recursive=TRUE, pattern = "[.]Rout", full.names = TRUE)
       writeLines("-- Examples and test output ---------------------------------------------")
