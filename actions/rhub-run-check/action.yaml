@@ -27,11 +27,11 @@ runs:
       unlink(".github", force = TRUE, recursive = TRUE)
     shell: Rscript {0}
 
-  - uses: r-lib/actions/check-r-package@v2
+  - uses: r-lib/actions/check-r-package@v2-branch
     with:
       args: "c('--no-manual', if (!grepl('(^| )[-][-]extra[-]arch( |$)', Sys.getenv('CHECK_ARGS'))) '--as-cran', '--install-args=--build', strsplit(Sys.getenv('CHECK_ARGS'), '[ ]+')[[1]])"
       build_args: "c('--no-manual', strsplit(Sys.getenv('BUILD_ARGS'), '[ ]+')[[1]])"
-      upload-results: false
+      upload-results: never
       upload-snapshots: false
     env:
       R_KEEP_PKG_SOURCE: yes
