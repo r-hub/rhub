@@ -150,8 +150,8 @@ showing the log until the check is finished, so set
 check and then go on with your work in the same session.</p>
 <p>In all cases, you will receive a notification email with results
 after the check.</p>
-<div class="figure">
-<img src="figures/check-output.gif" alt=""><p class="caption">recording of a check on a screen</p>
+<div class="float">
+<img src="figures/check-output.gif" alt="recording of a check on a screen"><div class="figcaption">recording of a check on a screen</div>
 </div>
 <p>You can either just run the function, or assign its output to an
 object, that you can use to print results to the screen, to browse the
@@ -529,25 +529,25 @@ email but you can also get information from R. E.g. you could submit a
 check for a package located at <code>&lt;package-path&gt;</code>, then
 turn off your computer and on the following days retrieve results
 via</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>previous_checks <span class="ot">&lt;-</span> rhub<span class="sc">::</span><span class="fu">list_package_checks</span>(<span class="sc">&lt;</span>package<span class="sc">-</span>path<span class="sc">&gt;</span>,</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">email =</span> <span class="st">"maelle.salmon@yahoo.se"</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">howmany =</span> <span class="dv">4</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>previous_checks</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 10 x 13</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>   package version result group   id      platform_name build_time</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>   <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>   <span class="er">&lt;</span>chr<span class="sc">&gt;</span>   <span class="er">&lt;</span>rhub<span class="sc">&gt;</span> <span class="er">&lt;</span>rhub<span class="sc">:</span><span class="er">&gt;</span> <span class="er">&lt;</span>rhub<span class="sc">:</span><span class="er">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>         <span class="er">&lt;</span>time<span class="sc">&gt;</span>    </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span> note    <span class="fl">1.0</span>     NN     e863a86 00c375b windows<span class="sc">-</span>x86_… <span class="sc">~</span>1m       </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span> note    <span class="fl">1.0</span>     NN     e863a86 5d67129 fedora<span class="sc">-</span>clang… <span class="sc">~</span>1m       </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span> note    <span class="fl">1.0</span>     NN     e863a86 61a7543 ubuntu<span class="sc">-</span>gcc<span class="sc">-</span>r… <span class="sc">~</span><span class="fl">53.2</span>s    </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span> note    <span class="fl">1.0</span>     NN     a99e137 197fd0e fedora<span class="sc">-</span>clang… <span class="sc">~</span>46s      </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span> note    <span class="fl">1.0</span>     NN     a99e137 2ed7302 windows<span class="sc">-</span>x86_… <span class="sc">~</span>1m       </span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span> note    <span class="fl">1.0</span>     NN     a99e137 88293d9 ubuntu<span class="sc">-</span>gcc<span class="sc">-</span>r… <span class="sc">~</span><span class="fl">36.7</span>s    </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span> note    <span class="fl">1.0</span>     NN     9ceef8e 4f9113c windows<span class="sc">-</span>x86_… <span class="sc">~</span>1m       </span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span> note    <span class="fl">1.0</span>     NN     9ceef8e 6761ed2 ubuntu<span class="sc">-</span>gcc<span class="sc">-</span>r… <span class="sc">~</span><span class="fl">35.9</span>s    </span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span> note    <span class="fl">1.0</span>     N      9ceef8e f8bc9d2 fedora<span class="sc">-</span>clang… <span class="sc">~</span><span class="fl">57.9</span>s    </span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> note    <span class="fl">1.0</span>     ok     d3b8509 d3b8509 debian<span class="sc">-</span>gcc<span class="sc">-</span>d… <span class="sc">~</span><span class="fl">45.5</span>s    </span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># … with 6 more variables: submitted &lt;dttm&gt;, started &lt;dttm&gt;, platform &lt;list&gt;,</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#   builder &lt;chr&gt;, status &lt;rhub::status&gt;, email &lt;chr&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>previous_checks <span class="ot">&lt;-</span> rhub<span class="sc">::</span><span class="fu">list_package_checks</span>(<span class="sc">&lt;</span>package<span class="sc">-</span>path<span class="sc">&gt;</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>                                  <span class="at">email =</span> <span class="st">"maelle.salmon@yahoo.se"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                                  <span class="at">howmany =</span> <span class="dv">4</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>previous_checks</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># A tibble: 10 x 13</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>   package version result group   id      platform_name build_time</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>   <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>   <span class="er">&lt;</span>chr<span class="sc">&gt;</span>   <span class="er">&lt;</span>rhub<span class="sc">&gt;</span> <span class="er">&lt;</span>rhub<span class="sc">:</span><span class="er">&gt;</span> <span class="er">&lt;</span>rhub<span class="sc">:</span><span class="er">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>         <span class="er">&lt;</span>time<span class="sc">&gt;</span>    </span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a> <span class="dv">1</span> note    <span class="fl">1.0</span>     NN     e863a86 <span class="dv">00</span>c375b windows<span class="sc">-</span>x86_… <span class="sc">~</span><span class="dv">1</span>m       </span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a> <span class="dv">2</span> note    <span class="fl">1.0</span>     NN     e863a86 <span class="dv">5</span>d67129 fedora<span class="sc">-</span>clang… <span class="sc">~</span><span class="dv">1</span>m       </span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a> <span class="dv">3</span> note    <span class="fl">1.0</span>     NN     e863a86 <span class="dv">61</span>a7543 ubuntu<span class="sc">-</span>gcc<span class="sc">-</span>r… <span class="sc">~</span><span class="fl">53.2</span>s    </span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a> <span class="dv">4</span> note    <span class="fl">1.0</span>     NN     a99e137 <span class="dv">197</span>fd0e fedora<span class="sc">-</span>clang… <span class="sc">~</span><span class="dv">46</span>s      </span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a> <span class="dv">5</span> note    <span class="fl">1.0</span>     NN     a99e137 <span class="dv">2</span>ed7302 windows<span class="sc">-</span>x86_… <span class="sc">~</span><span class="dv">1</span>m       </span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a> <span class="dv">6</span> note    <span class="fl">1.0</span>     NN     a99e137 <span class="dv">88293</span>d9 ubuntu<span class="sc">-</span>gcc<span class="sc">-</span>r… <span class="sc">~</span><span class="fl">36.7</span>s    </span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a> <span class="dv">7</span> note    <span class="fl">1.0</span>     NN     <span class="dv">9</span>ceef8e <span class="dv">4</span>f9113c windows<span class="sc">-</span>x86_… <span class="sc">~</span><span class="dv">1</span>m       </span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a> <span class="dv">8</span> note    <span class="fl">1.0</span>     NN     <span class="dv">9</span>ceef8e <span class="dv">6761</span>ed2 ubuntu<span class="sc">-</span>gcc<span class="sc">-</span>r… <span class="sc">~</span><span class="fl">35.9</span>s    </span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a> <span class="dv">9</span> note    <span class="fl">1.0</span>     N      <span class="dv">9</span>ceef8e f8bc9d2 fedora<span class="sc">-</span>clang… <span class="sc">~</span><span class="fl">57.9</span>s    </span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="dv">10</span> note    <span class="fl">1.0</span>     ok     d3b8509 d3b8509 debian<span class="sc">-</span>gcc<span class="sc">-</span>d… <span class="sc">~</span><span class="fl">45.5</span>s    </span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co"># … with 6 more variables: submitted &lt;dttm&gt;, started &lt;dttm&gt;, platform &lt;list&gt;,</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#   builder &lt;chr&gt;, status &lt;rhub::status&gt;, email &lt;chr&gt;</span></span></code></pre></div>
 <p>You can then extract checks from this list using their
 <code>group</code> ID (ID for checks submitted simultaneously e.g. via
 <code><a href="../reference/check_for_cran.html">check_for_cran()</a></code>) or <code>id</code> (check id). In both
@@ -558,97 +558,97 @@ to the screen, and query its URLs.</p>
 <code class="sourceCode R"><span><span class="va">group_id</span> <span class="op">&lt;-</span> <span class="va">previous_checks</span><span class="op">$</span><span class="va">group</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">group_check</span> <span class="op">&lt;-</span> <span class="fu">rhub</span><span class="fu">::</span><span class="fu"><a href="../reference/get_check.html">get_check</a></span><span class="op">(</span><span class="va">group_id</span><span class="op">)</span></span>
 <span><span class="va">group_check</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>── note <span class="fl">1.0</span><span class="sc">:</span> NOTE</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  Build ID<span class="sc">:</span>   note_1.<span class="fl">0.</span>tar.gz<span class="sc">-</span>00c375b187024da7a32c27ef94fa8832</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  Platform<span class="sc">:</span>   Windows Server <span class="dv">2008</span> R2 SP1, R<span class="sc">-</span>devel, <span class="dv">32</span><span class="sc">/</span><span class="dv">64</span> bit</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  Submitted<span class="sc">:</span>  4d 1h 44m <span class="fl">17.5</span>s ago</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  Build time<span class="sc">:</span> 1m <span class="fl">46.2</span>s</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>❯ checking CRAN incoming feasibility ... NOTE</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  Maintainer<span class="sc">:</span> <span class="st">'Ma�lle Salmon &lt;maelle.salmon@yahoo.se&gt;'</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  New submission</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  The Description field contains</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="sc">&lt;</span>http<span class="sc">:</span><span class="er">//</span>http<span class="sc">:</span><span class="er">//</span>cran.r<span class="sc">-</span>project.org<span class="sc">/</span>doc<span class="sc">/</span>manuals<span class="sc">/</span>r<span class="sc">-</span>release<span class="sc">/</span>R<span class="sc">-</span>exts.html<span class="co">#The-DESCRIPTION-file&gt;</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  Please enclose URLs <span class="cf">in</span> angle <span class="fu">brackets</span> (<span class="sc">&lt;</span>...<span class="sc">&gt;</span>).</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  The Date field is over a month old.</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>❯ checking R code <span class="cf">for</span> possible problems ... NOTE</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  .bello<span class="sc">:</span> no visible global <span class="cf">function</span> definition <span class="cf">for</span> <span class="st">'tail'</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  Undefined global functions or variables<span class="sc">:</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    tail</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  Consider adding</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">importFrom</span>(<span class="st">"utils"</span>, <span class="st">"tail"</span>)</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  to your NAMESPACE file.</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> errors ✔ <span class="sc">|</span> <span class="dv">0</span> warnings ✔ <span class="sc">|</span> <span class="dv">2</span> notes ✖</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>── note <span class="fl">1.0</span><span class="sc">:</span> NOTE</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>  Build ID<span class="sc">:</span>   note_1.<span class="fl">0.</span>tar.gz<span class="sc">-</span>5d6712942ce243dcb8d34f7bdfc8ccc6</span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  Platform<span class="sc">:</span>   Fedora Linux, R<span class="sc">-</span>devel, clang, gfortran</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  Submitted<span class="sc">:</span>  4d 1h 44m <span class="fl">17.6</span>s ago</span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  Build time<span class="sc">:</span> 1m <span class="fl">7.2</span>s</span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>❯ checking CRAN incoming feasibility ... NOTE</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>  Maintainer<span class="sc">:</span> ‘Maëlle Salmon <span class="sc">&lt;</span>maelle.salmon<span class="sc">@</span>yahoo.se<span class="sc">&gt;</span>’</span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>  New submission</span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>  The Description field contains</span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    <span class="sc">&lt;</span>http<span class="sc">:</span><span class="er">//</span>http<span class="sc">:</span><span class="er">//</span>cran.r<span class="sc">-</span>project.org<span class="sc">/</span>doc<span class="sc">/</span>manuals<span class="sc">/</span>r<span class="sc">-</span>release<span class="sc">/</span>R<span class="sc">-</span>exts.html<span class="co">#The-DESCRIPTION-file&gt;</span></span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>  Please enclose URLs <span class="cf">in</span> angle <span class="fu">brackets</span> (<span class="sc">&lt;</span>...<span class="sc">&gt;</span>).</span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>  The Date field is over a month old.</span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>❯ checking R code <span class="cf">for</span> possible problems ... NOTE</span>
-<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>  .bello<span class="sc">:</span> no visible global <span class="cf">function</span> definition <span class="cf">for</span> ‘tail’</span>
-<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>  Undefined global functions or variables<span class="sc">:</span></span>
-<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    tail</span>
-<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>  Consider adding</span>
-<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">importFrom</span>(<span class="st">"utils"</span>, <span class="st">"tail"</span>)</span>
-<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>  to your NAMESPACE file.</span>
-<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> errors ✔ <span class="sc">|</span> <span class="dv">0</span> warnings ✔ <span class="sc">|</span> <span class="dv">2</span> notes ✖</span>
-<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>── note <span class="fl">1.0</span><span class="sc">:</span> NOTE</span>
-<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>  Build ID<span class="sc">:</span>   note_1.<span class="fl">0.</span>tar.gz<span class="sc">-</span>61a75439c8b64c409a72c079dce20d30</span>
-<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>  Platform<span class="sc">:</span>   Ubuntu Linux <span class="fl">16.04</span> LTS, R<span class="sc">-</span>release, GCC</span>
-<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>  Submitted<span class="sc">:</span>  4d 1h 44m <span class="fl">17.7</span>s ago</span>
-<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>  Build time<span class="sc">:</span> <span class="fl">53.2</span>s</span>
-<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>❯ checking CRAN incoming feasibility ... NOTE</span>
-<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>  Maintainer<span class="sc">:</span> ‘Maëlle Salmon <span class="sc">&lt;</span>maelle.salmon<span class="sc">@</span>yahoo.se<span class="sc">&gt;</span>’</span>
-<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>  New submission</span>
-<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>  The Description field contains</span>
-<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>    <span class="sc">&lt;</span>http<span class="sc">:</span><span class="er">//</span>http<span class="sc">:</span><span class="er">//</span>cran.r<span class="sc">-</span>project.org<span class="sc">/</span>doc<span class="sc">/</span>manuals<span class="sc">/</span>r<span class="sc">-</span>release<span class="sc">/</span>R<span class="sc">-</span>exts.html<span class="co">#The-DESCRIPTION-file&gt;</span></span>
-<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>  Please enclose URLs <span class="cf">in</span> angle <span class="fu">brackets</span> (<span class="sc">&lt;</span>...<span class="sc">&gt;</span>).</span>
-<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>  The Date field is over a month old.</span>
-<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>❯ checking R code <span class="cf">for</span> possible problems ... NOTE</span>
-<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>  .bello<span class="sc">:</span> no visible global <span class="cf">function</span> definition <span class="cf">for</span> ‘tail’</span>
-<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>  Undefined global functions or variables<span class="sc">:</span></span>
-<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>    tail</span>
-<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>  Consider adding</span>
-<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>    <span class="fu">importFrom</span>(<span class="st">"utils"</span>, <span class="st">"tail"</span>)</span>
-<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>  to your NAMESPACE file.</span>
-<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> errors ✔ <span class="sc">|</span> <span class="dv">0</span> warnings ✔ <span class="sc">|</span> <span class="dv">2</span> notes ✖</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>── note <span class="fl">1.0</span><span class="sc">:</span> NOTE</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  Build ID<span class="sc">:</span>   note_1.<span class="fl">0.</span>tar.gz<span class="dv">-00</span>c375b187024da7a32c27ef94fa8832</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  Platform<span class="sc">:</span>   Windows Server <span class="dv">2008</span> R2 SP1, R<span class="sc">-</span>devel, <span class="dv">32</span><span class="sc">/</span><span class="dv">64</span> bit</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  Submitted<span class="sc">:</span>  <span class="dv">4</span>d <span class="dv">1</span>h <span class="dv">44</span>m <span class="fl">17.5</span>s ago</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>  Build time<span class="sc">:</span> <span class="dv">1</span>m <span class="fl">46.2</span>s</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>❯ checking CRAN incoming feasibility ... NOTE</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>  Maintainer<span class="sc">:</span> <span class="st">'Ma�lle Salmon &lt;maelle.salmon@yahoo.se&gt;'</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>  </span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>  New submission</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>  The Description field contains</span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>  </span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>    <span class="sc">&lt;</span>http<span class="sc">:</span><span class="er">//</span>http<span class="sc">:</span><span class="er">//</span>cran.r<span class="sc">-</span>project.org<span class="sc">/</span>doc<span class="sc">/</span>manuals<span class="sc">/</span>r<span class="sc">-</span>release<span class="sc">/</span>R<span class="sc">-</span>exts.html<span class="co">#The-DESCRIPTION-file&gt;</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>  Please enclose URLs <span class="cf">in</span> angle <span class="fu">brackets</span> (<span class="sc">&lt;</span>...<span class="sc">&gt;</span>).</span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>  </span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>  The Date field is over a month old.</span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a>❯ checking R code <span class="cf">for</span> possible problems ... NOTE</span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a>  .bello<span class="sc">:</span> no visible global <span class="cf">function</span> definition <span class="cf">for</span> <span class="st">'tail'</span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a>  Undefined global functions or variables<span class="sc">:</span></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a>    tail</span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a>  Consider adding</span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a>    <span class="fu">importFrom</span>(<span class="st">"utils"</span>, <span class="st">"tail"</span>)</span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a>  to your NAMESPACE file.</span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a><span class="dv">0</span> errors ✔ <span class="sc">|</span> <span class="dv">0</span> warnings ✔ <span class="sc">|</span> <span class="dv">2</span> notes ✖</span>
+<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a>── note <span class="fl">1.0</span><span class="sc">:</span> NOTE</span>
+<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a>  Build ID<span class="sc">:</span>   note_1.<span class="fl">0.</span>tar.gz<span class="dv">-5</span>d6712942ce243dcb8d34f7bdfc8ccc6</span>
+<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a>  Platform<span class="sc">:</span>   Fedora Linux, R<span class="sc">-</span>devel, clang, gfortran</span>
+<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a>  Submitted<span class="sc">:</span>  <span class="dv">4</span>d <span class="dv">1</span>h <span class="dv">44</span>m <span class="fl">17.6</span>s ago</span>
+<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a>  Build time<span class="sc">:</span> <span class="dv">1</span>m <span class="fl">7.2</span>s</span>
+<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" tabindex="-1"></a>❯ checking CRAN incoming feasibility ... NOTE</span>
+<span id="cb8-37"><a href="#cb8-37" tabindex="-1"></a>  Maintainer<span class="sc">:</span> ‘Maëlle Salmon <span class="sc">&lt;</span>maelle.salmon<span class="sc">@</span>yahoo.se<span class="sc">&gt;</span>’</span>
+<span id="cb8-38"><a href="#cb8-38" tabindex="-1"></a>  </span>
+<span id="cb8-39"><a href="#cb8-39" tabindex="-1"></a>  New submission</span>
+<span id="cb8-40"><a href="#cb8-40" tabindex="-1"></a>  </span>
+<span id="cb8-41"><a href="#cb8-41" tabindex="-1"></a>  The Description field contains</span>
+<span id="cb8-42"><a href="#cb8-42" tabindex="-1"></a>    <span class="sc">&lt;</span>http<span class="sc">:</span><span class="er">//</span>http<span class="sc">:</span><span class="er">//</span>cran.r<span class="sc">-</span>project.org<span class="sc">/</span>doc<span class="sc">/</span>manuals<span class="sc">/</span>r<span class="sc">-</span>release<span class="sc">/</span>R<span class="sc">-</span>exts.html<span class="co">#The-DESCRIPTION-file&gt;</span></span>
+<span id="cb8-43"><a href="#cb8-43" tabindex="-1"></a>  Please enclose URLs <span class="cf">in</span> angle <span class="fu">brackets</span> (<span class="sc">&lt;</span>...<span class="sc">&gt;</span>).</span>
+<span id="cb8-44"><a href="#cb8-44" tabindex="-1"></a>  </span>
+<span id="cb8-45"><a href="#cb8-45" tabindex="-1"></a>  The Date field is over a month old.</span>
+<span id="cb8-46"><a href="#cb8-46" tabindex="-1"></a></span>
+<span id="cb8-47"><a href="#cb8-47" tabindex="-1"></a>❯ checking R code <span class="cf">for</span> possible problems ... NOTE</span>
+<span id="cb8-48"><a href="#cb8-48" tabindex="-1"></a>  .bello<span class="sc">:</span> no visible global <span class="cf">function</span> definition <span class="cf">for</span> ‘tail’</span>
+<span id="cb8-49"><a href="#cb8-49" tabindex="-1"></a>  Undefined global functions or variables<span class="sc">:</span></span>
+<span id="cb8-50"><a href="#cb8-50" tabindex="-1"></a>    tail</span>
+<span id="cb8-51"><a href="#cb8-51" tabindex="-1"></a>  Consider adding</span>
+<span id="cb8-52"><a href="#cb8-52" tabindex="-1"></a>    <span class="fu">importFrom</span>(<span class="st">"utils"</span>, <span class="st">"tail"</span>)</span>
+<span id="cb8-53"><a href="#cb8-53" tabindex="-1"></a>  to your NAMESPACE file.</span>
+<span id="cb8-54"><a href="#cb8-54" tabindex="-1"></a></span>
+<span id="cb8-55"><a href="#cb8-55" tabindex="-1"></a><span class="dv">0</span> errors ✔ <span class="sc">|</span> <span class="dv">0</span> warnings ✔ <span class="sc">|</span> <span class="dv">2</span> notes ✖</span>
+<span id="cb8-56"><a href="#cb8-56" tabindex="-1"></a></span>
+<span id="cb8-57"><a href="#cb8-57" tabindex="-1"></a>── note <span class="fl">1.0</span><span class="sc">:</span> NOTE</span>
+<span id="cb8-58"><a href="#cb8-58" tabindex="-1"></a></span>
+<span id="cb8-59"><a href="#cb8-59" tabindex="-1"></a>  Build ID<span class="sc">:</span>   note_1.<span class="fl">0.</span>tar.gz<span class="dv">-61</span>a75439c8b64c409a72c079dce20d30</span>
+<span id="cb8-60"><a href="#cb8-60" tabindex="-1"></a>  Platform<span class="sc">:</span>   Ubuntu Linux <span class="fl">16.04</span> LTS, R<span class="sc">-</span>release, GCC</span>
+<span id="cb8-61"><a href="#cb8-61" tabindex="-1"></a>  Submitted<span class="sc">:</span>  <span class="dv">4</span>d <span class="dv">1</span>h <span class="dv">44</span>m <span class="fl">17.7</span>s ago</span>
+<span id="cb8-62"><a href="#cb8-62" tabindex="-1"></a>  Build time<span class="sc">:</span> <span class="fl">53.2</span>s</span>
+<span id="cb8-63"><a href="#cb8-63" tabindex="-1"></a></span>
+<span id="cb8-64"><a href="#cb8-64" tabindex="-1"></a>❯ checking CRAN incoming feasibility ... NOTE</span>
+<span id="cb8-65"><a href="#cb8-65" tabindex="-1"></a>  Maintainer<span class="sc">:</span> ‘Maëlle Salmon <span class="sc">&lt;</span>maelle.salmon<span class="sc">@</span>yahoo.se<span class="sc">&gt;</span>’</span>
+<span id="cb8-66"><a href="#cb8-66" tabindex="-1"></a>  </span>
+<span id="cb8-67"><a href="#cb8-67" tabindex="-1"></a>  New submission</span>
+<span id="cb8-68"><a href="#cb8-68" tabindex="-1"></a>  </span>
+<span id="cb8-69"><a href="#cb8-69" tabindex="-1"></a>  The Description field contains</span>
+<span id="cb8-70"><a href="#cb8-70" tabindex="-1"></a>    <span class="sc">&lt;</span>http<span class="sc">:</span><span class="er">//</span>http<span class="sc">:</span><span class="er">//</span>cran.r<span class="sc">-</span>project.org<span class="sc">/</span>doc<span class="sc">/</span>manuals<span class="sc">/</span>r<span class="sc">-</span>release<span class="sc">/</span>R<span class="sc">-</span>exts.html<span class="co">#The-DESCRIPTION-file&gt;</span></span>
+<span id="cb8-71"><a href="#cb8-71" tabindex="-1"></a>  Please enclose URLs <span class="cf">in</span> angle <span class="fu">brackets</span> (<span class="sc">&lt;</span>...<span class="sc">&gt;</span>).</span>
+<span id="cb8-72"><a href="#cb8-72" tabindex="-1"></a>  </span>
+<span id="cb8-73"><a href="#cb8-73" tabindex="-1"></a>  The Date field is over a month old.</span>
+<span id="cb8-74"><a href="#cb8-74" tabindex="-1"></a></span>
+<span id="cb8-75"><a href="#cb8-75" tabindex="-1"></a>❯ checking R code <span class="cf">for</span> possible problems ... NOTE</span>
+<span id="cb8-76"><a href="#cb8-76" tabindex="-1"></a>  .bello<span class="sc">:</span> no visible global <span class="cf">function</span> definition <span class="cf">for</span> ‘tail’</span>
+<span id="cb8-77"><a href="#cb8-77" tabindex="-1"></a>  Undefined global functions or variables<span class="sc">:</span></span>
+<span id="cb8-78"><a href="#cb8-78" tabindex="-1"></a>    tail</span>
+<span id="cb8-79"><a href="#cb8-79" tabindex="-1"></a>  Consider adding</span>
+<span id="cb8-80"><a href="#cb8-80" tabindex="-1"></a>    <span class="fu">importFrom</span>(<span class="st">"utils"</span>, <span class="st">"tail"</span>)</span>
+<span id="cb8-81"><a href="#cb8-81" tabindex="-1"></a>  to your NAMESPACE file.</span>
+<span id="cb8-82"><a href="#cb8-82" tabindex="-1"></a></span>
+<span id="cb8-83"><a href="#cb8-83" tabindex="-1"></a><span class="dv">0</span> errors ✔ <span class="sc">|</span> <span class="dv">0</span> warnings ✔ <span class="sc">|</span> <span class="dv">2</span> notes ✖</span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">group_check</span><span class="op">$</span><span class="fu">urls</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 x 4</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  html                 text                 artifacts             stringsAsFactors</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>                <span class="er">&lt;</span>chr<span class="sc">&gt;</span>                <span class="er">&lt;</span>chr<span class="sc">&gt;</span>                 <span class="er">&lt;</span>lgl<span class="sc">&gt;</span>           </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> https<span class="sc">:</span><span class="er">//</span>builder<span class="sc">-</span>tes… https<span class="sc">:</span><span class="er">//</span>builder<span class="sc">-</span>tes… https<span class="sc">:</span><span class="er">//</span>artifacts.r<span class="sc">-</span>… <span class="cn">FALSE</span>           </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> https<span class="sc">:</span><span class="er">//</span>builder<span class="sc">-</span>tes… https<span class="sc">:</span><span class="er">//</span>builder<span class="sc">-</span>tes… https<span class="sc">:</span><span class="er">//</span>artifacts.r<span class="sc">-</span>… <span class="cn">FALSE</span>           </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> https<span class="sc">:</span><span class="er">//</span>builder<span class="sc">-</span>tes… https<span class="sc">:</span><span class="er">//</span>builder<span class="sc">-</span>tes… https<span class="sc">:</span><span class="er">//</span>artifacts.r<span class="sc">-</span>… <span class="cn">FALSE</span>  </span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># A tibble: 3 x 4</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  html                 text                 artifacts             stringsAsFactors</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>                <span class="er">&lt;</span>chr<span class="sc">&gt;</span>                <span class="er">&lt;</span>chr<span class="sc">&gt;</span>                 <span class="er">&lt;</span>lgl<span class="sc">&gt;</span>           </span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="dv">1</span> https<span class="sc">:</span><span class="er">//</span>builder<span class="sc">-</span>tes… https<span class="sc">:</span><span class="er">//</span>builder<span class="sc">-</span>tes… https<span class="sc">:</span><span class="er">//</span>artifacts.r<span class="sc">-</span>… <span class="cn">FALSE</span>           </span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="dv">2</span> https<span class="sc">:</span><span class="er">//</span>builder<span class="sc">-</span>tes… https<span class="sc">:</span><span class="er">//</span>builder<span class="sc">-</span>tes… https<span class="sc">:</span><span class="er">//</span>artifacts.r<span class="sc">-</span>… <span class="cn">FALSE</span>           </span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="dv">3</span> https<span class="sc">:</span><span class="er">//</span>builder<span class="sc">-</span>tes… https<span class="sc">:</span><span class="er">//</span>builder<span class="sc">-</span>tes… https<span class="sc">:</span><span class="er">//</span>artifacts.r<span class="sc">-</span>… <span class="cn">FALSE</span>  </span></code></pre></div>
 <p>We could similarly extract the last check.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">check_id</span> <span class="op">&lt;-</span> <span class="va">previous_checks</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>

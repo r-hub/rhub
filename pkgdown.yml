@@ -1,10 +1,10 @@
-pandoc: 2.19.2
+pandoc: 3.1.11
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   local-debugging: local-debugging.html
   rhub: rhub.html
-last_built: 2023-06-28T06:24Z
+last_built: 2024-03-12T12:54Z
 urls:
   reference: https://r-hub.github.io/rhub/reference
   article: https://r-hub.github.io/rhub/articles
