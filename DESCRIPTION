@@ -13,7 +13,7 @@ Description: Run 'R CMD check' on any of the 'R-hub' (<https://builder.r-hub.io/
 License: MIT + file LICENSE
 URL: https://github.com/r-hub/rhub, https://r-hub.github.io/rhub/
 BugReports: https://github.com/r-hub/rhub/issues
-RoxygenNote: 7.2.1.9000
+RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)
 Imports:
     assertthat,
