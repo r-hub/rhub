@@ -1,0 +1,116 @@
+---
+output:
+  github_document:
+    toc: true
+    toc_depth: 3
+    includes:
+      before_body: inst/header.md
+always_allow_html: yes
+editor_options:
+  markdown:
+    wrap: sentence
+---
+
+```{r, setup, include = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  fig.path = "man/figures",
+  fig.width = 10,
+  asciicast_theme = if (Sys.getenv("IN_PKGDOWN") == "true") "pkgdown" else "readme"
+)
+asciicast::init_knitr_engine(
+  echo = TRUE,
+  echo_input = FALSE,
+  startup = quote({
+    library(cli)
+    options(cli.num_colors = cli::truecolor)
+  })
+)
+```
+
+```{asciicast asciicast-setup, include = FALSE, results = "hide"}
+pkgload::load_all()
+# emoji output is slightly incorrect currently, maybe a font issue
+options(pkg.emoji = FALSE)
+# we do this to have a package to use in the examples
+setwd("/tmp")
+if (!file.exists("cli")) system("git clone --depth 1 https://github.com/r-lib/cli")
+setwd("cli")
+unlink(".github/workflows/rhub.yaml")
+```
+
+# rhub <img src='man/figures/logo.png' align="right" height="138.5" />
+
+## Installation
+
+Install rhub from CRAN:
+
+```{r, asciicast-install, eval = FALSE, cache = FALSE}
+pak::pkg_install("rhub")
+```
+
+## Usage
+
+### Requirements
+
+- A Github account.
+- Your R package must be in a GitHub repository.
+- You need a GitHub [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+  You can use the [gitcreds package](https://gitcreds.r-lib.org/) to add
+  the token to the git credential store.
+
+### Private repositories
+
+rhub uses GitHub Actions, which is free for public repositories.
+For private repositories you also get some minutes for free, depending on
+the GitHub subscription you have. See
+[About billing for GitHub Actions](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions) for details.
+
+### Setup
+
+1. Switch to the directory of your package, and call `rhub::rhub_setup()` to
+  add the R-hub workflow file to your package.
+```{asciicast rhub-setup}
+rhub::rhub_setup()
+```
+
+2. Run `git commit` and `git push` to push the workflow file to GitHub.
+
+3. Run `rhub::rhub_doctor()` to check if everything is set up correctly:
+```{asciicast rhub-doctor}
+rhub::rhub_doctor()
+```
+
+### Run checks
+
+Use `rhub::rhub_platforms()` to get a list of supported platforms and checks:
+```{asciicast rhub-platforms}
+rhub::rhub_platforms()
+```
+
+```{asciicast include = FALSE}
+testthat::local_mocked_bindings(
+  gh_rest_post = function(...) list(status_code = 204L),
+  readline = function(prompt) {
+    cat(prompt)
+    Sys.sleep(1)
+    cat("1, 5\n")
+    "1, 5"
+  }
+)
+```
+
+Run `rhub::rhub_check()` to start R-hub 2 checks on GitHub Actions:
+```{asciicast rhub-check}
+rhub::rhub_check()
+```
+
+## Code of Conduct
+
+Please note that the callr project is released with a
+[Contributor Code of Conduct](https://callr.r-lib.org/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
+
+## License
+
+MIT © R Consortium

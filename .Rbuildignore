@@ -11,3 +11,5 @@
 ^revdep$
 ^codecov\.yml$
 ^\.github$
+^vignettes$
+^man/_cache$

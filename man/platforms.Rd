@@ -2,17 +2,13 @@
 % Please edit documentation in R/rhubv1.R
 \name{platforms}
 \alias{platforms}
-\title{List all R-hub platforms}
+\title{This function is deprecated and defunct. Please see \link{rhubv2}.}
 \usage{
-platforms()
+platforms(...)
+}
+\arguments{
+\item{...}{Deprecated.}
 }
 \description{
-The platforms are pretty-printed in a short format. Use
-\code{as.data.frame(platforms())} to get all available platform metadata.
-}
-\examples{
-\dontrun{
-platforms()
-as.data.frame(platforms())
-}
+This function is deprecated and defunct. Please see \link{rhubv2}.
 }

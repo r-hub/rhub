@@ -2,11 +2,13 @@
 % Please edit documentation in R/rhubv1.R
 \name{local_check_linux_images}
 \alias{local_check_linux_images}
-\title{List R-hub Docker images}
+\title{This function is deprecated and defunct. Please see \link{rhubv2}.}
 \usage{
-local_check_linux_images()
+local_check_linux_images(...)
+}
+\arguments{
+\item{...}{Deprecated.}
 }
 \description{
-The images are pretty-printed in a short format. Use
-\code{as.data.frame()} to get all available platform metadata.
+This function is deprecated and defunct. Please see \link{rhubv2}.
 }

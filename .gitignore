@@ -5,3 +5,4 @@ inst/doc
 .RData
 rhub.Rproj
 /revdep
+/man/_cache
