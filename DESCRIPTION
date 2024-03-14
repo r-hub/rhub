@@ -29,6 +29,8 @@ Imports:
 Suggests:
     asciicast,
     debugme,
+    knitr,
     pillar,
+    rmarkdown,
     testthat (>= 3.0.0)
 Encoding: UTF-8
