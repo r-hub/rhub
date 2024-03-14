@@ -9,13 +9,18 @@ toc:
   depth: 3
 
 reference:
+- title: Introduction
+  desc: |
+    Start here if you are new to R-hub v2:
+  contents:
+  - rhubv2
+
 - title: All functions
   contents:
   - rhub_check
   - rhub_doctor
   - rhub_platforms
   - rhub_setup
-  - rhubv2
 - title: internal
   contents:
   - check

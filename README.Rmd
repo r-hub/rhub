@@ -39,8 +39,6 @@ setwd("cli")
 unlink(".github/workflows/rhub.yaml")
 ```
 
-# rhub <img src='man/figures/logo.png' align="right" height="138.5" />
-
 ## Installation
 
 Install rhub from CRAN:
@@ -100,7 +98,7 @@ testthat::local_mocked_bindings(
 )
 ```
 
-Run `rhub::rhub_check()` to start R-hub 2 checks on GitHub Actions:
+Run `rhub::rhub_check()` to start R-hub v2 checks on GitHub Actions:
 ```{asciicast rhub-check}
 rhub::rhub_check()
 ```

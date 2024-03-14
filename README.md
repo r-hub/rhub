@@ -4,7 +4,7 @@
 
 # rhub
 
-> R-hub version 2
+> R-hub v2
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
@@ -13,21 +13,20 @@
 [![Codecov test coverage](https://codecov.io/gh/r-hub/rhub/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-hub/rhub?branch=main)
 <!-- badges: end -->
 
-R-hub 2 uses GitHub Actions to run `R CMD check` and similar package checks.
-The rhub package helps you set up R-hub 2 for your R package, and start
+R-hub v2 uses GitHub Actions to run `R CMD check` and similar package checks.
+The rhub package helps you set up R-hub v2 for your R package, and start
 running checks.
 
 ---
 
-- <a href="#installation" id="toc-installation">Installation</a>
-- <a href="#usage" id="toc-usage">Usage</a>
-  - <a href="#requirements" id="toc-requirements">Requirements</a>
-  - <a href="#private-repositories" id="toc-private-repositories">Private
-    repositories</a>
-  - <a href="#setup" id="toc-setup">Setup</a>
-  - <a href="#run-checks" id="toc-run-checks">Run checks</a>
-- <a href="#code-of-conduct" id="toc-code-of-conduct">Code of Conduct</a>
-- <a href="#license" id="toc-license">License</a>
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Requirements](#requirements)
+  - [Private repositories](#private-repositories)
+  - [Setup](#setup)
+  - [Run checks](#run-checks)
+- [Code of Conduct](#code-of-conduct)
+- [License](#license)
 
 ## Installation
 
@@ -59,16 +58,36 @@ for details.
 ### Setup
 
 1.  Switch to the directory of your package, and call
-    `rhub::rhub_setup()` to add the R-hub workflow file to your
-    package.
+    `rhub::rhub_setup()` to add the R-hub workflow file to your package.
 
 ``` r
 rhub::rhub_setup()
 ```
 
-<picture>
-<source media="(prefers-color-scheme: dark)" srcset="man/figures/rhub-setup-dark.svg">
-<img src="man/figures/rhub-setup.svg" /> </picture>
+<div class="asciicast"
+style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
+
+<pre>
+## Setting up R-hub v2.
+## <span style="color: #A8CC8C;">✔</span> Found R package at <span style="color: #71BEF2;">/private/tmp/cli</span>.
+## <span style="color: #A8CC8C;">✔</span> Found git repository at <span style="color: #71BEF2;">/private/tmp/cli</span>.
+## <span style="color: #A8CC8C;">✔</span> Created workflow file <span style="color: #71BEF2;">/private/tmp/cli/.github/workflows/rhub.yaml</span>.
+##
+## Notes:
+## <span style="color: #66C2CD;">•</span> The workflow file must be added to the <span style="font-style: italic;">default</span> branch of the GitHub
+##   repository.
+## <span style="color: #66C2CD;">•</span> GitHub actions must be enabled for the repository. They are disabled for
+##   forked repositories by default.
+##
+## Next steps:
+## <span style="color: #66C2CD;">•</span> Add the workflow file to git using `git add &lt;filename&gt;`.
+## <span style="color: #66C2CD;">•</span> Commit it to git using `git commit`.
+## <span style="color: #66C2CD;">•</span> Push the commit to GitHub using `git push`.
+## <span style="color: #66C2CD;">•</span> Call `rhub2::rhub_doctor()` to check that you have set up R-hub correctly.
+## <span style="color: #66C2CD;">•</span> Call `rhub2::rhub_check()` to check your package.
+</pre>
+
+</div>
 
 2.  Run `git commit` and `git push` to push the workflow file to GitHub.
 
@@ -79,9 +98,20 @@ rhub::rhub_setup()
 rhub::rhub_doctor()
 ```
 
-<picture>
-<source media="(prefers-color-scheme: dark)" srcset="man/figures/rhub-doctor-dark.svg">
-<img src="man/figures/rhub-doctor.svg" /> </picture>
+<div class="asciicast"
+style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
+
+<pre>
+## <span style="color: #A8CC8C;">✔</span> Found R package at <span style="color: #71BEF2;">/private/tmp/cli</span>.
+## <span style="color: #A8CC8C;">✔</span> Found git repository at <span style="color: #71BEF2;">/private/tmp/cli</span>.
+## <span style="color: #A8CC8C;">✔</span> Found GitHub PAT.
+## <span style="color: #A8CC8C;">✔</span> Found repository on GitHub at <span style="font-style: italic;color: #71BEF2;">&lt;https://github.com/r-lib/cli&gt;</span>.
+## <span style="color: #A8CC8C;">✔</span> GitHub PAT has the right scopes.
+## <span style="color: #A8CC8C;">✔</span> Found R-hub workflow in default branch, and it is active.
+## → WOOT! You are ready to run `rhub2::rhub_check()` on this package.
+</pre>
+
+</div>
 
 ### Run checks
 
@@ -92,23 +122,120 @@ checks:
 rhub::rhub_platforms()
 ```
 
-<picture>
-<source media="(prefers-color-scheme: dark)" srcset="man/figures/rhub-platforms-dark.svg">
-<img src="man/figures/rhub-platforms.svg" /> </picture>
+<div class="asciicast"
+style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
 
-Run `rhub::rhub_check()` to start R-hub 2 checks on GitHub Actions:
+<pre>
+## ── Virtual machines ───────────────────────────────────────────────────────────
+##  1 [VM]  <span style="font-weight: bold;color: #71BEF2;">linux</span>
+## <span style="color: #adadad;">   All R versions on GitHub Actions ubuntu-latest</span>
+##  2 [VM]  <span style="font-weight: bold;color: #71BEF2;">macos</span>
+## <span style="color: #adadad;">   All R versions on GitHub Actions macos-latest</span>
+##  3 [VM]  <span style="font-weight: bold;color: #71BEF2;">macos-arm64</span>
+## <span style="color: #adadad;">   All R versions on GitHub Actions macos-14</span>
+##  4 [VM]  <span style="font-weight: bold;color: #71BEF2;">windows</span>
+## <span style="color: #adadad;">   All R versions on GitHub Actions windows-latest</span>
+##
+## ── Containers ─────────────────────────────────────────────────────────────────
+##  5 [CT]  <span style="font-weight: bold;color: #71BEF2;">atlas</span><span style="color: #adadad;">  [ATLAS]</span>
+## <span style="color: #adadad;">   R Under development (unstable) (2024-03-13 r86113) on Fedora Linux 38 (Conta</span>…
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/atlas:latest</span>
+##  6 [CT]  <span style="font-weight: bold;color: #71BEF2;">clang-asan</span><span style="color: #adadad;">  [asan, clang-ASAN, clang-UBSAN, ubsan]</span>
+## <span style="color: #adadad;">   R Under development (unstable) (2024-03-12 r86109) on Ubuntu 22.04.4 LTS</span>
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/clang-asan:latest</span>
+##  7 [CT]  <span style="font-weight: bold;color: #71BEF2;">clang16</span><span style="color: #adadad;">  [clang16]</span>
+## <span style="color: #adadad;">   R Under development (unstable) (2024-03-12 r86109) on Ubuntu 22.04.4 LTS</span>
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/clang16:latest</span>
+##  8 [CT]  <span style="font-weight: bold;color: #71BEF2;">clang17</span><span style="color: #adadad;">  [clang17]</span>
+## <span style="color: #adadad;">   R Under development (unstable) (2024-03-11 r86098) on Ubuntu 22.04.4 LTS</span>
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/clang17:latest</span>
+##  9 [CT]  <span style="font-weight: bold;color: #71BEF2;">clang18</span><span style="color: #adadad;">  [clang18]</span>
+## <span style="color: #adadad;">   R Under development (unstable) (2024-03-12 r86109) on Ubuntu 22.04.4 LTS</span>
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/clang18:latest</span>
+## 10 [CT]  <span style="font-weight: bold;color: #71BEF2;">donttest</span><span style="color: #adadad;">  [donttest]</span>
+## <span style="color: #adadad;">   R Under development (unstable) (2024-03-12 r86109) on Ubuntu 22.04.4 LTS</span>
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/donttest:latest</span>
+## 11 [CT]  <span style="font-weight: bold;color: #71BEF2;">gcc13</span><span style="color: #adadad;">  [gcc13]</span>
+## <span style="color: #adadad;">   R Under development (unstable) (2024-03-13 r86113) on Fedora Linux 38 (Conta</span>…
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/gcc13:latest</span>
+## 12 [CT]  <span style="font-weight: bold;color: #71BEF2;">intel</span><span style="color: #adadad;">  [Intel]</span>
+## <span style="color: #adadad;">   R Under development (unstable) (2024-03-13 r86113) on Fedora Linux 38 (Conta</span>…
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/intel:latest</span>
+## 13 [CT]  <span style="font-weight: bold;color: #71BEF2;">mkl</span><span style="color: #adadad;">  [MKL]</span>
+## <span style="color: #adadad;">   R Under development (unstable) (2024-03-13 r86113) on Fedora Linux 38 (Conta</span>…
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/mkl:latest</span>
+## 14 [CT]  <span style="font-weight: bold;color: #71BEF2;">nold</span><span style="color: #adadad;">  [noLD]</span>
+## <span style="color: #adadad;">   R Under development (unstable) (2024-03-13 r86113) on Ubuntu 22.04.4 LTS</span>
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/nold:latest</span>
+## 15 [CT]  <span style="font-weight: bold;color: #71BEF2;">nosuggests</span><span style="color: #adadad;">  [noSuggests]</span>
+## <span style="color: #adadad;">   R Under development (unstable) (2024-03-13 r86113) on Fedora Linux 38 (Conta</span>…
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/nosuggests:latest</span>
+## 16 [CT]  <span style="font-weight: bold;color: #71BEF2;">ubuntu-clang</span><span style="color: #adadad;">  [r-devel-linux-x86_64-debian-clang]</span>
+## <span style="color: #adadad;">   R Under development (unstable) (2024-03-13 r86113) on Ubuntu 22.04.4 LTS</span>
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/ubuntu-clang:latest</span>
+## 17 [CT]  <span style="font-weight: bold;color: #71BEF2;">ubuntu-gcc12</span><span style="color: #adadad;">  [r-devel-linux-x86_64-debian-gcc]</span>
+## <span style="color: #adadad;">   R Under development (unstable) (2024-03-13 r86113) on Ubuntu 22.04.4 LTS</span>
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/ubuntu-gcc12:latest</span>
+## 18 [CT]  <span style="font-weight: bold;color: #71BEF2;">ubuntu-next</span><span style="color: #adadad;">  [r-next, r-patched, r-patched-linux-x86_64]</span>
+## <span style="color: #adadad;">   R version 4.3.3 Patched (2024-02-29 r86113) on Ubuntu 22.04.4 LTS</span>
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/ubuntu-next:latest</span>
+## 19 [CT]  <span style="font-weight: bold;color: #71BEF2;">ubuntu-release</span><span style="color: #adadad;">  [r-release, r-release-linux-x86_64, ubuntu]</span>
+## <span style="color: #adadad;">   R version 4.3.3 (2024-02-29) on Ubuntu 22.04.4 LTS</span>
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/ubuntu-release:latest</span>
+## 20 [CT]  <span style="font-weight: bold;color: #71BEF2;">valgrind</span><span style="color: #adadad;">  [valgrind]</span>
+## <span style="color: #adadad;">   R Under development (unstable) (2024-03-13 r86113) on Fedora Linux 38 (Conta</span>…
+## <span style="font-style: italic;color: #adadad;">   ghcr.io/r-hub/containers/valgrind:latest</span>
+</pre>
+
+</div>
+
+Run `rhub::rhub_check()` to start R-hub v2 checks on GitHub Actions:
 
 ``` r
 rhub::rhub_check()
 ```
 
-<picture>
-<source media="(prefers-color-scheme: dark)" srcset="man/figures/rhub-check-dark.svg">
-<img src="man/figures/rhub-check.svg" /> </picture>
+<div class="asciicast"
+style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
+
+<pre>
+## <span style="color: #A8CC8C;">✔</span> Found git repository at <span style="color: #71BEF2;">/private/tmp/cli</span>.
+## <span style="color: #A8CC8C;">✔</span> Found GitHub PAT.
+##
+## Available platforms (see `rhub2::rhub_platforms()` for details):
+##
+##  1 [VM] <span style="font-weight: bold;color: #71BEF2;">linux</span>          R-* (any version)                     ubuntu-latest on G…
+##  2 [VM] <span style="font-weight: bold;color: #71BEF2;">macos</span>          R-* (any version)                     macos-latest on Gi…
+##  3 [VM] <span style="font-weight: bold;color: #71BEF2;">macos-arm64</span>    R-* (any version)                     macos-14 on GitHub
+##  4 [VM] <span style="font-weight: bold;color: #71BEF2;">windows</span>        R-* (any version)                     windows-latest on …
+##  5 [CT] <span style="font-weight: bold;color: #71BEF2;">atlas</span>          R-devel (2024-03-13 r86113)           Fedora Linux 38 (C…
+##  6 [CT] <span style="font-weight: bold;color: #71BEF2;">clang-asan</span>     R-devel (2024-03-12 r86109)           Ubuntu 22.04.4 LTS
+##  7 [CT] <span style="font-weight: bold;color: #71BEF2;">clang16</span>        R-devel (2024-03-12 r86109)           Ubuntu 22.04.4 LTS
+##  8 [CT] <span style="font-weight: bold;color: #71BEF2;">clang17</span>        R-devel (2024-03-11 r86098)           Ubuntu 22.04.4 LTS
+##  9 [CT] <span style="font-weight: bold;color: #71BEF2;">clang18</span>        R-devel (2024-03-12 r86109)           Ubuntu 22.04.4 LTS
+## 10 [CT] <span style="font-weight: bold;color: #71BEF2;">donttest</span>       R-devel (2024-03-12 r86109)           Ubuntu 22.04.4 LTS
+## 11 [CT] <span style="font-weight: bold;color: #71BEF2;">gcc13</span>          R-devel (2024-03-13 r86113)           Fedora Linux 38 (C…
+## 12 [CT] <span style="font-weight: bold;color: #71BEF2;">intel</span>          R-devel (2024-03-13 r86113)           Fedora Linux 38 (C…
+## 13 [CT] <span style="font-weight: bold;color: #71BEF2;">mkl</span>            R-devel (2024-03-13 r86113)           Fedora Linux 38 (C…
+## 14 [CT] <span style="font-weight: bold;color: #71BEF2;">nold</span>           R-devel (2024-03-13 r86113)           Ubuntu 22.04.4 LTS
+## 15 [CT] <span style="font-weight: bold;color: #71BEF2;">nosuggests</span>     R-devel (2024-03-13 r86113)           Fedora Linux 38 (C…
+## 16 [CT] <span style="font-weight: bold;color: #71BEF2;">ubuntu-clang</span>   R-devel (2024-03-13 r86113)           Ubuntu 22.04.4 LTS
+## 17 [CT] <span style="font-weight: bold;color: #71BEF2;">ubuntu-gcc12</span>   R-devel (2024-03-13 r86113)           Ubuntu 22.04.4 LTS
+## 18 [CT] <span style="font-weight: bold;color: #71BEF2;">ubuntu-next</span>    R-4.3.3 (patched) (2024-02-29 r86113) Ubuntu 22.04.4 LTS
+## 19 [CT] <span style="font-weight: bold;color: #71BEF2;">ubuntu-release</span> R-4.3.3 (2024-02-29)                  Ubuntu 22.04.4 LTS
+## 20 [CT] <span style="font-weight: bold;color: #71BEF2;">valgrind</span>       R-devel (2024-03-13 r86113)           Fedora Linux 38 (C…
+##
+## Selection (comma separated numbers, 0 to cancel): 1, 5
+##
+## <span style="color: #A8CC8C;">✔</span> Check started: linux, atlas (daft-acornwoodpecker).
+##   See <span style="font-style: italic;color: #71BEF2;">&lt;https://github.com/r-lib/cli/actions&gt;</span> for live output!
+</pre>
+
+</div>
 
 ## Code of Conduct
 
-Please note that the rhub project is released with a [Contributor Code
+Please note that the callr project is released with a [Contributor Code
 of Conduct](https://callr.r-lib.org/CODE_OF_CONDUCT.html). By
 contributing to this project, you agree to abide by its terms.
 

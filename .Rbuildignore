@@ -13,3 +13,5 @@
 ^\.github$
 ^vignettes$
 ^man/_cache$
+^README_cache$
+^README\.html$
