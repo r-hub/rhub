@@ -107,3 +107,56 @@ random_id <- function() {
 readline <- function(prompt) {
   base::readline(prompt)
 }
+
+is_interactive <- function() {
+  opt <- getOption("rlib_interactive")
+  if (isTRUE(opt)) {
+    TRUE
+  } else if (identical(opt, FALSE)) {
+    FALSE
+  } else if (tolower(getOption("knitr.in.progress", "false")) == "true") {
+    FALSE
+  } else if (tolower(getOption("rstudio.notebook.executing", "false")) == "true") {
+    FALSE
+  } else if (identical(Sys.getenv("TESTTHAT"), "true")) {
+    FALSE
+  } else {
+    interactive()
+  }
+}
+
+update <- function (original, new) {
+  if (length(new)) {
+    original[names(new)] <- new
+  }
+  original
+}
+
+get_maintainer_email <- function(path = ".") {
+  path <- normalizePath(path)
+  if (is_dir(path)) {
+    if (!file.exists(file.path(path, "DESCRIPTION"))) {
+      stop("No 'DESCRIPTION' file found")
+    }
+    parse_email(desc::desc_get_maintainer(path))
+  } else {
+    dir.create(tmp <- tempfile())
+    files <- untar(path, list = TRUE, tar = "internal")
+    desc <- grep("^[^/]+/DESCRIPTION$", files, value = TRUE)
+    if (length(desc) < 1) stop("No 'DESCRIPTION' file in package")
+    untar(path, desc, exdir = tmp, tar = "internal")
+    parse_email(desc::desc_get_maintainer(file.path(tmp, desc)))
+  }
+}
+
+is_dir <- function(x) {
+  file.info(x)$isdir
+}
+
+#' @importFrom rematch re_match
+
+parse_email <- function(x) {
+  unname(
+    re_match(pattern = "<(?<email>[^>]+)>", x)[, "email"]
+  )
+}

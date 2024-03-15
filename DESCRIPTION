@@ -1,15 +1,15 @@
 Package: rhub
-Title: Connect to 'R-hub'
-Version: 1.1.2.9000
+Title: Tools for R package developers
+Version: 1.9.9.9000
 Authors@R: c(
     person("Gábor", "Csárdi",, "csardi.gabor@gmail.com", role = c("aut", "cre")),
     person("Maëlle", "Salmon", role = "aut",
           email = "maelle.salmon@yahoo.se",
           comment = c(ORCID = "0000-0002-2815-0399")),
     person("R Consortium", role = c("fnd")))
-Description: Run 'R CMD check' on any of the 'R-hub' (<https://builder.r-hub.io/>)
-    architectures, from the command line. The current architectures include
-    'Windows', 'macOS', 'Solaris' and various 'Linux' distributions.
+Description: R-hub v2 uses GitHub Actions to run `R CMD check` and
+    similar package checks. The rhub package helps you set up
+    R-hub v2 for your R package, and start running checks.
 License: MIT + file LICENSE
 URL: https://github.com/r-hub/rhub, https://r-hub.github.io/rhub/
 BugReports: https://github.com/r-hub/rhub/issues
@@ -26,8 +26,10 @@ Imports:
     gitcreds,
     jsonlite,
     processx,
+    rematch,
     R6,
-    rprojroot
+    rprojroot,
+    utils
 Suggests:
     asciicast,
     debugme,
