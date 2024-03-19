@@ -15,6 +15,12 @@ inputs:
 runs:
   using: "composite"
   steps:
+  - name: R Options
+    run: |
+      #
+      options()
+    shell: Rscript {0}
+
   - name: Environment variables in R
     run: |
       #
