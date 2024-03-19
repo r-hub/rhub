@@ -18,7 +18,9 @@ runs:
   - name: R Options
     run: |
       #
+      cat("::group::R Options\n")
       options()
+      cat("::endgroup::\n")
     shell: Rscript {0}
 
   - name: Environment variables in R
