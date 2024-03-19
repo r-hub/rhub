@@ -21,7 +21,8 @@ runs:
       use-public-rspm: true
   - name: Set up R-hub repository
     run: |
-      setwd("${{github.action_path}}")
+      #
       source("set-rhub-repos.R")
       main()
     shell: Rscript {0}
+    working-directory: ${{github.action_path}}
