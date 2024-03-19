@@ -19,3 +19,7 @@ runs:
     with:
       r-version: ${{ fromJson(inputs.job-config).r-version }}
       use-public-rspm: true
+  - name: Set up R-hub repository
+    run: |
+      cd ${{github.action_path}}
+      R -s -f set-rhub-repos.R
