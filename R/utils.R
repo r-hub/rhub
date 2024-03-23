@@ -83,7 +83,20 @@ parse_url <- function(url) {
   )
 
   mch <- re_match(url, re_url)
-  mch[, setdiff(colnames(mch), c(".match", ".text")), drop = FALSE]
+
+  if (is.na(mch[[1]])) {
+    ssh_re_url <- "^git@(?<host>[^:]+):(?<path>.*)[.]git$"
+    mch <- re_match(url, ssh_re_url)
+
+    if (is.na(mch[[1]])) {
+      cli::cli_abort("Invalid URL: {.url {url}}")
+    }
+
+    # Used for accessing the server's API
+    mch$protocol <- "https"
+  }
+
+  mch[c("protocol", "host", "path")]
 }
 
 read_file <- function(path) {
