@@ -40,7 +40,7 @@ rhub_doctor <- function(gh_url = NULL) {
   #
   # So we'll have
   # - a graphql query for (1), (2), (3), (4), (7)
-  # - a REST query for (%) and (6)
+  # - a REST query for (5) and (6)
 
   resp <- synchronise(when_all(
     gql = doctor_async_gql(gh_url, token = pat),
