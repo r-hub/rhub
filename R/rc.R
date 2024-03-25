@@ -42,11 +42,31 @@ rc_submit <- function(path = ".", platforms = NULL, email = NULL,
 
   email <- email %||% get_maintainer_email(path = path)
 
+  platforms <- select_platforms()
+
   if (is_dir(path))  {
     path <- pkgbuild::build(path = path)
   }
 
-  query("job/")
+  id <- random_id()
+  ep <- paste0("/job/", pkg_name)
+  form <- list(
+    config = curl::form_data(paste(platforms, collapse = ",")),
+    id = curl::form_data(id),
+    package = curl::form_file(path)
+  )
+  query(
+    method = "POST",
+    ep,
+    data_form = form,
+    headers = c(
+      get_auth_header(email),
+      "content-type" = "multipart/form-data",
+      "accept" = "text/event-stream",
+      "cache-control" = "no-cache",
+      "connection" = "keep-alive"
+    )
+  )
 }
 
 # =========================================================================

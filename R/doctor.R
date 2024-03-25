@@ -52,7 +52,7 @@ rhub_doctor <- function(gh_url = NULL) {
   doctor_check_workflow(gh_url, resp$gql, resp$wfl)
 
   cli::cli_alert(
-    "WOOT! You are ready to run {.run rhub2::rhub_check()} on this package.",
+    "WOOT! You are ready to run {.run rhub::rhub_check()} on this package.",
     wrap = TRUE
   )
 
@@ -134,7 +134,7 @@ doctor_check_github <- function(gh_url, resp) {
        repository.",
       i = "R-hub only supports GitHub packages in GitHub repositories
        currently.",
-      i = "If you think that this is a bug in the {pkg rhub2} package,
+      i = "If you think that this is a bug in the {pkg rhub} package,
        please let us know!"
     ))
   }

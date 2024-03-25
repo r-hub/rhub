@@ -3,15 +3,15 @@ baseurl <- function() {
 }
 
 default_headers <- c(
-  "Accept"       = "application/json",
-  "Content-Type" = "application/json",
-  "User-Agent"   = "R-hub client"
+  "accept"       = "application/json",
+  "content-type" = "application/json",
+  "user-agent"   = "R-hub client"
 )
 
 #' @importFrom jsonlite toJSON
 
 query <- function(endpoint, method = "GET", headers = character(),
-                  data = NULL) {
+                  data = NULL, data_form = NULL) {
 
   url <- paste0(baseurl(), endpoint)
   headers <- update(default_headers, headers)
@@ -20,7 +20,12 @@ query <- function(endpoint, method = "GET", headers = character(),
     synchronise(http_get(url, headers = headers))
 
   } else if (method == "POST") {
-    synchronise(http_post(url, headers = headers, data = data))
+    synchronise(http_post(
+      url,
+      headers = headers,
+      data = data,
+      data_form = data_form
+    ))
 
   } else {
     stop("Unexpected HTTP verb, internal rhub error")

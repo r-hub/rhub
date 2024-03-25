@@ -1,6 +1,6 @@
 
 get_platforms <- function() {
-  url_platforms <- "https://raw.githubusercontent.com/r-hub/rhub2/v1/actions/rhub-setup/platforms.json"
+  url_platforms <- "https://raw.githubusercontent.com/r-hub/actions/v1/setup/platforms.json"
   url_containers <- "https://r-hub.github.io/containers/manifest.json"
   ret <- synchronise(when_all(
     async_cached_http_get(url_platforms),
@@ -64,13 +64,13 @@ rhub_platforms <- function() {
 
   res <- res[order(res$type == "container", res$name), ]
 
-  res <- add_class(res, "rhub2_platforms")
+  res <- add_class(res, "rhub_platforms")
   res
 }
 
 #' @export
 
-format.rhub2_platforms <- function(x, ...) {
+format.rhub_platforms <- function(x, ...) {
   ret <- character()
   wvms <- which(x$type == "os")
   wcts <- which(x$type == "container")
@@ -132,27 +132,27 @@ format.rhub2_platforms <- function(x, ...) {
 
 #' @export
 
-print.rhub2_platforms <- function(x, ...) {
+print.rhub_platforms <- function(x, ...) {
   writeLines(cli::ansi_strtrim(format(x, ...)))
 }
 
 #' @export
 
-`[.rhub2_platforms` <- function(x, i, j, drop = FALSE) {
-  class(x) <- setdiff(class(x), "rhub2_platforms")
+`[.rhub_platforms` <- function(x, i, j, drop = FALSE) {
+  class(x) <- setdiff(class(x), "rhub_platforms")
   NextMethod("[")
 }
 
 #' @export
 
-summary.rhub2_platforms <- function(object, ...) {
-  class(object) <- c("rhub2_platforms_summary", class(object))
+summary.rhub_platforms <- function(object, ...) {
+  class(object) <- c("rhub_platforms_summary", class(object))
   object
 }
 
 #' @export
 
-format.rhub2_platforms_summary <- function(x, ...) {
+format.rhub_platforms_summary <- function(x, ...) {
   num <- format(seq_len(nrow(x)))
   icon <- if (!has_emoji()) {
     ifelse(x$type == "os", "[VM]", "[CT]")
@@ -180,7 +180,7 @@ format.rhub2_platforms_summary <- function(x, ...) {
 
 #' @export
 
-print.rhub2_platforms_summary <- function(x, ...) {
+print.rhub_platforms_summary <- function(x, ...) {
   writeLines(cli::ansi_strtrim(format(x, ...)))
 }
 
@@ -197,4 +197,63 @@ abbrev_version <- function(x) {
   x[x == "*"] <- "R-* (any version)"
 
   x
+}
+
+select_platforms <- function(platforms = NULL) {
+  tryCatch(
+    plat <- rhub_platforms(),
+    error = function(e) {
+      throw(parent = e, pkg_error(
+        "Failed to download the list of R-hub platforms.",
+        i = "Make sure that you are online and Github is also online."
+      ))
+    }
+  )
+
+  if (is.null(platforms)) {
+    if (!is_interactive()) {
+      throw(pkg_error(
+        "{.arg platforms} argument is missing for {.fun rhub_check}.",
+        i = "You need to specify {.arg platforms} in non-interactive
+             sessions"
+      ))
+    }
+    cli::cli_text()
+    cli::cli_text(
+      "Available platforms
+       (see {.code rhub::rhub_platforms()} for details):"
+    )
+    cli::cli_text()
+    cli::cli_verbatim(paste(
+      cli::ansi_strtrim(format(summary(plat))),
+      collapse = "\n"
+    ))
+    pnums <- trimws(readline(
+      prompt = "\nSelection (comma separated numbers, 0 to cancel): "
+    ))
+    if (pnums == "" || pnums == "0") {
+      throw(pkg_error("R-hub check cancelled"))
+    }
+    pnums <- unique(trimws(strsplit(pnums, ",", fixed = TRUE)[[1]]))
+    pnums2 <- suppressWarnings(as.integer(pnums))
+    bad <- is.na(pnums2) | pnums2 < 1 | pnums2 > nrow(plat)
+    if (any(bad)) {
+      throw(pkg_error(
+        "Invalid platform number{?s}: {.val {pnums[bad]}}."
+      ))
+    }
+    platforms <- plat$name[pnums2]
+
+  } else {
+    platforms <- unique(platforms)
+    bad <- !platforms %in% unlist(plat$name, plat$aliaeses)
+    if (any(bad)) {
+      throw(pkg_error(
+        "Unknown platform{?s}: {.val {platforms[bad]}}.",
+        i = "See {.run rhub::rhub_platforms()} for the list of platforms"
+      ))
+    }
+  }
+
+  platforms
 }

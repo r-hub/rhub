@@ -83,8 +83,8 @@ style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream 
 ## <span style="color: #66C2CD;">•</span> Add the workflow file to git using `git add &lt;filename&gt;`.
 ## <span style="color: #66C2CD;">•</span> Commit it to git using `git commit`.
 ## <span style="color: #66C2CD;">•</span> Push the commit to GitHub using `git push`.
-## <span style="color: #66C2CD;">•</span> Call `rhub2::rhub_doctor()` to check that you have set up R-hub correctly.
-## <span style="color: #66C2CD;">•</span> Call `rhub2::rhub_check()` to check your package.
+## <span style="color: #66C2CD;">•</span> Call `rhub::rhub_doctor()` to check that you have set up R-hub correctly.
+## <span style="color: #66C2CD;">•</span> Call `rhub::rhub_check()` to check your package.
 </pre>
 
 </div>
@@ -108,7 +108,7 @@ style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream 
 ## <span style="color: #A8CC8C;">✔</span> Found repository on GitHub at <span style="font-style: italic;color: #71BEF2;">&lt;https://github.com/r-lib/cli&gt;</span>.
 ## <span style="color: #A8CC8C;">✔</span> GitHub PAT has the right scopes.
 ## <span style="color: #A8CC8C;">✔</span> Found R-hub workflow in default branch, and it is active.
-## → WOOT! You are ready to run `rhub2::rhub_check()` on this package.
+## → WOOT! You are ready to run `rhub::rhub_check()` on this package.
 </pre>
 
 </div>
@@ -202,7 +202,7 @@ style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream 
 ## <span style="color: #A8CC8C;">✔</span> Found git repository at <span style="color: #71BEF2;">/private/tmp/cli</span>.
 ## <span style="color: #A8CC8C;">✔</span> Found GitHub PAT.
 ##
-## Available platforms (see `rhub2::rhub_platforms()` for details):
+## Available platforms (see `rhub::rhub_platforms()` for details):
 ##
 ##  1 [VM] <span style="font-weight: bold;color: #71BEF2;">linux</span>          R-* (any version)                     ubuntu-latest on G…
 ##  2 [VM] <span style="font-weight: bold;color: #71BEF2;">macos</span>          R-* (any version)                     macos-latest on Gi…
@@ -235,8 +235,8 @@ style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream 
 
 ## Code of Conduct
 
-Please note that the callr project is released with a [Contributor Code
-of Conduct](https://callr.r-lib.org/CODE_OF_CONDUCT.html). By
+Please note that the rhub package is released with a [Contributor Code
+of Conduct](https://r-hub.github.io/rhub/dev/CODE_OF_CONDUCT.html). By
 contributing to this project, you agree to abide by its terms.
 
 ## License

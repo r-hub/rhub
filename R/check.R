@@ -35,60 +35,7 @@ rhub_check <- function(gh_url = NULL, platforms = NULL, r_versions = NULL,
     }
   }
 
-  tryCatch(
-    plat <- rhub_platforms(),
-    error = function(e) {
-      throw(parent = e, pkg_error(
-        "Failed to download the list of R-hub platforms.",
-        i = "Make sure that you are online and Github is also online."
-      ))
-    }
-  )
-
-  if (is.null(platforms)) {
-    if (!interactive()) {
-      throw(pkg_error(
-        "{.arg platforms} argument is missing for {.fun rhub_check}.",
-        i = "You need to specify {.arg platforms} in non-interactive
-             sessions"
-      ))
-    }
-    cli::cli_text()
-    cli::cli_text(
-      "Available platforms
-       (see {.code rhub2::rhub_platforms()} for details):"
-    )
-    cli::cli_text()
-    cli::cli_verbatim(paste(
-      cli::ansi_strtrim(format(summary(plat))),
-      collapse = "\n"
-    ))
-    pnums <- trimws(readline(
-      prompt = "\nSelection (comma separated numbers, 0 to cancel): "
-    ))
-    if (pnums == "" || pnums == "0") {
-      throw(pkg_error("R-hub check cancelled"))
-    }
-    pnums <- unique(trimws(strsplit(pnums, ",", fixed = TRUE)[[1]]))
-    pnums2 <- suppressWarnings(as.integer(pnums))
-    bad <- is.na(pnums2) | pnums2 < 1 | pnums2 > nrow(plat)
-    if (any(bad)) {
-      throw(pkg_error(
-        "Invalid platform number{?s}: {.val {pnums[bad]}}."
-      ))
-    }
-    platforms <- plat$name[pnums2]
-
-  } else {
-    platforms <- unique(platforms)
-    bad <- !platforms %in% unlist(plat$name, plat$aliaeses)
-    if (any(bad)) {
-      throw(pkg_error(
-        "Unknown platform{?s}: {.val {platforms[bad]}}.",
-        i = "See {.run rhub::rhub_platforms()} for the list of platforms"
-      ))
-    }
-  }
+  platforms <- select_platforms()
 
   url <- parse_gh_url(gh_url)
   ep <- glue::glue("/repos/{url$user}/{url$repo}/actions/workflows/rhub.yaml/dispatches")
@@ -110,7 +57,7 @@ rhub_check <- function(gh_url = NULL, platforms = NULL, r_versions = NULL,
   if (resp$status_code != 204) {
     throw(pkg_error(
       ":( Failed to start check: {resp$content$message}.",
-      i = "If you think this is a bug in the {.pkg rhub2} package, please
+      i = "If you think this is a bug in the {.pkg rhub} package, please
            open an issues at {.url https://github.com/r-hub/rhub/issues}."
     ))
   }

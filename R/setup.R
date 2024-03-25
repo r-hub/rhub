@@ -26,7 +26,7 @@ rhub_setup <- function(overwrite = FALSE) {
   git_root <- setup_find_git_root()
   check_rpkg_root(rpkg_root, git_root)
 
-  url <- "https://raw.githubusercontent.com/r-hub/rhub2/v1/inst/workflow/rhub.yaml"
+  url <- "https://raw.githubusercontent.com/r-hub/actions/v1/workflows/rhub.yaml"
   resp <- synchronise(http_get(url))
   if (resp$status_code != 200) {
     throw(pkg_error(
@@ -89,9 +89,9 @@ rhub_setup <- function(overwrite = FALSE) {
     "*" = if (!updated) "Commit it to git using {.code git commit} (if not committed already).",
     "*" = if (updated) "Push the commit to GitHub using {.code git push}.",
     "*" = if (!updated) "Push the commit to GitHub using {.code git push} (if not pushed already).",
-    "*" = "Call {.run rhub2::rhub_doctor()} to check that you have set up
+    "*" = "Call {.run rhub::rhub_doctor()} to check that you have set up
            R-hub correctly.",
-    "*" = "Call {.run rhub2::rhub_check()} to check your package."
+    "*" = "Call {.run rhub::rhub_check()} to check your package."
   ))
 
   invisible(NULL)

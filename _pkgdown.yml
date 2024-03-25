@@ -8,6 +8,9 @@ authors:
 toc:
   depth: 3
 
+development:
+  mode: auto
+
 reference:
 - title: Introduction
   desc: |
