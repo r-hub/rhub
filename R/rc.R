@@ -1,5 +1,35 @@
 # =========================================================================
+# API
+# =========================================================================
+
+#' Request a new token for submissions to the R Consortium runners
+#'
+#' To build and check R packages on the RC runners of R-hub, you'll need
+#' to validate your email address. R-hub will send a token to your email
+#' address, and this token will be stored on your computer.
+#'
+#' You need to validate your email on each computer you want to submit
+#' jobs from, either using the same token from the email you got, or
+#' you can request another token for the new machine. Your old token
+#' will stay valid as well.
+#'
+#' If you already have a token from a previous version of R-hub, you can
+#' reuse that and you don't need to do anything.
+#'
+#' Run
+#' ```
+#' rhub:::email_file()
+#' ```
+#' to see the file rhub uses to store your validated tokens.
+#'
+#' @param email Email address to validate. We try to detect this, but
+#'   if the detection fails, you can specify it explicitly.
+#' @param token Token to add to the list of validated tokens.
+#'   If this argument is missing (or `NULL`), then you can specify it
+#'   interactively.
+#'
 #' @export
+#' @family RC runners API
 
 rc_new_token <- function(email = NULL, token = NULL) {
   if (is.null(email) || is.null(token)) {
@@ -16,7 +46,24 @@ rc_new_token <- function(email = NULL, token = NULL) {
 }
 
 # -------------------------------------------------------------------------
+#' List your repositories created by the R Consortium runners
+#'
+#' Lists repositories created by [rc_submit()] submissions.
+#'
+#' @param email Email address. We try to detect this, but
+#'   if the detection fails, you can specify it explicitly.
+#'
+#' @return Data frame with columns:
+#'
+#'  * `repo_name`: Name of the repository.
+#'  * `repo_url`: URL of the repository.
+#'  * `builds_url`: URL to the builds of the repository.
+#'
+#' Additional columns and customized printing will be probably added
+#' later to the result.
+#'
 #' @export
+#' @family RC runners API
 
 rc_list_repos <- function(email = NULL) {
   email <- email %||% guess_email(message = TRUE)
@@ -25,10 +72,32 @@ rc_list_repos <- function(email = NULL) {
 }
 
 # -------------------------------------------------------------------------
+#' Submit a package to the R Consortium runners
+#'
+#' @param path Path to package file or package directory.
+#' @param platforms Platforms to checks. If not specified, then you
+#'   can select the platforms interactively. Must be specified in
+#'   non-interactive sessions.
+#' @param email Email address. You must have a token on the local machhine,
+#'   that corresponds to the email address, see [rc_new_token()].
+#'   If not specified (or `NULL`) then the email address of the package
+#'   maintainer is used.
+#' @return A list with data about the submission, invisibly.
+#' Currently it has:
+#'
+#'   * `result`: Should be the string `"OK"`.
+#'   * `repo_url`: URL to the repository.
+#'   * `actions_url`: URL to the builds inside the repository.
+#'   * `id`: Build id. This is a string with a randomly generated id.
+#'   * `name`: Build name, this is a string, the concatenation of the
+#'      build platforms.
+#'
+#' More fields might be added later.
+#'
 #' @export
+#' @family RC runners API
 
-rc_submit <- function(path = ".", platforms = NULL, email = NULL,
-                      r_versions = NULL) {
+rc_submit <- function(path = ".", platforms = NULL, email = NULL) {
   pkg_name <- desc::desc_get("Package", file = path)[[1]]
   if (is.na(pkg_name)) {
     throw(pkg_error(
