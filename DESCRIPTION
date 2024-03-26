@@ -21,20 +21,25 @@ Imports:
     callr,
     cli,
     curl,
+    desc,
     gert,
     glue,
     gitcreds,
     jsonlite,
+    pkgbuild,
     processx,
+    rappdirs,
     rematch,
     R6,
     rprojroot,
-    utils
+    utils,
+    whoami
 Suggests:
     asciicast,
     debugme,
     knitr,
     pillar,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    webfakes
 Encoding: UTF-8

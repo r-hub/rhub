@@ -1338,6 +1338,7 @@ def__resolve <- function(self, private, value) {
 #' @param private private self
 #' @return error object
 #'
+#' @noRd
 #' @keywords internal
 
 def__make_error_object <- function(self, private, err) {
@@ -2539,7 +2540,7 @@ sse_events <- R6Class(
   inherit = event_emitter,
   public = list(
     initialize = function(http_handle) {
-      super$initialize()
+      super$initialize(async = FALSE)
       http_handle$event_emitter$listen_on("data", function(bytes) {
         private$data <- c(private$data, bytes)
         private$emit_events()
@@ -4122,6 +4123,7 @@ get_private <- function(x) {
 #'   or the error thrown.
 #' @param info Extra info to add to the error object. Must be a named list.
 #'
+#' @noRd
 #' @keywords internal
 
 call_with_callback <- function(func, callback, info = NULL) {

@@ -124,9 +124,11 @@ rc_submit <- function(path = ".", platforms = NULL, email = NULL) {
     id = curl::form_data(id),
     package = curl::form_file(path)
   )
-  query(
+
+  resp <- query(
     method = "POST",
     ep,
+    sse = TRUE,
     data_form = form,
     headers = c(
       get_auth_header(email),
@@ -136,6 +138,17 @@ rc_submit <- function(path = ".", platforms = NULL, email = NULL) {
       "connection" = "keep-alive"
     )
   )
+
+  resevt <- Filter(function(x) x[["event"]] == "result", resp$sse)
+  if (length(resevt) == 0) {
+    stop("Invalid response from R-hub server, please report this.")
+  }
+
+  retval <- jsonlite::fromJSON(
+    resevt[[1]][["data"]],
+    simplifyVector = FALSE
+  )
+  invisible(retval)
 }
 
 # =========================================================================
