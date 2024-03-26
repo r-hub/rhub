@@ -9,9 +9,9 @@ rc_submit(path = ".", platforms = NULL, email = NULL)
 \arguments{
 \item{path}{Path to package file or package directory.}
 
-\item{platforms}{Platforms to checks. If not specified, then you
-can select the platforms interactively. Must be specified in
-non-interactive sessions.}
+\item{platforms}{Platforms to checks. See \code{\link[=rhub_platforms]{rhub_platforms()}} for a
+current list. If not specified, then you can select the platforms
+interactively. Must be specified in non-interactive sessions.}
 
 \item{email}{Email address. You must have a token on the local machhine,
 that corresponds to the email address, see \code{\link[=rc_new_token]{rc_new_token()}}.

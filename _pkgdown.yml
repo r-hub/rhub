@@ -18,12 +18,17 @@ reference:
   contents:
   - rhubv2
 
-- title: All functions
+- title: Functions for GitHub repositories
   contents:
   - rhub_check
   - rhub_doctor
   - rhub_platforms
   - rhub_setup
+- title: The R Consortium runners
+  contents:
+  - rc_list_repos
+  - rc_new_token
+  - rc_submit
 - title: internal
   contents:
   - check

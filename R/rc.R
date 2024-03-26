@@ -75,9 +75,9 @@ rc_list_repos <- function(email = NULL) {
 #' Submit a package to the R Consortium runners
 #'
 #' @param path Path to package file or package directory.
-#' @param platforms Platforms to checks. If not specified, then you
-#'   can select the platforms interactively. Must be specified in
-#'   non-interactive sessions.
+#' @param platforms Platforms to checks. See [rhub_platforms()] for a
+#'   current list. If not specified, then you can select the platforms
+#'   interactively. Must be specified in non-interactive sessions.
 #' @param email Email address. You must have a token on the local machhine,
 #'   that corresponds to the email address, see [rc_new_token()].
 #'   If not specified (or `NULL`) then the email address of the package
