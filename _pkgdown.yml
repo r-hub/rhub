@@ -26,6 +26,7 @@ reference:
   - rhub_setup
 - title: The R Consortium runners
   contents:
+  - rc_list_local_tokens
   - rc_list_repos
   - rc_new_token
   - rc_submit

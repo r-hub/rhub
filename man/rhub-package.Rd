@@ -22,6 +22,9 @@ Install rhub from CRAN:
 You can use the \href{https://gitcreds.r-lib.org/}{gitcreds package} to add
 the token to the git credential store.
 }
+
+See the \href{#the-r-consortium-runners}{R Consortium runners} section for
+using rhub if your package is not on GitHub.
 }
 
 \subsection{Private repositories}{
@@ -189,6 +192,55 @@ Run \code{rhub::rhub_check()} to start R-hub v2 checks on GitHub Actions:
 </pre></div>
 }}
 
+}
+
+}
+
+\subsection{The R Consortium runners}{
+
+If you don't want to put your package on GitHub, you can still use the
+rhub package to run package checks on any supported platform using a
+shared pool of runners in the https://github.com/r-hub2 GitHub
+organization.
+
+The process is similar to the first version of R-hub:
+\itemize{
+\item Set your working directory to the R package you want to check.
+\item Obtain a token from R-hub, to verify your email address:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{rc_new_token()
+}\if{html}{\out{</div>}}
+
+(You do not need to do this, if you already submitted packages to a
+previous version of R-hub from the same machine, using the same email
+address. Call \code{rc_list_local_tokens()} to check if you already have
+tokens.)
+\item Submit a build with
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{rc_submit()
+}\if{html}{\out{</div>}}
+\item Select the platforms you want to use, and follow the instructions and
+the link provided to see your check results.
+}
+\subsection{Limitations of the R Consortium runners}{
+\itemize{
+\item You package will be public for the world, and will be stored in the
+https://github.com/r-hub2 organization. Your check output and results
+will be public for anyone with a GitHub account. If you want to keep
+your package private, you can put it in a private GitHub repository,
+and use the \code{rhub_setup()} and \code{rhub_check()} functions instead.
+\item The R Consortium runners are shared among all users, so you might need
+to wait for your builds to start.
+\item You have to wait at least five minutes between submissions with
+\code{rc_submit()}.
+\item Currently you need to create a GitHub account to see the check logs of
+your package. You don't need a GitHub account to submit the checks.
+}
+
+To avoid these limitations (except for the neeed for a GitHub accounr),
+put your package in a GitHub repository, and use the \code{rhub_setup()} and
+\code{rhub_check()} functions instead of \code{rc_submit()} and the R Consortium
+runners.
 }
 
 }

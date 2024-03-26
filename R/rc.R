@@ -5,12 +5,12 @@
 #' Request a new token for submissions to the R Consortium runners
 #'
 #' To build and check R packages on the RC runners of R-hub, you'll need
-#' to validate your email address. R-hub will send a token to your email
+#' to verify your email address. R-hub will send a token to your email
 #' address, and this token will be stored on your computer.
 #'
-#' You need to validate your email on each computer you want to submit
+#' You need to store a token on every computer you want to submit
 #' jobs from, either using the same token from the email you got, or
-#' you can request another token for the new machine. Your old token
+#' you can request additional tokens for the new machines. Your old token
 #' will stay valid as well.
 #'
 #' If you already have a token from a previous version of R-hub, you can
@@ -20,13 +20,14 @@
 #' ```
 #' rhub:::email_file()
 #' ```
-#' to see the file rhub uses to store your validated tokens.
+#' to see the file rhub uses to store your tokens.
 #'
-#' @param email Email address to validate. We try to detect this, but
+#' @param email Email address to verify We try to detect this, but
 #'   if the detection fails, you can specify it explicitly.
-#' @param token Token to add to the list of validated tokens.
 #'   If this argument is missing (or `NULL`), then you can specify it
 #'   interactively.
+#' @param token Token to add. If you already received a token in an email
+#'   from R-hub, you can specify that here.
 #'
 #' @export
 #' @family RC runners API
@@ -43,6 +44,19 @@ rc_new_token <- function(email = NULL, token = NULL) {
   cli::cli_alert_success("Added token for {.val email}.", wrap = TRUE)
   cli::cli_alert_info("R-hub tokens are stored at {.path {email_file()}}.")
   invisible()
+}
+
+# -------------------------------------------------------------------------
+#' Show your tokens for the R Consortium runners
+#'
+#' Lists all tokens stored on the local machine.
+#'
+#' @return Data frame with string columns `email` and `token`.
+#' @export
+#' @family RC runners API
+
+rc_list_local_tokens <- function() {
+  list_validated_emails2(message = FALSE, msg_if_empty = FALSE)
 }
 
 # -------------------------------------------------------------------------
@@ -96,6 +110,7 @@ rc_list_repos <- function(email = NULL) {
 #'
 #' @export
 #' @family RC runners API
+#' @seealso [rhub_platforms()] for a list of supported platforms.
 
 rc_submit <- function(path = ".", platforms = NULL, email = NULL) {
   pkg_name <- desc::desc_get("Package", file = path)[[1]]

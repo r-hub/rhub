@@ -7,22 +7,23 @@
 rc_new_token(email = NULL, token = NULL)
 }
 \arguments{
-\item{email}{Email address to validate. We try to detect this, but
-if the detection fails, you can specify it explicitly.}
-
-\item{token}{Token to add to the list of validated tokens.
+\item{email}{Email address to verify We try to detect this, but
+if the detection fails, you can specify it explicitly.
 If this argument is missing (or \code{NULL}), then you can specify it
 interactively.}
+
+\item{token}{Token to add. If you already received a token in an email
+from R-hub, you can specify that here.}
 }
 \description{
 To build and check R packages on the RC runners of R-hub, you'll need
-to validate your email address. R-hub will send a token to your email
+to verify your email address. R-hub will send a token to your email
 address, and this token will be stored on your computer.
 }
 \details{
-You need to validate your email on each computer you want to submit
+You need to store a token on every computer you want to submit
 jobs from, either using the same token from the email you got, or
-you can request another token for the new machine. Your old token
+you can request additional tokens for the new machines. Your old token
 will stay valid as well.
 
 If you already have a token from a previous version of R-hub, you can
@@ -33,10 +34,11 @@ Run
 \if{html}{\out{<div class="sourceCode">}}\preformatted{rhub:::email_file()
 }\if{html}{\out{</div>}}
 
-to see the file rhub uses to store your validated tokens.
+to see the file rhub uses to store your tokens.
 }
 \seealso{
 Other RC runners API: 
+\code{\link{rc_list_local_tokens}()},
 \code{\link{rc_list_repos}()},
 \code{\link{rc_submit}()}
 }

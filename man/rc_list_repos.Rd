@@ -26,6 +26,7 @@ Lists repositories created by \code{\link[=rc_submit]{rc_submit()}} submissions.
 }
 \seealso{
 Other RC runners API: 
+\code{\link{rc_list_local_tokens}()},
 \code{\link{rc_new_token}()},
 \code{\link{rc_submit}()}
 }

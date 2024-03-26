@@ -36,7 +36,10 @@ More fields might be added later.
 Submit a package to the R Consortium runners
 }
 \seealso{
+\code{\link[=rhub_platforms]{rhub_platforms()}} for a list of supported platforms.
+
 Other RC runners API: 
+\code{\link{rc_list_local_tokens}()},
 \code{\link{rc_list_repos}()},
 \code{\link{rc_new_token}()}
 }

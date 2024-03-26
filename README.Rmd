@@ -57,6 +57,9 @@ pak::pkg_install("rhub")
   You can use the [gitcreds package](https://gitcreds.r-lib.org/) to add
   the token to the git credential store.
 
+See the [R Consortium runners](#the-r-consortium-runners) section for
+using rhub if your package is not on GitHub.
+
 ### Private repositories
 
 rhub uses GitHub Actions, which is free for public repositories.
@@ -102,6 +105,50 @@ Run `rhub::rhub_check()` to start R-hub v2 checks on GitHub Actions:
 ```{asciicast rhub-check}
 rhub::rhub_check()
 ```
+
+## The R Consortium runners
+
+If you don't want to put your package on GitHub, you can still use the
+rhub package to run package checks on any supported platform using a
+shared pool of runners in the https://github.com/r-hub2 GitHub
+organization.
+
+The process is similar to the first version of R-hub:
+
+* Set your working directory to the R package you want to check.
+* Obtain a token from R-hub, to verify your email address:
+  ```
+  rc_new_token()
+  ```
+  (You do not need to do this, if you already submitted packages to a
+  previous version of R-hub from the same machine, using the same email
+  address. Call `rc_list_local_tokens()` to check if you already have
+  tokens.)
+* Submit a build with
+  ```
+  rc_submit()
+  ```
+* Select the platforms you want to use, and follow the instructions and
+  the link provided to see your check results.
+
+### Limitations of the R Consortium runners
+
+* You package will be public for the world, and will be stored in the
+  https://github.com/r-hub2 organization. Your check output and results
+  will be public for anyone with a GitHub account. If you want to keep
+  your package private, you can put it in a private GitHub repository,
+  and use the `rhub_setup()` and `rhub_check()` functions instead.
+* The R Consortium runners are shared among all users, so you might need
+  to wait for your builds to start.
+* You have to wait at least five minutes between submissions with
+  `rc_submit()`.
+* Currently you need to create a GitHub account to see the check logs of
+  your package. You don't need a GitHub account to submit the checks.
+
+To avoid these limitations (except for the neeed for a GitHub accounr),
+put your package in a GitHub repository, and use the `rhub_setup()` and
+`rhub_check()` functions instead of `rc_submit()` and the R Consortium
+runners.
 
 ## Code of Conduct
 
