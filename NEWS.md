@@ -1,6 +1,15 @@
 
 # rhub development version
 
+## R-hub v2
+
+This is a completely new system, see `?rhubv2`  manual page or
+the 'Getting started with R-hub v2' article at
+https://r-hub.github.io/rhub/dev to start.
+
+Previous functions are now deprecated and defunct. They will be removed
+in the next version of the package.
+
 # rhub 1.1.2
 
 * Replace `platform` parameter with `platforms` in `check()` (#497).
@@ -17,17 +26,17 @@
 
 ## Enhancements
 
-* `cran_summary()` now messages that we recommend to fix all NOTEs, WARNINGs 
+* `cran_summary()` now messages that we recommend to fix all NOTEs, WARNINGs
   and ERRORs before a CRAN submission when the check results aren't 0 NOTE, 0
   WARNING, 0 ERROR.
-  
-* `cran_summary()` now outputs informative messages when any of the builds 
+
+* `cran_summary()` now outputs informative messages when any of the builds
   of the group hasn't completed (yet, or at all).
 
 ## Bug fixes
 
-* `cran_summary()` now works for packages whose R CMD Check result include 
-  no NOTE/WARNING/ERROR, and gives an informative error message when not all 
+* `cran_summary()` now works for packages whose R CMD Check result include
+  no NOTE/WARNING/ERROR, and gives an informative error message when not all
   builds are completed yet.
 
 * `cran_summary()` now prints lines to screen without unwanted indentation.
@@ -45,7 +54,7 @@
 
 * New `get_check()` function that works with check ids, or a check group id.
 
-* `list_package_checks()` and `list_my_checks()` now output a `tibble`, that 
+* `list_package_checks()` and `list_my_checks()` now output a `tibble`, that
   is nicely formatted when printed to the screen.
 
 * The output of `get_check()`, `check()`, `check_on_`, `check_for_cran()`,
