@@ -12,13 +12,10 @@ development:
   mode: auto
 
 reference:
-- title: Introduction
+- title: R-hub v2
   desc: |
-    Start here if you are new to R-hub v2:
-  contents:
-  - rhubv2
-
-- title: Functions for GitHub repositories
+    Start with the 'Get started with R-hub v2' article if you are
+    new to R-hub.
   contents:
   - rhub_check
   - rhub_doctor
@@ -32,6 +29,7 @@ reference:
   - rc_submit
 - title: internal
   contents:
+  - rhubv2
   - check
   - check_for_cran
   - check_on_linux
