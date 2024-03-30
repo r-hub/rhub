@@ -4,7 +4,7 @@
 \alias{rc_submit}
 \title{Submit a package to the R Consortium runners}
 \usage{
-rc_submit(path = ".", platforms = NULL, email = NULL)
+rc_submit(path = ".", platforms = NULL, email = NULL, confirmation = NULL)
 }
 \arguments{
 \item{path}{Path to package file or package directory.}
@@ -17,6 +17,9 @@ interactively. Must be specified in non-interactive sessions.}
 that corresponds to the email address, see \code{\link[=rc_new_token]{rc_new_token()}}.
 If not specified (or \code{NULL}) then the email address of the package
 maintainer is used.}
+
+\item{confirmation}{You must set this to \code{TRUE} to submit a package
+from a non-interactive session.}
 }
 \value{
 A list with data about the submission, invisibly.

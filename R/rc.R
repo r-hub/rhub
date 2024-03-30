@@ -96,6 +96,8 @@ rc_list_repos <- function(email = NULL) {
 #'   that corresponds to the email address, see [rc_new_token()].
 #'   If not specified (or `NULL`) then the email address of the package
 #'   maintainer is used.
+#' @param confirmation You must set this to `TRUE` to submit a package
+#'   from a non-interactive session.
 #' @return A list with data about the submission, invisibly.
 #' Currently it has:
 #'
@@ -112,7 +114,16 @@ rc_list_repos <- function(email = NULL) {
 #' @family RC runners API
 #' @seealso [rhub_platforms()] for a list of supported platforms.
 
-rc_submit <- function(path = ".", platforms = NULL, email = NULL) {
+rc_submit <- function(path = ".", platforms = NULL, email = NULL,
+                      confirmation = NULL) {
+
+  if (isTRUE(confirmation) && !is_interactive()) {
+    throw(pkg_error(
+      "You need to set {.arg confirmation} to {.val TRUE}
+       to submit packages to R-hub from non-interactive R sessions."
+    ))
+  }
+
   pkg_name <- desc::desc_get("Package", file = path)[[1]]
   if (is.na(pkg_name)) {
     throw(pkg_error(
@@ -139,6 +150,24 @@ rc_submit <- function(path = ".", platforms = NULL, email = NULL) {
     id = curl::form_data(id),
     package = curl::form_file(path)
   )
+
+  if (!isTRUE(confirmation)) {
+    cat(cli::col_cyan(cli::rule("Confirmation")))
+    cli::cli_bullets(c(
+      "!" = "Your package will be publicly readable at
+        {.url https://github.com/r-hub2}.",
+      " " = "Only continue if you are fine with this.",
+      " " = "See the {.fn rhub_setup} function for an alternative way
+        of using R-hub."
+    ))
+    ans <- trimws(readline(
+      prompt = "\nPlease type 'yes' to continue: "
+    ))
+    cli::cli_text()
+    if (ans != 'yes' && ans != "'yes'") {
+      throw(pkg_error("Aborted R-hub submission."))
+    }
+  }
 
   resp <- query(
     method = "POST",
