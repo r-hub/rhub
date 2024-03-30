@@ -11,3 +11,11 @@
 ^revdep$
 ^codecov\.yml$
 ^\.github$
+^vignettes$
+^man/_cache$
+^README_cache$
+^README\.html$
+^README\.Rmd$
+^README[.]html$
+^rhub2\.Rproj$
+^\.Rproj\.user$

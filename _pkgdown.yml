@@ -7,41 +7,51 @@ authors:
 
 toc:
   depth: 3
-    
+
+development:
+  mode: auto
+
 reference:
-- title: General check API
+- title: R-hub v2
+  desc: |
+    Start with the 'Get started with R-hub v2' article if you are
+    new to R-hub.
   contents:
-  - validate_email
-  - list_validated_emails
-  - check
   - rhub_check
-  - rhub-ids
-  - get_check
-  - platforms
-- title: Check shortcuts
+  - rhub_doctor
+  - rhub_platforms
+  - rhub_setup
+- title: The R Consortium runners
   contents:
+  - rc_list_local_tokens
+  - rc_list_repos
+  - rc_new_token
+  - rc_submit
+- title: internal
+  contents:
+  - rhubv2
+  - check
   - check_for_cran
-  - check_on_centos
-  - check_on_debian
-  - check_on_fedora
   - check_on_linux
-  - check_on_macos
-  - check_on_ubuntu
   - check_on_windows
+  - check_on_macos
+  - check_on_debian
+  - check_on_ubuntu
+  - check_on_fedora
   - check_on_solaris
-  - check_with_rdevel
+  - check_on_centos
   - check_with_roldrel
-  - check_with_rpatched
   - check_with_rrelease
-  - check_with_sanitizers
+  - check_with_rpatched
+  - check_with_rdevel
   - check_with_valgrind
-- title: Check management
-  contents:
+  - check_with_sanitizers
+  - get_check
   - last_check
   - list_my_checks
   - list_package_checks
-- title: Local Docker checks
-  contents:
+  - list_validated_emails
   - local_check_linux
   - local_check_linux_images
-  
+  - platforms
+  - validate_email

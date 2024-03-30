@@ -5,3 +5,6 @@ inst/doc
 .RData
 rhub.Rproj
 /revdep
+/man/_cache
+/README_cache
+/README.html

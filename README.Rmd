@@ -1,0 +1,161 @@
+---
+output:
+  github_document:
+    toc: true
+    toc_depth: 3
+    includes:
+      before_body: inst/header.md
+always_allow_html: yes
+editor_options:
+  markdown:
+    wrap: sentence
+---
+
+```{r, setup, include = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  fig.path = "man/figures",
+  fig.width = 10,
+  asciicast_theme = if (Sys.getenv("IN_PKGDOWN") == "true") "pkgdown" else "readme"
+)
+asciicast::init_knitr_engine(
+  echo = TRUE,
+  echo_input = FALSE,
+  startup = quote({
+    library(cli)
+    options(cli.num_colors = cli::truecolor)
+  })
+)
+```
+
+```{asciicast asciicast-setup, include = FALSE, results = "hide"}
+pkgload::load_all()
+# emoji output is slightly incorrect currently, maybe a font issue
+options(pkg.emoji = FALSE)
+# we do this to have a package to use in the examples
+setwd("/tmp")
+if (!file.exists("cli")) system("git clone --depth 1 https://github.com/r-lib/cli")
+setwd("cli")
+unlink(".github/workflows/rhub.yaml")
+```
+
+## Installation
+
+Install rhub from CRAN:
+
+```{r, asciicast-install, eval = FALSE, cache = FALSE}
+pak::pkg_install("rhub")
+```
+
+## Usage
+
+### Requirements
+
+- A Github account.
+- Your R package must be in a GitHub repository.
+- You need a GitHub [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+  You can use the [gitcreds package](https://gitcreds.r-lib.org/) to add
+  the token to the git credential store.
+
+See the [R Consortium runners](#the-r-consortium-runners) section for
+using rhub if your package is not on GitHub.
+
+### Private repositories
+
+rhub uses GitHub Actions, which is free for public repositories.
+For private repositories you also get some minutes for free, depending on
+the GitHub subscription you have. See
+[About billing for GitHub Actions](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions) for details.
+
+### Setup
+
+1. Switch to the directory of your package, and call `rhub::rhub_setup()` to
+  add the R-hub workflow file to your package.
+```{asciicast rhub-setup}
+rhub::rhub_setup()
+```
+
+2. Run `git commit` and `git push` to push the workflow file to GitHub.
+
+3. Run `rhub::rhub_doctor()` to check if everything is set up correctly:
+```{asciicast rhub-doctor}
+rhub::rhub_doctor()
+```
+
+### Run checks
+
+Use `rhub::rhub_platforms()` to get a list of supported platforms and checks:
+```{asciicast rhub-platforms}
+rhub::rhub_platforms()
+```
+
+```{asciicast include = FALSE}
+testthat::local_mocked_bindings(
+  gh_rest_post = function(...) list(status_code = 204L),
+  readline = function(prompt) {
+    cat(prompt)
+    Sys.sleep(1)
+    cat("1, 5\n")
+    "1, 5"
+  }
+)
+```
+
+Run `rhub::rhub_check()` to start R-hub v2 checks on GitHub Actions:
+```{asciicast rhub-check}
+rhub::rhub_check()
+```
+
+## The R Consortium runners
+
+If you don't want to put your package on GitHub, you can still use the
+rhub package to run package checks on any supported platform using a
+shared pool of runners in the https://github.com/r-hub2 GitHub
+organization.
+
+The process is similar to the first version of R-hub:
+
+* Set your working directory to the R package you want to check.
+* Obtain a token from R-hub, to verify your email address:
+  ```
+  rc_new_token()
+  ```
+  (You do not need to do this, if you already submitted packages to a
+  previous version of R-hub from the same machine, using the same email
+  address. Call `rc_list_local_tokens()` to check if you already have
+  tokens.)
+* Submit a build with
+  ```
+  rc_submit()
+  ```
+* Select the platforms you want to use, and follow the instructions and
+  the link provided to see your check results.
+
+### Limitations of the R Consortium runners
+
+* You package will be public for the world, and will be stored in the
+  https://github.com/r-hub2 organization. Your check output and results
+  will be public for anyone with a GitHub account. If you want to keep
+  your package private, you can put it in a private GitHub repository,
+  and use the `rhub_setup()` and `rhub_check()` functions instead.
+* The R Consortium runners are shared among all users, so you might need
+  to wait for your builds to start.
+* You have to wait at least five minutes between submissions with
+  `rc_submit()`.
+* Currently you need to create a GitHub account to see the check logs of
+  your package. You don't need a GitHub account to submit the checks.
+
+To avoid these limitations (except for the neeed for a GitHub accounr),
+put your package in a GitHub repository, and use the `rhub_setup()` and
+`rhub_check()` functions instead of `rc_submit()` and the R Consortium
+runners.
+
+## Code of Conduct
+
+Please note that the rhub package is released with a
+[Contributor Code of Conduct](https://r-hub.github.io/rhub/dev/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
+
+## License
+
+MIT © R Consortium

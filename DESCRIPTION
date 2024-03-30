@@ -1,46 +1,45 @@
 Package: rhub
-Title: Connect to 'R-hub'
-Version: 1.1.2.9000
+Title: Tools for R package developers
+Version: 1.9.9.9000
 Authors@R: c(
     person("Gábor", "Csárdi",, "csardi.gabor@gmail.com", role = c("aut", "cre")),
-    person("Maëlle", "Salmon", role = "aut", 
+    person("Maëlle", "Salmon", role = "aut",
           email = "maelle.salmon@yahoo.se",
           comment = c(ORCID = "0000-0002-2815-0399")),
     person("R Consortium", role = c("fnd")))
-Description: Run 'R CMD check' on any of the 'R-hub' (<https://builder.r-hub.io/>)
-    architectures, from the command line. The current architectures include
-    'Windows', 'macOS', 'Solaris' and various 'Linux' distributions.
+Description: R-hub v2 uses GitHub Actions to run `R CMD check` and
+    similar package checks. The rhub package helps you set up
+    R-hub v2 for your R package, and start running checks.
 License: MIT + file LICENSE
 URL: https://github.com/r-hub/rhub, https://r-hub.github.io/rhub/
 BugReports: https://github.com/r-hub/rhub/issues
-RoxygenNote: 7.2.1.9000
+RoxygenNote: 7.3.1.9000
 Roxygen: list(markdown = TRUE)
+Depends:
+    R (>= 4.0)
 Imports:
-    assertthat,
     callr,
-    cli (>= 1.1.0),
-    crayon,
+    cli,
+    curl,
     desc,
-    digest,
-    httr,
+    gert,
+    glue,
+    gitcreds,
     jsonlite,
-    parsedate,
-    pillar,
-    prettyunits,
+    pkgbuild,
     processx,
-    R6,
     rappdirs,
-    rcmdcheck (>= 1.2.1),
     rematch,
-    tibble,
+    R6,
+    rprojroot,
     utils,
-    uuid,
-    whoami,
-    withr
-Suggests: 
-    covr,
-    testthat,
+    whoami
+Suggests:
+    asciicast,
+    debugme,
     knitr,
-    rmarkdown
+    pillar,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    webfakes
 Encoding: UTF-8
-VignetteBuilder: knitr, rmarkdown
