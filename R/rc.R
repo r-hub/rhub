@@ -156,8 +156,9 @@ rc_submit <- function(path = ".", platforms = NULL, email = NULL,
     cli::cli_bullets(c(
       "!" = "Your package will be publicly readable at
         {.url https://github.com/r-hub2}.",
-      " " = "Only continue if you are fine with this.",
-      " " = "See the {.fn rhub_setup} function for an alternative way
+      ">" = "You will need a GitHub account to view the build logs.",
+      ">" = "Only continue if you are fine with this.",
+      ">" = "See the {.fn rhub_setup} function for an alternative way
         of using R-hub."
     ))
     ans <- trimws(readline(
