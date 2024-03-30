@@ -4,7 +4,8 @@
 \alias{rhubv2}
 \title{R-hub v2}
 \description{
-R-hub v2
+Start here to learn about R-hub v2, especially if you
+used the previous version of R-hub before.
 }
 \section{R-hub v2}{
 \subsection{Introduction}{

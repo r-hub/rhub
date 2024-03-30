@@ -3,8 +3,11 @@
 \name{rhub-package}
 \alias{rhub-package}
 \alias{rhub}
-\title{Tools for R package developers}
+\title{The rhub package}
 \description{
+Tools for R package developers
+}
+\details{
 \subsection{Installation}{
 
 Install rhub from CRAN:
