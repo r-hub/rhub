@@ -35,7 +35,7 @@ rhub_check <- function(gh_url = NULL, platforms = NULL, r_versions = NULL,
     }
   }
 
-  platforms <- select_platforms()
+  platforms <- select_platforms(platforms)
 
   url <- parse_gh_url(gh_url)
   ep <- glue::glue("/repos/{url$user}/{url$repo}/actions/workflows/rhub.yaml/dispatches")
