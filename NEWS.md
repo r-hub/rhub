@@ -1,9 +1,6 @@
 
 # rhub development version
 
-
-* Enable the use of `platforms` argument in `rhub_check()` (@danielinteractive).
-
 ## R-hub v2
 
 This is a completely new system, see `?rhubv2`  manual page or
