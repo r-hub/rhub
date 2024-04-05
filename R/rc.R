@@ -220,13 +220,14 @@ guess_email <- function(path = ".", message = TRUE) {
       "Using email address {.val {guess}}."
     )
   }
+  guess
 }
 
 get_auth_header <- function(email) {
   valid <- list_validated_emails2(message = FALSE)
   if (! email %in% valid$email) {
     throw(pkg_error(
-      "Can't find token for email address {.val {guess}}.",
+      "Can't find token for email address {.val {email}}.",
       i = "Call {.code rhub::rc_new_token()} to get a token."
     ))
   }
