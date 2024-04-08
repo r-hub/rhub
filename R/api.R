@@ -1,5 +1,5 @@
 baseurl <- function() {
-  paste0(Sys.getenv("RHUB_SERVER", "https://builder2.rhub.io"), "/api/-")
+  Sys.getenv("RHUB_SERVER", "https://builder2.rhub.io/api/-")
 }
 
 default_headers <- c(
@@ -64,13 +64,18 @@ query_sse_async <- function(method, url, headers, data, data_form) {
   handle_sse <- function(evt) {
     msgs <<- c(msgs, list(evt))
     if (evt[["event"]] == "progress") {
-      msg <- jsonlite::fromJSON(evt[["data"]])
-      cli::cli_alert(msg, .envir = emptyenv())
+      # ignore malformed event messages
+      tryCatch({
+        msg <- jsonlite::fromJSON(evt[["data"]])
+        cli::cli_alert(msg, .envir = emptyenv())
+      }, error = function(e) NULL)
     } else if (evt[["event"]] == "result") {
       cli::cli_alert_success("Done.")
     } else if (evt[["event"]] == "error") {
-      msg <- jsonlite::fromJSON(evt[["data"]])
-      cli::cli_alert_danger(msg, .envir = emptyenv())
+      tryCatch({
+        msg <- jsonlite::fromJSON(evt[["data"]])
+        cli::cli_alert_danger(msg, .envir = emptyenv())
+      }, error = function(e) cli::cli_alert_danger("Error from server"))
       stop("Aborting")
     }
   }

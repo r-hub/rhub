@@ -19,3 +19,4 @@
 ^README[.]html$
 ^rhub2\.Rproj$
 ^\.Rproj\.user$
+^dev-lib$
