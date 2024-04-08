@@ -38,6 +38,7 @@ Suggests:
     asciicast,
     debugme,
     knitr,
+    mockery,
     pillar,
     rmarkdown,
     testthat (>= 3.0.0),

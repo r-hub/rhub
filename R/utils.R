@@ -23,7 +23,7 @@ stop <- function(..., call. = TRUE, domain = NA) {
   args <- list(...)
   if (length(args) == 1L && inherits(args[[1L]], "condition")) {
     throw(
-      add_class(args[[1]], c("rlib_error_3_0", "rlib_error"), "end"),
+      add_class(args[[1]], c("rlib_error_3_1", "rlib_error"), "end"),
       frame = parent.frame()
     )
   } else {
@@ -47,7 +47,7 @@ add_class <- function(obj, classes, where = c("start", "end")) {
 }
 
 zip <- function(x, y) {
-  mapply(FUN = c, x, y, SIMPLIFY = FALSE)
+  mapply(FUN = c, x, y, SIMPLIFY = FALSE, USE.NAMES = FALSE)
 }
 
 first_char <- function(x) {
@@ -59,11 +59,11 @@ last_char <- function(x) {
 }
 
 unquote <- function(x) {
-  ifelse(
+  as.character(ifelse(
     first_char(x) == last_char(x) & first_char(x) %in% c("'", '"'),
     substr(x, 2L, nchar(x) - 1L),
     x
-  )
+  ))
 }
 
 has_emoji <- function() {
@@ -88,6 +88,12 @@ parse_url <- function(url) {
     ssh_re_url <- "^git@(?<host>[^:]+):(?<path>.*)[.]git$"
     mch <- re_match(url, ssh_re_url)
 
+    # try without the trailing .git as well
+    if (is.na(mch[[1]])) {
+      ssh_re_url2 <- "^git@(?<host>[^:]+):(?<path>.*)$"
+      mch <- re_match(url, ssh_re_url2)
+    }
+
     if (is.na(mch[[1]])) {
       cli::cli_abort("Invalid URL: {.url {url}}")
     }
@@ -102,6 +108,9 @@ parse_url <- function(url) {
 read_file <- function(path) {
   bin <- readBin(path, "raw", file.size(path))
   chr <- rawToChar(bin)
+  if (is.na(iconv(chr, "UTF-8", "UTF-8"))) {
+    throw(pkg_error("{.path {path}} is not UTF-8, giving up. :("))
+  }
   Encoding(chr) <- "UTF-8"
   chr
 }

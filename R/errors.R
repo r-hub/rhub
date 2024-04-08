@@ -203,7 +203,7 @@ err <- local({
 
   new_error <- function(..., call. = TRUE, srcref = NULL, domain = NA) {
     cond <- new_cond(..., call. = call., domain = domain, srcref = srcref)
-    class(cond) <- c("rlib_error_3_0", "rlib_error", "error", "condition")
+    class(cond) <- c("rlib_error_3_1", "rlib_error", "error", "condition")
     cond
   }
 
@@ -372,7 +372,7 @@ err <- local({
         name <- native_name(.NAME)
         err <- new_error("Native call to `", name, "` failed", call. = call1)
         cerror <- if (inherits(e, "simpleError")) "c_error"
-        class(err) <- c(cerror, "rlib_error_3_0", "rlib_error", "error", "condition")
+        class(err) <- c(cerror, "rlib_error_3_1", "rlib_error", "error", "condition")
         throw_error(err, parent = e)
       }
     )
@@ -407,7 +407,7 @@ err <- local({
         name <- native_name(.NAME)
         err <- new_error("Native call to `", name, "` failed", call. = call1)
         cerror <- if (inherits(e, "simpleError")) "c_error"
-        class(err) <- c(cerror, "rlib_error_3_0", "rlib_error", "error", "condition")
+        class(err) <- c(cerror, "rlib_error_3_1", "rlib_error", "error", "condition")
         throw_error(err, parent = e)
       }
     )
@@ -710,21 +710,22 @@ err <- local({
   # -- condition message with cli ---------------------------------------
 
   cnd_message_robust <- function(cond) {
-    class(cond) <- setdiff(class(cond), "rlib_error_3_0")
+    class(cond) <- setdiff(class(cond), "rlib_error_3_1")
     conditionMessage(cond) %||%
       (if (inherits(cond, "interrupt")) "interrupt") %||%
       ""
   }
 
   cnd_message_cli <- function(cond, full = FALSE) {
-    exp <- paste0(cli::col_yellow("!"), " ")
-    add_exp <- is.null(names(cond$message))
     msg <- cnd_message_robust(cond)
+    exp <- paste0(cli::col_yellow("!"), " ")
+    add_exp <- is.null(names(cond$message)) &&
+      substr(cli::ansi_strip(msg[1]), 1, 1) != "!"
 
     c(
       paste0(if (add_exp) exp, msg),
       if (inherits(cond$parent, "condition")) {
-        msg <- if (full && inherits(cond$parent, "rlib_error_3_0")) {
+        msg <- if (full && inherits(cond$parent, "rlib_error_3_1")) {
           format(cond$parent,
                  trace = FALSE,
                  full = TRUE,
@@ -750,11 +751,13 @@ err <- local({
 
   cnd_message_plain <- function(cond, full = FALSE) {
     exp <- "! "
-    add_exp <- is.null(names(cond$message))
+    msg <- cnd_message_robust(cond)
+    add_exp <- is.null(names(cond$message)) &&
+      substr(msg[1], 1, 1) != "!"
     c(
-      paste0(if (add_exp) exp, cnd_message_robust(cond)),
+      paste0(if (add_exp) exp, msg),
       if (inherits(cond$parent, "condition")) {
-        msg <- if (full && inherits(cond$parent, "rlib_error_3_0")) {
+        msg <- if (full && inherits(cond$parent, "rlib_error_3_1")) {
           format(cond$parent,
                  trace = FALSE,
                  full = TRUE,
@@ -1126,11 +1129,11 @@ err <- local({
   onload_hook <- function() {
     reg_env <- Sys.getenv("R_LIB_ERROR_REGISTER_PRINT_METHODS", "TRUE")
     if (tolower(reg_env) != "false") {
-      registerS3method("format", "rlib_error_3_0", format_error, baseenv())
+      registerS3method("format", "rlib_error_3_1", format_error, baseenv())
       registerS3method("format", "rlib_trace_3_0", format_trace, baseenv())
-      registerS3method("print", "rlib_error_3_0", print_error, baseenv())
+      registerS3method("print", "rlib_error_3_1", print_error, baseenv())
       registerS3method("print", "rlib_trace_3_0", print_trace, baseenv())
-      registerS3method("conditionMessage", "rlib_error_3_0", cnd_message, baseenv())
+      registerS3method("conditionMessage", "rlib_error_3_1", cnd_message, baseenv())
     }
   }
 
