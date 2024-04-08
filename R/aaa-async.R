@@ -1,3 +1,4 @@
+# nocov start
 
 #' Create an async function
 #'
@@ -4798,3 +4799,5 @@ external_process <- function(process_generator, error_on_status = TRUE,
     }
   )
 }
+
+# nocov end

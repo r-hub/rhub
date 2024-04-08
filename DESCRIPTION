@@ -43,3 +43,4 @@ Suggests:
     testthat (>= 3.0.0),
     webfakes
 Encoding: UTF-8
+Config/testthat/edition: 3

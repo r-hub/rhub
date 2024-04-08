@@ -18,7 +18,7 @@ rhub_check <- function(gh_url = NULL, platforms = NULL, r_versions = NULL,
                        branch = NULL) {
   assert_that(
     is_optional_gh_url(gh_url),
-    is.null(platforms) || is_character(platforms),
+    is_optional_character(platforms),
     is_optional_string(branch)
   )
 

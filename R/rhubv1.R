@@ -1,3 +1,5 @@
+# nocov start
+
 deprecated <- function() {
   message(
     "This function is deprecated and defunct since rhub v2.\n",
@@ -204,3 +206,5 @@ local_check_linux_images <- function(...) {
 platforms <- function(...) {
   deprecated()
 }
+
+# nocov end
