@@ -7,7 +7,7 @@
         "args": {},
         "headers": {
           "Host": "127.0.0.1:<port>",
-          "Accept-Encoding": "deflate, gzip",
+          "Accept-Encoding": "<encodings>",
           "accept": "application/json",
           "content-type": "application/json",
           "user-agent": "R-hub client"
@@ -55,7 +55,7 @@
         "form": {},
         "headers": {
           "Host": "127.0.0.1:<port>",
-          "Accept-Encoding": "deflate, gzip",
+          "Accept-Encoding": "<encodings>",
           "accept": "application/json",
           "content-type": "application/json",
           "user-agent": "R-hub client",

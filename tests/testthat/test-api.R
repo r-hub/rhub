@@ -2,7 +2,7 @@ test_that("query GET", {
   withr::local_envvar(RHUB_SERVER = http$url())
   expect_snapshot({
     cat(rawToChar(query("/get")$content))
-  }, transform = redact_port)
+  }, transform = function(x) redact_port(redact_ae_header(x)))
 })
 
 test_that("query HTTP errors", {
@@ -23,7 +23,7 @@ test_that("query POST", {
   data <- charToRaw(jsonlite::toJSON(list(foo = "bar", foobar = 1:3)))
   expect_snapshot({
     cat(rawToChar(query("/post", method = "POST", data = data)$content))
-  }, transform = redact_port)
+  }, transform = function(x) redact_port(redact_ae_header(x)))
 })
 
 test_that("query, unknown verb", {

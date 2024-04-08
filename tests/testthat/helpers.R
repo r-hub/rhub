@@ -102,3 +102,11 @@ http <- webfakes::new_app_process(http_app())
 redact_port <- function(x) {
   gsub(":[0-9]+", ":<port>", x)
 }
+
+redact_ae_header <- function(x) {
+  gsub(
+    "\"Accept[-]Encoding\": \"[^\"]*\"",
+    "\"Accept-Encoding\": \"<encodings>\"",
+    x
+  )
+}
