@@ -8,8 +8,8 @@ test_that("get_platforms", {
   )
 
   plt <- get_platforms()
-  plt[[1]] <- sub("\r\n", "\n", plt[[1]], fixed = TRUE)
-  plt[[2]] <- sub("\r\n", "\n", plt[[2]], fixed = TRUE)
+  plt[[1]] <- gsub("\r\n", "\n", plt[[1]], fixed = TRUE)
+  plt[[2]] <- gsub("\r\n", "\n", plt[[2]], fixed = TRUE)
   expect_snapshot({
     cli::hash_obj_sha1(plt[[1]])
     cli::hash_obj_sha1(plt[[2]])
