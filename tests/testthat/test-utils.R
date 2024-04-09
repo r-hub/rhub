@@ -1,3 +1,5 @@
+# We don't use expect_snapshot because it adds an extra ! at the
+# beginning of the error message
 test_that("pkg_error", {
   err <- tryCatch(
     throw(pkg_error(
@@ -12,6 +14,8 @@ test_that("pkg_error", {
   expect_equal(err$foo, 1:3)
 })
 
+# We don't use expect_snapshot because it adds an extra ! at the
+# beginning of the error message
 test_that("stop", {
   err <- tryCatch(
     stop(pkg_error(
@@ -215,8 +219,4 @@ test_that("is_dir", {
   file.create(tmp)
   expect_true(is_dir(tempdir()))
   expect_false(is_dir(tmp))
-})
-
-test_that("parse_email", {
-
 })

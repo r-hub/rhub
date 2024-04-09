@@ -1,0 +1,37 @@
+[
+    {
+        "name": "ubuntu-clang",
+        "cran-names": ["r-devel-linux-x86_64-debian-clang"],
+        "aliases": ["r-devel-linux-x86_64-debian-clang"],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/ubuntu-clang:latest"
+    },
+
+    {
+        "name": "ubuntu-gcc12",
+        "cran-names": ["r-devel-linux-x86_64-debian-gcc"],
+        "aliases": ["r-devel-linux-x86_64-debian-gcc"],
+        "type": "container",
+        "os-type": "Linux",
+        "container": "ghcr.io/r-hub/containers/does-not-exists-oops"
+    },
+
+    {
+        "name": "windows",
+        "cran-names": [
+            "r-devel-windows-x86_64",
+            "r-release-windows-x86_64",
+            "r-oldrel-windows-x86_64"
+        ],
+        "aliases": [
+            "r-devel-windows",
+            "r-release-windows",
+            "r-oldrel-windows"
+        ],
+        "type": "os",
+        "os-type": "Windows",
+        "os": "windows-latest",
+        "r-version": "*"
+    }
+]

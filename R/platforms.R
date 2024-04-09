@@ -1,7 +1,13 @@
 
 get_platforms <- function() {
-  url_platforms <- "https://raw.githubusercontent.com/r-hub/actions/v1/setup/platforms.json"
-  url_containers <- "https://r-hub.github.io/containers/manifest.json"
+  url_platforms <- Sys.getenv(
+    "RHUB_PLATFORMS_URL",
+    "https://raw.githubusercontent.com/r-hub/actions/v1/setup/platforms.json"
+  )
+  url_containers <- Sys.getenv(
+    "RHUB_CONTAINERS_URL",
+    "https://r-hub.github.io/containers/manifest.json",
+  )
   ret <- synchronise(when_all(
     async_cached_http_get(url_platforms),
     async_cached_http_get(url_containers)
@@ -89,7 +95,7 @@ format.rhub_platforms <- function(x, ...) {
         if (x$r_version[p] == "*") {
           grey(paste0("   All R versions on GitHub Actions ", x$github_os[p]))
         } else {
-          x$r_version
+          grey(paste0("   ", x$r_version[p]))
         }
       )
       counter <- counter + 1L
@@ -157,7 +163,7 @@ format.rhub_platforms_summary <- function(x, ...) {
   icon <- if (!has_emoji()) {
     ifelse(x$type == "os", "[VM]", "[CT]")
   } else {
-    ifelse(x$type == "os", "\U1F5A5", "\U1F40B")
+    ifelse(x$type == "os", "\U1F5A5", "\U1F40B")               # nocov
   }
   name <- cli::style_bold(cli::col_blue(x$name))
   rv <- abbrev_version(x$r_version)
@@ -246,7 +252,7 @@ select_platforms <- function(platforms = NULL) {
 
   } else {
     platforms <- unique(platforms)
-    bad <- !platforms %in% unlist(plat$name, plat$aliaeses)
+    bad <- !platforms %in% unlist(plat$name, plat$aliases)
     if (any(bad)) {
       throw(pkg_error(
         "Unknown platform{?s}: {.val {platforms[bad]}}.",

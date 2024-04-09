@@ -1,4 +1,5 @@
-http_app <- function() {
+http_app <- function(wd = getwd()) {
+  force(test_dir)
   app <- webfakes::httpbin_app()
 
   # An error with a JSON response that has a 'message'
@@ -25,6 +26,19 @@ http_app <- function() {
       set_status(status)$
       send_json(object = list(foo = "bar"))
   })
+
+  app$get(
+    c(
+      "/rhub.yaml",
+      "/platforms.json",
+      "/platforms2.json",
+      "/manifest.json"
+    ),
+    function(req, res) {
+      yaml <- testthat::test_path("fixtures", basename(req$path))
+      res$send_file(yaml)
+    }
+  )
 
   # SSE
   sse <- function(req, res) {
@@ -109,4 +123,27 @@ redact_ae_header <- function(x) {
     "\"Accept-Encoding\": \"<encodings>\"",
     x
   )
+}
+
+redact_abs_path <- function(x) {
+  wd <- normalizePath(getwd())
+  wd2 <- normalizePath(getwd(), winslash = "/")
+  x2 <- gsub(wd, "<wd>", x, fixed = TRUE)
+  x3 <- gsub(wd2, "<wd>", x2, fixed = TRUE)
+  x3
+}
+
+# for the rematch tests
+df <- function(...) {
+  args <- list(...)
+  structure(
+    args,
+    names = names(args),
+    row.names = seq_along(args[[1]]),
+    class = c("data.frame")
+  )
+}
+
+asdf <- function(...) {
+  as.data.frame(df(...))
 }

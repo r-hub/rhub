@@ -26,7 +26,10 @@ rhub_setup <- function(overwrite = FALSE) {
   git_root <- setup_find_git_root()
   check_rpkg_root(rpkg_root, git_root)
 
-  url <- "https://raw.githubusercontent.com/r-hub/actions/v1/workflows/rhub.yaml"
+  url <- Sys.getenv(
+    "RHUB_WORKFLOW_URL",
+    "https://raw.githubusercontent.com/r-hub/actions/v1/workflows/rhub.yaml"
+  )
   resp <- synchronise(http_get(url))
   if (resp$status_code != 200) {
     throw(pkg_error(
