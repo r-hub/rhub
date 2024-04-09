@@ -7,7 +7,7 @@
     Code
       cli::hash_obj_sha1(plt[[2]])
     Output
-      [1] "e507fefb1d903b1f73c5a6dd97c2adb8ab77d472"
+      [1] "b638216bc57a197de6cbec7db245b42b09f4813f"
 
 # rhub_platforms
 

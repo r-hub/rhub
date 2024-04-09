@@ -19,9 +19,8 @@ rhub_doctor <- function(gh_url = NULL) {
   git_root <- if (is.null(gh_url)) setup_find_git_root()
   if (is.null(gh_url)) check_rpkg_root(rpkg_root, git_root)
 
-  pat_url <- gh_url %||% "https://github.com"
-  pat <- doctor_find_pat(pat_url)
   gh_url <- gh_url %||% doctor_find_gh_url(repo = git_root)
+  pat <- doctor_find_pat(gh_url)
 
   # -----------------------------------------------------------------------
   # Do these up front, concurrently
@@ -134,7 +133,7 @@ doctor_check_github <- function(gh_url, resp) {
        repository.",
       i = "R-hub only supports GitHub packages in GitHub repositories
        currently.",
-      i = "If you think that this is a bug in the {pkg rhub} package,
+      i = "If you think that this is a bug in the {.pkg rhub} package,
        please let us know!"
     ))
   }
@@ -170,7 +169,7 @@ doctor_check_pat_scopes <- function(resp) {
       call. = FALSE,
       "Your PAT does not have a {.code repo} scope.",
       i = "Withoput a {.code repo} scope R-hub cannot start jobs on GitHub.",
-      i = "Change the scoped of the PAT on the GitHub web page, or create
+      i = "Change the scopes of the PAT on the GitHub web page, or create
            a new PAT."
     ))
   }

@@ -23,9 +23,8 @@ rhub_check <- function(gh_url = NULL, platforms = NULL, r_versions = NULL,
   )
 
   git_root <- if (is.null(gh_url)) setup_find_git_root()
-  pat_url <- gh_url %||% "https://github.com"
-  pat <- doctor_find_pat(pat_url)
   gh_url <- gh_url %||% doctor_find_gh_url(repo = git_root)
+  pat <- doctor_find_pat(gh_url)
 
   if (is.null(branch)) {
     if (!is.null(git_root)) {
