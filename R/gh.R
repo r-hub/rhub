@@ -1,4 +1,3 @@
-
 parse_gh_url <- function(url) {
   pcs <- parse_url(url)
   host <- pcs$host
@@ -64,7 +63,7 @@ async_gh_rest_post <- function(host, endpoint, token, data) {
 }
 
 gh_gql_get <- function(host, query, token) {
-  synchronise(async_gh_rest_get(host, query, token))
+  synchronise(async_gh_gql_get(host, query, token))
 }
 
 async_gh_gql_get <- function(host, query, token) {
