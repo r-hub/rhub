@@ -108,6 +108,8 @@ test_that("rc_submit", {
     )
     x <- gsub("\x91", "'", x, fixed = TRUE, useBytes = TRUE)
     x <- gsub("\x92", "'", x, fixed = TRUE, useBytes = TRUE)
+    x <- gsub("\xe2\x80\x98", "'", x, fixed = TRUE, useBytes = TRUE)
+    x <- gsub("\xe2\x80\x99", "'", x, fixed = TRUE, useBytes = TRUE)
     x
   })
 

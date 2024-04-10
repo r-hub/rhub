@@ -144,11 +144,11 @@
     Output
       -- R CMD build -----------------------------------------------------------------
       * checking for file '<path> ... OK
-      * preparing ‘pkg’:
+      * preparing 'pkg':
       * checking DESCRIPTION meta-information ... OK
       * checking for LF line-endings in source and make files and shell scripts
       * checking for empty or unneeded directories
-      * building ‘pkg_0.0.0.9000.tar.gz’
+      * building 'pkg_0.0.0.9000.tar.gz'
       
       -- Confirmation ----------------------------------------------------------------
     Message
