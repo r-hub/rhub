@@ -92,6 +92,7 @@ test_that("rc_submit", {
   })
 
   # need to build if directory
+  withr::local_options(useFancyQuotes = FALSE)
   tmp <- tempfile()
   on.exit(unlink(tmp, recursive = TRUE), add = TRUE)
   dir.create(tmp)

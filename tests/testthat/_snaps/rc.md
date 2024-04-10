@@ -209,7 +209,7 @@
     Code
       guess_email(message = FALSE)
     Output
-      [1] "csardi.gabor@gmail.com"
+      [1] "user@example.com"
 
 ---
 

@@ -1,4 +1,5 @@
 http_app <- function(wd = getwd()) {
+  `%||%` <- function(l, r) if (is.null(l)) r else l
   force(test_dir)
   app <- webfakes::httpbin_app()
 

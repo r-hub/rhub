@@ -210,8 +210,8 @@ guess_email <- function(path = ".", message = TRUE) {
         wrap = TRUE,
         "Using maintainer email address {.val {maint}}."
       )
-      return(maint)
     }
+    return(maint)
   }
 
   guess <- email_address()
