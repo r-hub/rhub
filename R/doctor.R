@@ -83,11 +83,12 @@ doctor_find_gh_url <- function(repo) {
 doctor_find_pat <- function(pat_url) {
   pid <- cli_status("Do you have a GitHub personal access token (PAT)?")
   # TODO: get GH URL from git remote, if any
-  tryCatch(
-    pat <- gitcreds::gitcreds_get(url = pat_url)$password,
+  tryCatch({
+    url <- parse_gh_url(pat_url)$pat_url
+    pat <- gitcreds::gitcreds_get(url = url)$password },
     gitcreds_nogit_error = function(e) {
       cli::cli_status_clear(pid, result = "failed")
-      env <- gitcreds::gitcreds_cache_envvar(pat_url)
+      env <- gitcreds::gitcreds_cache_envvar(url)
       throw(pkg_error(
         call. = FALSE,
         "Could not find a GitHub personal access token (PAT) for {.url {pat_url}}.",
@@ -96,11 +97,10 @@ doctor_find_pat <- function(pat_url) {
              {.env {env}} environment variable to the PAT.",
         i = "You can read more about PATs at
              {.url https://usethis.r-lib.org/articles/git-credentials.html}."
-      ))
-    },
+      )) },
     gitcreds_no_credentials = function(e) {
       cli::cli_status_clear(pid, result = "failed")
-      env <- gitcreds::gitcreds_cache_envvar(pat_url)
+      env <- gitcreds::gitcreds_cache_envvar(url)
       throw(pkg_error(
         call. = FALSE,
         "Could not find a GitHub personal access token (PAT) for {.url {pat_url}}.",
@@ -110,8 +110,7 @@ doctor_find_pat <- function(pat_url) {
              {.run usethis::create_github_token()}.",
         i = "You can read more about PATs at
              {.url https://usethis.r-lib.org/articles/git-credentials.html}."
-      ))
-    },
+      )) },
     error = function(e) {
       cli::cli_status_clear(pid, result = "failed")
       throw(e)

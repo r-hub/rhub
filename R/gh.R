@@ -9,7 +9,7 @@ parse_gh_url <- function(url) {
     graphql <- paste0(pcs$protocol, "://", pcs$host, "/api/graphql")
   }
   cmps <- strsplit(pcs$path, "/", fixed = TRUE)[[1]]
-  if (cmps[1] == "") cmps <- cmps[-1]
+  if (length(cmps) >= 1 && cmps[1] == "") cmps <- cmps[-1]
   if (length(cmps) < 2) cmps <- c(cmps, "", "")[1:2]
   cmps[2] <- sub("[.]git$", "", cmps[2])
   list(
@@ -18,7 +18,8 @@ parse_gh_url <- function(url) {
     graphql = graphql,
     user = cmps[1],
     repo = cmps[2],
-    slug = paste0(cmps[1], "/", cmps[2])
+    slug = paste0(cmps[1], "/", cmps[2]),
+    pat_url = paste0(pcs$protocol, "://", host, "/", cmps[1], "/", cmps[2])
   )
 }
 

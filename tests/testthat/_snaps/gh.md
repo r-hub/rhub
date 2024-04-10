@@ -21,6 +21,9 @@
       $slug
       [1] "r-lib/cli"
       
+      $pat_url
+      [1] "https://github.com/r-lib/cli"
+      
     Code
       parse_gh_url("http://github.com/r-lib/cli")
     Output
@@ -41,6 +44,9 @@
       
       $slug
       [1] "r-lib/cli"
+      
+      $pat_url
+      [1] "http://github.com/r-lib/cli"
       
     Code
       parse_gh_url("https://my.private.gh/user/repo")
@@ -63,6 +69,9 @@
       $slug
       [1] "user/repo"
       
+      $pat_url
+      [1] "https://my.private.gh/user/repo"
+      
     Code
       parse_gh_url("http://my.private.gh/user/repo")
     Output
@@ -83,6 +92,9 @@
       
       $slug
       [1] "user/repo"
+      
+      $pat_url
+      [1] "http://my.private.gh/user/repo"
       
 
 # gh_headers
