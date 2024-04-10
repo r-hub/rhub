@@ -101,7 +101,14 @@ test_that("rc_submit", {
   expect_snapshot({
     (rc_submit(pkg))
   }, transform = function(x) {
-    sub("checking for file .*[.][.][.]", "checking for file '<path> ...", x)
+    x <- sub(
+      "checking for file .*[.][.][.]",
+      "checking for file '<path> ...",
+      x
+    )
+    x <- gsub("\x91", "'", x, fixed = TRUE, useBytes = TRUE)
+    x <- gsub("\x92", "'", x, fixed = TRUE, useBytes = TRUE)
+    x
   })
 
   # error response
