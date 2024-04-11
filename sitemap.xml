@@ -4,16 +4,16 @@
     <loc>https://r-hub.github.io/rhub/404.html</loc>
   </url>
   <url>
+    <loc>https://r-hub.github.io/rhub/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
     <loc>https://r-hub.github.io/rhub/LICENSE-text.html</loc>
   </url>
   <url>
     <loc>https://r-hub.github.io/rhub/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://r-hub.github.io/rhub/articles/local-debugging.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/articles/rhub.html</loc>
+    <loc>https://r-hub.github.io/rhub/articles/rhubv2.html</loc>
   </url>
   <url>
     <loc>https://r-hub.github.io/rhub/authors.html</loc>
@@ -61,13 +61,34 @@
     <loc>https://r-hub.github.io/rhub/reference/platforms.html</loc>
   </url>
   <url>
-    <loc>https://r-hub.github.io/rhub/reference/rhub-ids.html</loc>
+    <loc>https://r-hub.github.io/rhub/reference/rc_list_local_tokens.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub/reference/rc_list_repos.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub/reference/rc_new_token.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub/reference/rc_submit.html</loc>
   </url>
   <url>
     <loc>https://r-hub.github.io/rhub/reference/rhub-package.html</loc>
   </url>
   <url>
     <loc>https://r-hub.github.io/rhub/reference/rhub_check.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub/reference/rhub_doctor.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub/reference/rhub_platforms.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub/reference/rhub_setup.html</loc>
+  </url>
+  <url>
+    <loc>https://r-hub.github.io/rhub/reference/rhubv2.html</loc>
   </url>
   <url>
     <loc>https://r-hub.github.io/rhub/reference/validate_email.html</loc>
