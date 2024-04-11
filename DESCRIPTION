@@ -1,5 +1,5 @@
 Package: rhub
-Title: Tools for R package developers
+Title: Tools for R Package Developers
 Version: 1.9.9.9000
 Authors@R: c(
     person("Gábor", "Csárdi",, "csardi.gabor@gmail.com", role = c("aut", "cre")),
@@ -7,8 +7,8 @@ Authors@R: c(
           email = "maelle.salmon@yahoo.se",
           comment = c(ORCID = "0000-0002-2815-0399")),
     person("R Consortium", role = c("fnd")))
-Description: R-hub v2 uses GitHub Actions to run `R CMD check` and
-    similar package checks. The rhub package helps you set up
+Description: R-hub v2 uses GitHub Actions to run 'R CMD check' and
+    similar package checks. The 'rhub' package helps you set up
     R-hub v2 for your R package, and start running checks.
 License: MIT + file LICENSE
 URL: https://github.com/r-hub/rhub, https://r-hub.github.io/rhub/
