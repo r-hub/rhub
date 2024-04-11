@@ -5,7 +5,7 @@
 
 This is a completely new system, see `?rhubv2`  manual page or
 the 'Getting started with R-hub v2' article at
-https://r-hub.github.io/rhub/dev to start.
+https://r-hub.github.io/rhub to start.
 
 Previous functions are now deprecated and defunct. They will be removed
 in the next version of the package.
