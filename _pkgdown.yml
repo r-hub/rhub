@@ -11,6 +11,11 @@ toc:
 development:
   mode: auto
 
+news:
+  releases:
+  - text: "rhub 2.0.0 blog post"
+    href: https://blog.r-hub.io/2024/04/11/rhub2/
+
 reference:
 - title: R-hub v2
   desc: |
