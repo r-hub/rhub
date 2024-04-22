@@ -281,7 +281,7 @@ The process is similar to the first version of R-hub:
 - Currently you need to create a GitHub account to see the check logs of
   your package. You don’t need a GitHub account to submit the checks.
 
-To avoid these limitations (except for the neeed for a GitHub accounr),
+To avoid these limitations (except for the need for a GitHub account),
 put your package in a GitHub repository, and use the `rhub_setup()` and
 `rhub_check()` functions instead of `rc_submit()` and the R Consortium
 runners.
