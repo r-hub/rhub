@@ -167,7 +167,7 @@ doctor_check_pat_scopes <- function(resp) {
     throw(pkg_error(
       call. = FALSE,
       "Your PAT does not have a {.code repo} scope.",
-      i = "Withoput a {.code repo} scope R-hub cannot start jobs on GitHub.",
+      i = "Without a {.code repo} scope R-hub cannot start jobs on GitHub.",
       i = "Change the scopes of the PAT on the GitHub web page, or create
            a new PAT."
     ))
