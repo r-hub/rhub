@@ -3,7 +3,7 @@ pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   rhubv2: rhubv2.html
-last_built: 2024-04-22T14:38Z
+last_built: 2024-05-17T14:04Z
 urls:
   reference: https://r-hub.github.io/rhub/reference
   article: https://r-hub.github.io/rhub/articles
