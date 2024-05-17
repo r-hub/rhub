@@ -140,7 +140,7 @@
     Condition
       Error:
       ! Your PAT does not have a `repo` scope.
-      i Withoput a `repo` scope R-hub cannot start jobs on GitHub.
+      i Without a `repo` scope R-hub cannot start jobs on GitHub.
       i Change the scopes of the PAT on the GitHub web page, or create a new PAT.
 
 ---
