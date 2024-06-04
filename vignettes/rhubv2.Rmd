@@ -11,8 +11,8 @@ vignette: >
 
 ## Introduction
 
-R-hub v2, i.e. version 2 or later of the rhub package is a completely
-new check system. In this acticle we highlight the differences between
+R-hub v2, i.e. version 2 or later of the rhub package, is a completely
+new check system. In this article we highlight the differences between
 the old and the new system.
 
 There are two ways to use R-hub v2. The recommended way is to store your
@@ -48,7 +48,7 @@ are ready to call start checks with `rhub_check()`.
   changes in your local git clone. You need to push the changes to
   GitHub first. You can use a non-default branch, with the `branch`
   argument of `rhub_check()`.
-- You'll not get an email about the check results. But you'll receive
+- You won't get an email about the check results. But you'll receive
   regular GitHub notifications about check failures, unless you opt out.
   Github can also turn these into emails if you like.
 - There is no live output from the check at the R console. See the
@@ -111,7 +111,7 @@ The process is similar to the first version of R-hub:
 * Currently you need to create a GitHub account to see the check logs of
   your package. You don't need a GitHub account to submit the checks.
 
-To avoid these limitations (except for the neeed for a GitHub account),
+To avoid these limitations (except for the need for a GitHub account),
 put your package in a GitHub repository, and use the `rhub_setup()` and
 `rhub_check()` functions instead of `rc_submit()` and the R Consortium
 runners.
