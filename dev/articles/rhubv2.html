@@ -118,9 +118,9 @@
 <div class="section level3">
 <h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h3>
-<p>R-hub v2, i.e. version 2 or later of the rhub package is a completely
-new check system. In this acticle we highlight the differences between
-the old and the new system.</p>
+<p>R-hub v2, i.e. version 2 or later of the rhub package, is a
+completely new check system. In this article we highlight the
+differences between the old and the new system.</p>
 <p>There are two ways to use R-hub v2. The recommended way is to store
 your R package in a GitHub repository and use the <code>rhub_*()</code>
 functions to start checks on GitHub Actions, using your own GitHub
@@ -160,7 +160,7 @@ branch and then you are ready to call start checks with
 changes in your local git clone. You need to push the changes to GitHub
 first. You can use a non-default branch, with the <code>branch</code>
 argument of <code><a href="../reference/rhub_check.html">rhub_check()</a></code>.</li>
-<li>You’ll not get an email about the check results. But you’ll receive
+<li>You won’t get an email about the check results. But you’ll receive
 regular GitHub notifications about check failures, unless you opt out.
 Github can also turn these into emails if you like.</li>
 <li>There is no live output from the check at the R console. See the
@@ -232,7 +232,7 @@ need to wait for your builds to start.</li>
 of your package. You don’t need a GitHub account to submit the
 checks.</li>
 </ul>
-<p>To avoid these limitations (except for the neeed for a GitHub
+<p>To avoid these limitations (except for the need for a GitHub
 account), put your package in a GitHub repository, and use the
 <code><a href="../reference/rhub_setup.html">rhub_setup()</a></code> and <code><a href="../reference/rhub_check.html">rhub_check()</a></code> functions
 instead of <code><a href="../reference/rc_submit.html">rc_submit()</a></code> and the R Consortium runners.</p>
