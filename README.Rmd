@@ -117,7 +117,7 @@ The process is similar to the first version of R-hub:
 
 * Set your working directory to the R package you want to check.
 * Obtain a token from R-hub, to verify your email address:
-  ```
+  ```r
   rc_new_token()
   ```
   (You do not need to do this, if you already submitted packages to a
@@ -125,7 +125,7 @@ The process is similar to the first version of R-hub:
   address. Call `rc_list_local_tokens()` to check if you already have
   tokens.)
 * Submit a build with
-  ```
+  ```r
   rc_submit()
   ```
 * Select the platforms you want to use, and follow the instructions and
