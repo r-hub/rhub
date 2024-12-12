@@ -6,7 +6,7 @@
 #' @param platforms Platforms to use, a character vector. Use `NULL` to
 #'   select from a list in interactive sessions. See [rhub_platforms()].
 #' @param r_versions Which R version(s) to use for the platforms that
-#'   supports multiple R versions. This arguemnt is not implemented yet.
+#'   supports multiple R versions. This argument is not implemented yet.
 #' @param branch Branch to use to run R-hub. Defaults to the current
 #'   branch if `gh_url` is `NULL`. Otherwise defaults to `"main"`. Note that
 #'   this branch also need to include the `rhub.yaml` workflow file.
