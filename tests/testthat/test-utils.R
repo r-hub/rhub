@@ -199,7 +199,7 @@ test_that("update", {
 
 test_that("get_maintainer_email", {
   pkg <- test_path("fixtures/pkg")
-  expect_equal(get_maintainer_email(pkg), "first.last@example.com")
+  expect_equal(get_maintainer_email(pkg), "Josiah.Carberry@example.com")
 
   pkg2 <- test_path("fixtures/pkg_0.0.0.9000.tar.gz")
   expect_equal(get_maintainer_email(pkg2), "first.last@example.com")
