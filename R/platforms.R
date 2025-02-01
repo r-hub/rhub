@@ -41,6 +41,7 @@ rhub_platforms <- function() {
 
   res <- data_frame(
     name = platforms[["name"]],
+    description = platforms[["description"]],
     aliases = lapply(zip(platforms[["cran-names"]], platforms[["aliases"]]), unique),
     type = platforms[["type"]],
     os_type = platforms[["os-type"]],
@@ -86,6 +87,7 @@ format.rhub_platforms <- function(x, ...) {
     vm <- if (has_emoji()) "\U1F5A5 " else "[VM] "
     ret <- c(ret, cli::rule("Virtual machines"))
     for (p in wvms) {
+      note <- if (!is.na(x$description[p])) paste0(", ", x$description[p])
       ret <- c(
         ret,
         paste0(
@@ -93,9 +95,9 @@ format.rhub_platforms <- function(x, ...) {
           cli::style_bold(cli::col_blue(x$name[p]))
         ),
         if (x$r_version[p] == "*") {
-          grey(paste0("   All R versions on GitHub Actions ", x$github_os[p]))
+          grey(paste0("   All R versions on GitHub Actions ", x$github_os[p], note))
         } else {
-          grey(paste0("   ", x$r_version[p]))
+          grey(paste0("   ", x$r_version[p], note))
         }
       )
       counter <- counter + 1L
@@ -167,10 +169,11 @@ format.rhub_platforms_summary <- function(x, ...) {
   }
   name <- cli::style_bold(cli::col_blue(x$name))
   rv <- abbrev_version(x$r_version)
+  note <- ifelse(is.na(x$description), "", paste0(", ", x$description))
   os <- ifelse(
     is.na(x$os_name),
-    paste0(x$github_os, " on GitHub"),
-    x$os_name
+    paste0(x$github_os, " on GitHub", note),
+    paste0(x$os_name, note)
   )
 
   lines <- paste(
