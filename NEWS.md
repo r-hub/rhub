@@ -1,5 +1,10 @@
 # rhub (development version)
 
+* rhub now avoids a message from recent versions of the R6 package,
+  about the finalize method of an R6 class having to be private.
+
+* Using platform aliases works correctly now when selecting platforms.
+
 # rhub 2.0.0
 
 ## R-hub v2
