@@ -41,7 +41,7 @@ rhub_platforms <- function() {
 
   res <- data_frame(
     name = platforms[["name"]],
-    description = platforms[["description"]],
+    description = platforms[["description"]] %||% NA_character_,
     aliases = lapply(zip(platforms[["cran-names"]], platforms[["aliases"]]), unique),
     type = platforms[["type"]],
     os_type = platforms[["os-type"]],

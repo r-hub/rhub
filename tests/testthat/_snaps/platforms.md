@@ -79,12 +79,12 @@
     Code
       rhub_platforms()[]
     Output
-      # A data frame: 3 x 8
-        name         aliases   type      os_type container github_os r_version os_name
-      * <chr>        <list>    <chr>     <chr>   <chr>     <chr>     <chr>     <chr>  
-      1 windows      <chr [6]> os        Windows <NA>      windows-~ *         <NA>   
-      2 ubuntu-clang <chr [1]> container Linux   ghcr.io/~ <NA>      R Under ~ Ubuntu~
-      3 ubuntu-gcc12 <chr [1]> container Linux   ghcr.io/~ <NA>      <NA>      <NA>   
+      # A data frame: 3 x 9
+        name   description aliases type  os_type container github_os r_version os_name
+      * <chr>  <chr>       <list>  <chr> <chr>   <chr>     <chr>     <chr>     <chr>  
+      1 windo~ <NA>        <chr>   os    Windows <NA>      windows-~ *         <NA>   
+      2 ubunt~ <NA>        <chr>   cont~ Linux   ghcr.io/~ <NA>      R Under ~ Ubuntu~
+      3 ubunt~ <NA>        <chr>   cont~ Linux   ghcr.io/~ <NA>      <NA>      <NA>   
 
 # format.rhub_platforms
 
