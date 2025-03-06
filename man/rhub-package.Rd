@@ -240,7 +240,7 @@ to wait for your builds to start.
 your package. You don't need a GitHub account to submit the checks.
 }
 
-To avoid these limitations (except for the neeed for a GitHub accounr),
+To avoid these limitations (except for the need for a GitHub account),
 put your package in a GitHub repository, and use the \code{rhub_setup()} and
 \code{rhub_check()} functions instead of \code{rc_submit()} and the R Consortium
 runners.

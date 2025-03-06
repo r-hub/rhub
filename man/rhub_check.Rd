@@ -14,7 +14,7 @@ the package in the current directory.}
 select from a list in interactive sessions. See \code{\link[=rhub_platforms]{rhub_platforms()}}.}
 
 \item{r_versions}{Which R version(s) to use for the platforms that
-supports multiple R versions. This arguemnt is not implemented yet.}
+supports multiple R versions. This argument is not implemented yet.}
 
 \item{branch}{Branch to use to run R-hub. Defaults to the current
 branch if \code{gh_url} is \code{NULL}. Otherwise defaults to \code{"main"}. Note that
