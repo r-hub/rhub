@@ -255,7 +255,7 @@ select_platforms <- function(platforms = NULL) {
 
   } else {
     platforms <- unique(platforms)
-    bad <- !platforms %in% unlist(plat$name, plat$aliases)
+    bad <- !platforms %in% unlist(c(plat$name, plat$aliases))
     if (any(bad)) {
       throw(pkg_error(
         "Unknown platform{?s}: {.val {platforms[bad]}}.",
