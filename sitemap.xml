@@ -1,96 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://r-hub.github.io/rhub/404.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/articles/rhubv2.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/index.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/check.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/check_for_cran.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/check_shortcuts.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/get_check.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/last_check.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/list_my_checks.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/list_package_checks.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/list_validated_emails.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/local_check_linux.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/local_check_linux_images.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/platforms.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/rc_list_local_tokens.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/rc_list_repos.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/rc_new_token.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/rc_submit.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/rhub-package.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/rhub_check.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/rhub_doctor.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/rhub_platforms.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/rhub_setup.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/rhubv2.html</loc>
-  </url>
-  <url>
-    <loc>https://r-hub.github.io/rhub/reference/validate_email.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://r-hub.github.io/rhub/404.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/LICENSE-text.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/articles/index.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/articles/rhubv2.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/authors.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/index.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/news/index.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/check.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/check_for_cran.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/check_shortcuts.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/get_check.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/index.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/last_check.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/list_my_checks.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/list_package_checks.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/list_validated_emails.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/local_check_linux.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/local_check_linux_images.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/platforms.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/rc_list_local_tokens.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/rc_list_repos.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/rc_new_token.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/rc_submit.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/rhub-package.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/rhub_check.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/rhub_doctor.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/rhub_platforms.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/rhub_setup.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/rhubv2.html</loc></url>
+<url><loc>https://r-hub.github.io/rhub/reference/validate_email.html</loc></url>
 </urlset>
+
