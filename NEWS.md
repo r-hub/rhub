@@ -1,3 +1,5 @@
+# rhub (development version)
+
 # rhub 2.0.1
 
 * rhub now avoids a message from recent versions of the R6 package,
